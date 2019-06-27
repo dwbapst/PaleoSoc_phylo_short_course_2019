@@ -11,7 +11,7 @@ Current Schedule:
 	- Davey W.
 	- 10 min, Lecture.
 	- Brief discussion about data set
-	- Explaining what cinctans are and why echinoderms are cool.
+	- Explaining what cinctans are and why echinoderms are cool
 08:20 AM - Module 3 - Morphological Character Coding
 	- Sandy C., Davey W., Pete W.
 	- 40 min, Lecture & exercise
@@ -20,7 +20,7 @@ Current Schedule:
 	- Examining character coding decisions
 	- Exploring consequences of different coding options
 09:00 AM - BREAK (15 min)
-09:15 AM - Module 4 - Bayesian Methods & Simple Morphological Models.
+09:15 AM - Module 4 - Bayesian Methods & Simple Morphological Models
 	- Pete W.
 	- 45 min, Lecture & Hands-On with RevBayes/RevNotebook.
 	- Likelihood, Bayesian, MCMC,
@@ -44,9 +44,11 @@ Current Schedule:
 		- Stratocladistics, Stratolikelihood
 		- Anc-Desc Relationships.
 		- Sampled Ancestors in Tip-Dating.
-02:00 PM - Module 9 - Tip-Dating with FBD (Unifies morph, clocks, tree priors)
+02:00 PM - Module 9 - Tip-Dating with FBD 
 	- Davey W., Dave B., April W.
 	- 1:15 min, Hands-On with RevBayes/RevNotebook
+	- Unifies morph, clocks, tree priors
+	-Goes from begin to end of an analytical process
 03:15 PM - BREAK (15 min)
 03:30 PM - Module 10 - Worked Example with Phylo Comp Methods
 	- Laura S., Davey W.
