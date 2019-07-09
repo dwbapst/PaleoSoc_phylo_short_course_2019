@@ -1,0 +1,62 @@
+08:00 AM - Module 1 - Introduction: Tree-Thinking
+	- Sandy C., Pete W.
+	- 15 min, Lecture.
+08:15 AM - Module 2 - Meet Our Data: Smith and Zamora, 2009
+	- Davey W.
+	- 10 min, Lecture.
+	- Brief discussion about data set
+	- Explaining what cinctans are and why echinoderms are cool
+08:25 AM - Module 3 - Morphological Character Coding
+	- Sandy C., Davey W., Pete W.
+	- 30 min, Lecture & exercise
+	- Mesquite exercise with S&Z 2009 data set.
+	- Experiment - Examining character coding decisions
+	- Possible consequences of different coding options
+09:00 AM - Module 4 - Intro to RevBayes, Graphical Modeling
+	- April W, ?
+	- 45 min, Lecture & exercise
+	- Plate notation?
+09:45 AM - BREAK (15 min)	
+10:00 AM - Module 5 - Tripartite Model 1: Morphological Character Change Models 
+	- April W, ?
+	- Lecture & Hands-On with RevBayes/RevNotebook.	
+	- Likelihood concepts, Bayesian Methods, MCMC
+	- Simple Mk, filtering
+	- Teasers of how to relax some assumptions of the model:
+		- transition rate symmetry?
+		- across-site/char heterogeneity?
+	- April: Learners first contact with RB; stuff will go wrong. Also a part where there is likely to be significant discussion, since no one really believes the Mk model. 
+		- DWB: We've already seen this in comments in our registration survey. There will definitely be non-believers about Mk.
+	- Push up right before lunch so people can yell at April afterwards
+	- April: I think I'll have them work as a table: one person do an MCMC with the strict Mk model; others can each pick one thing to change. Maybe choose a different distribution for among-site rate variation, or allow asymmetrical transitions. They can compare results during/after lunch.
+	- April: I'm going to turn my morph models talk in to an R Markdown document so that I can interweave activities with lecture.
+	- April's materials from previous workshop: 		https://github.com/danlwarren/Evolution-2019-Phylogenetic-Methods-Workshop/tree/master/3%20-%20April%20Wright%20-%20Teaching%20and%20resesarch%20with%20RevBayes
+12:00 PM - LUNCH (1.5 hour)
+01:30 PM - Module 6 - Tripartite Model 2: Clock Models for Character Change
+	- April W.?, Davey W.?
+	- 45 min, Hands-On with RevBayes/RevNotebook.
+	- April: light, hands-on ... this is just sorta boring
+	- Pete: tease looking at different rates across morph partitions?
+02:00 PM - Module 7 - Tripartite Model 3: Fossilized Birth Death
+	- Dave B., Davey W.?, Laura S.?
+	- 1:30 min, Lecture & Hands-On with RevBayes/RevNotebook
+	- Fossilized Birth Death Models 
+		- Stadler, 2010; Heath et al., 2014; Stadler et al., 2018
+		- FBD, Range-FBD
+	- Anc-Desc Relationships, Sampled Ancestors in Tip-Dating
+		- Sampled Ancestor Moves in MCMC
+		- Gavryushkina et al. 2014; 2016
+	- Try to simplify, do not get lost in covering historical perspective
+		- April: Simulate under a pure-birth process and ask whose data looks like this? Simulate under the FBD and show that this process allows sampled ancestors? 	
+	- Unifies morph, clocks, tree priors
+	- Goes from start to end of an analytical process
+03:30 PM - BREAK (15 min)	
+03:45 PM - Module 10 - Worked Example with Phylo Comp Methods
+	- Laura S., Davey W.
+	- 1:15 min, Lecture & Hands-on with RevBayes
+
+
+
+
+
+	
