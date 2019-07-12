@@ -20,18 +20,18 @@ This hands-on computational workshop is organized by Sandra Carlson and Peter Wa
 	- Possible consequences of different coding options
 	- Sandy: I think the first hour could be reduced to half an hour, or even 20 minutes if that would help with the rest of the timing.	
 	- From Pete:
-		A. Emphasis: Ways to identify particular conditions that we think are shared (or potentially shared) via common ancestry;
-		Z. But even if my characters are “good,” what if they do not all evolve in the same way all of the time?
-09:00 AM - Module 4 - Intro to RevBayes, Graphical Modeling
+		- A. Emphasis: Ways to identify particular conditions that we think are shared (or potentially shared) via common ancestry;
+		- Z. But even if my characters are “good,” what if they do not all evolve in the same way all of the time?
+- 09:00 AM - Module 4 - Intro to RevBayes, Graphical Modeling
 	- April W, ?
 	- 45 min, Lecture & exercise
 	- Plate notation?
 	- From Pete:
-		A. Emphasis: We want a “flow chart” detailing all of the variables that affect how character states are distributed in the fossil record.
-		B. Show RevBayes symbols for different types of variables
-		Z. But how do I get a tree without assuming that all of these other parameters have particular conditions?
-09:45 AM - BREAK (15 min)	
-10:00 AM - Module 5 - Tripartite Model 1: Morphological Character Change Models 
+		- A. Emphasis: We want a “flow chart” detailing all of the variables that affect how character states are distributed in the fossil record.
+		- B. Show RevBayes symbols for different types of variables
+		- Z. But how do I get a tree without assuming that all of these other parameters have particular conditions?
+- 09:45 AM - BREAK (15 min)	
+- 10:00 AM - Module 5 - Tripartite Model 1: Morphological Character Change Models 
 	- April W, ?
 	- Lecture & Hands-On with RevBayes/RevNotebook.	
 	- Likelihood concepts, Bayesian Methods, MCMC
@@ -47,26 +47,26 @@ This hands-on computational workshop is organized by Sandra Carlson and Peter Wa
 	- April's materials from previous workshop: 		https://github.com/danlwarren/Evolution-2019-Phylogenetic-Methods-Workshop/tree/master/3%20-%20April%20Wright%20-%20Teaching%20and%20resesarch%20with%20RevBayes
 	- From Pete:
 		- MCMC
-			A. Emphasis: Way to search complicated hypothesis space and and marginalize effects of unknown rate parameters.
-			Z. But how do I actually do the math at any step?
+			- A. Emphasis: Way to search complicated hypothesis space and and marginalize effects of unknown rate parameters.
+			- Z. But how do I actually do the math at any step?
 		- MK Models (Tripartite Model 1a)
-			A. Emphasis: Probability of deriving a matrix given a particular phylogeny (cladistic relationships + divergence times)
-			B.  MCMC allows us to “integrate” over different general rates.
-			Z. But what if rates vary among characters?
+			- A. Emphasis: Probability of deriving a matrix given a particular phylogeny (cladistic relationships + divergence times)
+			- B.  MCMC allows us to “integrate” over different general rates.
+			- Z. But what if rates vary among characters?
 		- Gamma & lognormal variation & hyperpriors (Tripartite Model 1b)
-			A. Emphasis: Assume distribution of rates and thus vary rates without specifying which characters are “good” or “bad”.
-			B. Introduces  hyperpriors for varying lognormal or Gamma distributions 
-			Z. But I keep seeing “time” in these equations: what if these rates are not consistent over time?	
-12:00 PM - LUNCH (1.5 hour)
-01:30 PM - Module 6 - Tripartite Model 2: Clock Models for Character Change
+			- A. Emphasis: Assume distribution of rates and thus vary rates without specifying which characters are “good” or “bad”.
+			- B. Introduces  hyperpriors for varying lognormal or Gamma distributions 
+			- Z. But I keep seeing “time” in these equations: what if these rates are not consistent over time?	
+- 12:00 PM - LUNCH (1.5 hour)
+- 01:30 PM - Module 6 - Tripartite Model 2: Clock Models for Character Change
 	- Who? Davey W.?
 	- 45 min, Hands-On with RevBayes/RevNotebook.
 	- April: light, hands-on ... this is just sorta boring
 	- Pete: tease looking at different rates across morph partitions?
 	- From Pete:
-		A. Emphasis: similar to the “set rate” vs. “distributed rate” issue and with similar solutions.
-		Z. But what if my clade spans “exceptional” events (e.g., major radiations or major global shifts affecting lots of clades), or what if my characters are “cheating” in some other way beyond what among-branch & among-character variation models?	
-02:00 PM - Module 7 - Tripartite Model 3: Fossilized Birth Death
+		- A. Emphasis: similar to the “set rate” vs. “distributed rate” issue and with similar solutions.
+		- Z. But what if my clade spans “exceptional” events (e.g., major radiations or major global shifts affecting lots of clades), or what if my characters are “cheating” in some other way beyond what among-branch & among-character variation models?	
+- 02:00 PM - Module 7 - Tripartite Model 3: Fossilized Birth Death
 	- Dave B., Davey W.?, Laura S.?
 	- 1:30 min, Lecture & Hands-On with RevBayes/RevNotebook
 	- Fossilized Birth Death Models 
@@ -84,13 +84,13 @@ This hands-on computational workshop is organized by Sandra Carlson and Peter Wa
 		- A. Emphasis: Probabilities getting fossil record given phylogeny based on likelihood of unsampled ancestors AND probability of no sampled sister taxa (aka, Raup’s Revenge).
 		- B. Our old friend hyperpriors used to create distributions for these rates.
 		- Z. Wow, that’s cool: but I’m now using everything and the kitchen sink; can I do anything with the results?	
-03:30 PM - BREAK (15 min)	
-03:45 PM - Module 10 - Worked Example with Phylo Comp Methods
+- 03:30 PM - BREAK (15 min)	
+- 03:45 PM - Module 10 - Worked Example with Phylo Comp Methods
 	- Laura S., Davey W.
 	- 1:15 min, Lecture & Hands-on with RevBayes
 	- From Pete:
-		A. How to test macroevolutionary ideas while admitting that we can never know the “true” tree
-		Z. But what about X, Y, Z, etc.?
+		- A. How to test macroevolutionary ideas while admitting that we can never know the “true” tree
+		- Z. But what about X, Y, Z, etc.?
 	- Laura: Being able to show something (even if its simple) that one can do whether you made your own tree, generated a supertree, or made most of a tree but want to include 10 taxa you can't code, would be the most broadly useful to the (clearly very mixed experience) group we have coming. From an earlier chat with Davey, he pointed out that we could also instead take the approach of doing a light touch overview of what is now possible in the paleo-PCM world and highlighting the R packages that are available to do it. We could also stick to modelling rates of discrete character change on the tree if switching to continuous characters feels too 'from scratch'.
 	- Peter: As Laura noted, those approaches rely heavily on divergence times, which means that you have to rehash (and reinforce!) the FBD & tip-dating material from earlier parts; many PCM approaches integrate over trees, too, which gets back to the MCMC approach.  And both the FBD/tip-dating and methods for assessing how characters evolve over trees get back to the morphological evolution modules.  There could be a lot of “As April / Laura / David / Davey showed us earlier, we do XXX here” parts that could really tie the whole thing together.  And, of course, it would also get back to something you certainly will raise from the start: why we want decent estimations of phylogeny in the first place.
 	- Sandy: 
@@ -102,9 +102,9 @@ This hands-on computational workshop is organized by Sandra Carlson and Peter Wa
 		- If you don't want to do a single point estimate tree, how can you avoid that (maybe treeplyr in R for working with tree vectors, co-estimation of  model + tree in RevBayes) see here for an example: 
 		- https://revbayes.github.io/tutorials/chromo/ 
 	- Peter: What might be done with the cinctan dataset?  Smith & Zamora separated “feeding” characters (or at least food groove characters) from others, and there certainly have been PCM studies contrasting how one class of characters evolves vs. another.  We probably could gather basic size data, too: e.g., dimensions of the theca or whatever you call the “body” of these things.  The benefit of that is that there might be a prize for the 1 millionth tree-based test of body size evolution!  
-???? - Module 11 - Summary 
-	- who?
-	- when? unknown duration
+- End-of-Day Summary 
+	- Who? Peter W.? Laura S.? Davey W.?
+	- When? Unknown duration? 1.25 hrs is gonna be very tight for PCMs as it is...
 	- Conclusions, Inspirations
 	- What Paleontologists Can Contribute to Systematics
 	
