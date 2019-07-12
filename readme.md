@@ -4,15 +4,15 @@ This hands-on computational workshop is organized by Sandra Carlson and Peter Wa
 
 ## Current Schedule:
 
-08:00 AM - Module 1 - Introduction: Tree-Thinking
+- 08:00 AM - Module 1 - Introduction: Tree-Thinking
 	- Sandy C., Pete W.
 	- 15 min, Lecture.	
-08:15 AM - Module 2 - Meet Our Data: Smith and Zamora, 2009
+- 08:15 AM - Module 2 - Meet Our Data: Smith and Zamora, 2009
 	- Davey W.
 	- 10 min, Lecture.
 	- Brief discussion about data set
 	- Explaining what cinctans are and why echinoderms are cool
-08:25 AM - Module 3 - Morphological Character Coding
+- 08:25 AM - Module 3 - Morphological Character Coding
 	- Sandy C., Davey W., Pete W.
 	- 30 min, Lecture & exercise
 	- Mesquite exercise with S&Z 2009 data set.
