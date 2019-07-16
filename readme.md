@@ -85,7 +85,7 @@ This hands-on computational workshop is organized by Sandra Carlson and Peter Wa
 		- B. Our old friend hyperpriors used to create distributions for these rates.
 		- Z. Wow, that’s cool: but I’m now using everything and the kitchen sink; can I do anything with the results?	
 - 03:30 PM - BREAK (15 min)	
-- 03:45 PM - Module 10 - Worked Example with Phylo Comp Methods
+- 03:45 PM - Module 8 - Worked Example with Phylo Comp Methods
 	- Laura S., Davey W.
 	- 1:15 min, Lecture & Hands-on with RevBayes
 	- From Pete:
