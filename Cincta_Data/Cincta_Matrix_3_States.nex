@@ -1,0 +1,44 @@
+#NEXUS
+
+BEGIN DATA;
+	DIMENSIONS  NTAX=27 NCHAR=21;
+	FORMAT DATATYPE = STANDARD RESPECTCASE GAP = - MISSING = ? SYMBOLS = "   0 1 2 ";
+	MATRIX
+	Ctenocystis                     000?0?0000000??02????
+	Gyrocystis_platessa             1100(01)0000000012210000
+	Gyrocystis_testudiformis        010000000010012210000
+	Gyrocystis_cruzae               1?0000000010012?00000
+	Gyrocystis_badulesiensis        120001001111122?00000
+	Gyrocystis_erecta               1??00100?????22??0000
+	Progyrocystis_disjuncta         0?1000000000001020000
+	Protocinctus_mansillaensis      0?2001000220002?2?100
+	Elliptocinctus_barrandei        (01)10220002212222?10110
+	Elliptocinctus_vizcainoi        0?010?002212?22?0011?
+	Sucocystis_theronensis          111(01)21002212212?00100
+	Sucocystis_bretoni              1111(01)1002212212?00100
+	Lignanicystis_barriosensis      120110002212212120110
+	Undatacinctus_undata            1?010111221220??00110
+	Sucocystis_acrofera             2?0101002212212?00121
+	Undatacinctus_quadricornuta     1?0101222222202?00110
+	Undatacinctus_melendezi         1?0101112212202?00110
+	Asturicystis_jaekeli            120001000000000?21222
+	Sotocinctus_ubaghsi             1?0(01)01000000000021221
+	Trochocystites_bohemicus        1102(01)2002202201122222
+	Trochocystoides_parvus          10000100020220??22222
+	Ludwigicinctus_truncatus        1?0101002222202?00100
+	Graciacystis_ambigua            0200(01)0000020010121010
+	Asturicystis_havliceki          ?????????????????????
+	Nelegerocystis_ivantzovi        ?????????????????????
+	Rozanovicystis_triangularis     ?????????????????????
+	Davidocinctus_pembrokensis      ?????????????????????
+;
+END;
+begin mrbayes;
+	set autoclose=yes nowarn=yes;
+	lset nst=6 rates=invgamma;
+	unlink statefreq=(all) revmat=(all) shape=(all) pinvar=(all); 
+	prset applyto=(all) ratepr=variable;
+	mcmcp ngen= 100000000 relburnin=yes burninfrac=0.25 printfreq=10000  samplefreq=10000 nchains=4 savebrlens=yes;
+	mcmc;
+	sumt;
+end;
