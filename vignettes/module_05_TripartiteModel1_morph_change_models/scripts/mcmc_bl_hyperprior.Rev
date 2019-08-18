@@ -1,0 +1,30 @@
+morpho <- readDiscreteCharacterData("data/morphMatPrep_Updated.nex")
+
+## helpers
+mvi = 1
+mni = 1
+taxa <- morpho.names()
+n_taxa <- taxa.size()
+n_branches <- 2 * n_taxa - 2
+# Load the model files
+
+source("scripts/mk_bl_hyperprior.Rev")
+# initialize the model object #
+mymodel = model(tree)
+# Create a vector of monitors #
+# 1. for the full model #
+monitors[mni++] = mnModel(filename="output/bl_hp.log", printgen=10)
+# 2. the tree #
+monitors[mni++] = mnFile(filename="output/bl_hp.trees", printgen=10, tree)
+# 3. and a few select parameters to be printed to the screen #
+monitors[mni++] = mnScreen(printgen=10)
+# Initialize the MCMC object #
+monitors[mni++] = mnStochasticVariable(filename="output/mcmc-bl_hp-stoch.log", printgen=10)
+mymcmc = mcmc(mymodel, monitors, moves)
+#trace = readStochasticVariableTrace(file="output/mcmc-bl_hp-stoch.log")
+#mymcmc.initializeFromTrace(trace)
+# Run the MCMC #
+
+# Run the MCMC #
+mymcmc.run(generations=300000)
+q()
