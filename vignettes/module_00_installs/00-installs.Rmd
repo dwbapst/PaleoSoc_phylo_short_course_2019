@@ -1,0 +1,24 @@
+---
+title: "Installs"
+author: "April Wright"
+date: "8/22/2019"
+output: html_document
+---
+In RStudio:
+
+**This step will download all the files for the workshop.**
+
+Under the `File` menu, choose `New Project`. Select `From Version Control, and then
+`Git`. In the `Repository URL,` enter
+
+https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019
+
+In the boxes `Project Directory Name`, and `Create project as a subdirectory of`,
+you may choose custom names and locations for your folder.
+
+In browser:
+
+- Choose a __command-line binary__ of PAUP for your system [here](http://phylosolutions.com/paup-test/)
+- Choose a command line binary of RevBayes for your system [here](https://revbayes.github.io/software)
+- [Tracer](http://tree.bio.ed.ac.uk/software/tracer/), for viewing posterior samples
+- [FigTree](http://tree.bio.ed.ac.uk/software/figtree/), for tree viewing
