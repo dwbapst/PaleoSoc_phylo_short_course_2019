@@ -114,6 +114,7 @@ Attendees will be asked to read over three overviews of the field beforehand:
 
 Holder, M., and P. O. Lewis. 2003. Phylogeny estimation: traditional and Bayesian approaches. Nat Rev Genet 4(4):275-284.
 
+Nee, S. 2006. Birth-death models in macroevolutin. Annual Reviews in Ecology, Evolution and Systematics 37:1-17.
 Wright, A. M. 2019. A Systematist’s Guide to Estimating Bayesian Phylogenies From Morphological Data. Insect Systematics and Diversity 3(3).
 	Link: https://academic.oup.com/isd/article/3/3/2/5519658
 	Preprint Here: https://paleorxiv.org/jupva
