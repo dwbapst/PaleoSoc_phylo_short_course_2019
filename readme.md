@@ -2,6 +2,28 @@ This repository will serve as a place for developing and storing materials for t
 
 This hands-on computational workshop is organized by Sandra Carlson and Peter Wagner (@PeterJWagner3), instructors April Wright (@wrightaprilm), Laura Soul (@laurasoul), David "Davey" F. Wright (@daveyfwright), and David Bapst (@dwbapst), with instructional material development from Rachel Warnock (@rachelwarnock). Additionally, this course will utilize a number of 'roving' teaching assistants (tentative list, as follows: William Gearty (@willgearty), Lucy Chang (@lucymchang), ...).
 
+This will be a workshop with active participation by the attendees.  As such, participants will need to have laptop computers with the following programs: 
+
+	RevBayes: Program for Bayesian Phylogenetic Analysis:
+	https://revbayes.github.io/download
+
+	Mesquite: A “spreadsheet” program for writing & formatting Nexus files storing information about taxa, characters, 	character states, etc.
+	https://www.mesquiteproject.org/Installation.html
+
+	R: A commonly used programming language that we will use.
+	https://cran.rstudio.com
+
+	RStudio: An IDE that we will use for distributing & compiling course material
+	https://www.rstudio.com/products/rstudio/download/
+
+	Tracer: A program for summarizing results of Markov Chain Monte Carlo analyses from programs such as RevBayes
+	https://github.com/beast-dev/tracer/releases
+
+RevBayes uses text files, which can be opened and editted in RStudio.  However, some participants might prefer using a separate text-editor when using both RStudio and RevBayes.  Options include:
+	Atom: (https://github.com/atom/atom/releases/tag/v1.40.1)
+	
+### Mac users should not install Catalina until after the workshop, as Catalina might not include the Terminal application!
+
 ## Current Schedule:
 
 - 08:00 AM - Module 1 - Introduction: Tree-Thinking
