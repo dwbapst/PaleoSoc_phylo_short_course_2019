@@ -20,7 +20,11 @@ This will be a workshop with active participation by the attendees.  As such, pa
 	https://github.com/beast-dev/tracer/releases
 
 RevBayes uses text files, which can be opened and editted in RStudio.  However, some participants might prefer using a separate text-editor when using both RStudio and RevBayes.  Options include:
+
 	Atom: (https://github.com/atom/atom/releases/tag/v1.40.1)
+	BBEdit (https://www.barebones.com/products/bbedit/download.html)
+	Notepad++ (https://notepad-plus-plus.org/download/v7.7.1.html)
+	Text Wrangler (https://www.barebones.com/products/textwrangler/)
 	
 ### Mac users should not install Catalina until after the workshop, as Catalina might not include the Terminal application!
 
