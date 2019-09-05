@@ -1,0 +1,9 @@
+# Default settings
+clock_model <- "strict";						    # enter "clock", "lognormal" or "dirichlet";
+ttl_rate_partitions <- 1;								# no rate rate partitions among characters
+rate_partition_labels <- v("none");			# names of each rate partition (none here)
+rate_partitions <- v("none");						# rate partition into which each matrix goes
+ttl_trend_partitions <- 1;								# no rate rate partitions among characters
+trend_partition_labels <- v("none");		# we are not partitioning characters for different general rates
+driven_trend_partitions <- v("none");		# we are not partitioning characters for trends tests
+big_bang <- FALSE;											# if TRUE, then rates of change decline over time.
