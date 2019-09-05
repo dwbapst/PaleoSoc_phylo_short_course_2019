@@ -1,0 +1,73 @@
+########################################################################
+# Set up appropriate parameters for speciation, extinction & sampling  #
+#   "Seed" numbers based on analyses of Paleobiology Database data.    #
+########################################################################
+# Diversification Rates based on Echinodermata
+speciation_rate ~ dnExponential(1.471);
+# NOTE: If it gets stuck in this script, then set origination & extinction to 1.0
+moves.append(mvScale(speciation_rate, lambda=0.01, weight=5));
+moves.append(mvScale(speciation_rate, lambda=0.10, weight=3));
+moves.append(mvScale(speciation_rate, lambda=1.00, weight=1));
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# NOTE: FBD scripts often allow extinction to vary independently of speciation;     #
+# However, empirical studies show that these two rates usually are close to equal   #
+#               and they definitely are not independent.                            #
+# So, here we'll make turnover (ext/orig) an independent variable and use it        #
+#               to scale extinction relative to origination                         #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+turnover ~ dnUnif(0.9, 1.05);
+moves.append(mvSlide(turnover, delta=0.01, weight=5));
+moves.append(mvSlide(turnover, delta=0.10, weight=3));
+moves.append(mvSlide(turnover, delta=1.00, weight=1));
+extinction_rate := turnover*speciation_rate;
+diversification := speciation_rate - extinction_rate;
+# old extinction stuff.
+#extinction_rate ~ dnExponential(1.471);
+#moves.append(mvScale(extinction_rate, lambda=0.01, weight=5));
+#moves.append(mvScale(extinction_rate, lambda=0.10, weight=3));
+#moves.append(mvScale(extinction_rate, lambda=1.00, weight=1));
+#turnover := extinction_rate/speciation_rate;
+
+# Fossil Sampling Rates based on collection occupied by Echinodermata
+psi ~ dnExponential(3.892);
+completeness := psi/(extinction_rate+psi);
+moves.append(mvScale(psi, lambda=0.01, weight=5));
+moves.append(mvScale(psi, lambda=0.10, weight=3));
+moves.append(mvScale(psi, lambda=1.00, weight=1));
+
+# Proportional Taxon Sampling of Youngest Time Slice
+rho <- 0.506;	# 'extant' sampling.
+
+# Establish Basal Divergence Time
+origin_time ~ dnUnif(7.3, 12.11);
+moves.append(mvSlide(origin_time, delta=0.01, weight=5));
+moves.append(mvSlide(origin_time, delta=0.10, weight=3));
+moves.append(mvSlide(origin_time, delta=1.00, weight=1));
+
+fbd_dist = dnFBDRP(origin=origin_time, lambda=speciation_rate, mu=extinction_rate, psi=psi, rho=rho, taxa=taxa);
+############################################################################
+#                               Set up tree                                #
+############################################################################
+# create the vector of clade constraints
+constraints = v(ingroup);
+tau ~ dnConstrainedTopology(fbd_dist,constraints=constraints);
+
+moves.append(mvFNPR(tau, weight=n_branches/2));                              # time-tree pruning & grafting
+moves.append(mvNNI(tau, weight=n_branches/2));                               # nearest-neighbor interchanges
+moves.append(mvCollapseExpandFossilBranch(tau,origin_time,weight=n_taxa/4)); # consider ancestor-descendant rather than sister species
+moves.append(mvNodeTimeSlideUniform(tau, weight=n_branches/2));              # adjust divergence times
+moves.append(mvRootTimeSlideUniform(tau, origin_time, weight=5));            # adjust basal divergence time.
+
+num_samp_anc := tau.numSampledAncestors();
+for (bn in 1:n_branches)	{
+	divergence_dates[bn]:=tau.nodeAge(bn)                   # this is when a hypothesized ancestor diverges or an OTU is first seen;
+	branch_lengths[bn]:=tau.branchLength(bn);               # this is branch *duration* not expected change!
+	origin_dates[bn]:=tau.branchLength(bn)+tau.nodeAge(bn); # this is when a lineage diverged from its ancestor
+	}
+summed_gaps := sum(branch_lengths);
+
+clade_extant = clade("Sucocystis_acrofera");
+age_extant := tmrca(tau, clade_extant);	# There is no particularly good reason to keep this!
+
+pruned_tau := fnPruneTree(tau, prune=v("Asturicystis_havliceki","Nelegerocystis_ivantzovi","Rozanovicystis_triangularis","Davidocinctus_pembrokensis"))

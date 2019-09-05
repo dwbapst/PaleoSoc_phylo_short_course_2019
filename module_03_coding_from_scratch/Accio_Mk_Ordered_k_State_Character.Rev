@@ -1,0 +1,24 @@
+# k = number of states
+
+for (i in 1:k)	{
+	for (j in 1:k) {
+		if (j==i)	{
+			q[j] <- -1.0;
+			} else if (j==(i-1))	{
+			if (i==k)	{
+				q[j] <- 1.0;
+				} else	{
+				q[j] <- 0.5;
+				}
+			} else if (j==(i+1))	{
+			if (i==1)	{
+				q[j] <- 1.0;
+				} else	{
+				q[j] <- 0.5;
+				}
+			} else	{
+			q[j] <- 0.0;
+			}
+		}
+	Qo[i] <- q;
+	}
