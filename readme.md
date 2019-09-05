@@ -1,6 +1,6 @@
 This repository will serve as a place for developing and storing materials for the Revbayes-based short course in tip-dating phylogenetics. for GSA 2019, presented by The Paleontological Society.
 
-This hands-on computational workshop is organized by Sandra Carlson and Peter Wagner (@PeterJWagner3), instructors April Wright (@wrightaprilm), Laura Soul (@laurasoul), David "Davey" F. Wright (@daveyfwright), and David Bapst (@dwbapst), with instructional material development from Rachel Warnock (@rachelwarnock). Additionally, this course will utilize a number of 'roving' teaching assistants (tentative list, as follows: William Gearty (@willgearty), Lucy Chang (@lucymchang), ...).
+This hands-on computational workshop is organized by Sandra Carlson and Peter Wagner (@PeterJWagner3), instructors April Wright (@wrightaprilm), Laura Soul (@laurasoul), David "Davey" F. Wright (@daveyfwright), and David Bapst (@dwbapst), with instructional material development from Rachel Warnock (@rachelwarnock). Additionally, this course will utilize a number of 'roving' teaching assistants (tentative list, as follows: Bethany Allen, Lena Cole, William Gearty (@willgearty), David Mertz (), Phil Novack-Gottshall (@pnovack-gottshall) & John Sime.  [?Lucy Chang (@lucymchang)].
 
 This will be a workshop with active participation by the attendees.  As such, participants will need to have laptop computers with the following programs: 
 
@@ -10,11 +10,10 @@ This will be a workshop with active participation by the attendees.  As such, pa
 	Mesquite: A “spreadsheet” program for writing & formatting Nexus files storing information about taxa, characters, 	character states, etc.
 	https://www.mesquiteproject.org/Installation.html
 
-	R: A commonly used programming language that we will use.
-	https://cran.rstudio.com
-
-	RStudio: An IDE that we will use for distributing & compiling course material
+	
+	RStudio: An IDE that we will use for executing R programs used in the shortcourse
 	https://www.rstudio.com/products/rstudio/download/
+	(Note that RStudio requires separate download of R itself: https://cran.rstudio.com)
 
 	Tracer: A program for summarizing results of Markov Chain Monte Carlo analyses from programs such as RevBayes
 	https://github.com/beast-dev/tracer/releases
