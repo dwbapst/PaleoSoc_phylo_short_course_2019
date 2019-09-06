@@ -1,0 +1,10 @@
+λ: cladogenesis rate
+μ: extinction rate
+θ: sampling rate
+ρ: proportion of taxa sampled (for final time slices)
+Φ: probability of a Cousin Matthew Clade
+Ψ: Birth-Death (or Birth-Death-Sampling) model
+Γ: For Gamma distribution
+β: For beta distribution
+σ: for (log-) variance of lognormal distributions
+α: expected character change (following Lewis 2001).
