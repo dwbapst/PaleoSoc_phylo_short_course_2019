@@ -1,9 +1,10 @@
 λ: cladogenesis rate
 μ: extinction rate
-θ: sampling rate
+ψ: sampling rate
 ρ: proportion of taxa sampled (for final time slices)
 Φ: probability of a Cousin Matthew Clade
-Ψ: Birth-Death (or Birth-Death-Sampling) model
+Ψ: Birth-Death + Divergences + Relationships ("whole" phylogeny; nix this for tau?)
+τ: Birth-Death-Sampling + Divergence Times + Relationships (“whole” phylogeny with fossil taxa).
 Γ: For Gamma distribution
 β: For beta distribution
 σ: for (log-) variance of lognormal distributions
