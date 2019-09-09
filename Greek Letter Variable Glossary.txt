@@ -9,3 +9,4 @@
 β: For beta distribution
 σ: for (log-) variance of lognormal distributions
 α: expected character change (following Lewis 2001).
+r: the probability of zero sampled ancestors (1-PA of Foote 1996)
