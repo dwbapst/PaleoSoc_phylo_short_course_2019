@@ -1,0 +1,32 @@
+λ
+
+	Lambda. Typical label used for rates in a waiting time distribution. For us, it will usually mean the birth rate of lineages, per time-unit, per lineage. This 'birth' rate is also commonly known as the origination rate, speciation rate, branching rate, cladogenesis rate, etc, depending on the context. This means if there is a group with a hundred lineages, and another with one lineage, the first group is a hundred times more likely to give arise to additional lineages than the group with the single lineage, over a time interval of equal length. 
+
+μ
+	Mu. Typically used as label for the death rate (extinction rate) per time-unit, per lineage.
+	
+ψ
+	Psi. Typically used for the 'serial sampling' Rate per time-unit, per lineage. Serial sampling means the sampling process over time - i.e. the chance of a lineage leaving behind remains that get preserved and survive to the modern day, so that we observe them. Note this is related but not the same as a sampling probability (e.g. Foote & Raup, 1996.) Also see Tau below.
+	
+ρ
+	Rho. Typically used for probability of sampling a species at time=zero (e.g. the modern).
+	
+τ, sometimes also ψ
+	Tau, or (sometimes) Psi, are used as the label for the thing of interesting - the dated phylogeny with branch lengths that we are trying to infer. Which letter gets used  varies in literature and software, and confusingly sometimes Psi gets used simultaneously to mean the serial sampling rate and the dated tree.
+	
+Γ
+	Gamma. Typically used an abbreviation for the Gamma distribution.
+	
+β
+	Beta. Typically used an abbreviation for the Beta distribution.
+	
+σ
+	Sigma (lower-case). Symbol used for various parameters, such as the variance of a normal distribution, the log-variance of a lognormal distribution, the rate of trait change in a non-directional model of trait change (essentially, the expected variance across a time-unit), etc. 
+	
+α: 
+	Alpha. 
+	
+	expected character change (following Lewis 2001).
+
+r: 
+	The Probability of the Act of Sampling Causing a Lineage Death (Usually 0 in FBD - more meaninful in models of disease transmission)
