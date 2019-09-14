@@ -3,6 +3,8 @@ navbar:
      left:
       - home
       - intro
+      - conduct
+      - install
       - lessons
       - readings
       - symbols
@@ -11,6 +13,9 @@ navbar:
      home:
        icon: fas fa-home fa-lg
        href: index.html
+     conduct:
+       text: Code fo Conduct
+       href: pages/code_conduct.html
      install:
        text: Software Used
        menu:
@@ -19,11 +24,11 @@ navbar:
         -  text: Extra Software
            href: software/install_extra.html
      readings:
-         text: Reading List
-         href: readings.html
+       text: Reading List
+       href: pages/readings.html
      symbols:
        text: Notation Guide
-       href: symbols.html
+       href: pages/symbols.html
      lessons:
        text: Articles
        menu:

@@ -25,7 +25,9 @@ Type 'q()' to quit R.
 > mdFiles <- c(
 + 	"./software/install_extra.md",
 + 	"./software/install_main.md",
-+ 	"symbols.md"
++ 	"./pages/symbols.md",
++ 	"./pages/code_conduct.md",
++ 	"./pages/readings.md"
 + 	)
 > 
 > 	
@@ -49,15 +51,21 @@ Type 'q()' to quit R.
 + 		output_file = mdOut[i]
 + 		)
 + 	}
-/usr/bin/pandoc +RTS -K512m -RTS install_extra.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output install_extra.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmpgC2fiJ/rmarkdown-str103c57fe426.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
+/usr/bin/pandoc +RTS -K512m -RTS install_extra.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output install_extra.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmprwaaC9/rmarkdown-str43844e3c7459.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
 
 Output created: install_extra.html
-/usr/bin/pandoc +RTS -K512m -RTS install_main.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output install_main.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmpgC2fiJ/rmarkdown-str103c2b3a09c.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
+/usr/bin/pandoc +RTS -K512m -RTS install_main.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output install_main.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmprwaaC9/rmarkdown-str43841ac1917.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
 
 Output created: install_main.html
-/usr/bin/pandoc +RTS -K512m -RTS symbols.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output symbols.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmpgC2fiJ/rmarkdown-str103c6e2f7e5b.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
+/usr/bin/pandoc +RTS -K512m -RTS symbols.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output symbols.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmprwaaC9/rmarkdown-str43843f022769.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
 
 Output created: symbols.html
+/usr/bin/pandoc +RTS -K512m -RTS code_conduct.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output code_conduct.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmprwaaC9/rmarkdown-str4384253b3319.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
+
+Output created: code_conduct.html
+/usr/bin/pandoc +RTS -K512m -RTS readings.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output readings.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmprwaaC9/rmarkdown-str438432cd9190.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
+
+Output created: readings.html
 > 
 > pkgdown::build_site()
 ── Installing package into temporary library ───────────────────────────────────
@@ -77,8 +85,6 @@ Reading 'index.md'
 Writing 'index.html'
 Reading 'readme.md'
 Writing 'readme.html'
-Reading 'symbols.md'
-Writing 'symbols.html'
 Writing 'index.html'
 ── Building function reference ─────────────────────────────────────────────────
 Writing 'reference/index.html'
@@ -88,7 +94,10 @@ Writing 'articles/index.html'
 Reading 'vignettes/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.Rmd'
 Writing 'articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html'
 ══ DONE ════════════════════════════════════════════════════════════════════════
+Warning message:
+In utils::install.packages(pkg$src_path, repo = NULL, type = "source",  :
+  installation of package ‘/home/dwbapst/workspace/PaleoSoc_phylo_short_course_2019’ had non-zero exit status
 > 
 > proc.time()
    user  system elapsed 
-  5.182   0.538   6.901 
+  6.358   0.710   8.372 

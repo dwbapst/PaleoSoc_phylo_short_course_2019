@@ -15,6 +15,9 @@ We require five particular software applications: **RevBayes**, **R**, **RStudio
 
 RevBayes is a terminal-based program for Bayesian phylogenetic analysis which gives users greater freedom in defining their own models and priors than previous software, designed around graphical models (Höhna et al. 2016). RevBayes also contains an interpreted, scripted language resembling R, rather than a set of fixed commands. It is a spiritual successor to the program MrBayes, which is still maintained but in static form, with no ongoing active development.
 
+## **NOTE** RevBayes was *just* updated!
+
+In the week before the workshop, one of us (A. Wright) push a number of changes to the RevBayes source and compiled new pre-release versions for our GSA workshop, labeled as release version 1.0.13. In particular, and of significance for us paleontologists, this allows us to load character matrices containing characters that entail differing numbers of character states. Previously, matrices with mixtures of characters with differing numbers of states had to be seperated beforehand to be loaded by RevBayes. If you have an older version of RevBayes from before this week, please update!
 
 ### R and RStudio
 
@@ -57,9 +60,13 @@ An application you don’t have to install, IcyTree is a web-based phylogeny dep
 
 To obtain RevBayes, download and unzip the compiled binaries for Windows systems, found at: 
 
-    https://revbayes.github.io/download 
+    https://github.com/revbayes/revbayes/releases/tag/v1.0.13 
 
 This unzipped directory will contain two executables (among many other files): `rb.exe`, which will open a command-line application in your respective terminal (probably MS Command Prompt, unless you have an alternative such as bash installed), and `RevStudio.exe`, which will open a primitive GUI for running RevBayes scripts.
+
+You can see more details at the download page:
+
+    https://revbayes.github.io/download 
 
 ### Installing R and RStudio
 
@@ -113,9 +120,13 @@ You can find additional details about editing your PATH, and particularly adding
 
 To obtain RevBayes, download and unpackage the compiled binaries for macOS systems, found at: 
 
-    https://revbayes.github.io/download 
+    https://github.com/revbayes/revbayes/releases/tag/v1.0.13
 
 This archived directory, once unpacked, should contain two executable files in the top-level: `rb`, which will open as a command-line application in your system’s shell, and `RevStudio`, which will open a primitive GUI for running RevBayes scripts.
+
+You can see more details at the download page:
+
+    https://revbayes.github.io/download 
 
 ### Installing R & RStudio
 
@@ -179,14 +190,24 @@ If you are a regular Linux user, you will be unsurprised to learn that you will 
 sudo apt install cmake
 ```
 
-Then obtain the source code, and compile:
+Then obtain the source code:
 
 ```
-git clone https://github.com/revbayes/revbayes.git revbayes
+git clone https://github.com/revbayes/revbayes.git revbayes --branch v1.0.13
+```
+
+This should clone the source for version 1.0.13, but if not, get the tarball here before proceeding:
+
+	https://github.com/revbayes/revbayes/releases/tag/v1.0.13
+
+Finally, compile the source code with `cmake`:
+
+```
 cd revbayes/projects/cmake
 ./build.sh
 ```
-You can see more details at the download page:
+
+This will take a while (about half an hour on a relatively new Linux laptop with four cores and 8 GB of RAM). You can see more details at the download page:
 
     https://revbayes.github.io/download 
 

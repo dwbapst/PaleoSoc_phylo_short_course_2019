@@ -1,7 +1,7 @@
 Package: GSA2019
 Type: Package
-Title: Geological Society Workshop 2019
-Version: 0.1.0
+Title: The Paleontological Society Short Course on Phylogenetic Approaches in Paleontology, at the 2019 Annual Meeting of the Geological Society of America
+Version: 0.4.4
 Authors@R: c(
 	person("David", "Bapst", role = c("aut","cre"), 
 		email="dwbapst@gmail.com"),
@@ -13,13 +13,14 @@ Authors@R: c(
 	person("Peter", "Wagner", role = c("aut"))
     )
 Maintainer: David Bapst <dwbapst@gmail.com>
-Description: R package for course materials
-License: MIT + file LICENSE
+Description: This is a fake R package containing course materials for the workshop held at GSA 2019 on September, 21st, 2019, in Phoenix, Arizona, sponsored by The Paleontological Society.
+License: CC0
 Depends:
 	shiny
 Imports:
     phangorn,
     phytools,
+	pkgDown,
     ape
 Suggests:
     knitr,

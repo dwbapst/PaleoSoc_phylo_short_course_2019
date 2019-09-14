@@ -6,7 +6,9 @@
 mdFiles <- c(
 	"./software/install_extra.md",
 	"./software/install_main.md",
-	"symbols.md"
+	"./pages/symbols.md",
+	"./pages/code_conduct.md",
+	"./pages/readings.md"
 	)
 
 	
