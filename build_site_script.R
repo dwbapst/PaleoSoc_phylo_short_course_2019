@@ -31,4 +31,4 @@ for(i in 1:length(mdFiles)){
 		)
 	}
 
-pkgdown:build_site()
+pkgdown::build_site()

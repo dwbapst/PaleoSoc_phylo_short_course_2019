@@ -38,7 +38,57 @@ Type 'q()' to quit R.
 > 
 > # confusingly, render changes its internal working directory to match where the md is
 > 	# so need to cut away directory locations
-> mdOut <- sapply(mdOut,function(x) rev(unlist(strsplit(x, split="/")))[[1]])
-Error in lapply(X = X, FUN = FUN, ...) : object 'mdOut' not found
-Calls: sapply -> lapply
-Execution halted
+> mdOut <- sapply(mdFiles,function(x) rev(unlist(strsplit(x, split="/")))[[1]])
+> # replace md with html
+> mdOut <- gsub(".md$", ".html", mdOut)
+> 	
+> # render them to html
+> for(i in 1:length(mdFiles)){
++ 	rmarkdown::render(
++ 		input = mdFiles[i],
++ 		output_file = mdOut[i]
++ 		)
++ 	}
+/usr/bin/pandoc +RTS -K512m -RTS install_extra.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output install_extra.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmpgC2fiJ/rmarkdown-str103c57fe426.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
+
+Output created: install_extra.html
+/usr/bin/pandoc +RTS -K512m -RTS install_main.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output install_main.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmpgC2fiJ/rmarkdown-str103c2b3a09c.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
+
+Output created: install_main.html
+/usr/bin/pandoc +RTS -K512m -RTS symbols.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output symbols.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmpgC2fiJ/rmarkdown-str103c6e2f7e5b.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
+
+Output created: symbols.html
+> 
+> pkgdown::build_site()
+── Installing package into temporary library ───────────────────────────────────
+══ Building pkgdown site ═══════════════════════════════════════════════════════
+Reading from: '/home/dwbapst/workspace/PaleoSoc_phylo_short_course_2019'
+Writing to:   '/home/dwbapst/workspace/PaleoSoc_phylo_short_course_2019/docs'
+── Initialising site ───────────────────────────────────────────────────────────
+Copying '../../R/x86_64-pc-linux-gnu-library/3.6/pkgdown/assets/docsearch.css' to 'docsearch.css'
+Copying '../../R/x86_64-pc-linux-gnu-library/3.6/pkgdown/assets/docsearch.js' to 'docsearch.js'
+Copying '../../R/x86_64-pc-linux-gnu-library/3.6/pkgdown/assets/link.svg' to 'link.svg'
+Copying '../../R/x86_64-pc-linux-gnu-library/3.6/pkgdown/assets/pkgdown.css' to 'pkgdown.css'
+Copying '../../R/x86_64-pc-linux-gnu-library/3.6/pkgdown/assets/pkgdown.js' to 'pkgdown.js'
+Writing '404.html'
+── Building home ───────────────────────────────────────────────────────────────
+Writing 'authors.html'
+Reading 'index.md'
+Writing 'index.html'
+Reading 'readme.md'
+Writing 'readme.html'
+Reading 'symbols.md'
+Writing 'symbols.html'
+Writing 'index.html'
+── Building function reference ─────────────────────────────────────────────────
+Writing 'reference/index.html'
+Loading required package: shiny
+── Building articles ───────────────────────────────────────────────────────────
+Writing 'articles/index.html'
+Reading 'vignettes/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.Rmd'
+Writing 'articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html'
+══ DONE ════════════════════════════════════════════════════════════════════════
+> 
+> proc.time()
+   user  system elapsed 
+  5.182   0.538   6.901 

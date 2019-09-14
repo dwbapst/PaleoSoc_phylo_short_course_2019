@@ -180,49 +180,158 @@ summary {
 </div>
 
 
-<div id="guide-to-common-symbols-used-in-notation" class="section level1">
-<h1>Guide to Common Symbols Used in Notation</h1>
-<div class="section level2">
-<h2>λ</h2>
-<p>Lambda. Typical label used for the instantaneous rate in a Poisson process. For us, it will usually mean the instantaneous birth rate of lineages, per time-unit, per lineage. This ‘birth’ rate is also commonly known as the ‘per-capita’ origination rate, speciation rate, branching rate, cladogenesis rate, etc, depending on the context.</p>
-<p>The ‘per time-unit, per lineage’ aspect means the rates are relative to time and the number of lineages extant at that time (this is what is meant when rates are referred to sometimes as ‘per capita’). For example, if there is a group with a hundred lineages, and another group containing only a single lineage, but they had identical birth rates and were diversifiying over the same time interval, the first group is a <em>hundred</em> times more likely to give arise to additional lineages, relative to the group with the single lineage. This variable is sometimes denoted as ‘p’ in paleontological literature.</p>
+<div id="preparing-your-computer-for-the-phylogenetics-short-course" class="section level1">
+<h1>Preparing Your Computer for the Phylogenetics Short Course&quot;</h1>
+<div id="david-bapst-april-wright" class="section level3">
+<h3>David Bapst &amp; April Wright</h3>
+<div id="section" class="section level4">
+<h4>09-12-2019</h4>
+<p><em>Time to get those machines in gear, paleontologists!</em></p>
+<p>To actively participate in the Short Course, you will need access to several pieces of software on a personal computer, particularly RevBayes, R, RStudio, Mesquite and Tracer. Please see below for an overview on the software we want you to install, followed by instructions specific to each operating system. In addition to this software, you will need an up-to-date web browser, and a functioning wifi card, in order to access several websites we will use during the workshop. Wifi access will be supplied to participants courtesy of <strong>The Paleontological Society</strong>.</p>
 </div>
-<div class="section level2">
-<h2>μ</h2>
-<p>Mu. Typically used as label for the instantaneous death rate (extinction rate) per time-unit, per lineage. This variable is sometimes denoted as ‘q’ in paleontological literature.</p>
 </div>
-<div class="section level2">
-<h2>ψ</h2>
-<p>Psi. Typically used in Fossilized Birth Death models for the instantaneous ‘serial sampling’ rate per time-unit, per lineage. Serial sampling means the sampling process over time - i.e. the chance of a lineage leaving behind remains that get preserved and survive to the modern day, so that we observe them. The serial sampling rate is sometimes denoted as ‘r’ in paleontological literature, and is related to (but not the same as) the per-time-interval sampling probability, often denoted ‘R’ (e.g. Foote &amp; Raup, 1996).</p>
-<p>Sometimes, Psi is also used as a symbol for the dated tree we are trying to infer (sometimes this is instead denoted with Tau, below). Occassionally, authors will use Psi for both the serial sampling rate and the dated tree in the same manual (This is typical for RevBayes documentation).</p>
+<div id="summary-of-required-software" class="section level2">
+<h2>Summary of Required Software</h2>
+<p>We require five particular software applications: <strong>RevBayes</strong>, <strong>R</strong>, <strong>RStudio</strong>, <strong>Mesquite</strong>, and <strong>Tracer</strong>. We expect that you will have all of these on your computer, but we also understand that through circumstance or personal choice, you may not have all of these. We will try to help you as much as possible, and it would be easiest for you to follow along if you have the software installed as we request. In terms of priority, RevBayes is the most important software to get on your personal computer to participate in the majority of the workshop activities. The next most important piece of software to obtain is R and RStudio. R itself might be called in earlier modules, but will only be the principal player in the last module, on comparative methods. However, as instructors, we will use RStudio throughout the day essentially as a plain-text editor to read RevBayes scripts, formatted like Rmarkdown files. If you cannot install the RStudio IDE, you will need to use an alternative text editor, and use R from the system terminal, or the basic packaged GUI. Mesquite will only be used in the third module, on character coding, and later modules will not depend on these exercises. Tracer will only be used in the module on tip-dating and post-inference analysis (and may be cut for time).</p>
+<div id="revbayes" class="section level3">
+<h3>RevBayes</h3>
+<p>RevBayes is a terminal-based program for Bayesian phylogenetic analysis which gives users greater freedom in defining their own models and priors than previous software, designed around graphical models (Höhna et al. 2016). RevBayes also contains an interpreted, scripted language resembling R, rather than a set of fixed commands. It is a spiritual successor to the program MrBayes, which is still maintained but in static form, with no ongoing active development.</p>
 </div>
-<div class="section level2">
-<h2>ρ</h2>
-<p>Rho. Typically used for probability of sampling a species at time=zero (e.g. the modern).</p>
+<div id="r-and-rstudio" class="section level3">
+<h3>R and RStudio</h3>
+<p>R is a programming language that is especially powerful for data exploration, visualization, and statistical analysis. We will interact with R via RStudio, a popular Integrated Development Environment (IDE) that provides a helpful, beginner friendly experience that allows for easy writing and editing of R scripts. This includes the writing and processing of Rmarkdown files which are regular text documents with interspersed ‘chunks’,that can be converted to PDF or HTML format as dynamic reports. Throughout much of the workshop, we will use the script editing features of RStudio essentially as a plain-text editor, to read and edit scripts for RevBayes.</p>
+<div id="note-required-r-packages-all-operating-systems" class="section level4">
+<h4><strong>NOTE</strong> Required R Packages (All Operating Systems!)</h4>
+<p>When you’re done installing R and RStudio, regardless of what operating system you are on, you will need to install several additional packages that contain additional, specialized functions that we will cover in our lessons. R’s versatility greatly comes from its thousands of such specialized packages, written by other users, and submitted to the CRAN repository, and not included in the base installation. We will use eight of those packages: <code>ape</code>, <code>geiger</code>, <code>paleotree</code>, <code>phytools</code>, <code>nlme</code>, <code>knitr</code>, <code>devtools</code>, and <code>OUwie</code>. To install all of these packages, we only need to open R (by opening RStudio, or any other alternative you prefer) and paste the following command:</p>
+<pre><code>install.packages(c('knitr', ‘nlme’, 'devtools’, ‘ape’, ‘geiger’, ‘phytools’, ‘paleotree’,  ‘OUwie’))</code></pre>
+<p>Note that these packages have about <em>150</em> additional packages that depend on, or recursively depend on, and thus this process may take 10-20 minutes depending on your internet connection.</p>
 </div>
-<div class="section level2">
-<h2>τ</h2>
-<p>Tau. Often used as a symbol representing the dated phylogeny with branch lengths that we are trying to infer. (Some literature uses Psi to denote the tree.)</p>
 </div>
-<div class="section level2">
-<h2>Γ</h2>
-<p>Gamma. Typically used as an abbreviation for the Gamma distribution.</p>
+<div id="mesquite" class="section level3">
+<h3>Mesquite</h3>
+<p>A helpful utility program for creating, formatting, and editing character matrices, taxonomic information, and phylogenies in various file formats, particularly Nexus files, which we will be using in this workshop. In particular, character matrices are viewable in a spreadsheet-like format where information about individual characters, and their states, can be noted for easy reference. Written as a Java applet, and thus requires a Java environment to run.</p>
 </div>
-<div class="section level2">
-<h2>β</h2>
-<p>Beta. Typically used as an abbreviation for the Beta distribution.</p>
+<div id="tracer" class="section level3">
+<h3>Tracer</h3>
+<p>Tracer is a popular program for examining, measuring and depicting the output of Bayesian analyses. While it was designed originally to work with output from the Bayesian phylogenetics program BEAST, and its successor, BEAST2, it is widely used with all sorts of Bayesian analyses that utilize a Monte Carlo Markov Chain (MCMC) to sample parameter values from the posterior distribution. Archives containing compiled executables for any operating system can be found here:</p>
+<pre><code>https://github.com/beast-dev/tracer/releases/tag/v1.7.1 </code></pre>
+<p>The archives, once unpacked, should contain a readily useable executable for your OS.</p>
 </div>
-<div class="section level2">
-<h2>σ</h2>
-<p>Sigma (lower-case). Symbol used for various parameters, such as the standard deviation of a normal distribution, the log-standard deviation of a lognormal distribution, or the rate of trait change in a non-directional model of trait change (essentially, the expected variance across a time-unit), etc.</p>
+<div id="icytree" class="section level3">
+<h3>IcyTree</h3>
+<p>An application you don’t have to install, IcyTree is a web-based phylogeny depiction tool which, nearly alone among all phylogeny depiction tools, will remove sampled ancestors (rather than displaying them as tips attached to the tree by ‘zero-length’ terminal branches) and then annotate the tree with dots to depict the collapsed sampled ancestor. IcyTree can be found at:</p>
+<pre><code>https://icytree.org/</code></pre>
 </div>
-<div class="section level2">
-<h2>α</h2>
-<p>Alpha. In models of Markov processes, such as the model used to describe character change, alpha is used to denote the instantaneous rate of any particular transition between states (Lewis, 2001). In models of continuous trait evolution, alpha is often used to denote the strength of attractors.</p>
 </div>
-<div id="r" class="section level2">
-<h2>r</h2>
-<p>Lower-case r, from the Latin Alphabet. Small r is often used as the notation for the probability of serial sampling events also causing an immediate death event in that lineage. In the fossil record, this would that preservation was also tied to the extinction of that lineage. When r=1, there can be no sampled ancestors. Most implementations of the the Fossilized Birth Death model treat r=0, and it is more commonly referenced in models of disease transmission.</p>
+</div>
+<div id="operating-system-specific-instructions-for-installing-revbayes-r-rstudio-and-mesquite" class="section level1">
+<h1>Operating System Specific Instructions for Installing RevBayes, R, RStudio and Mesquite</h1>
+<div id="windows-operating-systems" class="section level2">
+<h2>Windows Operating Systems</h2>
+<div id="obtaining-revbayes" class="section level3">
+<h3>Obtaining RevBayes</h3>
+<p>To obtain RevBayes, download and unzip the compiled binaries for Windows systems, found at:</p>
+<pre><code>https://revbayes.github.io/download </code></pre>
+<p>This unzipped directory will contain two executables (among many other files): <code>rb.exe</code>, which will open a command-line application in your respective terminal (probably MS Command Prompt, unless you have an alternative such as bash installed), and <code>RevStudio.exe</code>, which will open a primitive GUI for running RevBayes scripts.</p>
+</div>
+<div id="installing-r-and-rstudio" class="section level3">
+<h3>Installing R and RStudio</h3>
+<p>Install R by downloading and running this <code>.exe</code> file from CRAN:</p>
+<pre><code>https://cran.r-project.org/bin/windows/base/release.htm </code></pre>
+<p>Also, please install the RStudio IDE by visiting their website and downloading the installer file for your respective system:</p>
+<pre><code>https://www.rstudio.com/products/rstudio/download/#download </code></pre>
+<p>Note that if you have separate user and admin accounts, you should run the installers as administrator (to do this, right-click on the <code>.exe</code> file and select “Run as administrator” instead of double-clicking). Otherwise problems may occur later, for example when installing R packages.</p>
+<p>Video Tutorial of Installing R on Windows, Courtesy of Software Carpentry:</p>
+<pre><code>https://www.youtube.com/watch?v=q0PjTAylwoU </code></pre>
+</div>
+<div id="installing-mesquite" class="section level3">
+<h3>Installing Mesquite</h3>
+<p>You can download Mesquite from its Github repository at:</p>
+<pre><code>https://github.com/MesquiteProject/MesquiteCore/releases</code></pre>
+<p>For Windows, download the file ending in <code>.zip</code> and unpack its contents.</p>
+<p>To run Mesquite in Windows, additional properties will have to be set to avoid complications with graphic scaling. The Mesquite developers provide the following steps for Windows 10, but systems with older versions of Windows will need to experiment, or find alternative instructions to achieve capability.</p>
+<p>For Windows 10, enter the Properties of the ‘Mesquite.exe’ file by right-clicking, and then go to the Compatibility tab. Open the “Change high DPI settings” menu at the bottom, and then check “Override high DPI scaling behavior” in the new dialog box. In the popup menu located under ‘Scaling performed by:”, choose the option “System”. Click OK on the dialog to save and close, and click OK again to save and close the altered file properties. Again, none of these instructions may apply to Windows 8 and below.</p>
+<p>Mesquite requires Java to run in. If you don’t have Java installed, Mesquite should ask you to install it the first time it runs. In case that doesn’t happen, you can download Java from:</p>
+<pre><code>http://java.com/download </code></pre>
+<p>You can find more detailed instructions about how to install Mesquite for Windows at:</p>
+<pre><code>https://www.mesquiteproject.org/Installation%20on%20Windows.html </code></pre>
+</div>
+<div id="possibly-necessary-for-windows-setting-your-path-variables" class="section level3">
+<h3>Possibly Necessary for Windows: Setting Your Path Variables</h3>
+<p>We anticipate that all of the software described above should work without needing to be added to your systems path (or PATH) – an environmental variable which contains a list of all the file locations that Windows should look for important applications. If a directory is in your system’s PATH variable, a function in that directory can be called from the terminal (or by another program) from within any other directory on your computer. However, this may not be the case for everyone, and is most often an issue for Windows machines, In particular, Java should automatically add itself to your path when it installs, and RStudio should auto-detect R even if R is not in your path, but sometimes these things fail and you will need to manually edit your path variable.</p>
+<p>The easiest way to edit the PATH on a Windows machine, if you are not familiar with using the terminal, is to go to ‘My Computer’ (or ‘Computer’), click on ‘Properties’ (or use the right-click menu on the ‘Computer’ icon to go to ‘Properties’), then go to the tab or dialogue labeled ‘Advanced’ or ‘Advanced system settings’. Within this area, enter the ‘Environment variables’ dialog, and then find the PATH variable in the ‘System Variables’ section. Click on PATH and then ‘Edit’, and add the location of the executable file you are trying to add to the Path environmental variable by pasting it after the existing files and locations listed in your path. Close this dialog and all remaining dialog windows by clicking ‘OK’.</p>
+<p>You can find additional details about editing your PATH, and particularly adding Java to your path on the Java website, at:</p>
+<pre><code>https://www.java.com/en/download/help/path.xml </code></pre>
+</div>
+</div>
+<div id="macos-systems" class="section level2">
+<h2>macOS Systems</h2>
+<div id="installing-revbayes" class="section level3">
+<h3>Installing RevBayes</h3>
+<p>To obtain RevBayes, download and unpackage the compiled binaries for macOS systems, found at:</p>
+<pre><code>https://revbayes.github.io/download </code></pre>
+<p>This archived directory, once unpacked, should contain two executable files in the top-level: <code>rb</code>, which will open as a command-line application in your system’s shell, and <code>RevStudio</code>, which will open a primitive GUI for running RevBayes scripts.</p>
+</div>
+<div id="installing-r-rstudio" class="section level3">
+<h3>Installing R &amp; RStudio</h3>
+<p>Install R by going to CRAN and downloading, and running, this <code>.pkg</code> file:</p>
+<pre><code>https://cran.r-project.org/bin/macosx/R-latest.pkg </code></pre>
+<p>Also, please install the RStudio IDE by visiting their website and downloading the installer file for macOS:</p>
+<pre><code>https://www.rstudio.com/products/rstudio/download/#download </code></pre>
+<p>Video Tutorial of Installing R on macOS, Courtesy of Software Carpentry:</p>
+<pre><code>https://www.youtube.com/watch?v=5-ly3kyxwEg </code></pre>
+</div>
+<div id="installing-mesquite-1" class="section level3">
+<h3>Installing Mesquite</h3>
+<p>On Mac OS, Mesquite requires Java of an appropriate version. Machines with Mac OS 9 or lower cannot use Mesquite, as it requires Java 1.6, which is not available below Mac OS X. On Mac OX W 10.9 or below, Mesquite is optimal with Java 1.6, but Mesquite runs best on systems with Mac OS X 10.0 or higher with Java 1.7 (or higher). For MacOS X 10.10 (Yosemite) and later versions of the MacOS, the authors of Mesquite recommend using Java 1.8.</p>
+<p>To install Java 1.7 or higher, if you only have Java 1.6, get the updated version from:</p>
+<pre><code>http://java.com/download </code></pre>
+<p>You can download Mesquite from its Github repository at:</p>
+<pre><code>https://github.com/MesquiteProject/MesquiteCore/releases</code></pre>
+<p>For Mac OS X, download a file ending in <code>.dmg</code>, selecting the release that matches your Java version. There are two alternatives, one for Java 1.6 (recommended for OS X 10.9, Mavericks, and lower), the other for Java 1.7 and above (recommended for OS X 10.10, Yosemite, and higher).</p>
+<p>If the downloaded file doesn’t mount into a disk image automatically, double click the icon to mount, and drag the contents to your Applications folder. The Mesquite icon should now be able to start Mesquite. If you don’t have Java already installed, or Mesquite cannot find your Java installation, you will be prompted to install it. If Mesquite doesn’t find Java, or doesn’t automatically choose the version of Java you intended for it to use, you will need to edit your PATH variable. Go to your system terminal and type:</p>
+<pre><code>% /usr/libexec/java_home -v 1.8.0_73 --exec javac -version</code></pre>
+<p>Additional details about installing and running Mesquite on macOS computers can be found at:</p>
+<pre><code>https://www.mesquiteproject.org/Installation%20on%20MacOS%20X.html</code></pre>
+</div>
+<div id="xcode---in-case-you-need-to-compile-something" class="section level3">
+<h3>XCode - In Case You Need to Compile Something</h3>
+<p>We do not anticipate that any of the program installations described here for macOS will require compiling source code to make a binary. However, it is possible that some macOS installations may require dependencies that need to be compiled to install these software, and CRAN packages occasionally do not have pre-compiled binaries available. To compile your own binanies or do a number of other advanced terminal operations, you will need to install the Command Line Developer Tools. These command line developer tools are an abbreviated version of XCode (<a href="https://apps.apple.com/us/app/xcode/id497799835?mt=12" class="uri">https://apps.apple.com/us/app/xcode/id497799835?mt=12</a>), which contains the aforementioned command line developer tools along with a number of other functionalities necessary for developing software on macOS machines. Both are offered for free via download by Apple, but XCode additionally requires you to make a (free) developer login. Command Line Developer Tools should contain sufficient compiler capabilities for what we need to do, particularly <code>gcc</code>, the GNU Compiler Collection.</p>
+<p>The easiest way to prompt an install of Command Line Developer Tools is to instead try to install XCode via the XCode switch command, <code>xcode-select</code>, as this operation itself cannot be done with Command Line Developer Tools. Simply go to your terminal and paste:</p>
+<pre><code>xcode-select --install
+</code></pre>
+<p>This will prompt a dialog asking you to either obtain XCode, or install developer-line tools - click ‘Install’ to get the Command Line Developer Tools. Note that the files needed are quite large and may take several minutes to download and install.</p>
+</div>
+</div>
+<div id="linux-systems" class="section level2">
+<h2>Linux Systems</h2>
+<div id="installing-revbayes-1" class="section level3">
+<h3>Installing RevBayes</h3>
+<p>If you are a regular Linux user, you will be unsurprised to learn that you will need to compile RevBayes yourself. To do so, you will need to first install <code>cmake</code>:</p>
+<pre><code>sudo apt install cmake</code></pre>
+<p>Then obtain the source code, and compile:</p>
+<pre><code>git clone https://github.com/revbayes/revbayes.git revbayes
+cd revbayes/projects/cmake
+./build.sh</code></pre>
+<p>You can see more details at the download page:</p>
+<pre><code>https://revbayes.github.io/download </code></pre>
+</div>
+<div id="installing-r-rstudio-1" class="section level3">
+<h3>Installing R &amp; RStudio</h3>
+<p>You can download the binary files for your distribution from CRAN:</p>
+<pre><code>https://cran.r-project.org/index.html</code></pre>
+<p>Or you can use your package manager (e.g. for Debian/Ubuntu run <code>sudo apt-get install r-base</code> and for Fedora run <code>sudo dnf install R</code>).</p>
+<p>Also, please install the RStudio IDE by visiting their website, and downloading the installer file for your respective flavor of Linux:</p>
+<pre><code>https://www.rstudio.com/products/rstudio/download/#download</code></pre>
+</div>
+<div id="installing-mesquite-2" class="section level3">
+<h3>Installing Mesquite</h3>
+<p>You can download the latest version for Mesquite from the Github repository:</p>
+<pre><code>https://github.com/MesquiteProject/MesquiteCore/releases </code></pre>
+<p>For Linux, download the packaged archive files ending in <code>.tgz</code>, and extract the contents of the downloaded archive. To start Mesquite, execute the mesquite.sh script from the terminal, which should automatically identify your java installation. If Mesquite cannot find Java, you may need to set your <code>JAVA_HOME</code> environment variable.</p>
+<p>Installing Mesquite on Linux can be a headache, as most Java Virtual Machines present in modern distros (e.g. modern Ubuntuu distros, like Linux Mint), are known to not properly run Mesquite. The only exception is the official Sun/Oracle VM, but that may not be available or tested for your distribution. Please see here for instructions and troubleshooting related to installing Mesquite on Linux machines:</p>
+<pre><code>https://www.mesquiteproject.org/Installation%20on%20Linux.html</code></pre>
+</div>
 </div>
 </div>
 
