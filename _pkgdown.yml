@@ -1,30 +1,34 @@
 navbar:
-  structure:
-    left:
-    - home
-    - intro
-    - readings
-    - articles
-    - 
-    - 
-    right: github
-  components:
-    home:
-      icon: fas fa-home fa-lg
-      href: index.html
-    readings:
-      text: Reading List
-      href: readings.html
-	symbols:
-	  text: Notation Guide
-	  href: symbols.html
-    articles:
-      text: Articles
-      menu:
-      - text: Preparing Your Computer for the Phylogenetics Short Course
-        href: articles/module_00_installs/00-installs.html
-      - text: Discrete morphology - Models and Tree Inference
-        href: articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html
+	structure:
+		left:
+		- home
+		- intro
+		- readings
+		- lessons
+		- 
+		- 
+		right: github
+	components:
+		home:
+			icon: fas fa-home fa-lg
+			href: index.html
+		install:
+			text: Software Used
+			menu:
+			-	text: Required Software
+				href: install_main.html
+			-   text: 
+		readings:
+				text: Reading List
+				href: readings.html
+		symbols:
+			text: Notation Guide
+			href: symbols.html
+		lessons:
+			text: Articles
+			menu:
+			-	text: Discrete morphology - Models and Tree Inference
+				href: articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html
 
 reference: []
 
