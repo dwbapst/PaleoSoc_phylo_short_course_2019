@@ -5,19 +5,11 @@
 
 *Time to get those machines in gear, paleontologists!*
 
-To actively participate in the Short Course, you will need access to several pieces of software on a personal computer, particularly RevBayes, R, RStudio, Mesquite and Tracer. Please see below for instructions specific to each operating system. 
-
-
-
-
-
-
-
-In addition to this software, you will need an up-to-date web browser, and a functioning wifi card, in order to access several websites we will use during the workshop. Wifi access will be supplied to participants courtesy of The Paleontological Society.
+To actively participate in the Short Course, you will need access to several pieces of software on a personal computer, particularly RevBayes, R, RStudio, Mesquite and Tracer. Please see below for an overview on the software we want you to install, followed by instructions specific to each operating system. In addition to this software, you will need an up-to-date web browser, and a functioning wifi card, in order to access several websites we will use during the workshop. Wifi access will be supplied to participants courtesy of **The Paleontological Society**.
 
 ## Summary of Required Software
 
-Among the following software, RevBayes is the most important software to get on your personal computer so you can participate in the workshop activities. The next most important piece of software to obtain is R and RStudio. R itself might be called in earlier modules, but will only be the principal player in the last module, on comparative methods. However, as instructors, we will use RStudio throughout the day essentially as a plain-text editor to read RevBayes scripts, formatted like Rmarkdown files. If you cannot install the RStudio IDE, you will need to use an alternative text editor, and use R from the system terminal, or the basic packaged GUI. Mesquite will only be used in the third module, on character coding, and later modules will not depend on these exercises. Tracer will only be used in the module on tip-dating and post-inference analysis (and may be cut for time).
+We require five particular software applications: **RevBayes**, **R**, **RStudio**, **Mesquite**, and **Tracer**. We expect that you will have all of these on your computer, but we also understand that through circumstance or personal choice, you may not have all of these. We will try to help you as much as possible, and it would be easiest for you to follow along if you have the software installed as we request. In terms of priority, RevBayes is the most important software to get on your personal computer to participate in the majority of the workshop activities. The next most important piece of software to obtain is R and RStudio. R itself might be called in earlier modules, but will only be the principal player in the last module, on comparative methods. However, as instructors, we will use RStudio throughout the day essentially as a plain-text editor to read RevBayes scripts, formatted like Rmarkdown files. If you cannot install the RStudio IDE, you will need to use an alternative text editor, and use R from the system terminal, or the basic packaged GUI. Mesquite will only be used in the third module, on character coding, and later modules will not depend on these exercises. Tracer will only be used in the module on tip-dating and post-inference analysis (and may be cut for time).
 
 ### RevBayes
 
