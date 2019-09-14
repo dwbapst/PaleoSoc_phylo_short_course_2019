@@ -11,11 +11,11 @@
 > 	# so they can be rendered to html here
 > 
 > mdFiles <- c(
-+ 	"./software/install_extra.md",
-+ 	"./software/install_main.md",
-+ 	"./pages/symbols.md",
-+ 	"./pages/code_conduct.md",
-+ 	"./pages/readings.md"
++ 	"software/install_extra.md",
++ 	"software/install_main.md",
++ 	"pages/symbols.md",
++ 	"pages/code_conduct.md",
++ 	"pages/readings.md"
 + 	)
 > 
 > 	
@@ -24,30 +24,7 @@
 > # first, clean site
 > pkgdown::clean_site()
 > 
-> # make out files
-> 
-> # confusingly, render changes its internal working directory to match where the md is
-> 	# so need to cut away directory locations
-> mdOut <- sapply(mdFiles,function(x) rev(unlist(strsplit(x, split="/")))[[1]])
-> # replace md with html
-> mdOut <- gsub(".md$", ".html", mdOut)
-> 	
-> # render them to html
-> for(i in 1:length(mdFiles)){
-+ 	rmarkdown::render(
-+ 		input = mdFiles[i],
-+ 		output_file = mdOut[i],
-+ 		quiet = TRUE, clean = TRUE
-+ 		)
-+ 	print(paste0("Created ", mdOut[i]))
-+ 	}
-[1] "Created install_extra.html"
-[1] "Created install_main.html"
-[1] "Created symbols.html"
-[1] "Created code_conduct.html"
-[1] "Created readings.html"
-> 
-> pkgdown::build_site()
+> pkgdown::build_site(preview = TRUE)
 ── Installing package into temporary library ───────────────────────────────────
 ══ Building pkgdown site ═══════════════════════════════════════════════════════
 Reading from: '/home/dwbapst/workspace/PaleoSoc_phylo_short_course_2019'
@@ -74,10 +51,44 @@ Writing 'articles/index.html'
 Reading 'vignettes/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.Rmd'
 Writing 'articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html'
 ══ DONE ════════════════════════════════════════════════════════════════════════
+── Previewing site ─────────────────────────────────────────────────────────────
 Warning message:
 In utils::install.packages(pkg$src_path, repo = NULL, type = "source",  :
   installation of package ‘/home/dwbapst/workspace/PaleoSoc_phylo_short_course_2019’ had non-zero exit status
 > 
+> # make out files
+> 
+> # confusingly, render changes its internal working directory to match where the md is
+> 	# so need to cut away directory locations
+> #mdOut <- sapply(mdFiles,function(x) rev(unlist(strsplit(x, split="/")))[[1]])
+> 
+> # OH but they need to be in the docs folder
+> wDir <- getwd()
+> mdOut <- paste0(wDir, "/docs/", mdFiles)
+> # replace md with html
+> mdOut <- gsub(".md$", ".html", mdOut)
+> 
+> # remake directories in docs
+> dir.create(path="docs/software")
+> dir.create(path="docs/pages")
+> 
+> # render them to html
+> for(i in 1:length(mdFiles)){
++ 	rmarkdown::render(
++ 		input = mdFiles[i],
++ 		output_file = mdOut[i],
++ 		quiet = TRUE, clean = TRUE
++ 		)
++ 	print(paste0("Created ", mdOut[i]))
++ 	}
+[1] "Created /home/dwbapst/workspace/PaleoSoc_phylo_short_course_2019/docs/software/install_extra.html"
+[1] "Created /home/dwbapst/workspace/PaleoSoc_phylo_short_course_2019/docs/software/install_main.html"
+[1] "Created /home/dwbapst/workspace/PaleoSoc_phylo_short_course_2019/docs/pages/symbols.html"
+[1] "Created /home/dwbapst/workspace/PaleoSoc_phylo_short_course_2019/docs/pages/code_conduct.html"
+[1] "Created /home/dwbapst/workspace/PaleoSoc_phylo_short_course_2019/docs/pages/readings.html"
+> 
+> #browseURL("/docs/index")
+> 
 > proc.time()
    user  system elapsed 
-  5.810   0.696   7.131 
+  6.078   0.660   7.348 

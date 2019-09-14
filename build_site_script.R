@@ -24,6 +24,8 @@ mdFiles <- c(
 # first, clean site
 pkgdown::clean_site()
 
+pkgdown::build_site(preview = TRUE)
+
 # make out files
 
 # confusingly, render changes its internal working directory to match where the md is
@@ -50,4 +52,4 @@ for(i in 1:length(mdFiles)){
 	print(paste0("Created ", mdOut[i]))
 	}
 
-pkgdown::build_site(preview = TRUE)
+#browseURL("/docs/index")

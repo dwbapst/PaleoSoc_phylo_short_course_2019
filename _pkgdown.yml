@@ -25,7 +25,7 @@ navbar:
            href: software/install_extra.html
      readings:
        text: Reading List
-       href: pages/readings.html
+       href: articles/readings.html
      symbols:
        text: Notation Guide
        href: pages/symbols.html
