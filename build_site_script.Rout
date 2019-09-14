@@ -1,23 +1,11 @@
-
-R version 3.6.1 (2019-07-05) -- "Action of the Toes"
-Copyright (C) 2019 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu (64-bit)
-
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under certain conditions.
-Type 'license()' or 'licence()' for distribution details.
-
-  Natural language support but running in an English locale
-
-R is a collaborative project with many contributors.
-Type 'contributors()' for more information and
-'citation()' on how to cite R or R packages in publications.
-
-Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
-Type 'q()' to quit R.
-
 > # R code for building this website
+> 
+> # TO RUN
+> 
+> #  R CMD BATCH --vanilla --quiet build_site_script.R 
+> 
+> 
+> ###########
 > 
 > # add new plain markdown pages that aren't Rmd files here
 > 	# so they can be rendered to html here
@@ -48,24 +36,16 @@ Type 'q()' to quit R.
 > for(i in 1:length(mdFiles)){
 + 	rmarkdown::render(
 + 		input = mdFiles[i],
-+ 		output_file = mdOut[i]
++ 		output_file = mdOut[i],
++ 		quiet = TRUE, clean = TRUE
 + 		)
++ 	print(paste0("Created ", mdOut[i]))
 + 	}
-/usr/bin/pandoc +RTS -K512m -RTS install_extra.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output install_extra.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmprwaaC9/rmarkdown-str43844e3c7459.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
-
-Output created: install_extra.html
-/usr/bin/pandoc +RTS -K512m -RTS install_main.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output install_main.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmprwaaC9/rmarkdown-str43841ac1917.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
-
-Output created: install_main.html
-/usr/bin/pandoc +RTS -K512m -RTS symbols.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output symbols.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmprwaaC9/rmarkdown-str43843f022769.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
-
-Output created: symbols.html
-/usr/bin/pandoc +RTS -K512m -RTS code_conduct.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output code_conduct.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmprwaaC9/rmarkdown-str4384253b3319.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
-
-Output created: code_conduct.html
-/usr/bin/pandoc +RTS -K512m -RTS readings.utf8.md --to html4 --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output readings.html --smart --email-obfuscation none --self-contained --standalone --section-divs --template /home/dwbapst/R/x86_64-pc-linux-gnu-library/3.6/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --variable 'theme:bootstrap' --include-in-header /tmp/RtmprwaaC9/rmarkdown-str438432cd9190.html --mathjax --variable 'mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' 
-
-Output created: readings.html
+[1] "Created install_extra.html"
+[1] "Created install_main.html"
+[1] "Created symbols.html"
+[1] "Created code_conduct.html"
+[1] "Created readings.html"
 > 
 > pkgdown::build_site()
 ── Installing package into temporary library ───────────────────────────────────
@@ -100,4 +80,4 @@ In utils::install.packages(pkg$src_path, repo = NULL, type = "source",  :
 > 
 > proc.time()
    user  system elapsed 
-  6.358   0.710   8.372 
+  5.810   0.696   7.131 

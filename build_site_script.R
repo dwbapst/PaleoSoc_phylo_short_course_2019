@@ -1,5 +1,12 @@
 # R code for building this website
 
+# TO RUN
+
+#  R CMD BATCH --vanilla --quiet build_site_script.R 
+
+
+###########
+
 # add new plain markdown pages that aren't Rmd files here
 	# so they can be rendered to html here
 
@@ -29,8 +36,10 @@ mdOut <- gsub(".md$", ".html", mdOut)
 for(i in 1:length(mdFiles)){
 	rmarkdown::render(
 		input = mdFiles[i],
-		output_file = mdOut[i]
+		output_file = mdOut[i],
+		quiet = TRUE, clean = TRUE
 		)
+	print(paste0("Created ", mdOut[i]))
 	}
 
 pkgdown::build_site()
