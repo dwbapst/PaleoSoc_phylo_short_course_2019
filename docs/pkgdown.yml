@@ -1,6 +1,0 @@
-pandoc: 1.19.2.4
-pkgdown: 1.4.0
-pkgdown_sha: ~
-articles:
-  05_RB_MCMC_Discrete_Morph: module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html
-

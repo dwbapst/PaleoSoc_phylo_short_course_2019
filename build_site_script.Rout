@@ -1,0 +1,44 @@
+
+R version 3.6.1 (2019-07-05) -- "Action of the Toes"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # R code for building this website
+> 
+> # add new plain markdown pages that aren't Rmd files here
+> 	# so they can be rendered to html here
+> 
+> mdFiles <- c(
++ 	"./software/install_extra.md",
++ 	"./software/install_main.md",
++ 	"symbols.md"
++ 	)
+> 
+> 	
+> #############################################	
+> 	
+> # first, clean site
+> pkgdown::clean_site()
+> 
+> # make out files
+> 
+> # confusingly, render changes its internal working directory to match where the md is
+> 	# so need to cut away directory locations
+> mdOut <- sapply(mdOut,function(x) rev(unlist(strsplit(x, split="/")))[[1]])
+Error in lapply(X = X, FUN = FUN, ...) : object 'mdOut' not found
+Calls: sapply -> lapply
+Execution halted

@@ -19,9 +19,9 @@ pkgdown::clean_site()
 
 # confusingly, render changes its internal working directory to match where the md is
 	# so need to cut away directory locations
-mdOut <- sapply(mdOut,function(x) rev(unlist(strsplit(x, split="/")))[[1]])
+mdOut <- sapply(mdFiles,function(x) rev(unlist(strsplit(x, split="/")))[[1]])
 # replace md with html
-mdOut <- gsub(".md$", ".html", mdFiles)
+mdOut <- gsub(".md$", ".html", mdOut)
 	
 # render them to html
 for(i in 1:length(mdFiles)){
