@@ -11,11 +11,11 @@
 	# so they can be rendered to html here
 
 mdFiles <- c(
-	"./software/install_extra.md",
-	"./software/install_main.md",
-	"./pages/symbols.md",
-	"./pages/code_conduct.md",
-	"./pages/readings.md"
+	"software/install_extra.md",
+	"software/install_main.md",
+	"pages/symbols.md",
+	"pages/code_conduct.md",
+	"pages/readings.md"
 	)
 
 	
@@ -28,10 +28,18 @@ pkgdown::clean_site()
 
 # confusingly, render changes its internal working directory to match where the md is
 	# so need to cut away directory locations
-mdOut <- sapply(mdFiles,function(x) rev(unlist(strsplit(x, split="/")))[[1]])
+#mdOut <- sapply(mdFiles,function(x) rev(unlist(strsplit(x, split="/")))[[1]])
+
+# OH but they need to be in the docs folder
+wDir <- getwd()
+mdOut <- paste0(wDir, "/docs/", mdFiles)
 # replace md with html
 mdOut <- gsub(".md$", ".html", mdOut)
-	
+
+# remake directories in docs
+dir.create(path="docs/software")
+dir.create(path="docs/pages")
+
 # render them to html
 for(i in 1:length(mdFiles)){
 	rmarkdown::render(
@@ -42,4 +50,4 @@ for(i in 1:length(mdFiles)){
 	print(paste0("Created ", mdOut[i]))
 	}
 
-pkgdown::build_site()
+pkgdown::build_site(preview = TRUE)
