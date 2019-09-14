@@ -15,10 +15,10 @@
 	Tau. Often used as a symbol representing the dated phylogeny with branch lengths that we are trying to infer. (Some literature uses Psi to denote this.)
 	
 Γ
-	Gamma. Typically used an abbreviation for the Gamma distribution.
+	Gamma. Typically used as an abbreviation for the Gamma distribution.
 	
 β
-	Beta. Typically used an abbreviation for the Beta distribution.
+	Beta. Typically used as an abbreviation for the Beta distribution.
 	
 σ
 	Sigma (lower-case). Symbol used for various parameters, such as the standard deviation of a normal distribution, the log-standard deviation of a lognormal distribution, or the rate of trait change in a non-directional model of trait change (essentially, the expected variance across a time-unit), etc. 

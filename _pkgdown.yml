@@ -1,0 +1,27 @@
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    right: github
+  components:
+    home:
+      icon: fas fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    articles:
+      text: Articles
+      menu:
+      - text: Preparing Your Computer for the Phylogenetics Short Course
+        href: articles/module_00_installs/00-installs.html
+      - text: Discrete morphology - Models and Tree Inference
+        href: articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html
+
+reference: []
+
