@@ -4,11 +4,11 @@
 	# so they can be rendered to html here
 
 mdFiles <- c(
-	"software/install_main.md"
+	"software/install_main.md",
+	"software/install_extra.md",
+	"symbols.md"
 	)
 
-
-	
 	
 #############################################	
 	
@@ -16,11 +16,14 @@ mdFiles <- c(
 pkgdown::clean_site()
 
 # make out files
-mdOut <- lapply(mdFiles,
+mdOut <- gsub(".log$", ".doc", mdFiles)
 	
 # render them to html
-rmarkdown::render(
-	input=mdFiles[i],
-	output_file="install_main.html"
-	)
+for(i in 1:length(mdFiles){
+	rmarkdown::render(
+		input=mdFiles[i],
+		output_file=mdOut[i]
+		)
+	}
 
+pkgdown:build_site()

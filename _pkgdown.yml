@@ -16,8 +16,8 @@ navbar:
        menu:
         -  text: Required Software
            href: software/install_main.html
-     #  -  text: Extra Software
-     #     href: 
+        -  text: Extra Software
+           href: software/install_extra.html
      readings:
          text: Reading List
          href: readings.html

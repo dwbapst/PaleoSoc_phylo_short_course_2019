@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Geological Society Workshop 2019 • GSA2019</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Geological Society Workshop 2019">
 <meta property="og:description" content="R package for course materials">
 <meta name="twitter:card" content="summary">
@@ -38,9 +39,27 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html">Discrete morphology - Models and Tree Inference</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="readings.html">Reading List</a>
+</li>
+<li>
+  <a href="symbols.html">Notation Guide</a>
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
@@ -53,10 +72,19 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/module_00_installs/00-installs.html">Installs</a>
-    </li>
-    <li>
       <a href="articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html">Discrete morphology - Models and Tree Inference</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Software Used
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="software/install_main.html">Required Software</a>
     </li>
   </ul>
 </li>
@@ -70,211 +98,15 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="gsa2019" class="section level1">
+<div id="here-is-our-front-page-everyone" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#gsa2019" class="anchor"></a>gsa2019</h1></div>
-<p>This repository will serve as a place for developing and storing materials for the Revbayes-based short course in tip-dating phylogenetics. for GSA 2019, presented by The Paleontological Society.</p>
-<p>This hands-on computational workshop is organized by Sandra Carlson and Peter Wagner (@PeterJWagner3), instructors April Wright (@wrightaprilm), Laura Soul (@laurasoul), David “Davey” F. Wright (@daveyfwright), and David Bapst (@dwbapst), with instructional material development from Rachel Warnock (@rachelwarnock). Additionally, this course will utilize a number of ‘roving’ teaching assistants (tentative list, as follows: William Gearty (@willgearty), Lucy Chang (@lucymchang), …).</p>
-<div id="current-schedule" class="section level2">
+<a href="#here-is-our-front-page-everyone" class="anchor"></a>here is our front page everyone</h1></div>
+<div id="yes-thats-all-folks" class="section level2">
 <h2 class="hasAnchor">
-<a href="#current-schedule" class="anchor"></a>Current Schedule:</h2>
-<ul>
-<li>08:00 AM - Module 1 - Introduction: Tree-Thinking
-<ul>
-<li>Sandy C., Pete W.</li>
-<li>15 min, Lecture.<br>
-</li>
-</ul>
-</li>
-<li>08:15 AM - Module 2 - Meet Our Data: Smith and Zamora, 2009
-<ul>
-<li>Davey W.</li>
-<li>10 min, Lecture.</li>
-<li>Brief discussion about data set</li>
-<li>Explaining what cinctans are and why echinoderms are cool</li>
-</ul>
-</li>
-<li>08:25 AM - Module 3 - Morphological Character Coding
-<ul>
-<li>Sandy C., Davey W., Pete W.</li>
-<li>30 min, Lecture &amp; exercise</li>
-<li>Mesquite exercise with S&amp;Z 2009 data set.</li>
-<li>Experiment - Examining character coding decisions</li>
-<li>Possible consequences of different coding options</li>
-<li>Sandy: I think the first hour could be reduced to half an hour, or even 20 minutes if that would help with the rest of the timing.<br>
-</li>
-<li>From Pete:
-<ul>
-<li>A. Emphasis: Ways to identify particular conditions that we think are shared (or potentially shared) via common ancestry;</li>
-<li>Z. But even if my characters are “good,” what if they do not all evolve in the same way all of the time?</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>09:00 AM - Module 4 - Intro to RevBayes, Graphical Modeling
-<ul>
-<li>April W, ?</li>
-<li>45 min, Lecture &amp; exercise</li>
-<li>Plate notation?</li>
-<li>From Pete:
-<ul>
-<li>A. Emphasis: We want a “flow chart” detailing all of the variables that affect how character states are distributed in the fossil record.</li>
-<li>B. Show RevBayes symbols for different types of variables</li>
-<li>Z. But how do I get a tree without assuming that all of these other parameters have particular conditions?</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>09:45 AM - BREAK (15 min)</li>
-<li>10:00 AM - Module 5 - Tripartite Model 1: Morphological Character Change Models
-<ul>
-<li>April W, ?</li>
-<li>Lecture &amp; Hands-On with RevBayes/RevNotebook.</li>
-<li>Likelihood concepts, Bayesian Methods, MCMC</li>
-<li>Simple Mk, filtering</li>
-<li>Teasers of how to relax some assumptions of the model:
-<ul>
-<li>transition rate symmetry?</li>
-<li>across-site/char heterogeneity?</li>
-</ul>
-</li>
-<li>April: Learners first contact with RB; stuff will go wrong. Also a part where there is likely to be significant discussion, since no one really believes the Mk model.
-<ul>
-<li>DWB: We’ve already seen this in comments in our registration survey. There will definitely be non-believers about Mk.</li>
-</ul>
-</li>
-<li>Push up right before lunch so people can yell at April afterwards</li>
-<li>April: I think I’ll have them work as a table: one person do an MCMC with the strict Mk model; others can each pick one thing to change. Maybe choose a different distribution for among-site rate variation, or allow asymmetrical transitions. They can compare results during/after lunch.</li>
-<li>April: I’m going to turn my morph models talk in to an R Markdown document so that I can interweave activities with lecture.</li>
-<li>April’s materials from previous workshop: <a href="https://github.com/danlwarren/Evolution-2019-Phylogenetic-Methods-Workshop/tree/master/3%20-%20April%20Wright%20-%20Teaching%20and%20resesarch%20with%20RevBayes" class="uri">https://github.com/danlwarren/Evolution-2019-Phylogenetic-Methods-Workshop/tree/master/3%20-%20April%20Wright%20-%20Teaching%20and%20resesarch%20with%20RevBayes</a>
-</li>
-<li>From Pete:
-<ul>
-<li>MCMC
-<ul>
-<li>A. Emphasis: Way to search complicated hypothesis space and and marginalize effects of unknown rate parameters.</li>
-<li>Z. But how do I actually do the math at any step?</li>
-</ul>
-</li>
-<li>MK Models (Tripartite Model 1a)
-<ul>
-<li>A. Emphasis: Probability of deriving a matrix given a particular phylogeny (cladistic relationships + divergence times)</li>
-<li>B. MCMC allows us to “integrate” over different general rates.</li>
-<li>Z. But what if rates vary among characters?</li>
-</ul>
-</li>
-<li>Gamma &amp; lognormal variation &amp; hyperpriors (Tripartite Model 1b)
-<ul>
-<li>A. Emphasis: Assume distribution of rates and thus vary rates without specifying which characters are “good” or “bad”.</li>
-<li>B. Introduces hyperpriors for varying lognormal or Gamma distributions</li>
-<li>Z. But I keep seeing “time” in these equations: what if these rates are not consistent over time?</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>12:00 PM - LUNCH (1.5 hour)</li>
-<li>01:30 PM - Module 6 - Tripartite Model 2: Clock Models for Character Change
-<ul>
-<li>Who? Davey W.?</li>
-<li>45 min, Hands-On with RevBayes/RevNotebook.</li>
-<li>April: light, hands-on … this is just sorta boring</li>
-<li>Pete: tease looking at different rates across morph partitions?</li>
-<li>From Pete:
-<ul>
-<li>A. Emphasis: similar to the “set rate” vs. “distributed rate” issue and with similar solutions.</li>
-<li>Z. But what if my clade spans “exceptional” events (e.g., major radiations or major global shifts affecting lots of clades), or what if my characters are “cheating” in some other way beyond what among-branch &amp; among-character variation models?<br>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>02:00 PM - Module 7 - Tripartite Model 3: Fossilized Birth Death
-<ul>
-<li>Dave B., Davey W.?, Laura S.?</li>
-<li>1:30 min, Lecture &amp; Hands-On with RevBayes/RevNotebook</li>
-<li>Fossilized Birth Death Models
-<ul>
-<li>Stadler, 2010; Heath et al., 2014; Stadler et al., 2018</li>
-<li>FBD, Range-FBD</li>
-</ul>
-</li>
-<li>Anc-Desc Relationships, Sampled Ancestors in Tip-Dating
-<ul>
-<li>Sampled Ancestor Moves in MCMC</li>
-<li>Gavryushkina et al. 2014; 2016</li>
-</ul>
-</li>
-<li>Try to simplify, do not get lost in covering historical perspective
-<ul>
-<li>April: Simulate under a pure-birth process and ask whose data looks like this? Simulate under the FBD and show that this process allows sampled ancestors?<br>
-</li>
-</ul>
-</li>
-<li>Unifies morph, clocks, tree priors</li>
-<li>Goes from start to end of an analytical process</li>
-<li>From Pete:
-<ul>
-<li>BD &amp; FBD (BDS) models for putting prior probabilities on tree topologies offer independent check on characters (Tripartite Model 3).</li>
-<li>A. Emphasis: Probabilities getting fossil record given phylogeny based on likelihood of unsampled ancestors AND probability of no sampled sister taxa (aka, Raup’s Revenge).</li>
-<li>B. Our old friend hyperpriors used to create distributions for these rates.</li>
-<li>Z. Wow, that’s cool: but I’m now using everything and the kitchen sink; can I do anything with the results?<br>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>03:30 PM - BREAK (15 min)</li>
-<li>03:45 PM - Module 8 - Worked Example with Phylo Comp Methods
-<ul>
-<li>Laura S., Davey W.</li>
-<li>1:15 min, Lecture &amp; Hands-on with RevBayes</li>
-<li>From Pete:
-<ul>
-<li>A. How to test macroevolutionary ideas while admitting that we can never know the “true” tree</li>
-<li>Z. But what about X, Y, Z, etc.?</li>
-</ul>
-</li>
-<li>Laura: Being able to show something (even if its simple) that one can do whether you made your own tree, generated a supertree, or made most of a tree but want to include 10 taxa you can’t code, would be the most broadly useful to the (clearly very mixed experience) group we have coming. From an earlier chat with Davey, he pointed out that we could also instead take the approach of doing a light touch overview of what is now possible in the paleo-PCM world and highlighting the R packages that are available to do it. We could also stick to modelling rates of discrete character change on the tree if switching to continuous characters feels too ‘from scratch’.</li>
-<li>Peter: As Laura noted, those approaches rely heavily on divergence times, which means that you have to rehash (and reinforce!) the FBD &amp; tip-dating material from earlier parts; many PCM approaches integrate over trees, too, which gets back to the MCMC approach. And both the FBD/tip-dating and methods for assessing how characters evolve over trees get back to the morphological evolution modules. There could be a lot of “As April / Laura / David / Davey showed us earlier, we do XXX here” parts that could really tie the whole thing together. And, of course, it would also get back to something you certainly will raise from the start: why we want decent estimations of phylogeny in the first place.</li>
-<li>Sandy:
-<ul>
-<li>Cooper, Natalie, Gavin H. Thomas, and Richard G. FitzJohn. “Shedding light on the ‘dark side’of phylogenetic comparative methods.” Methods in ecology and evolution 7.6 (2016): 693-699.</li>
-<li><a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12533" class="uri">https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12533</a></li>
-</ul>
-</li>
-<li>Laura: Yup this article highlights important points, there are a couple of others that highlight similar things (e.g. Uyeda). It will be important for us to emphasise that throwing loads of pcms at a single topology in R is not a great idea, but that integrating over tree and trait uncertainly for carefully chosen methods that are appropriate for the question is.</li>
-<li>I’d like Davey and I to be able to emphasise their power and necessity, but also the importance of choosing your approach carefully.</li>
-<li>April: I think you two have exactly the right approach. It’s really easy to get bogged down in the PCM debates. Should we be using BAMM? Does Ohrenstein-Uhlenbeck even work? Those are important questions! But it’s probably important that learners walk away with some roadmap to even basic points like which are process-based, and which are more neutral to the underlying evolutionary model?
-<ul>
-<li>If you don’t want to do a single point estimate tree, how can you avoid that (maybe treeplyr in R for working with tree vectors, co-estimation of model + tree in RevBayes) see here for an example:</li>
-<li><a href="https://revbayes.github.io/tutorials/chromo/" class="uri">https://revbayes.github.io/tutorials/chromo/</a></li>
-</ul>
-</li>
-<li>Peter: What might be done with the cinctan dataset? Smith &amp; Zamora separated “feeding” characters (or at least food groove characters) from others, and there certainly have been PCM studies contrasting how one class of characters evolves vs. another. We probably could gather basic size data, too: e.g., dimensions of the theca or whatever you call the “body” of these things. The benefit of that is that there might be a prize for the 1 millionth tree-based test of body size evolution!<br>
-</li>
-</ul>
-</li>
-<li>End-of-Day Summary
-<ul>
-<li>Who? Peter W.? Laura S.? Davey W.?</li>
-<li>When? Unknown duration? 1.25 hrs is gonna be very tight for PCMs as it is…</li>
-<li>Conclusions, Inspirations</li>
-<li>What Paleontologists Can Contribute to Systematics</li>
-</ul>
-</li>
-</ul>
-</div>
-<div id="readings" class="section level2">
-<h2 class="hasAnchor">
-<a href="#readings" class="anchor"></a>Readings</h2>
-<p>Attendees will be asked to read over three overviews of the field beforehand:</p>
-<p>Holder, M., and P. O. Lewis. 2003. Phylogeny estimation: traditional and Bayesian approaches. Nat Rev Genet 4(4):275-284.</p>
-<p>Wright, A. M. 2019. A Systematist’s Guide to Estimating Bayesian Phylogenies From Morphological Data. Insect Systematics and Diversity 3(3). Link: <a href="https://academic.oup.com/isd/article/3/3/2/5519658" class="uri">https://academic.oup.com/isd/article/3/3/2/5519658</a> Preprint Here: <a href="https://paleorxiv.org/jupva" class="uri">https://paleorxiv.org/jupva</a></p>
-<p>Wright, D. F. 2017. Bayesian estimation of fossil phylogenies and the evolution of early to middle Paleozoic crinoids (Echinodermata). Journal of Paleontology 91(4):799-814.</p>
+<a href="#yes-thats-all-folks" class="anchor"></a>yes that’s all folks</h2>
 </div>
 </div>
   </div>
@@ -288,21 +120,36 @@
 </li>
 </ul>
 </div>
+<div class="developers">
+<h2>Developers</h2>
+<ul class="list-unstyled">
+<li>David Bapst <br><small class="roles"> Author, maintainer </small>  </li>
+<li>April Wright <br><small class="roles"> Author </small>  </li>
+<li>Sandra Carlson <br><small class="roles"> Author </small>  </li>
+<li>Laura Soul <br><small class="roles"> Author </small>  </li>
+<li>David Wright <br><small class="roles"> Author </small>  </li>
+<li>Rachel Warnock <br><small class="roles"> Author </small>  </li>
+<li>Peter Wagner <br><small class="roles"> Author </small>  </li>
+</ul>
+</div>
 
   </div>
 </div>
 
+
       <footer><div class="copyright">
-  <p>Developed by .</p>
+  <p>Developed by David Bapst, April Wright, Sandra Carlson, Laura Soul, David Wright, Rachel Warnock, Peter Wagner.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
