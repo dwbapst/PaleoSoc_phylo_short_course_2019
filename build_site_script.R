@@ -33,23 +33,23 @@ pkgdown::build_site(preview = TRUE)
 #mdOut <- sapply(mdFiles,function(x) rev(unlist(strsplit(x, split="/")))[[1]])
 
 # OH but they need to be in the docs folder
-wDir <- getwd()
-mdOut <- paste0(wDir, "/docs/", mdFiles)
+#wDir <- getwd()
+#mdOut <- paste0(wDir, "/docs/", mdFiles)
 # replace md with html
-mdOut <- gsub(".md$", ".html", mdOut)
+#mdOut <- gsub(".md$", ".html", mdOut)
 
 # remake directories in docs
-dir.create(path="docs/software")
-dir.create(path="docs/pages")
+#dir.create(path="docs/software")
+#dir.create(path="docs/pages")
 
 # render them to html
-for(i in 1:length(mdFiles)){
-	rmarkdown::render(
-		input = mdFiles[i],
-		output_file = mdOut[i],
-		quiet = TRUE, clean = TRUE
-		)
-	print(paste0("Created ", mdOut[i]))
-	}
+#for(i in 1:length(mdFiles)){
+#	rmarkdown::render(
+#		input = mdFiles[i],
+##		output_file = mdOut[i],
+#		quiet = TRUE, clean = TRUE
+#		)
+##	print(paste0("Created ", mdOut[i]))
+#	}
 
 #browseURL("/docs/index")

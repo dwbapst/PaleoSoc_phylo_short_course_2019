@@ -15,20 +15,20 @@ navbar:
        href: index.html
      conduct:
        text: Code fo Conduct
-       href: pages/code_conduct.html
+       href: articles/code_conduct.html
      install:
        text: Software Used
        menu:
         -  text: Required Software
-           href: software/install_main.html
+           href: articles/install_main.html
         -  text: Extra Software
-           href: software/install_extra.html
+           href: articles/install_extra.html
      readings:
        text: Reading List
        href: articles/readings.html
      symbols:
        text: Notation Guide
-       href: pages/symbols.html
+       href: articles/symbols.html
      lessons:
        text: Articles
        menu:
