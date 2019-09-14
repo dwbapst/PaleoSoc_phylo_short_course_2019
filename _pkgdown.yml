@@ -3,18 +3,21 @@ navbar:
     left:
     - home
     - intro
-    - reference
+    - readings
     - articles
-    - tutorials
-    - news
+    - 
+    - 
     right: github
   components:
     home:
       icon: fas fa-home fa-lg
       href: index.html
-    reference:
-      text: Reference
-      href: reference/index.html
+    readings:
+      text: Reading List
+      href: readings.html
+	symbols:
+	  text: Notation Guide
+	  href: symbols.html
     articles:
       text: Articles
       menu:
