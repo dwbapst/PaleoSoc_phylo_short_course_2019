@@ -3,9 +3,9 @@ navbar:
 		left:
 		- home
 		- intro
-		- readings
 		- lessons
-		- 
+		- readings
+		- symbols
 		- 
 		right: github
 	components:
@@ -16,8 +16,9 @@ navbar:
 			text: Software Used
 			menu:
 			-	text: Required Software
-				href: install_main.html
-			-   text: 
+				href: software/install_main.html
+		#	-   text: Extra Software
+		#	    href: 
 		readings:
 				text: Reading List
 				href: readings.html
