@@ -53,7 +53,25 @@ EMAIL TEXT
 
 ##########################
 
-PS WEBSITE TEXT
+Quantitative Methods in Phylogenetic Paleobiology
+
+We are pleased to announce the 2019 Paleontological Society Short Course to take place in conjunction with the GSA Annual Meeting (Phoenix, AZ), “Quantitative Methods in Phylogenetic Paleobiology,” organized by David Bapst, Sandy Carlson, Laura Soul, Peter Wagner, Rachel Warnock, April Wright & Davey Wright.  Following the example set in the 2018 “Pedagogy and Technology in the Modern Paleontology Classroom” short course, the 2019 session, on September 21st from 8:00 am to 5:00 pm in the Sheraton Grand Phoenix Hotel, will include presentations about phylogenetic methods interspersed with hands-on exercises for the attendees to perform.  A link to a brief registration form is provided at the bottom of this page. 
+
+The short course will encompass three broad (albeit connected) topics:
+
+1) tactics for recognizing and coding anatomical characters and character states;
+
+2) models of morphological evolution; and,
+
+3) estimation of divergence times among fossil taxa given morphology, and rates of change, diversification, and sampling.  
+
+Our intent is to make connections between the important parameters for phylogenetic analysis and macroevolutionary theory of the sort that paleontologists study, as these commonalities often are overlooked.  Another intent is to communicate how we deal with uncertainties in relevant rate parameters and even phylogenetic topologies themselves when making tree-based macroevolutionary inferences. Our goal is to work to embrace these uncertainties rather than to either ignore them or dismiss important questions as unanswerable because of uncertainties.  
+
+For much of the short course, we will use a single dataset for our examples, with that dataset and appropriate computer programs distributed prior to the short course.  This will allow each participant to work through steps from loading files to conducting basic analyses.
+
+We are aiming the short course at a wide audience.  We will introduce current methods and tools to young researchers interested in pursuing phylogenetic analyses.  However, this will also be a “refresher” course for more veteran workers who have done phylogenetics in the past, but who might not have kept up with recent developments.  The course contents will also be be useful for individuals who themselves do little or no phylogenetic work, but who might mentor interns or students interested in phylogenetics and/or who might collaborate with phylogeneticists.  
+
+In order to estimate the audience size and pre-existing levels of expertise, we ask the interested attendees fill out a short-registration form here! (Note that this is an informal registration; registrants are not committed to attending and non-registrants are free to attend.)
 
 #######################
 

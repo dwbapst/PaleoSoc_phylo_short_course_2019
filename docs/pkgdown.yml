@@ -1,0 +1,22 @@
+pandoc: 1.19.2.4
+pkgdown: 1.4.0
+pkgdown_sha: ~
+articles:
+  code_conduct: code_conduct.html
+  downloads: downloads.html
+  install_extra: install_extra.html
+  install_main: install_main.html
+  module_01: module_01_Introduction/module_01.html
+  module_02: module_02_meet_our_dataset_S&Z2009/module_02.html
+  module_3: module_03_coding_from_scratch/module_3.html
+  module_04: module_04_Intro_RevBayes_Graphical_Modeling/module_04.html
+  05_RB_MCMC_Discrete_Morph: module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html
+  module_06: module_06_TripartiteModel2_clock_models/module_06.html
+  module_07: module_07_TripartiteModel3_Fossilized_Birth_death/module_07.html
+  module_08: module_08_worked_PCM_example/module_08.html
+  workshop_end: module_end_summary/workshop_end.html
+  organizers: organizers.html
+  readings: readings.html
+  schedule: schedule.html
+  symbols: symbols.html
+
