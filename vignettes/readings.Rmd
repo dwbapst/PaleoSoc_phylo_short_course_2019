@@ -3,3 +3,17 @@
 Attendees are asked to read over the following four readings, at their discretion, before the workshop.
 
 
+Finally, we also have prepared a short reading list of relevant papers that you should read prior to the short course.  In 
+
+Wright, D. F. 2017. Bayesian estimation of fossil phylogenies and the evolution of early to middle Paleozoic crinoids (Echinodermata). Journal of Paleontology 91(4):799-814.
+    Link: 
+
+Wright, A. M. 2019. A Systematist’s Guide to Estimating Bayesian Phylogenies From Morphological Data. Insect Systematics and Diversity 3(3). 
+Link: https://academic.oup.com/isd/article/3/3/2/5519658  
+Preprint Here: https://paleorxiv.org/jupva 
+
+Holder, M., and P. O. Lewis. 2003. Phylogeny estimation: traditional and Bayesian approaches. Nat Rev Genet 4(4):275-284.
+    Link: https://www.nature.com/articles/nrg1044 
+
+Nee, S. 2006. Birth-death models in macroevolution. Annual Reviews in Ecology, Evolution and Systematics 37:1-17.
+    Link: 

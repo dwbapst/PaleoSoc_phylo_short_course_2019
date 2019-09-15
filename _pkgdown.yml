@@ -8,6 +8,7 @@ navbar:
      left:
       - home
       - schedule
+      - organizers
       - conduct
       - install
       - readings
@@ -15,16 +16,19 @@ navbar:
       - symbols
      right: github
    components:
-     home:
-       icon: fas fa-home fa-lg
-       href: index.html
      articles:
        text: 
      reference:
        text: 
+     home:
+       icon: fas fa-home fa-lg
+       href: index.html
      schedule:
        text: Workshop Schedule
        href: articles/schedule.html
+     organizers:
+       text: Our Team
+       href: articles/organizers.html
      conduct:
        text: Code of Conduct
        href: articles/code_conduct.html
