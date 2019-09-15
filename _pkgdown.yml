@@ -1,23 +1,35 @@
+Title: Paleo Society Phylogenetics Short Course at GSA 2019
+template:
+  params:
+    bootswatch: cosmo
+
 navbar:
    structure:
      left:
       - home
-      - intro
+      - schedule
       - conduct
       - install
-      - lessons
       - readings
+      - lessons
       - symbols
      right: github
    components:
      home:
        icon: fas fa-home fa-lg
        href: index.html
+     articles:
+       text: 
+     reference:
+       text: 
+     schedule:
+       text: Workshop Schedule
+       href: articles/schedule.html
      conduct:
-       text: Code fo Conduct
+       text: Code of Conduct
        href: articles/code_conduct.html
      install:
-       text: Software Used
+       text: Get the Software
        menu:
         -  text: Required Software
            href: articles/install_main.html
@@ -30,16 +42,24 @@ navbar:
        text: Notation Guide
        href: articles/symbols.html
      lessons:
-       text: Articles
+       text: Lesson Modules
        menu:
-        -  text: what is the deal with echinoderms
-           href: articles/module_02
+        -  text: Introduction
+           href: articles/module_01_Introduction/module_01.html
+        -  text: Meet Our Dataset
+           href: articles/module_02_meet_our_dataset_S&Z2009/module_02.html
         -  text: Coding Characters From Scratch
-           href: articles/module_03
-        -  text: Bayesian Stuff
-           href: articles/module_04
-        -  text: Discrete morphology - Models and Tree Inference
+           href: articles/module_03_coding_from_scratch/module_3.html
+        -  text: RevBayes & Graphical Models
+           href: articles/module_04_Intro_RevBayes_Graphical_Modeling/module_04.html
+        -  text: Discrete Morphology - Models and Tree Inference
            href: articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html
-
-reference: []
+        -  text: Clock Models of Character Change
+           href: articles/module_06_TripartiteModel2_clock_models/module_06.html
+        -  text: Fossilized Birth Death Model
+           href: articles/module_07_TripartiteModel3_Fossilized_Birth_death/module_07.html
+        -  text: Phylogenetic Comparative Methods
+           href: articles/module_08_worked_PCM_example/module_08.html
+        -  text: Workshop End
+           href: articles/module_end_summary/workshop_end.html
 
