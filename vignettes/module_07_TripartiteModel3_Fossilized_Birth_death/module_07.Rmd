@@ -1,4 +1,8 @@
-# Tripartite Model 3: Fossilized Birth Death
+---
+title: "Tripartite Model 3: Fossilized Birth Death"
+output: html_document
+---
+
 
 ### David W. Bapst, Laura Soul
 #### Lecture & Hands-On with RevBayes/RevNotebook

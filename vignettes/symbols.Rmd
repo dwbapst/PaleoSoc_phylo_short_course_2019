@@ -1,4 +1,7 @@
-# Guide to Common Symbols Used in Notation
+---
+title: "Guide to Common Symbols Used in Notation"
+output: html_document
+---
 
 ## \(\lambda\)
 Lambda. Typical label used for the instantaneous rate in a Poisson process. For us, it will usually mean the instantaneous birth rate of lineages, per time-unit, per lineage. This 'birth' rate is also commonly known as the 'per-capita' origination rate, speciation rate, branching rate, cladogenesis rate, etc, depending on the context. 

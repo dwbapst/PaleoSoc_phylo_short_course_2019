@@ -1,3 +1,8 @@
+---
+title: "RevBayes & Graphical Models"
+output: html_document
+---
+
 
 # Bayesian Stuff
 

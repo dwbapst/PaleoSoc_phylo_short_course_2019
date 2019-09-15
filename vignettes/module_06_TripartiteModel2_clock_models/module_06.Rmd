@@ -1,6 +1,10 @@
-# Tripartite Model 3: Clock Models for Character Data
+---
+title: "Tripartite Model 2: Clock Models for Character Data"
+authors: David F. Wright
+output: html_document
+---
 
-## David F. Wright
+Clocks are important - because we care about rates of character change
 
 ![Lee et al.'s (2013, Curr. Biol.) Analysis of Molecular and Morphological Clocks with Higher Rates in the Cambrian, based on a Combined Dataset of Modern Arthropods Alone (No fossil data!)](Lee_et_al_branch_lengths_Cambrian_rates.png)
 

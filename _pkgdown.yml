@@ -11,6 +11,7 @@ navbar:
       - organizers
       - conduct
       - install
+      - downloads
       - readings
       - lessons
       - symbols
@@ -39,6 +40,9 @@ navbar:
            href: articles/install_main.html
         -  text: Extra Software
            href: articles/install_extra.html
+     downloads:
+       text: Course Materials
+       href: articles/downloads.html
      readings:
        text: Reading List
        href: articles/readings.html
@@ -48,22 +52,22 @@ navbar:
      lessons:
        text: Lesson Modules
        menu:
-        -  text: Introduction
+        -  text: 1 - Introduction
            href: articles/module_01_Introduction/module_01.html
-        -  text: Meet Our Dataset
+        -  text: 2 - Meet Our Dataset
            href: articles/module_02_meet_our_dataset_S&Z2009/module_02.html
-        -  text: Coding Characters From Scratch
+        -  text: 3 - Coding Characters From Scratch
            href: articles/module_03_coding_from_scratch/module_3.html
-        -  text: RevBayes & Graphical Models
+        -  text: 4 - RevBayes & Graphical Models
            href: articles/module_04_Intro_RevBayes_Graphical_Modeling/module_04.html
-        -  text: Discrete Morphology - Models and Tree Inference
+        -  text: 5 - Tripartite Model I - Discrete Morphology - Models and Tree Inference
            href: articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html
-        -  text: Clock Models of Character Change
+        -  text: 6 - Tripartite Model II - Clock Models of Character Change
            href: articles/module_06_TripartiteModel2_clock_models/module_06.html
-        -  text: Fossilized Birth Death Model
+        -  text: 7 - Tripartite Model III - Fossilized Birth Death Model
            href: articles/module_07_TripartiteModel3_Fossilized_Birth_death/module_07.html
-        -  text: Phylogenetic Comparative Methods
+        -  text: 8 - Phylogenetic Comparative Methods
            href: articles/module_08_worked_PCM_example/module_08.html
-        -  text: Workshop End
+        -  text: 9 - Workshop End
            href: articles/module_end_summary/workshop_end.html
 

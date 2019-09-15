@@ -1,7 +1,7 @@
-# Preparing Your Computer for the Phylogenetics Short Course
-
-###   David Bapst & April Wright
-
+---
+title: "Preparing Your Computer for the Phylogenetics Short Course"
+output: html_document
+---
 
 *Time to get those machines in gear, paleontologists!*
 

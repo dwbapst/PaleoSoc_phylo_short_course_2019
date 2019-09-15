@@ -1,6 +1,9 @@
+---
+title: "Our Code of Conduct"
+output: html_document
+---
 
 
-This is our code of conduct
 
 
 

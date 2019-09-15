@@ -1,0 +1,95 @@
+---
+title: "Who We Are"
+output: html_document
+---
+
+Meet your organizers
+
+
+This course is organized by Sandra Carlson and Peter Wagner (@PeterJWagner3), instructors April Wright (@wrightaprilm), Laura Soul (@laurasoul), David "Davey" F. Wright (@daveyfwright), and David Bapst (@dwbapst), with instructional material development from Rachel Warnock (@rachelwarnock). 
+
+## Sandra Carlson
+
+email 
+
+photo
+
+bio
+
+link to institutional website
+
+github profile
+
+## Peter Wagner
+
+email 
+
+photo
+
+bio
+
+link to institutional website
+
+github profile
+
+## April Wright
+
+email 
+
+photo
+
+bio
+
+link to institutional website
+
+github profile
+
+## David Wright
+
+email 
+
+photo
+
+bio
+
+link to institutional website
+
+github profile
+
+## Laura Soul
+
+email 
+
+photo
+
+bio
+
+link to institutional website
+
+github profile
+
+## David Bapst
+
+email 
+
+photo
+
+bio
+
+link to institutional profile
+
+github profile
+
+
+## Rachel Warnock
+
+email 
+
+photo
+
+bio
+
+link to institutional profile
+
+github profile
+

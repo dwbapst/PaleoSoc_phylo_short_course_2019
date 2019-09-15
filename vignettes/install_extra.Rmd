@@ -1,4 +1,7 @@
-# Non-Required Software To Install
+---
+title: "Non-Required Software To Install"
+output: html_document
+---
 
 Here, we'll list helpful, additional software that you can install... but that we aren't going to be using directly in the workshop.
 ## Some Useful Phylogenetics Programs

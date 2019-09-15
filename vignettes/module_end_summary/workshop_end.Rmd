@@ -1,3 +1,8 @@
+---
+title: "At the end of the day, at the end of the hour..."
+output: html_document
+---
+
 # Workshop End
 
 DON'T WASTE YOUR POST-IT NOTES! PLEASE GIVE US FEEDBACK!

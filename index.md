@@ -51,9 +51,11 @@
 
 EMAIL TEXT
 
+##########################
 
 PS WEBSITE TEXT
 
+#######################
 
 There has been considerable development of Bayesian and likelihood methods for assessing phylogenetic relationships in recent years.  This includes advances in probabilistic models of anatomical character evolution and and models of assessing tree probabilities given diversification and sampling rates.  The 2019 Paleontological Society Short Course will be a day-long workshop-style short course that will feature not just lectures about methodological advances, but also hands-on exercises for the audience members to perform on their laptop computers. The workshop is being organized and run by David Bapst, Sandy Carlson, Laura Soul, Peter Wagner, Rachel Warnock, April Wright & David Wright.
 
@@ -65,29 +67,40 @@ The workshop will take place at the Sheraton Grand Phoenix Hotel (two blocks fro
 
 In order to better prepare the short course, we encourage attendees to register in advance using the form and survey below.  Registering and responding to the survey will not commit you to attending, but it will help us gauge interest and plan logistics.  
 
-If you have any questions, please email pwagner16@unl.edu.
+
+
+############################
 
 
 
-OOOOH WE SHOULD HAVE AN AUTHOR PAGE
+This course is organized by Sandra Carlson and Peter Wagner (@PeterJWagner3), instructors April Wright (@wrightaprilm), Laura Soul (@laurasoul), David "Davey" F. Wright (@daveyfwright), and David Bapst (@dwbapst), with instructional material development from Rachel Warnock (@rachelwarnock). 
 
+To learn more about us, or to contact us with question, see 
 
-
-
-
-
-
-The short course for 
-
-
+	OUR ORGANIZERS PAGE
 
 
 
 
+Additionally, this course will utilize a number of 'roving' teaching assistants (tentative list, as follows: Bethany Allen, Lena Cole, William Gearty (@willgearty), David Mertz (@DavidAAMertz), Phil Novack-Gottshall (@pnovack-gottshall) & John Sime.  
 
-This repository will serve as a place for developing and storing materials for the Revbayes-based short course in tip-dating phylogenetics. for GSA 2019, presented by The Paleontological Society.
+Our helpers are
 
-This hands-on computational workshop is organized by Sandra Carlson and Peter Wagner (@PeterJWagner3), instructors April Wright (@wrightaprilm), Laura Soul (@laurasoul), David "Davey" F. Wright (@daveyfwright), and David Bapst (@dwbapst), with instructional material development from Rachel Warnock (@rachelwarnock). Additionally, this course will utilize a number of 'roving' teaching assistants (tentative list, as follows: Bethany Allen, Lena Cole, William Gearty (@willgearty), David Mertz (@DavidAAMertz), Phil Novack-Gottshall (@pnovack-gottshall) & John Sime.  
+
+
+"William Gearty" <willgearty@gmail.com>
+“Selina Cole” <scole@amnh.org>, 
+"Bethany Allen" <eebja@leeds.ac.uk>, 
+"John Sime" <sime@sas.upenn.edu>, 
+“Phil Novack-Gottshall" <pnovack-gottshall@ben.edu>, 
+ "David Mertz" <damertz@huskers.unl.edu>,
+“Greg Liggett” <gregliggett@gmail.com> 
+    
+
+
+
+
+
 
 This will be a workshop with active participation by the attendees.  As such, participants will need to have laptop computers with the following programs: 
 	

@@ -1,7 +1,8 @@
-# Phylogenetic Comparative Methods
-
-### Laura Soul
-
+---
+title: "Phylogenetic Comparative Methods"
+authors: Laura Soul
+output: html_document
+---
 
 # Doing things with trees is awesome!
 
