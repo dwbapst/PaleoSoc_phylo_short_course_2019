@@ -6,9 +6,14 @@
 
 ## Pure Birth Models
 
+Simulate under a pure-birth process and ask whose data looks like this? 
+
+
 Nee 2006
 
 ## Birth-Death Models
+
+Simulate under a birth-death process and ask whose data looks like this? 
 
 ### How We've Used Birth-Death In Paleontology
 
@@ -24,6 +29,8 @@ something something Foote, per-capita rates
 
 ## Fossilized Birth-Death Model
 
+-Simulate under the FBD and show that this process allows sampled ancestors? 	
+	
 
 ### Serial Sampling
 
@@ -43,6 +50,12 @@ A long time.
 
 The MCMC is done. That was the easy part, now its the hard part.
 
+Thinking about the output of Bayesian analyses isn't easy...
+
+Thinking about the output of Phylogenetic  analyses isn't easy...
+
+Thankfully these two problems somewhat solve each other.
+
 ### Did it converge?
 
 Tracer
@@ -56,6 +69,8 @@ More Tracer
 > A single tree is not worth the forest.
 
 
+
+
 # NOTES
 
 	- Fossilized Birth Death Models 
@@ -65,11 +80,9 @@ More Tracer
 		- Sampled Ancestor Moves in MCMC
 		- Gavryushkina et al. 2014; 2016
 	- Try to simplify, do not get lost in covering historical perspective
-		- April: Simulate under a pure-birth process and ask whose data looks like this? Simulate under the FBD and show that this process allows sampled ancestors? 	
-	- Unifies morph, clocks, tree priors
-	- Goes from start to end of an analytical process
+	
 	- From Pete:
-		- BD & FBD (BDS) models for putting prior probabilities on tree topologies offer independent check on characters (Tripartite Model 3).
+		- BD & FBD (BDS) models for putting prior probabilities on tree topologies offer independent check on characters 
 		- A. Emphasis: Probabilities getting fossil record given phylogeny based on likelihood of unsampled ancestors AND probability of no sampled sister taxa (aka, Raup’s Revenge).
 		- B. Our old friend hyperpriors used to create distributions for these rates.
-		- Z. Wow, that’s cool: but I’m now using everything and the kitchen sink; can I do anything with the results?	
+		- Z. 
