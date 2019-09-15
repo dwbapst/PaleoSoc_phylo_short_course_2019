@@ -49,11 +49,14 @@
 	#
 ```
 
-EMAIL TEXT
+
 
 ##########################
 
-Quantitative Methods in Phylogenetic Paleobiology
+The Paleontological Society Short Course on Phylogenetic Approaches in Paleontology, at the 2019 Annual Meeting of the Geological Society of America
+
+
+
 
 We are pleased to announce the 2019 Paleontological Society Short Course to take place in conjunction with the GSA Annual Meeting (Phoenix, AZ), “Quantitative Methods in Phylogenetic Paleobiology,” organized by David Bapst, Sandy Carlson, Laura Soul, Peter Wagner, Rachel Warnock, April Wright & Davey Wright.  Following the example set in the 2018 “Pedagogy and Technology in the Modern Paleontology Classroom” short course, the 2019 session, on September 21st from 8:00 am to 5:00 pm in the Sheraton Grand Phoenix Hotel, will include presentations about phylogenetic methods interspersed with hands-on exercises for the attendees to perform.  A link to a brief registration form is provided at the bottom of this page. 
 

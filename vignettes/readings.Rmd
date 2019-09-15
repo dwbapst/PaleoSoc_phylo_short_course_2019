@@ -1,5 +1,5 @@
 ---
-title: "Readings"
+title: "Recommended Readings"
 output: html_document
 ---
 

@@ -1,7 +1,7 @@
-Package: GSA2019
+Package: PSPhyloShortCourseGSA2019
 Type: Package
-Title: The Paleontological Society Short Course on Phylogenetic Approaches in Paleontology, at the 2019 Annual Meeting of the Geological Society of America
-Version: 0.4.4
+Title: Quantitative Methods in Phylogenetic Paleobiology
+Version: 09.21.2019
 Authors@R: c(
 	person("David", "Bapst", role = c("aut","cre"), 
 		email="dwbapst@gmail.com"),

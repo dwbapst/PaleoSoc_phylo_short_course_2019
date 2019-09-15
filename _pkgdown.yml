@@ -1,4 +1,4 @@
-Title: Paleo Society Phylogenetics Short Course at GSA 2019
+Title: Quantitative Methods in Phylogenetic Paleobiology Short Course
 template:
   params:
     bootswatch: cosmo
@@ -41,10 +41,10 @@ navbar:
         -  text: Extra Software
            href: articles/install_extra.html
      downloads:
-       text: Course Materials
+       text: Download Files
        href: articles/downloads.html
      readings:
-       text: Reading List
+       text: Readings
        href: articles/readings.html
      symbols:
        text: Notation Guide
