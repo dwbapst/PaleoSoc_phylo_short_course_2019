@@ -1,0 +1,6 @@
+# Phylogenetic Comparative Methods
+
+## Laura Soul
+
+![Brownian Motion Simulated with Liam Revell's `phytools`](brownian motion (sim with Revell's function).jpeg)
+

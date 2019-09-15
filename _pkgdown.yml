@@ -32,6 +32,12 @@ navbar:
      lessons:
        text: Articles
        menu:
+        -  text: what is the deal with echinoderms
+           href: articles/module_02
+        -  text: Coding Characters From Scratch
+           href: articles/module_03
+        -  text: Bayesian Stuff
+           href: articles/module_04
         -  text: Discrete morphology - Models and Tree Inference
            href: articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html
 

@@ -20,7 +20,7 @@ Depends:
 Imports:
     phangorn,
     phytools,
-	pkgDown,
+	pkgdown,
     ape
 Suggests:
     knitr,

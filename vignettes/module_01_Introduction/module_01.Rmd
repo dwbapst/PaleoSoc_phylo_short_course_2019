@@ -1,0 +1,74 @@
+---
+title: "Introduction"
+output: html_document
+author:
+- NA
+
+---
+
+Welcome to our workshop!
+
+![An Interesting Conceptual Piece From Ted Garland](3d_tree640_QF30.jpg)
+
+Presumably we'll have more to say, eventually.
+
+For now, enjoy these pictures...
+
+## Trees Through Time
+
+Have you ever thought about how phylogenies and our depictions of them have evolved?
+
+![Genealogical Tree of Dead and Living Languages, by Félix Gallet, c. 1800](trees/Genealogical Tree of Dead and Living Languages, by Félix Gallet %28c. 1800%29.jpg)
+_Genealogical Tree of Dead and Living Languages, by Félix Gallet (c. 1800)_
+
+Look at that! A phylogeny of languages, more than 50 years before Darwin will publish the Origin of Species!
+
+!['Paleontology' foldout-chart, from Hitchcock 1840](trees/'Paleontology' Hitchcock 1840 foldout-chart treeOfLife.jpg)
+_'Paleontology' foldout-chart, from Hitchcock 1840_
+
+Another pre-Darwinian phylogeny, this time actually of organisms.
+
+![Tree of Life (Haeckel, 1898)](trees/Tree_of_life_by_Haeckel_1898.jpeg)
+_Tree of Life (Haeckel, 1898)_
+
+![Age-of-Man from Haeckel, 1905, The Evolution of Man](trees/Age-of-Man-wiki haeckel, 1905 evolution of man.jpg)
+_Haeckel, 1905, The Evolution of Man_
+
+Okay, that's enough from Ernst Haeckel for now...
+
+![Fern phylogeny, after Zimmerman (1938, p328), as reprinted by Manton, 1955, A Century of Progress in the Natural Sciences](trees/Fern phylogeny, Manton (1955) after Zimmerman %281938%29, p328_of_A_century_of_progress_in_the_natural_sciences %281955%29.jpg)
+
+
+![Brachiopod Spindle Diagram & Phylogeny from Moore et al., 1952](trees/brachiopod spindle diagram from Moore et al., 1952.jpg)
+
+What is it about paleontology and combining spindle diagrams with trees?
+
+![Ammonite Evolution and Phylogenetic Bottlenecks (Eldredge)](trees/ammonite evolution and phylogenetic bottlenecks %28Eldredge, .jpg)
+
+
+![Hominid Evolutionary Tree (Klein, 2013, PNAS)](trees/hominid evolutionary tree %28Klein, 2013, PNAS%29.jpg)
+
+
+![Dated Phylogeny of Fossil Echinoids from Hopkins & Smith, 2015, PNAS](trees/Figure 2 from Hopkins and Smith, 2015.jpg)
+_Dated Phylogeny of Fossil Echinoids from Hopkins & Smith, 2015, PNAS_
+
+![Dated Phylogeny of Mesozoic Dinosaurs from Lloyd et al. 2016](trees/Lloyd et al. dated tree.jpg)
+_Dated Phylogeny of Mesozoic Dinosaurs from Lloyd et al. 2016_
+
+## The Power of Trees
+
+Trees are really useful!
+
+![Simpson, 1944 - Fig 31, Adaptive Zones](trees/Simpson_1944_f31 %28adaptive zones%29.jpg)
+
+![Simpson, 1944 - Fig 44, Adaptive Zone](trees/Simpson Adaptive Zone %28Fig 44%29.gif)
+
+![Fig 1 D. Huang et al., 2015](trees/Fig 1 D. Huang et al., 2015.jpg)
+
+Huang et al., 2015, PNAS, Fig 1D: This figure shows the effect of ancestor-descendant relationships on the measuring of phylogenetic diversity and the impact of extinction.
+
+![Deline et al. 2018, PNAS](trees/phylomorphospace of all phyla - Deline et al. 2018, gray is Cambrian animals.png)
+
+Deline et al. 2018 - Phylomorphospace of All Animals, Gray Polygon is Space Occupied by Cambrian Animals.
+
+Are you excited yet?
