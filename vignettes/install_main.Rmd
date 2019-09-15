@@ -15,7 +15,7 @@ We require five particular software applications: **RevBayes**, **R**, **RStudio
 
 RevBayes is a terminal-based program for Bayesian phylogenetic analysis which gives users greater freedom in defining their own models and priors than previous software, designed around graphical models (Höhna et al. 2016). RevBayes also contains an interpreted, scripted language resembling R, rather than a set of fixed commands. It is a spiritual successor to the program MrBayes, which is still maintained but in static form, with no ongoing active development.
 
-## **NOTE** RevBayes was *just* updated!
+#### **NOTE** RevBayes was *just* updated!
 
 In the week before the workshop, one of us (A. Wright) push a number of changes to the RevBayes source and compiled new pre-release versions for our GSA workshop, labeled as release version 1.0.13. In particular, and of significance for us paleontologists, this allows us to load character matrices containing characters that entail differing numbers of character states. Previously, matrices with mixtures of characters with differing numbers of states had to be seperated beforehand to be loaded by RevBayes. If you have an older version of RevBayes from before this week, please update!
 

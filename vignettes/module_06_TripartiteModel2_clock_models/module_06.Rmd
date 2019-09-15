@@ -1,4 +1,6 @@
+# Tripartite Model 3: Clock Models for Character Data
 
-# Meet our Dataset!
+## David F. Wright
 
-If you didn't already know too much about echinoderms, it is now too late, the doors are locked, there is no escape, the Ambulacra will have you at all costs.
+![Lee et al.'s (2013, Curr. Biol.) Analysis of Molecular and Morphological Clocks with Higher Rates in the Cambrian, based on a Combined Dataset of Modern Arthropods Alone (No fossil data!)](Lee_et_al_branch_lengths_Cambrian_rates.png)
+
