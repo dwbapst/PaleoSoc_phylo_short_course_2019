@@ -236,4 +236,6 @@ Installing Mesquite on Linux can be a headache, as most Java Virtual Machines pr
     https://www.mesquiteproject.org/Installation%20on%20Linux.html
 
 
+***
 
+Portions of the above text is based on text from the workshop templates supplied by Software Carpentry (https://carpentries.github.io/workshop-template/), which is licenses by The Carpentries organization under a CC-BY license.

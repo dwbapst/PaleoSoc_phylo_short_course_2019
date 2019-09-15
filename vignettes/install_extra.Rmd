@@ -1,5 +1,37 @@
 # Non-Required Software To Install
 
-Here, we'll list helpful software you can install that we aren't requiring for the worksop.
+Here, we'll list helpful, additional software that you can install... but that we aren't going to be using directly in the workshop.
+## Some Useful Phylogenetics Programs
 
-...at the moment we don't have anything to list, but check back soon!
+David Swofford’s `PAUP*` has, for decades, been one of the most popular programs for parsimony-based and (some) maximum-likelihood phylogenetic analysis. The name, `PAUP*`, is a recursive acronym which stands for __’* Phylogenetic Analysis Using PAUP’__. You can get the most recent, command-line binary of PAUP for your system at:
+
+  http://phylosolutions.com/paup-test/
+
+FigTree is a widely used program that visualizes phylogenies, and is particularly useful for making publication-quality figures of trees, with fine control over labeling, node rotation, scale bars, clade collapsing, etc. It does not (yet) handle trees with sampled ancestors specially, instead depicting them as regular tips attached via zero-length branches. You can get FigTree at:
+
+  http://tree.bio.ed.ac.uk/software/figtree/
+
+## Text Editor
+
+When you're writing code or modifying plain-text format files, it's nice to have a text editor that is optimized for writing code, with features like automatic color-coding of key words, auto-saving, collapsing of nested code, search that allows for regular expressions, and many other features that make Microsoft's Notepad look like a children's tricycle in the midst of a flock of . 
+
+### Windows
+
+Some popular plain-text editors you can install on Windows are Notepad++ (https://notepad-plus-plus.org/) or Sublime Text (https://www.sublimetext.com/). `nano` is a basic editor that opens within the terminal, installed in Windows along with the bash-like terminal `git bash` when the **git for Windows** distribution is installed (https://git-for-windows.github.io/). 
+
+### macOS
+
+On Macs, two popular plain-text editors are  BBEdit (https://www.barebones.com/products/bbedit/), or Sublime Text (https://www.sublimetext.com/). The default text editor accessed through the terminal is `vim`, which can be difficult to use. An alternative terminal-based editor is `nano`, which also comes pre-installed with most macOS releases. See the Git installation video tutorial from Software Carpentry (https://www.youtube.com/watch?v=9LQhwETCdwY) for an example on how to open `nano` on a macOS computer.
+
+### Linux
+
+There are many popular plain-text editors on Linux: Gedit (https://wiki.gnome.org/Apps/Gedit), Kate (https://kate-editor.org/) or Sublime Text (https://www.sublimetext.com/). For those that enjoy Notepad++ (which is officially Windows-only), you can use Np++ within a Wine Snap (https://snapcraft.io/notepad-plus-plus ), or use the Linux-based look-alike, Notepadqq (https://notepadqq.com/s/). `nano` is a basic terminal-based editor and the default that instructors use in the workshop and usually comes as part of any basic distro. `vim` also comes with most distros, and may be set as your default text-editor.
+
+### A last aside… How to Escape `vim`
+
+If you ever find yourself stuck in an unnamed terminal-based text-editor that mostly just seems to show you a file’s contents, and the coordinates of where your cursor is, you have become stuck in `vim`. To escape, hit the `Esc` key, followed by `:`, `q`, `!` (in other words, hit ‘colon’, ‘lower-case q', ‘exclamation mark’, in that order), then the `Return` key to return to the shell.
+
+
+******
+
+Portions of the above text is based on text from the workshop templates supplied by Software Carpentry (https://carpentries.github.io/workshop-template/), which is licenses by The Carpentries organization under a CC-BY license.
