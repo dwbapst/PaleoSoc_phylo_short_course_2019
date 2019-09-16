@@ -71,3 +71,6 @@ navbar:
         -  text: 9 - Workshop End
            href: articles/module_end_summary/workshop_end.html
 
+home:
+    sidebar: FALSE
+

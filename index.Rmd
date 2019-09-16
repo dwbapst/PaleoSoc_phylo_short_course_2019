@@ -1,22 +1,10 @@
----
-title: "GSA 2019 Shortcourse in Phylogenetic Paleobiology"
-output: 
-  html_document:
-    toc: false
----
+### A Short Course Held at the 2019 Annual Meeting of the *Geological Society of America*
 
+# Quantitative Methods in Phylogenetic Paleobiology
 
+## Sponsored by *The Paleontological Society*
 
-
-# here is our front page everyone
-
-## yes that's all folks
-
-
-
-
-
-
+### 
 
 
 ```
