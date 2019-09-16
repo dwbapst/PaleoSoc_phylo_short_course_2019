@@ -1,15 +1,15 @@
-### A Short Course Held at the 2019 Annual Meeting of the *Geological Society of America*
+### &nbsp;&nbsp; A Short Course sponsored by *The Paleontological Society* <br/> &nbsp;&nbsp; Held at the 2019 Annual Meeting of the *Geological Society of America*
 
-# Quantitative Methods in Phylogenetic Paleobiology
+# **Quantitative Methods**<br/> &nbsp;&nbsp;&nbsp; in **Phylogenetic Paleobiology**
 
-## Sponsored by *The Paleontological Society*
+### &nbsp;&nbsp;&nbsp;  8:00 AM - 5:00 PM <br/> &nbsp;&nbsp;&nbsp;  Saturday, September 21st, 2019
 
-### September 21st, 2019
+### &nbsp;&nbsp;&nbsp; ‘*Valley of the Sun*’ Ballroom <br/> &nbsp;&nbsp;&nbsp; The Sheraton Phoenix Downtown Hotel <br/> &nbsp;&nbsp;&nbsp; Phoenix, Arizona
+    
+&nbsp;
+&nbsp;
 
-### LOCATION LOCATION LOCATION PHOENIX, AZ
-
-
-Our short course will be held on Saturday, September 21st, from 8:00 AM to 5:00 PM (local Arizona time), in the ‘Valley of the Sun’ ballroom at the Sheraton Phoenix Downtown Hotel, located here:
+This short course will be held on Saturday, September 21st, from 8:00 AM to 5:00 PM (local Arizona time), in the ‘Valley of the Sun’ ballroom at the Sheraton Phoenix Downtown Hotel, located here:
 
 https://goo.gl/maps/h2arwUPWQLysU3N36 
 
@@ -62,7 +62,13 @@ The Paleontological Society Short Course on Phylogenetic Approaches in Paleontol
 
 
 
-We are pleased to announce the 2019 Paleontological Society Short Course to take place in conjunction with the GSA Annual Meeting (Phoenix, AZ), “Quantitative Methods in Phylogenetic Paleobiology,” organized by David Bapst, Sandy Carlson, Laura Soul, Peter Wagner, Rachel Warnock, April Wright & Davey Wright.  Following the example set in the 2018 “Pedagogy and Technology in the Modern Paleontology Classroom” short course, the 2019 session, on September 21st from 8:00 am to 5:00 pm in the Sheraton Grand Phoenix Hotel, will include presentations about phylogenetic methods interspersed with hands-on exercises for the attendees to perform.  A link to a brief registration form is provided at the bottom of this page. 
+We are pleased to announce the 2019 Paleontological Society Short Course to take place in conjunction with the GSA Annual Meeting (Phoenix, AZ), “Quantitative Methods in Phylogenetic Paleobiology,” organized by David Bapst, Sandy Carlson, Laura Soul, Peter Wagner, Rachel Warnock, April Wright & Davey Wright.  
+
+
+
+
+
+Following the example set in the 2018 “Pedagogy and Technology in the Modern Paleontology Classroom” short course, the 2019 session, on September 21st from 8:00 am to 5:00 pm in the Sheraton Grand Phoenix Hotel, will include presentations about phylogenetic methods interspersed with hands-on exercises for the attendees to perform.  A link to a brief registration form is provided at the bottom of this page. 
 
 The short course will encompass three broad (albeit connected) topics:
 
@@ -86,7 +92,7 @@ There has been considerable development of Bayesian and likelihood methods for a
 
 We are designing the short course so that novices can learn not only about the current methods for modeling character change and divergence times, but also can learn tactics for recognizing characters and delimiting character states on fossils. The short course also should provide a "refresher" course for more experienced workers who have conducted phylogenetic analyses with parsimony and other methods.  Moreover, we intend the short course to be useful for paleontologists who do not do phylogenetics themselves, but who mentor students or collaborate with colleagues that do.
  
-Exercises will be conducted using RevBayes; the relevant workshop materials & tutorials are all developed online (http://revbayes.com).  We strongly encourage participants to download these materials before the short course: although there will be Internet access at the convention center, we cannot guarantee that it will be fast enough for people to download files on site.
+
 
 The workshop will take place at the Sheraton Grand Phoenix Hotel (two blocks from the Convention Center) on Saturday the 21st of September 8:00 - 17:00 (with several short breaks and a lunch break). A short workshop for installing relevant software will be held Friday late afternoon to early evening at the Convention center, with the exact times and location to be announced.  We emphasize that because this short course is being conducted as a workshop rather than a day-long symposium, attendees will get the most out of the course by attending the entire session.   
 
@@ -98,7 +104,8 @@ In order to better prepare the short course, we encourage attendees to register 
 
 
 
-This course is organized by Sandra Carlson and Peter Wagner (@PeterJWagner3), instructors April Wright (@wrightaprilm), Laura Soul (@laurasoul), David "Davey" F. Wright (@daveyfwright), and David Bapst (@dwbapst), with instructional material development from Rachel Warnock (@rachelwarnock). 
+
+
 
 To learn more about us, or to contact us with question, see 
 

@@ -5,7 +5,9 @@ output: html_document
 
 *Time to get those machines in gear, paleontologists!*
 
-To actively participate in the Short Course, you will need access to several pieces of software on a personal computer, particularly RevBayes, R, RStudio, Mesquite and Tracer. Please see below for an overview on the software we want you to install, followed by instructions specific to each operating system. In addition to this software, you will need an up-to-date web browser, and a functioning wifi card, in order to access several websites we will use during the workshop. Wifi access will be supplied to participants courtesy of **The Paleontological Society**.
+To actively participate in the Short Course, you will need access to several pieces of software on a personal computer, particularly RevBayes, R, RStudio, Mesquite and Tracer. Please see below for an overview on the software we want you to install, followed by instructions specific to each operating system. We strongly encourage participants to download these materials before the short course: although there will be Internet access at the convention center, we cannot guarantee that it will be fast enough for people to download files on site.
+
+In addition to this software, you will need an up-to-date web browser, and a functioning wifi card, in order to access several websites we will use during the workshop. Wifi access will be supplied to participants courtesy of **The Paleontological Society**.
 
 ## Summary of Required Software
 
