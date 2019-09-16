@@ -6,9 +6,10 @@ output: html_document
 
 # Doing things with trees is awesome!
 
-![Brownian Motion Simulated with Liam Revell's `phytools`](brownian motion (sim with Revell's function).jpeg)
+![BM](brownianMotionSim.jpeg)
+*Brownian Motion Simulated with Liam Revell's `phytools`*
 
-### Notes
+### Notes 
 
 - From Pete:
 		- A. How to test macroevolutionary ideas while admitting that we can never know the “true” tree
