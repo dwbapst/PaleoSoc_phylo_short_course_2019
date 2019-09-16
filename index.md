@@ -34,17 +34,18 @@ https://docs.google.com/forms/d/1AsPgZNraGV6htmveMK5Yebx3q1_Eew_BaML6MLYdHQU/vie
 Registering will also add you to our email list so that you can get future updates about the workshop later in the week.
 
 
-# WHO 
+# Who We Are
 
-
-To learn more about us, or to contact us with question, see 
-
-	OUR ORGANIZERS PAGE
+To learn more about us, or to contact us with question, see our [organizers page](https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/organizers.html).
 
 
 
 
-Additionally, this course will utilize a number of 'roving' teaching assistants (tentative list, as follows: Bethany Allen, Lena Cole, William Gearty (@willgearty), David Mertz (@DavidAAMertz), Phil Novack-Gottshall (@pnovack-gottshall) & John Sime.  
+Additionally, this course will utilize a number of 'roving' teaching assistants 
+
+
+currently: 
+
 
 Our helpers are
 
@@ -59,6 +60,8 @@ Our helpers are
 “Greg Liggett” <gregliggett@gmail.com> 
     
 
+Bethany Allen, 
+Lena Cole, William Gearty (@willgearty), David Mertz (@DavidAAMertz), Phil Novack-Gottshall (@pnovack-gottshall) & John Sime.  
 
 
 
