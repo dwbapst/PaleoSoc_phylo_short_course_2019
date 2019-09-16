@@ -4,7 +4,12 @@ authors: David Wright
 output: html_document
 ---
 
+Explaining what cinctans are and why echinoderms are cool
 
 # Echinoderms are Weird
 
 If you didn't already know too much about echinoderms, it is now too late, the doors are locked, there is no escape, the Ambulacra will have you at all costs.
+
+![Some Weird Early Echinoderms, by Nobu Tamura](EarlyEchinoderms_NT.jpg)
+
+Some of these are cinctans.

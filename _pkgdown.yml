@@ -31,7 +31,7 @@ navbar:
        text: Our Team
        href: articles/organizers.html
      conduct:
-       text: Code of Conduct
+       text: Expected Conduct
        href: articles/code_conduct.html
      install:
        text: Get the Software

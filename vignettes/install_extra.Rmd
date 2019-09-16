@@ -1,5 +1,5 @@
 ---
-title: "Non-Required Software To Install"
+title: "Non-Required Software For Your Consideration"
 output: html_document
 ---
 
@@ -16,19 +16,19 @@ FigTree is a widely used program that visualizes phylogenies, and is particularl
 
 ## Text Editor
 
-When you're writing code or modifying plain-text format files, it's nice to have a text editor that is optimized for writing code, with features like automatic color-coding of key words, auto-saving, collapsing of nested code, search that allows for regular expressions, and many other features that make Microsoft's Notepad look like a children's tricycle in the midst of a flock of . 
+RevBayes uses text files, which can be opened and editted in RStudio - which is what we'll be doing for the workshop.  However, some participants might prefer using a separate text-editor when using both RStudio and RevBayes. When you're writing code or modifying plain-text format files, it's nice to have a text editor that is optimized for writing code, with features like automatic color-coding of key words, auto-saving, collapsing of nested code, search that allows for regular expressions, and many other features that make Microsoft's Notepad look like a children's tricycle in the midst of a flock of Harvey-Davidson bikes. Some developers even prefer plain-text editors over using an IDE like RStudio, as its more 'uncluttered'.
 
 ### Windows
 
-Some popular plain-text editors you can install on Windows are Notepad++ (https://notepad-plus-plus.org/) or Sublime Text (https://www.sublimetext.com/). `nano` is a basic editor that opens within the terminal, installed in Windows along with the bash-like terminal `git bash` when the **git for Windows** distribution is installed (https://git-for-windows.github.io/). 
+Some popular plain-text editors you can install on Windows are [Notepad++](https://notepad-plus-plus.org/) (a favorite of several of the organizers), [Atom](https://github.com/atom/atom/releases/tag/v1.40.1), or [Sublime Text](https://www.sublimetext.com/). `nano` is a basic editor that opens within the terminal, installed in Windows along with the bash-like terminal `git bash` when [git for Windows](https://git-for-windows.github.io/) is installed. 
 
 ### macOS
 
-On Macs, two popular plain-text editors are  BBEdit (https://www.barebones.com/products/bbedit/), or Sublime Text (https://www.sublimetext.com/). The default text editor accessed through the terminal is `vim`, which can be difficult to use. An alternative terminal-based editor is `nano`, which also comes pre-installed with most macOS releases. See the Git installation video tutorial from Software Carpentry (https://www.youtube.com/watch?v=9LQhwETCdwY) for an example on how to open `nano` on a macOS computer.
+On Macs, two popular plain-text editors are [BBEdit](https://www.barebones.com/products/bbedit/), [Text Wrangler](https://www.barebones.com/products/textwrangler/), [Atom](https://github.com/atom/atom/releases/tag/v1.40.1), or [Sublime Text](https://www.sublimetext.com/). The default text editor accessed through the terminal is `vim`, which can be difficult to use. An alternative terminal-based editor is `nano`, which also comes pre-installed with most macOS releases. See the [Git installation video tutorial from Software Carpentry](https://www.youtube.com/watch?v=9LQhwETCdwY) for an example on how to open `nano` on a macOS computer.
 
 ### Linux
 
-There are many popular plain-text editors on Linux: Gedit (https://wiki.gnome.org/Apps/Gedit), Kate (https://kate-editor.org/) or Sublime Text (https://www.sublimetext.com/). For those that enjoy Notepad++ (which is officially Windows-only), you can use Np++ within a Wine Snap (https://snapcraft.io/notepad-plus-plus ), or use the Linux-based look-alike, Notepadqq (https://notepadqq.com/s/). `nano` is a basic terminal-based editor and the default that instructors use in the workshop and usually comes as part of any basic distro. `vim` also comes with most distros, and may be set as your default text-editor.
+There are many popular plain-text editors on Linux: [Gedit](https://wiki.gnome.org/Apps/Gedit), [Kate](https://kate-editor.org/), [Atom](https://github.com/atom/atom/releases/tag/v1.40.1), or [Sublime Text](https://www.sublimetext.com/). For those that recently changed from Windows to Linux but enjoy **Notepad++** (which is *officially* Windows-only), you can still use [**Notepad++** within a Wine Snap](https://snapcraft.io/notepad-plus-plus), or use the Linux-based look-alike, [Notepadqq](https://notepadqq.com/s/). `nano` is a basic terminal-based editor and the default that instructors use in the workshop and usually comes as part of any basic distro. `vim` also comes with most distros, and may be set as your default text-editor.
 
 ### A last aside… How to Escape `vim`
 
@@ -36,5 +36,5 @@ If you ever find yourself stuck in an unnamed terminal-based text-editor that mo
 
 
 ******
-
-Portions of the above text is based on text from the workshop templates supplied by Software Carpentry (https://carpentries.github.io/workshop-template/), which is licenses by The Carpentries organization under a CC-BY license.
+******
+Portions of the above text is based on text from the workshop templates supplied by [Software Carpentry] (https://carpentries.github.io/workshop-template/), which is licensed by The Carpentries organization under a CC-BY license.

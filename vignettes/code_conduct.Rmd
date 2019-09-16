@@ -1,5 +1,5 @@
 ---
-title: "Our Code of Conduct"
+title: "Our Expectations of Conduct"
 output: html_document
 ---
 
@@ -7,4 +7,4 @@ output: html_document
 
 
 
-
+  

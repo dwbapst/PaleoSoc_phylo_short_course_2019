@@ -3,38 +3,21 @@ title: "Workshop Schedule"
 output: html_document
 ---
 
-| A | B | C  |   |   |
-|---|---|----|---|---|
-|   |   | CC |   |   |
-|   |   |    |   |   |
-|   |   |    |   |   |
+| Time | Duration | Module | Instructors | Topic  |  Exercises |
+|-|--|-|---|----|----|
+|08:00 AM|15 min.|Module 1|Sandra Carlson|Introduction:Tree Thinking|  |
+|08:15 AM|10 min.|Module 2|David Wright|Meet Our Data: Smith and Zamora, 2009|What is a Cinctan?|
+|08:25 AM|35 min.|Module 3|Peter Wagner|Coding Morphological Characters from Scratch|Code a Ctenoxystoid|
+|09:00 AM|45 min.|Module 4|April Wright|Intro to RevBayes & Graphical Models|Graph an Example Model|
+|09:45 AM|15 min.| | | Break | |
+|10:00 AM|2 hours|Module 5|April Wright|Tripartite Model 1: Morphological Character Change Models|Hands-On with RevBayes|    
+|12:00 PM|1 hour, 30 min.| | | LUNCH | |
+|01:30 PM|45 min.|Module 6|David Wright|Tripartite Model 2: Clock Models for Character Change|Hands-On with RevBayes| 
+|02:15 PM|1 hour, 15 min.|Module 7|David Bapst|Tripartite Model 3: Fossilized Birth Death|Hands-On with RevBayes| 
+|03:30 PM|15 min.| | | Break | |
+|03:45 PM|1 hour|Module 8|Laura Soul|Phylogenetic Comparative Methods|Hands-On with RStudio| 
+|04:45 PM|15 min.| |All| Wrap-Up and Where To Go From Here | |
 
-- 08:00 AM - Module 1 - Introduction: Tree-Thinking (Carlson)
-
-- 08:15 AM - Module 2 - Meet Our Data: Smith and Zamora, 2009 (D. Wright)
-
-- 08:25 AM - Module 3 - Starting to Code Morphological Characters (Wagner)
-  - Exercise: Code a Ctenocystoid
-
-- 09:00 AM - Module 4 - Graphical Modeling & Intro to MCMC (A. Wright?  ?Wagner  ?Both)
-    Exercise: Make Graphic Model of simple examples
-
-- 09:45 AM - BREAK (15 min)    
-    
-- 10:00 AM - Module 5 - Tripartite Model 1: Morphological Character Change Models (A. Wright)
-    - Lecture & Hands-On with RevBayes/RevNotebook.    
-    
-- 12:00 PM - LUNCH (1.5 hour)
-
-- 01:30 PM - Module 6 - Tripartite Model 2: Clock Models for Character Change (D. Wright)
-    
-- 02:15 PM - Module 7 - Tripartite Model 3: Fossilized Birth Death (Bapst)
-    
-- 03:30 PM - BREAK (15 min)    
-
-- 03:45 PM - Module 8 - Worked Example with Phylo Comp Methods (Soul)
-
-- End-of-Day Summary & Where to go from here (?Wagner & ?Carlson)
 
 
 
@@ -50,46 +33,13 @@ output: html_document
 
 
 
-- 08:00 AM - Module 1 - Introduction: Tree-Thinking (Carlson)
-
-- 08:15 AM - Module 2 - Meet Our Data: Smith and Zamora, 2009 (D. Wright)
-
-- 08:25 AM - Module 3 - Starting to Code Morphological Characters (Wagner)
-	Exercise: Code a ctenocystoid plate and enter it into Mesquite
-
-- 09:00 AM - Module 4 - Graphical Modeling & Intro to MCMC (A. Wright?  ?Wagner  ?Both)
-	Exercise: Make Graphic Model of simple examples
-
-- 09:45 AM - BREAK (15 min)	
-	
-- 10:00 AM - Module 5 - Tripartite Model 1: Morphological Character Change Models (A. Wright)
-	- Lecture & Hands-On with RevBayes/RevNotebook.	
-	
-- 12:00 PM - LUNCH (1.5 hour)
-
-- 01:30 PM - Module 6 - Tripartite Model 2: Clock Models for Character Change (D. Wright)
-	
-- 02:15 PM - Module 7 - Tripartite Model 3: Fossilized Birth Death (Bapst)
-	
-- 03:30 PM - BREAK (15 min)	
-
-- 03:45 PM - Module 8 - Worked Example with Phylo Comp Methods (Soul)
-
-- End-of-Day Summary & Where to go from here (?Wagner & ?Carlson)
-
-
-
-
 ## Current Schedule:
 
-- 08:00 AM - Module 1 - Introduction: Tree-Thinking
-	- Sandy C., Pete W.
-	- 15 min, Lecture.	
 - 08:15 AM - Module 2 - Meet Our Data: Smith and Zamora, 2009
 	- Davey W.
 	- 10 min, Lecture.
 	- Brief discussion about data set
-	- Explaining what cinctans are and why echinoderms are cool
+
 - 08:25 AM - Module 3 - Morphological Character Coding
 	- Sandy C., Davey W., Pete W.
 	- 30 min, Lecture & exercise
