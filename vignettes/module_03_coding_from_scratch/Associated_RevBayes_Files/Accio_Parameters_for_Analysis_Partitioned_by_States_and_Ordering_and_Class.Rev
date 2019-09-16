@@ -1,0 +1,87 @@
+# n_data_subsets: number of partitions (i.e., unique state & ordering combinations
+# partition_states: number of states in each partition
+# partition_ordering: whether states are ordered or unordered in each partition
+# among_char_var: "gamma" for gamma distribution, "lognormal" for lognormal distribution
+# coding_bias: coding_bias type for binary characters; (Multistates necessarily demand coding_bias autapomorphies; however, how many 3 state characters have 3 observed of 4 states?)
+# rate_partitions: the rate class for a block of characters ("none" if no partitions)
+# rate_partition_labels: names of all of the partitions with different rates
+# driven_trend_partitions: if looking for driven trends, then "driven_trend" denotes those characters with biased state change
+# clock_model: "strict" for static rate; "lognormal" for lognormal variation; "dirichlet" for Dirichlet distribution
+
+# branch rates are established in advance so that all characters shift up/down on an independent branch
+# these all return base_branch_rates, which is a scalar for clock models, but a 1:n_branches long vector for other models.
+if (ttl_rate_partitions==1)	{
+	if (clock_model=="strict")	{
+	source("scripts/Imperio_Strict_Clock_Branch_Rates.Rev");
+		} else if (clock_model=="lognormal" || clock_model=="log_normal")	{
+		source("scripts/Imperio_Lognormal_Relaxed_Clock_Branch_Rates.Rev");
+		} else if (clock_model=="big_bang")	{
+		source("scripts/Imperio_Early_Burst_Branch_Rates.Rev");
+		# rate variation on branches comes from decay over time only
+		} else if (clock_model=="autocorrelated")	{
+		source("scripts/Imperio_Autocorrelated_Lognormal_Relaxed_Clock_Branch_Rates.Rev");
+		}
+	}	else if (ttl_rate_partitions > 1)	{
+	if (clock_model=="strict")	{
+		source("scripts/Imperio_Strict_Clock_Branch_Rates_Partitioned.Rev");
+		} else if (clock_model=="lognormal" || clock_model=="log_normal")	{
+		source("scripts/Imperio_Lognormal_Relaxed_Clock_Branch_Rates_Partitioned.Rev");
+		}
+	}
+
+# Setup gamma or lognormal variation shared by characters in each partition.
+for (pt_no in 1:ttl_rate_partitions)	{
+# all characters in this partition have the same gamma or lognormal regardless of states
+	alpha[pt_no] ~ dnExponential( 1.0 );
+	moves.append(mvScale(alpha[pt_no], lambda=0.01, tune=true, weight=5));
+	moves.append(mvScale(alpha[pt_no], lambda=0.10, tune=true, weight=3));
+	moves.append(mvScale(alpha[pt_no], lambda=1.00, tune=true, weight=1));
+	# set up rate distribution to describe variation among characters
+	if (among_char_var=="gamma")	{
+		partition_char_rate_var[pt_no] := fnDiscretizeGamma( alpha[pt_no], alpha[pt_no], 4 );
+		# NOTE: this sets the shape and scale parameters equal so that the mean is always 1.0.
+		} else if (among_char_var=="lognormal")	{
+		partition_char_rate_var[pt_no] := fnDiscretizeDistribution(dnLognormal(mean=0,sd=alpha[pt_no]), 4);
+		# NOTE: This varies only log-variance; the geometric mean (= median) is always 1.0.
+		} # end case of lognormal
+	} # end rate distribution for this character partition
+
+# for each dataset, link the appropriate data matrix, Q-matrix, among-character rate variation model, and among-branch rate variation model
+for (nds in 1:n_data_subsets)	{
+	crumplehorn_snorkaxe[nds] <- readDiscreteCharacterData(filenames[nds]);
+
+	# set up transition matrices
+	if (partition_ordering[nds]=="ordered")	{
+		source("scripts/Accio_Mk_Ordered_k_State_Character.Rev");
+		Q[nds]:=Qo;	# Qo is "ordered" Q-matrix
+		} else	{
+		Q[nds]:=fnJC(partition_states[nds]);
+		}
+
+	# set up appropriate rates
+	if (ttl_rate_partitions>1)	{
+		# all characters in this partition have the same gamma or lognormal regardless of states
+		pt_no <- 1;
+		while(rate_partitions[nds]!=rate_partition_labels[pt_no]) ++pt_no;
+		char_rate_var[nds] := partition_char_rate_var[pt_no];
+		ind_branch_rates[nds]:=branch_rates[pt_no];	# set deterministic node that we can use regardless of the model of per-branch variation
+		} else	{
+		# all characters in this partition have the same gamma or lognormal regardless of states
+		char_rate_var[nds] := partition_char_rate_var[1];
+		ind_branch_rates[nds]:=branch_rates;
+		}	# end case where all state partitions in a rate partition have the same gamma/lognormal & alpha
+
+	# attach appropriate rate variation for branches given character class.
+	phyMorpho[nds] ~ dnPhyloCTMC(tree=tau,siteRates=char_rate_var[nds],branchRates=ind_branch_rates[nds],Q=Q[nds],type="Standard",coding=coding_bias[nds]);
+	phyMorpho[nds].clamp(crumplehorn_snorkaxe[nds]);
+	}
+
+# set deterministic node to monitor
+# mean_rt := mean(branch_rates);
+#		if (!big_bang)	{
+#			ind_branch_rates[nds]:=branch_rates;
+#			} else	{
+#			for (bb in 1:n_branches)	{
+#				ind_branch_rates[nds][bb]:=branch_rates[bb];
+#				}		# end loop for trying to get dnPhyloCTMC to take the branch rates.
+#			}		# special case: dnPhyloCTMC doesn't like branch_rates from the Early Burst script

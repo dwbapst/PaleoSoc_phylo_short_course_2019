@@ -1,0 +1,126 @@
+---
+title: "Tripartite Model 3: Fossilized Birth Death"
+output: html_document
+---
+
+
+### David W. Bapst, Laura Soul
+
+#### Lecture & Hands-On with RevBayes/RevNotebook
+
+David Bapst <dwbapst@tamu.edu>
+	
+AttachmentsTue, Sep 10, 2:10 PM (6 days ago)
+	
+to Sandy, David, Peter, April, Laura, William
+Here's mine - the question that has long driven me in paleontology is
+this damn figure from a book chapter that Chuck wrote about the
+Ordovician-Silurian mass extinction (Mitchell, 1990), showing the
+convergence between the late Ordovician diplograptids and the Silurian
+neograptids. The recurrent morphotypes are a common feature of many
+fossil records, not just graptolites, but the key to understanding the
+evolutionary drivers, not just the biomechanical or functional drivers
+that lead to such iterative evolution is only possible if we have
+good, dated phylogenies that we can use for complex comparative
+analyses that let us test for multi-peaked adaptive landscapes. But
+I'm not convinced yet that we can do all that in the fossil record...
+yet.
+
+If students come away with anything from my FBD lecture, it should be
+that FBD is a simple, but sensible model of diversification and
+sampling, which allows us to relate how well sampled a given fossil
+record is to inform how much evolutionary history we may have
+ultimately missed, and thus when clades may have diverged in the
+shadow before time.
+
+## Pure Birth Models
+
+Simulate under a pure-birth process and ask whose data looks like this? 
+
+
+Nee 2006
+
+## Birth-Death Models
+
+Simulate under a birth-death process and ask whose data looks like this? 
+
+### How We've Used Birth-Death In Paleontology
+
+something something Foote, per-capita rates
+
+
+
+As a note, I do plan on saying that lambda, mu and psi are often given the alternative notation of p/q/r in some paleontological studies -- and then saying nothing more at all.
+
+
+SEE NOTATION GUIDE - LINK
+
+
+
+### Birth-Death Models For Phylogenies
+
+![The Reconstructed Phylogeny ](Reconstructing Phylogenies - Purvis 2008.jpeg)
+
+![How the Nee et al. birth-death model works.](lineage_ages_in_Nee_etal._1994.jpg)
+
+/home/dwbapst/workspace/PaleoSoc_phylo_short_course_2019/vignettes/module_07_TripartiteModel3_Fossilized_Birth_death/lineage_ages_in_Nee_etal._1994.jpg
+
+## Fossilized Birth-Death Model
+
+-Simulate under the FBD and show that this process allows sampled ancestors? 	
+	
+
+### Serial Sampling
+
+### Sampled Ancestors
+
+### FBD Ranges Model
+
+![FBD Ranges Model (Stadler, 2017)](tip-dating with ranges Stadler FBD paper 2017.jpg)
+
+# Bringing It All Together
+
+## How long will it run?
+
+A long time.
+
+## Post-Analysis Examination
+
+The MCMC is done. That was the easy part, now its the hard part.
+
+Thinking about the output of Bayesian analyses isn't easy...
+
+Thinking about the output of Phylogenetic  analyses isn't easy...
+
+Thankfully these two problems somewhat solve each other.
+
+### Did it converge?
+
+Tracer
+
+### What did the posterior find?
+
+More Tracer
+
+### Summarizing the tree(s)
+
+> A single tree is not worth the forest.
+
+
+
+
+# NOTES
+
+	- Fossilized Birth Death Models 
+		- Stadler, 2010; Heath et al., 2014; Stadler et al., 2018
+		- FBD, Range-FBD
+	- Anc-Desc Relationships, Sampled Ancestors in Tip-Dating
+		- Sampled Ancestor Moves in MCMC
+		- Gavryushkina et al. 2014; 2016
+	- Try to simplify, do not get lost in covering historical perspective
+	
+	- From Pete:
+		- BD & FBD (BDS) models for putting prior probabilities on tree topologies offer independent check on characters 
+		- A. Emphasis: Probabilities getting fossil record given phylogeny based on likelihood of unsampled ancestors AND probability of no sampled sister taxa (aka, Raup’s Revenge).
+		- B. Our old friend hyperpriors used to create distributions for these rates.
+		- Z. 

@@ -1,0 +1,17 @@
+---
+title: "RevBayes & Graphical Models"
+output: html_document
+---
+
+
+# Bayesian Stuff
+
+## April Wright
+
+![Bayes](Galton's Bayes Machine - Steven Stigler.jpg)
+_Galton's Incredible Bayes Machine, Steven Stigler_
+_Its a mechanical prior & posterior!_
+
+And lots of graphical model stuff
+
+April just replace all this junk

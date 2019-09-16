@@ -1,0 +1,23 @@
+---
+title: "Recommended Readings"
+output: html_document
+---
+
+Attendees are asked to read over the following four readings, at their discretion, before the workshop. The following list is rank-ordered; if you only read one, read the first, but if you read two, read the first two. The first two (Wright, 2017; Wright, 2019) in particular are important and comprehensive reviews of concepts specifically tied to the topics of this short course: respectively, morphological Bayesian phylogenetics and use of the fossilized birth-death-sampling model in inferring phylogenetic trees. Holder & Lewis covers the basics of Bayesian phylogenetics, while Nee covers what birth-death models are, and covers their history of use in paleontology and systematics.
+
+Wright, D. F. 2017. Bayesian estimation of fossil phylogenies and the evolution of early to middle Paleozoic crinoids (Echinodermata). Journal of Paleontology 91(4):799-814.
+    Link: https://doi.org/10.1017/jpa.2016.141 (currently free to access!)
+
+Wright, A. M. 2019. A Systematist’s Guide to Estimating Bayesian Phylogenies From Morphological Data. Insect Systematics and Diversity 3(3). 
+Link: https://academic.oup.com/isd/article/3/3/2/5519658  
+Preprint Here: https://paleorxiv.org/jupva 
+
+Holder, M., and P. O. Lewis. 2003. Phylogeny estimation: traditional and Bayesian approaches. Nat Rev Genet 4(4):275-284.
+    Link: https://www.nature.com/articles/nrg1044 
+
+Nee, S. 2006. Birth-death models in macroevolution. Annual Reviews in Ecology, Evolution and Systematics 37:1-17.
+    Link: https://doi.org/10.1146/annurev.ecolsys.37.091305.110035 
+
+If you cannot access any of the above, please contact the organizers, particularly ![D. Bapst](dwbapst@gmail.com).
+
+We may post a list of additional readings here that we think you will find useful later, after the workshop! (If we remember to update this...)

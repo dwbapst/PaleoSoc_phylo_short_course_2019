@@ -1,0 +1,20 @@
+---
+title: "Tripartite Model 2: Clock Models for Character Data"
+authors: David F. Wright
+output: html_document
+---
+
+Clocks are important - because we care about rates of character change
+
+![Lee et al.'s (2013, Curr. Biol.) Analysis of Molecular and Morphological Clocks with Higher Rates in the Cambrian, based on a Combined Dataset of Modern Arthropods Alone (No fossil data!)](Lee_et_al_branch_lengths_Cambrian_rates.png)
+
+## Notes
+
+- 45 min, Hands-On with RevBayes/RevNotebook.
+	- April: light, hands-on ... this is just sorta boring
+	- Pete: tease looking at different rates across morph partitions?
+	- From Pete:
+		- A. Emphasis: similar to the “set rate” vs. “distributed rate” issue and with similar solutions.
+		- Z. But what if my clade spans “exceptional” events (e.g., major radiations or major global shifts affecting lots of clades), or what if my characters are “cheating” in some other way beyond what among-branch & among-character variation models?	
+
+
