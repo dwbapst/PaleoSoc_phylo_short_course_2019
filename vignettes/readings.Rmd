@@ -17,12 +17,28 @@ Attendees are asked to read over the following four readings, at their discretio
 
 - Nee, S. 2006. Birth-death models in macroevolution. Annual Reviews in Ecology, Evolution and Systematics 37:1-17.
   - Link: https://doi.org/10.1146/annurev.ecolsys.37.091305.110035 
+
+If you cannot access any of the above, please contact the organizers, particularly [D. Bapst](mailto:dwbapst@gmail.com).
+
+### About Our Dataset
     
 During the workshop, we will be mostly discussing applying analyses to a dataset taken from Smith & Zamora's 2009 study of early Paleozoic cinctan echinoderms. Reading their study is encouraged but will likely be less useful than reading the four papers above.
 
 - Smith, A. B. and Zamora, S. (2009), Rooting Phylogenies of Problematic Fossil Taxa: A Case Study Using Cinctans (Stem-Group Echinoderms). Palaeontology, 52: 803-821. 
   - Link: https://doi.org/10.1111/j.1475-4983.2009.00880.x
   
-If you cannot access any of the above, please contact the organizers, particularly [D. Bapst](mailto:dwbapst@gmail.com).
+### Additional Resources
 
-We may post a list of additional readings here that we think you will find useful later, after the workshop! (If we remember to update this...)
+The popular regular webinar series, [PhyloSeminar](http://phyloseminar.org/) recently hosted a four-part series by Paul Lewis that act as a good primer to the basics of phylogenetics (Part 1), the basics of tree likelihood (Part 2), and the basics of MCMC-based Bayesian phylogenetics (parts 3a & 3b), and we recommend these to participants who want more detailed background on phylogenetics work. The recorded lectures are on Youtube, and the slides for each part are also available:
+
+- Part 1 ([video](https://www.youtube.com/watch?v=1r4z0YJq580), [slides](https://git.io/vpIW9))
+
+- Part 2 ([video](https://www.youtube.com/watch?v=UsLeY0wZr4Y), [slides](https://git.io/vpbvn))
+
+- Part 3a ([video](https://www.youtube.com/watch?v=4PWlnNsfz90), [slides](https://git.io/fc8pC))
+
+- Part 3b ([video](https://www.youtube.com/watch?v=TLtOS--YwkU), [slides](https://git.io/f4dZh))
+
+
+
+
