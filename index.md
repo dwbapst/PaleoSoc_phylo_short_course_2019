@@ -9,102 +9,32 @@
 &nbsp;
 &nbsp;
 
-This short course will be held on Saturday, September 21st, from 8:00 AM to 5:00 PM (local Arizona time), in the ‘Valley of the Sun’ ballroom at the Sheraton Phoenix Downtown Hotel, located here:
+The 2019 Paleontological Society Short Course, ***Quantitative Methods in Phylogenetic Paleobiology***, will beheld on conjunction with the 2019 Geological Society of American Annual Meeting in Phoenix, Arizona. This short course is organized by Sandra Carlson, Peter Wagner, April Wright, Laura Soul, David Wright, David Bapst, and Rachel Warnock. 
 
-https://goo.gl/maps/h2arwUPWQLysU3N36 
+In the past decade, there has been considerable of Bayesian methods for inferring phylogenetic relationships, involving probabilistic models of phenotypic character evolution, and new 'tip-dating' approaches for inferring dated phylogenies containing fossils as operational tip taxa, particularly those that use a method that accounts for the incomplete sampling of the fossil record, known as the *Fossilized Birth-Death Model*. The 2019 Paleontological Society Short Course will be a day-long workshop-style short course that will feature not just lectures about methodological advances, but also hands-on exercises for the audience members to perform on their laptop computers.
 
+## When and Where
 
+As usual for Paleontological Short Courses, our workshop will be held on the preceding Saturday, August 21st, before oral and poster sessions begin at GSA. The short course will run from 8:00 AM to 5:00 PM (local Arizona time), in the ‘Valley of the Sun’ ballroom at the Sheraton Phoenix Downtown Hotel. This hotel is two blocks from the Phoenix Convention Center, located here:
 
-```
-#
-	#                        = @@@@@@                         
-	#                      = @@.......@@@                      
-	#                    = @..   ........@@     = @              
-	#            =   @...    ..........@    = @  @           
-	#          @   = @  @....   ............@   = @@ @           
-	#          @   = @  = .....................@   = @ @ == @        
-	#         @@   = @ @...@.........@.......@   = @ == @@         
-	#         @ ==  == @@.......................@ ==  = @@ =           
-	#          @@@ == @. = .............. = ....@ ==  = @@  @@         
-	#         @@ @@@ = .@..............@....@ = @@ = @   @         
-	#         @   @@ = ..@ = ..........@ = ......@@ @ = @            
-	#             @ @.... = @@@@@@@@ = .........@ @ = @            
-	#            @@ @.......................@  @ =             
-	#            @   @.....................@                 
-	#                 = .....................@                 
-	#                 @...................@                  
-	#                  @.................@                   
-	#                   @@.............@@                    
-	#                     @@ = ....... = @@                      
-	#                       @@.......@          @@@          
-	#                       @. ==  ==  = ...@       @@   @         
-	#                      @... ==  = .....@     @      @        
-	#                      @...........@    @.      @        
-	#                     @.. == ... == ....@ @@. .     @        
-	#                     @... ==  ==  = .....@@.... . .  @        
-	#                     @.............@...... . .@         
-	#                      @. == ... == ....@.........@          
-	#                       @. ==  ==  = ....@ = @@.....@@           
-	#                      = @@ = @......@@    @@@@@             
-	#                     = ... == @@@@@@ == @@                    
-	#                    @....@      = ....@                   
-	#                     @@@@      @....@                   
-	#                                @@@@
-	#
-```
+  https://goo.gl/maps/h2arwUPWQLysU3N36 (Google Maps)
+
+A short workshop for installing relevant software will be held Friday evening, with the exact times and location to be announced.  
+
+We emphasize that because this short course is being conducted as a workshop rather than a day-long symposium, attendees will get the most out of the course by attending the entire session.   
+
+## If You Want to Attend...
+
+The Short Course is sponsored and supported by The Paleontological Society, and is open to all interested parties. Participation is entirely free-of-charge. Furthermore, it is *not* necessary to register for the GSA annual meeting, in order to attend and participate with the Short Course. In order to best prepare for the short course,
+
+We do request that all of those who plan on attending to register via the Google Form, if they have not done so, even on the day of the workshop itself. We will be able to best aim our instruction if we have accurate information on the background and interests of our participants.
+
+https://docs.google.com/forms/d/1AsPgZNraGV6htmveMK5Yebx3q1_Eew_BaML6MLYdHQU/viewform?ts=5c989fd5
+
+Registering will also add you to our email list so that you can get future updates about the workshop later in the week.
 
 
-
-##########################
-
-The Paleontological Society Short Course on Phylogenetic Approaches in Paleontology, at the 2019 Annual Meeting of the Geological Society of America
-
-
-
-
-We are pleased to announce the 2019 Paleontological Society Short Course to take place in conjunction with the GSA Annual Meeting (Phoenix, AZ), “Quantitative Methods in Phylogenetic Paleobiology,” organized by David Bapst, Sandy Carlson, Laura Soul, Peter Wagner, Rachel Warnock, April Wright & Davey Wright.  
-
-
-
-
-
-Following the example set in the 2018 “Pedagogy and Technology in the Modern Paleontology Classroom” short course, the 2019 session, on September 21st from 8:00 am to 5:00 pm in the Sheraton Grand Phoenix Hotel, will include presentations about phylogenetic methods interspersed with hands-on exercises for the attendees to perform.  A link to a brief registration form is provided at the bottom of this page. 
-
-The short course will encompass three broad (albeit connected) topics:
-
-1) tactics for recognizing and coding anatomical characters and character states;
-
-2) models of morphological evolution; and,
-
-3) estimation of divergence times among fossil taxa given morphology, and rates of change, diversification, and sampling.  
-
-Our intent is to make connections between the important parameters for phylogenetic analysis and macroevolutionary theory of the sort that paleontologists study, as these commonalities often are overlooked.  Another intent is to communicate how we deal with uncertainties in relevant rate parameters and even phylogenetic topologies themselves when making tree-based macroevolutionary inferences. Our goal is to work to embrace these uncertainties rather than to either ignore them or dismiss important questions as unanswerable because of uncertainties.  
-
-For much of the short course, we will use a single dataset for our examples, with that dataset and appropriate computer programs distributed prior to the short course.  This will allow each participant to work through steps from loading files to conducting basic analyses.
-
-We are aiming the short course at a wide audience.  We will introduce current methods and tools to young researchers interested in pursuing phylogenetic analyses.  However, this will also be a “refresher” course for more veteran workers who have done phylogenetics in the past, but who might not have kept up with recent developments.  The course contents will also be be useful for individuals who themselves do little or no phylogenetic work, but who might mentor interns or students interested in phylogenetics and/or who might collaborate with phylogeneticists.  
-
-In order to estimate the audience size and pre-existing levels of expertise, we ask the interested attendees fill out a short-registration form here! (Note that this is an informal registration; registrants are not committed to attending and non-registrants are free to attend.)
-
-#######################
-
-There has been considerable development of Bayesian and likelihood methods for assessing phylogenetic relationships in recent years.  This includes advances in probabilistic models of anatomical character evolution and and models of assessing tree probabilities given diversification and sampling rates.  The 2019 Paleontological Society Short Course will be a day-long workshop-style short course that will feature not just lectures about methodological advances, but also hands-on exercises for the audience members to perform on their laptop computers. The workshop is being organized and run by David Bapst, Sandy Carlson, Laura Soul, Peter Wagner, Rachel Warnock, April Wright & David Wright.
-
-We are designing the short course so that novices can learn not only about the current methods for modeling character change and divergence times, but also can learn tactics for recognizing characters and delimiting character states on fossils. The short course also should provide a "refresher" course for more experienced workers who have conducted phylogenetic analyses with parsimony and other methods.  Moreover, we intend the short course to be useful for paleontologists who do not do phylogenetics themselves, but who mentor students or collaborate with colleagues that do.
- 
-
-
-The workshop will take place at the Sheraton Grand Phoenix Hotel (two blocks from the Convention Center) on Saturday the 21st of September 8:00 - 17:00 (with several short breaks and a lunch break). A short workshop for installing relevant software will be held Friday late afternoon to early evening at the Convention center, with the exact times and location to be announced.  We emphasize that because this short course is being conducted as a workshop rather than a day-long symposium, attendees will get the most out of the course by attending the entire session.   
-
-In order to better prepare the short course, we encourage attendees to register in advance using the form and survey below.  Registering and responding to the survey will not commit you to attending, but it will help us gauge interest and plan logistics.  
-
-
-
-############################
-
-
-
-
+# WHO 
 
 
 To learn more about us, or to contact us with question, see 
@@ -132,10 +62,10 @@ Our helpers are
 
 
 
+# AMENITIES 
 
 
-This will be a workshop with active participation by the attendees.  As such, participants will need to have laptop computers with the following programs: 
-	
+We will have an hour-and-half lunch break, and two short breaks in the morning and afternoon sessions. We will have free coffee for participants in the morning and afternoon, but please remember to bring a refillable water bottle to keep hydrated, some snacks to keep your energy up, and your laptop power cord to keep your computer’s energy up.
 
 
 
