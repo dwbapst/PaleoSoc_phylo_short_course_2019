@@ -19,27 +19,6 @@ output: html_document
 |04:45 PM|15 min.| |All| Wrap-Up and Where To Go From Here | |
 
 
-
-
-
-
-
-
-
-
-
-# BELIEVE NOTHING BELOW
-
-
-
-
-## Current Schedule:
-
-- 08:15 AM - Module 2 - Meet Our Data: Smith and Zamora, 2009
-	- Davey W.
-	- 10 min, Lecture.
-	- Brief discussion about data set
-
 - 08:25 AM - Module 3 - Morphological Character Coding
 	- Sandy C., Davey W., Pete W.
 	- 30 min, Lecture & exercise
