@@ -1,3 +1,9 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# gsa2019
 This repository will serve as a place for developing and storing materials for the Revbayes-based short course in tip-dating phylogenetics. for GSA 2019, presented by The Paleontological Society.
 
 This hands-on computational workshop is organized by Sandra Carlson and Peter Wagner (@PeterJWagner3), instructors April Wright (@wrightaprilm), Laura Soul (@laurasoul), David "Davey" F. Wright (@daveyfwright), and David Bapst (@dwbapst), with instructional material development from Rachel Warnock (@rachelwarnock). Additionally, this course will utilize a number of 'roving' teaching assistants (tentative list, as follows: William Gearty (@willgearty), Lucy Chang (@lucymchang), ...).
