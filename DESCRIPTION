@@ -1,6 +1,6 @@
-Package: PSPhyloShortCourseGSA2019
+Package: PhyloShortCourseGSA2019
 Type: Package
-Title: Quantitative Methods in Phylogenetic Paleobiology
+Title: GSA 2019 Shortcourse in Phylogenetic Paleobiology
 Version: 09.21.2019
 Authors@R: c(
 	person("David", "Bapst", role = c("aut","cre"), 
