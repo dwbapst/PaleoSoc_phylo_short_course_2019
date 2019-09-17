@@ -5,9 +5,11 @@ output: html_document
 
 Please read the following. The official PDF version of this document is [here](Expectations for Conduct for the 2019 Paleontological Society Short Course.pdf).
 
-## Expectations for Conduct 
-### for the 2019 Paleontological Society Short Course
-### at the Annual Meeting of the Geological Society of America
+******
+&nbsp;
+&nbsp;
+
+## **Expectations for Conduct** <br/> &nbsp;&nbsp;&nbsp; for the 2019 Paleontological Society Short Course <br/> &nbsp;&nbsp;&nbsp; at the Annual Meeting of the Geological Society of America
 
 The [Paleontological Society Code of Conduct](https://www.paleosoc.org/paleontological-society-policy-on-non-discrimination-and-code-of-conduct/) applies here, and we wish to particularly emphasize our expectations of behavior for our participants, helpers and organizers at this event.
 
@@ -40,9 +42,9 @@ The [Paleontological Society Code of Conduct](https://www.paleosoc.org/paleontol
 Participants who are asked to stop any inappropriate behavior are expected to comply immediately. If a participant engages in behavior that violates the PS Code of Conduct, the organizers may warn the offender or ask them to leave the event or platform. All violations of the PS Code of Conduct and the GSA’s events code of conduct will be reported to the Paleontological Society Ethics Committee and
 GSA leadership.
 
+&nbsp;
+&nbsp;
+
 ***
 ***
 Some of this text based on (The Carpentries Code of Conduct)[https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html] (licensed CC-BY).
-
-
-  
