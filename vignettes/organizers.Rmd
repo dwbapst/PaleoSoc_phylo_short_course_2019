@@ -10,13 +10,13 @@ Additionally, this course utilizes a number of assistant instructors called 'hel
 
 Our current roster of helpers (as of Sept 17th), and their contact information:
 
-William Gearty <wgearty@unl.edu> [@willgearty](http://github.com/willgearty) <br\> 
-Selina Cole <scole@amnh.org> [@Leptaena](http://github.com/Leptaena) <br\> 
-Bethany Allen <eebja@leeds.ac.uk> <br\> 
-John Sime <sime@sas.upenn.edu>  <br\> 
-Phil Novack-Gottshall <pnovack-gottshall@ben.edu> [@pnovack-gottshall](http://github.com/pnovack-gottshall) <br\> 
-David Mertz <damertz@huskers.unl.edu> [@DavidAAMertz](http://github.com/DavidAAMertz) <br\>
-Greg Liggett <br\>
+- William Gearty [Email](mailto:wgearty@unl.edu), [Github: willgearty](http://github.com/willgearty) 
+- Selina Cole [Email](mailto:scole@amnh.org), [Github: Leptaena](http://github.com/Leptaena) 
+- Bethany Allen [Email](mailto:eebja@leeds.ac.uk) 
+- John Sime [Email](mailto:sime@sas.upenn.edu)
+- Phil Novack-Gottshall [Email](mailto:pnovack-gottshall@ben.edu), [Github: pnovack-gottshall](http://github.com/pnovack-gottshall) 
+- David Mertz [Email](mailto:damertz@huskers.unl.edu), [Github: DavidAAMertz](http://github.com/DavidAAMertz)
+- Greg Liggett
 
 Please give our helpers a big thanks for their volunteered assistance in making our short course a success!
 
@@ -103,7 +103,7 @@ Dave has a nice department photo taken recently buts it's not online yet, and he
 You can contact Dave by email at my [gmail](mailto:dwbapst@gmail.com) or my [institutional account at A&M](mailto:dwbapst@tamu.edu).
 
 ####Links:
-- [Github Profile: @dwbapst](https://github.com/dwbapst)
+- [Github Profile: dwbapst](https://github.com/dwbapst)
 - [Dave's Faculty Page at Texas A&M University](https://geogeo.tamu.edu/people/faculty/bapstdavidwilliam)
 - [David's Palaeocast Interview about Graptolites](http://www.palaeocast.com/episode-71-graptolites/) *(The interviewer is fellow organizer, Laura Soul!)*
 
