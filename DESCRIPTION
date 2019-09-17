@@ -16,7 +16,7 @@ Maintainer: David Bapst <dwbapst@gmail.com>
 Description: This is a fake R package containing course materials for the workshop held at GSA 2019 on September, 21st, 2019, in Phoenix, Arizona, sponsored by The Paleontological Society.
 License: CC0
 Depends:
-	shiny
+	shiny,
 	revealjs
 Imports:
     phangorn,
