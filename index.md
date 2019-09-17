@@ -43,43 +43,4 @@ Please note that we will be expecting all who are attending the short course to 
 
 ## Who We Are
 
-
-
-
-
-
-
-
-
-
-To learn more about us, or to contact us with question, see our [organizers page](https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/organizers.html).
-
-
-
-
-Additionally, this course will utilize a number of 'roving' teaching assistants 
-
-
-currently: 
-
-
-Our helpers are
-
-
-
-William Gearty <willgearty@gmail.com> <br\>
-Selina Cole <scole@amnh.org> <br\>
-Bethany Allen" <eebja@leeds.ac.uk> <br\> 
-John Sime <sime@sas.upenn.edu> <br\>
-Phil Novack-Gottshall <pnovack-gottshall@ben.edu> <br\> 
-David Mertz <damertz@huskers.unl.edu> <br\>
-Greg Liggett <gregliggett@gmail.com> <br\>
-    
-
-Bethany Allen, 
-Lena Cole, William Gearty (@willgearty), David Mertz (@DavidAAMertz), Phil Novack-Gottshall (@pnovack-gottshall) & John Sime.  
-
-
-
-
-
+Who are we? We are a bunch of people who are very excited about phylogenetics in paleontology - and make sure that everyone knows these tools and how to use them. You can learn more about our team - helpers, instructors, organizers - at our  [organizers page](https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/organizers.html).
