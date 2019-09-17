@@ -45,7 +45,7 @@ BEGIN CHARACTERS;
 		27 Protuberance_on_the_ventral_part_of_plate_M1r /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
 		28 Protuberance_on_the_ventral_part_of_plate_M2r /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
 		29 Protuberance_on_the_ventral_part_of_plate_M3r /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
-		30 Protuberance_on_the_ventral_part_of_plate /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
+		30 Protuberance_on_the_ventral_part_of_plate_M4r /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
 		31 Protuberance_on_the_ventral_part_of_plate_M5r /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
 		32 Shape_of_plate_M2 /  'uniform, trapezoidal with rounded outer edge' distinctly_angled,
 		33 Marginal_plates_1l_and_1r_with_strong_dorsal_projections /  absent small 'peg-like spike',
@@ -75,7 +75,8 @@ BEGIN CHARACTERS;
 		57 Construction_of_plated_membranes_covering_food_groove /  upper_and_lower_sheets_of_multiple_small_elements an_upper_and_lower_biseries_of_plates,
 		58 'Relative lengths of left- and right-hand food grooves' /  symmetric_left_and_right_food_grooves_extending_the_same_number_of_marginal_plates_away_from_the_mouth asymmetric_with_left?hand_food_groove_extending_no_more_than_1_plate_further_than_the_right?hand_food_groove asymmetric_with_left?hand_food_groove_extended_by_2_or_more_plates_further_than_the_right?hand_food_groove 'asymmetric, right?hand food groove completely absent ',
 		59 Marginal_ossicles_ventral_shape /  smooth_and_flat_ventrally with_distinct_ventral_swellings_on_at_least_some_plates,
-		60 Marginal_ossicles_dorsal_shape /  smoothly_rounded_dorsally with_distinct_node_or_spike_on_at_least_some_plates ; 
+		60 Marginal_ossicles_dorsal_shape /  smoothly_rounded_dorsally with_distinct_node_or_spike_on_at_least_some_plates ;
+		
 	MATRIX
 	Ctenocystis_utahensis        011???000?0?????0000?000000000????????0020?00????????????000
 	Gyrocystis_platessa          1101110100(0 1)100000000-0000000000010012020110000001200001-1300
@@ -108,42 +109,7 @@ BEGIN CHARACTERS;
 ;
 
 END;
-BEGIN CHARACTERS;
-	TITLE  Alteration_of__matrix_Character_Matrix_by_Recode_Characters;
-	DIMENSIONS  NCHAR=60;
-	FORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = "  0 1 2 3";
-	MATRIX
-	Ctenocystis_utahensis        011???000?0?????0000?000000000????????0020?00????????????000
-	Gyrocystis_platessa          1101110100(0 1)100000000-0000000000010012020110000001200001-1300
-	Gyrocystis_testudiformis     00011111000100000000-0000100000010012020101110001200001-1310
-	Gyrocystis_cruzae            1001?10?000100000000??000100000010012???0?00?0001200001-?310
-	Gyrocystis_badulesiensis     11011102000110000000-01101011000201120?0010000001200001-1310
-	Gyrocystis_erecta            110??????00110000000-??????????0201120??????00001200001-?3?0
-	Progyrocystis_disjuncta      010?????100100000000-0000000000001001000200000001200001-0300
-	Protocinctus_mansillaensis   010111??200010000000-0022200000000-120??2000?0?122000011?310
-	Elliptocinctus_barrandei     (0 1)(0 1)0111010(1 2)(0 1 2)000000000022201022200201120?01100000122100011?210
-	Elliptocinctus_vizcainoi     0100?0??0100?1000000-0220102??00201120?001000001221?001??210
-	Sucocystis_theronensis       130111011(0 1)(0 1 2)010000000022201022200100121??0100000122000011?310
-	Sucocystis_bretoni           13011??111(0 1)010000000002201022200100120??0100000122000111?310
-	Lignanicystis_barriosensis   13110112011000010000022201022201101120112000000122100000?210
-	Undatacinctus_undata         100?????010010001111-0220102220000-1????0?00?00122100010?211
-	Sucocystis_acrofera          230?????010010000000-02201022200100120??01000001222100110110
-	Undatacinctus_quadricornuta  100?????010010000202-0222222220000-120??0100000122100001?211
-	Undatacinctus_melendezi      130?????010010001111-0220102220000-120??0100?0012210001??211
-	Asturicystis_jaekeli         121111?2000010000000-0000000000000-100??20000012222210110100
-	Sotocinctus_ubaghsi          100?01??0(0 1)0010000000-0000000000000-0000020000012222100110200
-	Trochocystites_bohemicus     1(0 3)(0 1)111010(1 2)(0 1)02000000002220002220000-110112000012222221111?210
-	Trochocystoides_parvus       1000?000000010000000-0022002200000-1????20000122222210110210
-	Ludwigicinctus_truncatus     101?????010010100000-0222222222000-12???000000012200001-?210
-	Graciacystis_ambigua         00(0 1)1011200(0 1)000000000000022200000100000102000001022100010????
-	Asturicystis_havliceki       ????????????????????????????????????????????????????????????
-	Nelegerocystis_ivantzovi     ????????????????????????????????????????????????????????????
-	Rozanovicystis_triangularis  ????????????????????????????????????????????????????????????
-	Davidocinctus_pembrokensis   ????????????????????????????????????????????????????????????
 
-;
-
-END;
 BEGIN LABELS;
 	TAXAGROUPLABEL Outgroup COLOR = (RGB 1 1 1) ;
 	TAXAGROUPLABEL Ingroup COLOR = (RGB 1 1 1) ;
@@ -168,7 +134,6 @@ BEGIN LABELS;
 END;
 
 BEGIN SETS;
-	TAXPARTITION * UNTITLED  =  Outgroup :  1, Ingroup :  2 -  23;
 	TAXPARTITION To_Analyze  =  Outgroup :  1, Ingroup :  2 -  23;
 
 	CHARPARTITION Functional_Partitions  (CHARACTERS = Character_Matrix) =  Nonfeeding :  1 -  45 58 -  60, Feeding :  46 -  57;
