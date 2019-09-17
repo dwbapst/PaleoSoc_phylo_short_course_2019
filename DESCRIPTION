@@ -17,6 +17,7 @@ Description: This is a fake R package containing course materials for the worksh
 License: CC0
 Depends:
 	shiny
+	revealjs
 Imports:
     phangorn,
     phytools,
