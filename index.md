@@ -15,13 +15,7 @@ In the past decade, there has been considerable of Bayesian methods for inferrin
 
 ## When and Where
 
-As usual for Paleontological Short Courses, our workshop will be held on the preceding Saturday, August 21st, before oral and poster sessions begin at GSA. The short course will run from 8:00 AM to 5:00 PM (local Arizona time), in the ‘Valley of the Sun’ ballroom at the Sheraton Phoenix Downtown Hotel. This hotel is two blocks from the Phoenix Convention Center, located here:
-
-  https://goo.gl/maps/h2arwUPWQLysU3N36 (Google Maps)
-
-A short workshop for installing relevant software will be held Friday evening, with the exact times and location to be announced.  
-
-We emphasize that because this short course is being conducted as a workshop rather than a day-long symposium, attendees will get the most out of the course by attending the entire session.   
+As usual for Paleontological Short Courses, our workshop will be held on the preceding Saturday, August 21st, before oral and poster sessions begin at GSA. The short course will run from 8:00 AM to 5:00 PM (local Arizona time), and because this short course is being conducted as a workshop rather than a day-long symposium, we emphase that **attendees will get the most out of the course by attending the entire session**. The workshop we be held in the ‘Valley of the Sun’ ballroom at the Sheraton Phoenix Downtown Hotel. This hotel is located two blocks from the Phoenix Convention Center. Click [here for a pinned location on Google Maps](https://goo.gl/maps/h2arwUPWQLysU3N36).
 
 ## If You Want to Attend...
 
@@ -29,20 +23,34 @@ The Short Course is sponsored and supported by The Paleontological Society, and 
 
 We do request that all of those who plan on attending to [register via our Google Form](https://docs.google.com/forms/d/1AsPgZNraGV6htmveMK5Yebx3q1_Eew_BaML6MLYdHQU/viewform?ts=5c989fd5), if they have not done so, even on the day of the workshop itself. We will be able to best aim our instruction if we have accurate information on the background and interests of our participants. Registering will also add you to our email list so that you can get future updates about the workshop later in the week.
 
-In case the above link to the survey doesn't work, here's the whole link:
+In case the above link to the Google Survey doesn't work, here's the whole link:
 
 https://docs.google.com/forms/d/1AsPgZNraGV6htmveMK5Yebx3q1_Eew_BaML6MLYdHQU/viewform?ts=5c989fd5
 
+## Getting Prepared for the Workshop
 
-## ...Getting Prepared & What To Expect
+As this will be a 'hands-on' workshop, participants are encouraged to bring their personal computer (and power cord!), with several pieces of free software downloaded and installed beforehand.  Instructions for installing these programs on various operating systems can be found [here](https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/install_main.html).
 
+A meetup to help troubleshoot software installation for those who run into issues will be held the Friday evening before (Sept 20th) - check back here later for the exact time and place!
 
+## What To Expect
 
 Our workshop schedule is online at [this page](https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/schedule.html).
 
 We will have an hour-and-half lunch break, and two short breaks in the morning and afternoon sessions. We will have free coffee for participants in the morning and afternoon, but please remember to bring a refillable water bottle to keep hydrated, some snacks to keep your energy up, and your laptop power cord to keep your computer’s energy up.
 
+Please note that we will be expecting all who are attending the short course to behave as described in our Expectations of Conduct statement, [available at our website](https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/code_conduct.html).
+
 ## Who We Are
+
+
+
+
+
+
+
+
+
 
 To learn more about us, or to contact us with question, see our [organizers page](https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/organizers.html).
 
@@ -59,13 +67,13 @@ Our helpers are
 
 
 
-"William Gearty" <willgearty@gmail.com>
-“Selina Cole” <scole@amnh.org>, 
-"Bethany Allen" <eebja@leeds.ac.uk>, 
-"John Sime" <sime@sas.upenn.edu>, 
-“Phil Novack-Gottshall" <pnovack-gottshall@ben.edu>, 
- "David Mertz" <damertz@huskers.unl.edu>,
-“Greg Liggett” <gregliggett@gmail.com> 
+William Gearty <willgearty@gmail.com> <br\>
+Selina Cole <scole@amnh.org> <br\>
+Bethany Allen" <eebja@leeds.ac.uk> <br\> 
+John Sime <sime@sas.upenn.edu> <br\>
+Phil Novack-Gottshall <pnovack-gottshall@ben.edu> <br\> 
+David Mertz <damertz@huskers.unl.edu> <br\>
+Greg Liggett <gregliggett@gmail.com> <br\>
     
 
 Bethany Allen, 

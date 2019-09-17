@@ -2,14 +2,14 @@
 title: "Our Expectations of Conduct"
 output: html_document
 ---
-
 Please read the following. The official PDF version of this document is [here](Expectations for Conduct for the 2019 Paleontological Society Short Course.pdf).
 
 ******
-&nbsp;
+
 &nbsp;
 
 ## **Expectations for Conduct** <br/> &nbsp;&nbsp;&nbsp; for the 2019 Paleontological Society Short Course <br/> &nbsp;&nbsp;&nbsp; at the Annual Meeting of the Geological Society of America
+&nbsp;
 
 The [Paleontological Society Code of Conduct](https://www.paleosoc.org/paleontological-society-policy-on-non-discrimination-and-code-of-conduct/) applies here, and we wish to particularly emphasize our expectations of behavior for our participants, helpers and organizers at this event.
 
