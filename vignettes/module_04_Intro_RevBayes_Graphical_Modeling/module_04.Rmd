@@ -1,4 +1,4 @@
----
+  ---
 Title: Research And Teaching With RevBayes
 output:
   revealjs::revealjs_presentation
@@ -34,6 +34,10 @@ The Graphical Modeling Framework
   + Important facets of the generating process of the data are written down as parameters
 
 - A graphical model represents the relationships and dependencies between model paramters
+
+```{r echo=FALSE}
+set.seed(1)
+```
 
 A simple case
 ========================================================
