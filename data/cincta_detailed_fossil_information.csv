@@ -1,0 +1,28 @@
+taxon,latest_poss_la,earliest_poss_la,latest_poss_fa,earliest_poss_fa,realm,coded,total_finds,finds_per_bin,Cm41,Cm42,Wu1,Wu2,Dr1,Dr2,Gu1,Gu2,Pb1,Pb2,Jn1,Jn2,CmX1,CmX2,range,order
+Ctenocystis,500.5,501,506.5,506.6,Laurentia,yes,9,0,0,0,0,5,1.36,2.64,0,0,0,0,0,0,0,0,0,1
+Protocinctus mansillaensis,505.4,506.6,505.4,506.6,East Gondwana,yes,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,8
+Sotocinctus ubaghsi,504.5,505.4,504.9,505.4,East Gondwana,yes,2,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,19
+Nelegerocystis ivantzovi,500.5,505.4,500.5,505.4,Siberia,no,1,0,0,0,0,0.18,0.49,0.33,0,0,0,0,0,0,0,0,0,25
+Rozanovicystis triangularis,500.5,505.4,500.5,505.4,Siberia,no,1,0,0,0,0,0.18,0.49,0.33,0,0,0,0,0,0,0,0,0,26
+Trochocystites bohemicus,502.2,503,504.5,505.2,East Gondwana,yes,4,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,1.5,20
+Asturicystis havliceki,504.9,505.2,504.9,505.2,East Gondwana,no,3,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,24
+Gyrocystis platessa,500.5,501,504.5,504.9,East Gondwana,yes,13,0,0,0,0,1,4.48,6.82,0.71,0,0,0,0,0,0,0,3.5,2
+Asturicystis jaekeli,504.5,504.9,504.5,504.9,East Gondwana,yes,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,18
+Graciacystis ambigua,503.1,503.7,504.5,504.9,East Gondwana,yes,3,0,0,0,0,1,2,0,0,0,0,0,0,0,0,0,0.8,23
+Elliptocinctus vizcainoi,503.4,504.5,503.4,504.5,Avalonia,yes,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,10
+Trochocystoides parvus,503.7,504.5,503.7,504.5,East Gondwana,yes,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,21
+Davidocinctus pembrokensis,503.4,504.5,503.4,504.5,Avalonia,no,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,27
+Gyrocystis testudiformis,502.5,503.1,502.5,503.1,East Gondwana,yes,3,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,3
+Gyrocystis cruzae,501,503.1,501,503.1,East Gondwana,yes,1,0,0,0,0,0,0.48,0.52,0,0,0,0,0,0,0,0,0,4
+Gyrocystis badulesiensis,501,503.1,501,503.1,East Gondwana,yes,2,0,0,0,0,0,0.95,1.05,0,0,0,0,0,0,0,0,0,5
+Progyrocystis disjuncta,501,503.1,501,503.1,East Gondwana,yes,1,0,0,0,0,0,0.48,0.52,0,0,0,0,0,0,0,0,0,7
+Gyrocystis erecta,501,501.6,501,501.6,East Gondwana,yes,2,0,0,0,0,0,0.48,1.52,0,0,0,0,0,0,0,0,0,6
+Elliptocinctus barrandei,501,501.6,501,501.6,East Gondwana,yes,6,0,0,0,0,0,0,5.48,0.52,0,0,0,0,0,0,0,0,9
+Sucocystis theronensis,501,501.6,501,501.6,East Gondwana,yes,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,11
+Lignanicystis barriosensis,501,501.6,501,501.6,East Gondwana,yes,3,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,13
+Ludwigicinctus truncatus,500.5,501.6,500.5,501.6,East Gondwana,yes,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,22
+Sucocystis bretoni,500.5,501,500.5,501,East Gondwana,yes,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,12
+Undatacinctus undata,499.3,501,499.3,501,East Gondwana,yes,1,0,0,0,0,0,0,0.29,0.71,0,0,0,0,0,0,0,0,14
+Undatacinctus quadricornuta,499.3,501,499.3,501,East Gondwana,yes,1,0,0,0,0,0,0,0.29,0.71,0,0,0,0,0,0,0,0,16
+Undatacinctus melendezi,497,498.2,499.3,500.5,East Gondwana,yes,8,0,0,0,0,0,0,0.29,1.43,6.27,0,0,0,0,0,0,1.1,17
+Undatacinctus acrofera,498.2,499.3,498.2,499.3,East Gondwana,yes,2,0,0,0,0,0,0,0,0.36,1.64,0,0,0,0,0,0,0,15
