@@ -1,4 +1,4 @@
-  ---
+---
 Title: Research And Teaching With RevBayes
 output:
   revealjs::revealjs_presentation
