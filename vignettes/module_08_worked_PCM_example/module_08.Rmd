@@ -7,6 +7,10 @@ output: html_document
 
 ---
 
+```{r echo=FALSE}
+set.seed(1)
+```
+
 # Introduction
 
 **What is a PCM?**
