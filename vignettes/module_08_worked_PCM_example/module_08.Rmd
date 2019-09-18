@@ -1,27 +1,347 @@
 ---
-title: "Phylogenetic Comparative Methods"
-authors: Laura Soul
+title: "Phylogenetic Comparative Methods for Paleobiology"
+
+author: 
+- Laura C. Soul
 output: html_document
+
 ---
 
-# Doing things with trees is awesome!
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-![Brownian Motion Simulated with Liam Revell's `phytools`](brownian motion (sim with Revell's function).jpeg)
+# Introduction
 
-### Notes
+**What is a PCM?**
+The approaches we have been using so far today are focussed on phylogenetic inference, i.e. on estimating the most probable evolutionary relationships between taxa. One of the advantages of a framework that incorporates explicit models of diversification is that it allows joint inference of various parameters that have traditionally been of interest to paleobiologists, like the rate of origination and extinction through time. As you have seen it is possible to extract these estimated rates from the output of the analysis. These kinds of approaches - where we model the generating processes of diversification and character change - can be referred to as process-based. Other types of information (for example biogeography) can also be used in this modelling framework, and as new models are developed the potential questions that can be answered will increase. This framework can be thought of as a pcm because it can be used to test evolutionary hypotheses about the nature of trait change or diversification. Process based models, and particularly their implementation, are a relatively recent development. Prior to this unified framework there was a clearer distinction between phylogenetic inference (inferring relationships) and pcms (testing hypotheses while treating the tree as known).
 
-- From Pete:
-		- A. How to test macroevolutionary ideas while admitting that we can never know the “true” tree
-		- Z. But what about X, Y, Z, etc.?
-	- Laura: Being able to show something (even if its simple) that one can do whether you made your own tree, generated a supertree, or made most of a tree but want to include 10 taxa you can't code, would be the most broadly useful to the (clearly very mixed experience) group we have coming. From an earlier chat with Davey, he pointed out that we could also instead take the approach of doing a light touch overview of what is now possible in the paleo-PCM world and highlighting the R packages that are available to do it. We could also stick to modelling rates of discrete character change on the tree if switching to continuous characters feels too 'from scratch'.
-	- Peter: As Laura noted, those approaches rely heavily on divergence times, which means that you have to rehash (and reinforce!) the FBD & tip-dating material from earlier parts; many PCM approaches integrate over trees, too, which gets back to the MCMC approach.  And both the FBD/tip-dating and methods for assessing how characters evolve over trees get back to the morphological evolution modules.  There could be a lot of “As April / Laura / David / Davey showed us earlier, we do XXX here” parts that could really tie the whole thing together.  And, of course, it would also get back to something you certainly will raise from the start: why we want decent estimations of phylogeny in the first place.
-	- Sandy: 
-		- Cooper, Natalie, Gavin H. Thomas, and Richard G. FitzJohn. "Shedding light on the ‘dark side’of phylogenetic comparative methods." Methods in ecology and evolution 7.6 (2016): 693-699.
-		- https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12533
-	- Laura: Yup this article highlights important points, there are a couple of others that highlight similar things (e.g. Uyeda). It will be important for us to emphasise that throwing loads of pcms at a single topology in R is not a great idea, but that integrating over tree and trait uncertainly for carefully chosen methods that are appropriate for the question is. 
-	- I’d like Davey and I to be able to emphasise their power and necessity, but also the importance of choosing your approach carefully. 
-	- April: I think you two have exactly the right approach. It's really easy to get bogged down in the PCM debates. Should we be using BAMM? Does Ohrenstein-Uhlenbeck even work? Those are important questions! But it's probably important that learners walk away with some roadmap to even basic points like which are process-based, and which are more neutral to the underlying evolutionary model? 
-		- If you don't want to do a single point estimate tree, how can you avoid that (maybe treeplyr in R for working with tree vectors, co-estimation of  model + tree in RevBayes) see here for an example: 
-		- https://revbayes.github.io/tutorials/chromo/ 
-	- Peter: What might be done with the cinctan dataset?  Smith & Zamora separated “feeding” characters (or at least food groove characters) from others, and there certainly have been PCM studies contrasting how one class of characters evolves vs. another.  We probably could gather basic size data, too: e.g., dimensions of the theca or whatever you call the “body” of these things.  The benefit of that is that there might be a prize for the 1 millionth tree-based test of body size evolution!  
+However, there are many reasons (perhaps particularly for paleobiologists) that it might not be feasible, or of interest, to infer phylogenetic relationships as a means to answer other macroevolutionary questions (i.e. to use a process-based approach). Perhaps you have previously estimated a phylogeny but now want to use it to answer new questions, perhaps you are interested in combining several smaller phylogenies to generate a supertree, or perhaps your specific question is not yet answerable in a bayesian process-based framework. 
 
+This tutorial is an overview of some of the approaches that can be used when you have a tree in hand. These approaches are what people commonly think of as phylogenetic comparative methods, and some of you may already be familiar with them. Many of these are used to model trait change through time, and the relationship between that trait change and other variables, but unlike what we have been doing today so far most do not model the underlying process that generates the trait change, just it's outcome. Therefore, as we will see later, different underlying processes can be best fit by the same model.
+
+New PCMs have been rapidly proliferating in the past 5-10 years, and the kinds of questions they can be used to rigorously answer is now very diverse. In this tutorial we will start with some fundamental approaches that are conceptually important, and move on to more complex models if there is time, or if you are already familiar with the fundamentals. Multiple books have been written on this vast topic, but hopefully this is enough to get started or understand some of the idiosyncracies of relevant R functions! 
+
+For the worked example we will be switching to a different dataset, for which we already have a set of trees. They're still echinoderms though! To find out more about the crinoid group Eucladida look at Davey Wright's [paper](https://www.nature.com/articles/s41598-017-13979-9). We will use a variety of PCMs to characterise the evolutionary history of some traits that are relevant to their feeding ecology.
+
+##Getting Started - data and phylogeny
+
+Set the working directory to the one that contains the data files for this tutorial using `setwd()` or the session menu.
+
+Start by loading the packages that we will be using in this session. OUwie has the other packages as dependencies but all packages that we will be using are included here for clarity.
+
+```{r results='hide', message=FALSE, warning=FALSE}
+library(ape) #standard format and processing for phylogenies in R
+library(nlme) #fitting gaussian models e.g. least squares regression
+library(geiger) #versatile package that performs and plots many pcms
+library(phytools) #additional plotting and simulation functions
+library(OUwie) #fitting Hansen models (discussed later)
+```
+
+You can either read in the tree and data objects I prepared earlier using `load("Eucladida_inputs.RData")` Or follow these instructions to format them ready for analysis. Begin by reading in the maximum a posteriori tree. This is to be used **ONLY** as an example, actual analyses should be performed over a set of trees to assess how robust a result is to topology and branch length variation; more on that later.
+
+```{r}
+tree <- read.tree("Eucladida_MAP.tre")
+```
+
+The output from RevBayes has branch lengths, but if all tips are extinct you should set the root age by adding the final extinction time to the maximum root to tip distance. This is required by some analyses and makes plotting on a timescale easier.
+```{r}
+tree$root.time <- max(vcv(tree) + 268.8)
+```
+
+The code above makes use of the function vcv; when applied to a tree this gives the phylogenetic variance covariance matrix of that tree. The vcv matrix is very important for many PCMs and it is also an intuitive representation of the tree. Elements on the diagonal of the matrix give the variance, when a tree has branch lengths scaled to time (as paleontological trees usually do) then these values give the root to tip distance for each tip on the tree. This can be very useful, for example `max(vcv(tree))` gives the maximum root to tip distance, i.e. the age of the whole tree. The off diagonal elements give the covariance which is the amount of expected shared variance between pairs of taxa. Take a look at the following small example tree and check you can see how it corresponds to the associated vcv matrix.
+
+```{r, echo = F, out.width='50%', warning=FALSE}
+t <- rtree(6)
+plot(t);axisPhylo()
+round(vcv(t),4)
+```
+
+The basic plotting function in R doesn't always do a great job with trees. Here is a tutorial on using [ggtree](https://4va.github.io/biodatasci/r-ggtree.html) to make nicer tree plots, if you are interested. However, for now just to take a quick look at our tree use:
+```{r}
+plot(ladderize(tree), show.tip.label = F); axisPhylo() 
+```
+
+You can see that some taxa were inferred to be ancestral to others that are included in the tree. Unlike in IcyTree, R displays these ancestors as sister to their descendants with 0 length branches. For the methods we are about to use zero length branches are mathematically intractable, we will therefore add a very short length to them. If you are concerned about bias this could introduce you could also drop these tips from the tree and compare results, note that in this dataset there are several inferred ancestors so this may represent loss of quite a lot of information. Node labels are required later for `OUwie` so we will add them now too.
+```{r}
+tree$edge.length[tree$edge.length==0] <- 0.001
+tree$node.label <- rep(1, Nnode(tree))
+```
+
+For the purposes of this tutorial our main focus is on modelling change in continuous characters, but there is one discrete character for use later on. The three traits we will be modelling are calyx shape (measured as the length/width ratio of the calyx), fan density (approximate number of proximal feeding appendages an individual of the species has), and calyx complexity, which is a discrete trait that could be ordered or unordered, depending on who you ask.
+
+Read in the data, take the natural log of the shape ratio and assign each trait to an individual vector (this format is required by some functions in `geiger`). Make a table of all taxa for which all three traits are available. Fan density is available for fewer taxa than are included in the tree, so make a pruned tree that only includes the overlapping taxa.
+```{r}
+#read in data
+data <- read.table("Shape_and_CalyxComplexity.txt", header = TRUE)
+Fan_data <- read.table("Fan_density.txt", header = TRUE)
+
+#log and assign to separate vectors
+Shape <- log(data$Shape); names(Shape) <- row.names(data)
+Complexity <- data$Calyx_Complexity; names(Complexity) <- row.names(data)
+Density <- Fan_data$Fan_density; names(Density) <- row.names(Fan_data) #this is already a logged value
+
+#drop tips to make smaller tree that matches fan density data
+prunedTree <- drop.tip(tree, setdiff(tree$tip.label, names(Density)))
+
+#make table with no missing data
+overlapTaxa <- intersect(row.names(data), row.names(Fan_data))
+allTraits <- data.frame(Species = overlapTaxa, Shape = Shape[overlapTaxa], Complexity = Complexity[overlapTaxa], Density = Density[overlapTaxa])
+```
+
+## Phylogenetic non-independence
+
+Felsenstein outlined the problem of the non-independence of species trait data, and an algorithm to account for the problem - phylogenetic independent contrasts (PIC) - in 1985. The most common evolutionary question that this problem is relevant to is that of the relationship between two traits. The original formulation and explanatory figure have led to this approach being commonly referred to as 'correcting' for phylogeny, which has in turn led to some misunderstandings. It might be preferable to think of it as incorporating the extra useful infomation that phylogeny provides, into the estimation of the relationships between traits.
+
+Regression analysis assumes that individual data points are statistically independent from one another. For species trait data this is not the case, because each species has some amount of shared evolutionary history with other species in the dataset. Some traits 
+
+Say we are interested in whether calyx shape correlates with fan density, we could use the pearson correlation co-efficient, or perform an ordinary least squares regression:
+
+First of all plot the data!
+```{r}
+plot(allTraits$Shape, allTraits$Density, pch = 19, main = "", xlab = "Calyx shape ln(L/W)", 
+     ylab = expression(paste("ln[Fan density]"," ", "(",Omega,")")))
+```
+
+The standard test of correlation between two continuous variables is the Pearson correlation coefficient. Does this test indicate shape and fan density are correlated?
+```{r, eval=FALSE}
+cor.test(allTraits$Shape, allTraits$Density) 
+```
+
+Now run an OLS, what is the slope and intercept of the relationship?
+```{r}
+ols <- gls(Density ~ Shape, data = allTraits, method = "ML")
+```
+
+Now we will fit a phylogenetic least squares regression line, using the same gls function as before, but this time including the vcv matrix as the expected structure in the residuals. PIC and PGLS are mathematically equivalent  (assuming a Brownian motion model of evolution). Generalised least squares regression is a very flexible framework that allows you to supply correlation structure for the residuals of the regression that can be derived from any potential source of non-independence. For example, here we are using phylogeny, but as some traits are know to vary systematically across space, a matrix of expected spatial covariance could also be used.
+
+Note that this model uses two extra arguments: `correlation` which defines the expected structure in the residuals, in this case based on the phylogeny and a brownian motion model, and `weights` which is a modification to account for the different root to tip distances in our non-ultrametric tree.
+
+```{r}
+tip.heights <- diag(vcv(phy=prunedTree))
+cor.BM <- corBrownian(phy=prunedTree)
+pgls <- gls(Density ~ Shape, correlation = cor.BM, weights = varFixed(~tip.heights), data = allTraits, method = "ML")
+```
+
+Now that we have fit both ols and pgls we can compare them using the Akaike information critereon (AIC) to see which is a better model for the data. When there is low or no phylogenetic signal in the residuals of the regression then ols will be the better model as it has fewer parameters.  We can check the AIC scores with the output of `gls`- which is a better model for our crinoid data?
+
+```{r, eval=F}
+summary(ols)$AIC
+summary(pgls)$AIC
+```
+
+We can plot the data again and look at the two different regression lines. If pgls is a better model we would expect any new specimens discovered to fall somewhere closer to the pgls regression than the ols.
+
+```{r}
+plot(allTraits$Shape, allTraits$Density, pch = 19)
+abline(ols$coefficients)
+abline(pgls$coefficients, lty = "dashed")
+```
+
+There is repeated discussion on whether or not researchers should or should not 'correct for phylogeny' in a particular analysis. In the context of analyses like regression or ANOVA to understand trait correlations and adaptation, the key thing to bear in mind is that if there is phylogenetic signal in the **residuals** then the resulting relationship derived is statistically invalid because the assumption of independent data has been violated. Phylogenetic signal in any of the individual traits under investigation does not necessarily mean the residuals will have phylogenetic structure, or vice versa. Liam Revell's 2010 paper provides a thorough explanation of this issue. If in doubt, rather than using 'corBrownian' you can use 'corPagel' to define the correlation structure, this will jointly esitmate lambda which is a measure of the phylogenetic signal in the residuals. As lambda gets closer to 0 the estimated coefficients in pgls will converge on those estimated using ols. Also bear in mind that all models are wrong, but some are more wrong than others, and in this case to do a non-phylogenetic analysis is equivalent to assuming the phylogeny is a star.
+
+
+##Tempo and mode - Brownian motion and more
+
+Opening paragraph about model fitting
+
+First of all, lets take a look at our tree plotted as a traitgram in 'phylomorphospace' this basically just means that the y axis is meaningful (the trait value) rather than when we usually show trees where the branching order but not the position of the tips matters. The `phenogram` function requires that the tree and trait have matching taxa and the trait vector has names corresponding to the tree tip labels (i.e. taxon names).
+
+```{r}
+phenogram(prunedTree, Density, ftype = "off") #ftype controls how the taxon names are displayed
+phenogram(tree, Shape, ftype = "off") 
+```
+
+This function is from the package 'phytools'. Positions of the tips on the y axis are just the trait values, the positions of the nodes are estimated assuming Brownian motion, they should not be considered rigorous estimates of ancestral trait values, at this stage they are just for visualisation.
+
+##Brownian motion
+Opning paragraph about BM
+
+We will begin by fitting brownian motion models to both our continuous traits using a function from the 'geiger' package.
+
+```{r}
+densityBM <- fitContinuous(phy = prunedTree, dat = Density, model = "BM")
+shapeBM <- fitContinuous(phy = tree, dat = Shape, model = "BM")
+```
+
+Take a look at the outputs `densityBM` and `shapeBM`. What is the estimated rate of evolution? What is the phylogenetic mean trait value (equivalent to the ancestral state at the root of the tree)?
+
+The rate of evolution in this kind of model, the paramater sigma squared, is the step rate. It is the variance expected across the tips of the phylogeny after a specified time step.
+
+Brownian motion is often referred to as neutral evolution. Trait distributions best modelled by Brownian motion could have been generated by genetic drift alone. However, they are also consistent with a generating process that includes selection, if the direction of that selection itself varies at random. This idea is perhaps not particularly intuitive to paleobiologists, but has been shown to occur in real lineages. Brownian motion is frequently used as a null model; other more complex models are compared to it to assess whether some special explanation is required for observed patterns of trait change. Luke Harmon provides a nice explanation of these ideas [here](https://lukejharmon.github.io/pcm/chapter3_bmintro/#section-3.2-properties-of-brownian-motion).
+
+#Alternative models of trait change
+
+It is reasonable to think that a neutral model of evolution is not a reasonable one for morphological variation over millions of years. As paleontologists we can think of many examples of where patterns in the fossil record suggest periods of constraint or rapid increases in morphological disparity. Fortunately there is a straightforward framework that can be used to model these kinds of patterns.
+
+Paragraph about Hansen models
+
+First fit OU models to each trait
+```{r, warning=F}
+densityOU <- fitContinuous(phy = prunedTree, dat = Density, model = "OU")
+shapeOU <- fitContinuous(phy = tree, dat = Shape, model = "OU")
+```
+Then fit an early burst model
+```{r, warning=F}
+densityEB <- fitContinuous(phy = prunedTree, dat = Density, model = "EB")
+shapeEB <- fitContinuous(phy = tree, dat = Shape, model = "EB")
+```
+
+Look at the paramater values for each model fit, are they biologically reasonable? (You should get a warning which is a first indicator This is an important step, particularly with OU the different parameter estimates can interact with each other. I turned off the warnings here but if you take a look at them you will see that OU gives a warning about using the vcv matrix. In the original version of this function, to fit OU quickly the algorithm rescaled the branch lengths, this is problematic for non-ultrametic trees so now this and other functions modify the variance-covariance matrix directly to avoid the issue.
+
+**Something to think about** If there are errors (relative to actual evolutionary relationships) in the tree topology we are using, what kind of model will this bias our analyses towards? What about error in the trait measurements?
+
+Now that we have checked to see whether the parameter estimates for the various models are reasonable, look at the AICcs, which is the best fit model for each of the traits?
+
+```{r, collapse=TRUE}
+densityBM$opt$aicc
+densityOU$opt$aicc
+densityEB$opt$aicc
+
+shapeBM$opt$aicc
+shapeOU$opt$aicc
+shapeEB$opt$aicc
+```
+
+
+
+
+
+##Varitaion across trees
+
+In the previous exercises we have been using the maximum a posteriori tree as the phylogenetic framework. However, all the exercises that you did earlier resulted in a posterior distibution of trees. Given that none of us expect that the maximum a posteriori tree perfectly represents evolutionary truth, it is important to get some measure of the robustness of our results to variation in topology and branch lengths. This is true whatever approach is used to infer the tree topology and branch lengths, using a point estimate of the tree is never recommended. The easiest way to understand how important variation across trees is for the result, is to run the analysis over a set of different trees. Here we will randomly select 100 from the posterior distribution. Other commonly used sizes for tree sets are 500 and 1000, really it is arbitrary and the researchers discretion as to how large a set of trees they need to include in order to fully characterise the variation in results.
+
+Load the post burnin posterior set of trees and select a subsample of them, add a root age and extend zero length branches as before
+```{r}
+trees <- read.tree("Eucladida_PostBurnIn.tre")
+treeset <- trees[sample(1:5000, 100, replace = F)]
+root.time <- 268.8
+for (i in 1:length(treeset)){
+	treeset[[i]]$root.time <- max(vcv(treeset[[i]])) + root.time
+}
+```
+Choose one of the previous analyses and run it over the entire treeset. How much variation is there? How much confidence do you now have in the result you obtained previously?
+
+Once analyses have been run over the treeset the results should be summarised appropriately. There is not yet an agreed upon way to do this, but in general approaches such as displaying median values with the variation around them (as long as it is made clear that this variation is separate from the error or confidence intervals on the results themselves), showing model support across trees in a bar plot, or showing a representative result and discussing how robust it is, have been used in the literature. Some methods do have built in ways of summarising across sets of trees (see for example `rjmcmc` in `geiger`), but this is rare.
+
+
+##Model fit and model adequacy
+
+Much of what we did above
+
+# Choose your own adventure
+
+As I mentioned right at the beginning of the tutorial there are now **a lot** of different phylogenetic comparative approaches that can be applied to treesets to answer a diversity of questions.
+
+If you have gotten this far, please check that your table companions are not in need of assisstance. Then investigate one of the following approaches; there is only a full working example for modelling discrete traits using `geiger` and for multi-regime models in `OUwie`, but the instructors have example code for several of the other approaches if you are interested.
+
+##Post-hoc modelling of discrete characters
+
+If a discrete trait is inluded in the phyloegnetic inference analysis then rates and ancestral states can be jointly estimated as with other parameters. However, if you have a tree already and want to characterise a discrete trait that was not included in the inference analysis then you can use `geiger` similarly to how we used it to fit continuous traits earlier. 
+
+First fit a model with a single parameter for all transition rates
+```{r}
+ER <- fitDiscrete(tree, dat = Complexity, model = "ER")
+```
+Then a model where each rate is a unique parameter
+```{r}
+ARD <- fitDiscrete(tree, dat = Complexity, model = "ARD")
+```
+Given that this is a multistate character, you might think (as some echinoderm workers do) that the character is ordered so that transitions can only occur between consecutive states. In this case you can use the `meristic` model
+```{r}
+MER <- fitDiscrete(tree, dat = Complexity, model = "meristic")
+```
+
+As with previous model fits we can check the AICcs to see which model fits our data better.
+```{r}
+ER[[4]]$aicc
+ARD[[4]]$aicc
+MER[[4]]$aicc
+```
+It is also straightforward to reconstruct ancestral states, this assumes an equal rates model. Phytools has useful functions for plotting the likelihood of a given state onto the tree.
+```{r}
+anc.char <- ace(Complexity, tree, type = "discrete")
+plot(ladderize(tree), show.tip.label = FALSE)
+nodelabels(pie = anc.char$lik.anc, piecol = c("lightblue","darkblue", "salmon", "darkred"), cex = 0.5)
+```
+
+### Multi-regime OU models
+
+As we saw above, Ornstein-Uhlenbeck models have three or four parameters that define an 'adaptive peak'. This can also be thought of as a macroevolutionary regime; for some period of time the evolution of a set of taxa can be characterised using single estimates for those parameters, and though the actual mechanisms generating the observed patterns may vary through time, they have the same outcome. This model is consistent with Simpsons concept of the adaptive landscape. Often we would not expect that a clade would remain in the same macroevolutionary regime (i.e. where the same trait value is optimal and the strength of alpha (the constraint parameter) remains the same) over the many tens of millions of years of its evolutionary history, or that all branches of a clade would experience the same regime. We might also be interested in how the regime a clade experiences might relate to factors like environmental change.
+
+Fortunately it is possible to model shifts in the evolutionary regime through time, by estimating new parameter values for different sections of the phylogeny. The package `OUwie` has model fitting and trait simulaiton functions for this. It requires a priori definition of clade or time regime shift points, it is therefore suitable for hypothesis testsing. See also packages `mvSLOUCH`, `OUCH` and `ape`.
+
+`OUwie` can be used to fit models where one or more of the rate of evolution, strength of alpha or trait optimum value can change at shift points.
+
+Multi-regime OU models can be very complex, and are therefore often difficult for the function to fit. It is **especially** important that you check the parameter values when you use this function, to make sure that they are sensible.
+
+The following example uses the same crinoid data that we have been using previously, with possible regime shift points based on Davey's prior knowledge of broad patterns in the group.
+
+OUwie has a very specific format required for the input data. It requires a three column data frame where the first column is the taxon names, the second is the regime each tip is in (this can be overwritten later by defining a clade that has its own regime using the 'clade =' argument, see script below) and the third column is the trait data. You can optionally give a fourth column with the standard error of the trait measurements. The tree must have internal node labels corresponding to the regime, again this can either be set in advance, or overwritten using the 'clade =' argument within the function. If set in advance you must set two or more regimes even if you are going to fit a single regime model where these will be overwritten, or you get an error.
+
+First set up data frame and tree correctly
+```{r}
+shapeData <- data.frame(species = names(Shape), regime = 1, shape = Shape)
+densityData <- data.frame(species = names(Density), regime = 1, density = Density)
+tree$node.label <- sample(c(1,2), Nnode(tree), replace = T) #gets overwritten with correct labels later
+prunedTree$node.label <- sample(c(1,2), Nnode(prunedTree), replace = T)
+```
+
+`OUwie` has several options for models, you can allow the strength of the selection parameter alpha to shift, the trait optimum, or the evolutionary rate sigma squared, you can also fix or vary different combinations of these for each regime.
+
+We will start by using the function to estimate brownian motion and OU parameters applied to the whole of the tree, for both shape and density, as we did previously using the `fitContinuous` function in `geiger`. As an argument in the function you must also provide the time of the root of the tree with `root.age=`, because this tree does not end at the present day. You can optionally provide starting values, often there is no problem but sometimes without them the function can have difficulty estimating parameters for the models (especially if the models do not fit the data well). This was the case here for the OU models. Ideally you would start the algorithm from a variety of values to make sure that it converges on the same parameter estimates, and not local optima. The argument `root.station` says whether the algorithm should estimate theta_0 the starting state (trait value) should be estimated as part of the model. Sometimes estimates of theta_0 and alpha can interact, setting `root.station = TRUE` means that the starting state is not estimated, this can stabilise estimates of the adaptive optimum theta. If you have reason to think there may be a trend (different starting and optimum trait means) then include theta_0 but be sure to check that the final parameter estimates are sensible. It can be sensible to check the results with both and compare.
+
+Does `OUwie` give the same parameter estimates that the other function in `geiger` did for single regime models? What difference does specifiying error make?
+```{r}
+shapeBM <- OUwie(phy = tree, data = shapeData, model = "BM1", root.station = FALSE, root.age = tree$root.time)
+shapeOU <- OUwie(phy = tree, data = shapeData, starting.vals = c(0.01,0.01), model = "OU1", root.station = FALSE, root.age = tree$root.time)
+densityBM <- OUwie(phy = prunedTree, data = densityData, model = "BM1", root.station = FALSE, root.age = tree$root.time)
+densityOU <- OUwie(phy = prunedTree, data = densityData, starting.vals = c(0.01,0.01), model = "OU1", root.station = TRUE, root.age = tree$root.time)
+```
+
+Now lets look at a multi-peak model. There are two subclades within the tree that seem to show many modifications associated with building a dense filtration fan (e.g. many branches per arm or many pinnules on branches). We can test whether this high density of the fan was associated with a different trait mean or rate of evolution. In this example we will define the tip and node regimes ourselves beforehand because it involves more than one clade.
+
+```{r}
+mrca1 <- getMRCA(prunedTree, c("Blothrocrinus", "Hydreionocrinus")) #find node defining first clade
+first <- c(mrca1, getDescendants(prunedTree, mrca1)) #make a vector of all descending nodes and tips
+mrca2 <- getMRCA(prunedTree, c("Pirasocrinus", "Zeacrinites"))
+second <- c(mrca2, getDescendants(prunedTree, mrca2))
+desc <- union(first, second) #combine clade vectors
+tips <- prunedTree$tip.label[desc[desc<=Ntip(prunedTree)]] #separate into tip and node vectors
+nodes <- desc[desc>Ntip(prunedTree)]-Ntip(prunedTree)
+treeD <- prunedTree
+treeD$node.label <- rep(1, Nnode(treeD))
+treeD$node.label[nodes] <- rep(2, length(nodes))
+
+regimetableD <- densityData
+regimetableD[tips,2] <- 2
+
+```
+
+We have prepared the tree and table so that they have the regimes defined appropriately for our question, now we can fit a variety of models.
+
+```{r}
+high_densityBMS <- OUwie(phy = treeD, data = regimetableD, model = "BMS", root.station = T, root.age = tree$root.time)
+high_densityOUM <- OUwie(phy = treeD, data = regimetableD, starting.vals = c(0.01,0.01), model = "OUM", root.station = T, root.age = tree$root.time)
+high_densityOUMV <- OUwie(phy = treeD, data = regimetableD, starting.vals = c(0.01,0.01), model = "OUMV", root.station = T, root.age = tree$root.time)
+high_densityOUMA <- OUwie(phy = treeD, data = regimetableD, starting.vals = c(0.01,0.01), model = "OUMA", root.station = T, root.age = tree$root.time)
+high_densityOUMVA <- OUwie(phy = treeD, data = regimetableD, starting.vals = c(0.01,0.01), model = "OUMVA", root.station = T, root.age = tree$root.time) #this is a complex model and may not be fit well
+```
+Now we can take a look at the AICcs and the parameter estimates as we did with the simple model, which is the best fit model, what is the AICc difference from the next best model? What are the parameter estimates and what does that suggest to us about the evolution of fan density in this group?
+
+####Using another trait to define regimes
+If you are interested in how a particular discrete state has influenced the evolution of other traits, then you can use `OUwie` for this too. If the discrete trait is distributed over the tree rather than being confined to particular clades then you can use any ancestral state reconstruction approach to reconstruct the state at each node, and use the different states to define the regimes on the tree. For a great worked example of this approach see Sam Davis' tutorial [here](http://treethinkers.org/tutorials/state-dependent-diversification-of-traits/).
+
+### Estimate rates on individual branches
+Similarly to the relaxed clock models for character change that you discussed and implemented earlier today, it is possible to model change of a particular continuous trait on the phylogeny with potentially different rates on each branch or pulses in rate along individual branches using an MCMC sampler in the function `rjmcmc.bm` in `phytools`. For an example of this approach applied to paleontological data see Soul & Benson 2017.
+
+![Different rates on each branch, from Soul & Benson 2017](perBranchRate.jpg)
+###OU without a priori shifts
+
+The package `surface` can be used to estimate OU parameters jointly with regime shift points, using maximum likelihood. However, be warned, surface has been shown to be biased towards more complex models because the AIC (which is used by the shift point estimation algorithm to assess whether adding or removing new regimes provides a better fit) does not penalise additional parameters enough. It is possible to use a similar approach but substitute AIC for BIC which penalises appropriately in this scenario.
+
+###A general model for estimating macroevolutioary landscapes
+
+A fairly new approach that has not yet been widely implemented (so use with caution!), particularly not for paleontological trees is to use a Foker-Plank-Kolmogorov (FPK) model. This is a flexible modelling framework that can be used to estimate the shape of a macroevolutionary landscape that has one or more optima, using a parameter called the 'evolutionary potential'. This framework is distinct from the multi-peak OU models above where switches between macroevolutionary regimes are modelled; instead it fits a model of trait change in a single macroevoluionary regime, but that regime can have multiple optima, and be bounded or unbounded. When there is one optimum this model is the same as an OU model. This model can be extended to define many different shapes of macroevolutionary landscape.
+
+![An example of landscapes estimated with FPK](FPK.jpg)
