@@ -1,0 +1,8 @@
+# SIMPLE CLOCK
+
+branch_rates ~ dnExponential(1.0);
+moves.append(mvScale(branch_rates, lambda=0.01, tune=true, weight=4));
+moves.append(mvScale(branch_rates, lambda=0.10, tune=true, weight=4));
+moves.append(mvScale(branch_rates, lambda=1.00, tune=true, weight=4));
+# set deterministic node to monitor
+mean_rt := branch_rates;
