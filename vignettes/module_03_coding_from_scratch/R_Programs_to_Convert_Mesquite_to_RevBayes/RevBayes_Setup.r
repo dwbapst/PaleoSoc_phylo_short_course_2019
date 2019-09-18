@@ -2340,11 +2340,14 @@ if (end_FBD=="")	{
 	youngest <- min(strat_for_Rev_Bayes$fossil_information_detailed$latest_poss_la);
 	end_FBD <- rebin_collection_with_time_scale(age=youngest,onset_or_end = onset,fine_time_scale = finest_chronostrat);
 	}
-last_bin <- hierarchical_chronostrat$bin_first[match(end_FBD,hierarchical_chronostrat$interval)];
-#psi <- median(psi_bin[1:last_bin]*bin_spans[1:last_bin]);
 if (is.na(match(end_FBD,names(psi_bin))))	{
 	end_FBD <- finest_chronostrat$interval[max(which(finest_chronostrat==end_FBD,arr.ind = T)[,1])];
+	if (is.na(match(end_FBD,names(psi_bin))))	{
+		end_FBD <- finest_chronostrat$interval[sum(finest_chronostrat$ma_lb >= min(strat_for_Rev_Bayes$fossil_information_detailed$latest_poss_fa)),];
+		}
 	}
+last_bin <- hierarchical_chronostrat$bin_first[match(end_FBD,hierarchical_chronostrat$interval)];
+#psi <- median(psi_bin[1:last_bin]*bin_spans[1:last_bin]);
 psi <- sum(psi_bin[1:match(end_FBD,names(psi_bin))])/sum(bin_spans[1:match(end_FBD,names(psi_bin))]);	# total median expected finds divided by total time
 print(paste("The median per-ma sampling rate (psi) is: ",round(psi,4),".",sep=""));
 faux_recent_bin <- hierarchical_chronostrat$bin_first[match(end_FBD,hierarchical_chronostrat$interval)];
