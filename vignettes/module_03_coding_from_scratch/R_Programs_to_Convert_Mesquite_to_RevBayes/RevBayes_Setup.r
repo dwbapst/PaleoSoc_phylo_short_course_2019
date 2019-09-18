@@ -1950,6 +1950,8 @@ if (species_only)	{
 fossilworks_collections <- paleodb_fixes$fossilworks_collections;
 paleodb_rock_reidentifications <- paleodb_fixes$paleodb_rock_reidentifications;
 paleodb_collection_edits <- paleodb_fixes$paleodb_collection_edits;
+if (!is.null(paleodb_collection_edits$X))
+	paleodb_collection_edits$X <- NULL;
 time_scale <- chronostratigraphic_databases$time_scale;
 zone_database <- chronostratigraphic_databases$zones;
 if (is.list(rock_unit_databases))	{
@@ -2379,7 +2381,7 @@ initial_divergence <- simple_probability_divergence(bound_1,bound_2,phi,psi);
 divergence_bounds <- c(bound_1,initial_divergence);
 print(paste("Initial divergence bounds are ",round(divergence_bounds[1],2)," to ",round(divergence_bounds[2],2)," Ma before end of study.",sep=""));
 
-# START WRITING SCRIPTS!;
+#### PART 8: START WRITING SCRIPTS ####
 extant_file <- list_faux_extant_taxa(analysis_name,write_scripts_directory,fossil_intervals=strat_for_Rev_Bayes$fossil_intervals[keeper_rows,]);
 #extant_taxa <- faux_extant_taxa(fossil_intervals=strat_for_Rev_Bayes$fossil_intervals[keeper_rows,]);
 extant_taxa <- faux_extant_taxa(fossil_intervals=fossil_intervals_FA[keeper_rows,]);
