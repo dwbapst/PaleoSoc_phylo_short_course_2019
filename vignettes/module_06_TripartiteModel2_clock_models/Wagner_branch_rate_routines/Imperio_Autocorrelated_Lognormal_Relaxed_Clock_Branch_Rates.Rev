@@ -1,0 +1,69 @@
+# AUTOCORRELATED LOGNORMAL RATES
+# (mu = log(M) - (sigma^2 / 2))
+# *can be modified to use exponential or independent gamma rates
+# written by P. Wagner 2019-06
+# n_taxa: number of taxa;
+#NOTE: This varies only the log-variance.
+
+#get number of branches
+n_branches <- 2 * n_taxa - 2;
+
+# set initial branch rate
+init_branch_rate ~ dnExponential(1.0);
+moves.append( mvScale(init_branch_rate, lambda=0.01, tune=true, weight=5));
+moves.append( mvScale(init_branch_rate, lambda=0.10, tune=true, weight=3));
+moves.append( mvScale(init_branch_rate, lambda=1.00, tune=true, weight=1));
+
+# set hyperpriors for "evolution" of rate parameter on tree
+acln_sigma ~ dnExponential(5.0); 		# log standard deviation;
+# mcmc moves
+moves.append( mvScale(acln_sigma, lambda=0.01, tune=true, weight=5));
+moves.append( mvScale(acln_sigma, lambda=0.10, tune=true, weight=3));
+moves.append( mvScale(acln_sigma, lambda=1.00, tune=true, weight=1));
+
+for (bb in 1:(1+n_branches))	{
+	if (bb>n_branches)	{
+		rate_shifts[bb] := 1;
+		} else	{
+#		ancestors[bb]:=tau.parent(bb);
+		rate_shifts[bb] ~ dnLnorm(mean=0, sd=acln_sigma);
+		moves.append( mvScale(rate_shifts[bb], lambda=1, tune=true, weight=2.0));
+		}
+	}
+for (bb in (1+n_branches):1)	{
+	if (bb>n_branches)	{
+		b_r[bb] := init_branch_rate;
+		} else	{
+		branch_rates[bb] := b_r[bb] := exp(ln(b_r[tau.parent(bb)])*ln(rate_shifts[bb]));
+#		b_r[bb];
+#		branch_rates[bb] := exp(ln(b_r[tau.parent(bb)])*ln(rate_shifts[bb]));
+		}
+	}
+
+# set deterministic node to monitor
+mean_rt := mean(branch_rates);
+
+#branch_rates[n_branches+1] := init_branch_rate;
+#for (bb in 1:n_branches)	{
+#	ancestors[bb]:=tau.parent(bb);
+#	log_rate_shifts[bb] ~ dnNormal(mean=0, sd=acln_sigma);
+#	moves.append( mvScale(log_rate_shifts[bb], lambda=1, tune=true, weight=2.0));
+#	}
+#for (bb in 1:n_branches)
+#	branch_rates[bb] := exp(log(branch_rates[tau.parent(bb)])+log_rate_shifts[bb]);
+
+#for (bb in 1:(n_branches+1))	{
+#	if (bb==(n_branches+1))		{
+#		log_rate_shifts[bb] ~ dnUniform(0,0);
+#		} else	{
+#		ancestors[bb]:=tau.parent(bb);
+#		log_rate_shifts[bb] ~ dnNormal(mean=0, sd=acln_sigma);
+#		moves.append( mvScale(log_rate_shifts[bb], lambda=1, tune=true, weight=2.0));
+#		}
+#	}
+
+# every descendant log-rate will be the ancestral log-rate plus/minus lognormal variation
+#for (bb in 1:n_branches)	{
+#
+#	branch_rates[bb] := exp(ln(init_branch_rate)+log_rate_shifts[ancestors[bb]]+log_rate_shifts[bb]);
+#	}
