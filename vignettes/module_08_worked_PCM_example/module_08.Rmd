@@ -199,10 +199,6 @@ shapeOU$opt$aicc
 shapeEB$opt$aicc
 ```
 
-
-
-
-
 ##Varitaion across trees
 
 In the previous exercises we have been using the maximum a posteriori tree as the phylogenetic framework. However, all the exercises that you did earlier resulted in a posterior distibution of trees. Given that none of us expect that the maximum a posteriori tree perfectly represents evolutionary truth, it is important to get some measure of the robustness of our results to variation in topology and branch lengths. This is true whatever approach is used to infer the tree topology and branch lengths, using a point estimate of the tree is never recommended. The easiest way to understand how important variation across trees is for the result, is to run the analysis over a set of different trees. Here we will randomly select 100 from the posterior distribution. Other commonly used sizes for tree sets are 500 and 1000, really it is arbitrary and the researchers discretion as to how large a set of trees they need to include in order to fully characterise the variation in results.
@@ -223,7 +219,17 @@ Once analyses have been run over the treeset the results should be summarised ap
 
 ##Model fit and model adequacy
 
-Much of what we did above
+Much of what we have just done involved fitting models of evolution to data, by estimating the maximum likelihood parameter values for a particular model, given the data. We then compared the AIC scores of each model fit to see which was the best fit model, and what that might tell us about evolution of the clade in question. However, just because one model is a better fit that the other models that were tested, it does not necessarily mean that it is a good model. To quote Matthew Pennell "All models are wrong and sometimes even the best of a set of models is useless". With simple models like regression, plotting the data, or looking at the residuals, can help establish how good the model is, but with more complex approaches (i.e. most phylogenetic comparative methods) visualisation is unlikely to help. There are not well established model adequacy testing approaches (although see [Arbutus](https://www.journals.uchicago.edu/doi/10.1086/682022) for ultrametric trees). One possible solution is to use simulation, for posterior prediction (this is what Arbutus does for phylogeny). This could be applied to paleontological trees by fitting a model, estimating the parameters, and then using these model parameters to simulate trait change on the original phylogeny. Comparisons can then be made between test statistics from the real data and distribution of simulated data.
+
+For example, was the OU model that we found was the best out of the models we fit to our shape data, actually a good model?
+
+```{r}
+alpha <- shapeOU$opt$alpha
+sigma.sq <- shapeOU$opt$sigsq
+theta <- shapeOU$opt$z0
+
+simtrait <- replicate(100, OUwie.sim(phy = tree, data = shapeData[,1:2],root.age = tree$root.time, alpha = c(alpha,alpha), sigma.sq = c(sigma.sq,sigma.sq), theta = c(theta,theta), theta0 = theta)$X)
+```
 
 # Choose your own adventure
 
@@ -261,7 +267,7 @@ plot(ladderize(tree), show.tip.label = FALSE)
 nodelabels(pie = anc.char$lik.anc, piecol = c("lightblue","darkblue", "salmon", "darkred"), cex = 0.5)
 ```
 
-### Multi-regime OU models
+## Multi-regime OU models
 
 As we saw above, Ornstein-Uhlenbeck models have three or four parameters that define an 'adaptive peak'. This can also be thought of as a macroevolutionary regime; for some period of time the evolution of a set of taxa can be characterised using single estimates for those parameters, and though the actual mechanisms generating the observed patterns may vary through time, they have the same outcome. This model is consistent with Simpsons concept of the adaptive landscape. Often we would not expect that a clade would remain in the same macroevolutionary regime (i.e. where the same trait value is optimal and the strength of alpha (the constraint parameter) remains the same) over the many tens of millions of years of its evolutionary history, or that all branches of a clade would experience the same regime. We might also be interested in how the regime a clade experiences might relate to factors like environmental change.
 
@@ -332,11 +338,12 @@ If you are interested in how a particular discrete state has influenced the evol
 Similarly to the relaxed clock models for character change that you discussed and implemented earlier today, it is possible to model change of a particular continuous trait on the phylogeny with potentially different rates on each branch or pulses in rate along individual branches using an MCMC sampler in the function `rjmcmc.bm` in `phytools`. For an example of this approach applied to paleontological data see Soul & Benson 2017.
 
 ![Different rates on each branch, from Soul & Benson 2017](perBranchRate.jpg)
-###OU without a priori shifts
+
+##OU without a priori shifts
 
 The package `surface` can be used to estimate OU parameters jointly with regime shift points, using maximum likelihood. However, be warned, surface has been shown to be biased towards more complex models because the AIC (which is used by the shift point estimation algorithm to assess whether adding or removing new regimes provides a better fit) does not penalise additional parameters enough. It is possible to use a similar approach but substitute AIC for BIC which penalises appropriately in this scenario.
 
-###A general model for estimating macroevolutioary landscapes
+##A general model for estimating macroevolutioary landscapes
 
 A fairly new approach that has not yet been widely implemented (so use with caution!), particularly not for paleontological trees is to use a Foker-Plank-Kolmogorov (FPK) model. This is a flexible modelling framework that can be used to estimate the shape of a macroevolutionary landscape that has one or more optima, using a parameter called the 'evolutionary potential'. This framework is distinct from the multi-peak OU models above where switches between macroevolutionary regimes are modelled; instead it fits a model of trait change in a single macroevoluionary regime, but that regime can have multiple optima, and be bounded or unbounded. When there is one optimum this model is the same as an OU model. This model can be extended to define many different shapes of macroevolutionary landscape.
 
