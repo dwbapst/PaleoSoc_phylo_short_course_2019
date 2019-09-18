@@ -6,7 +6,9 @@ output: html_document
 
 This course is organized by Sandra Carlson & Peter Wagner, with instructors/co-organizers April Wright, Laura Soul, David "Davey" F. Wright, and David Bapst, with instructional material development from Rachel Warnock.
 
-Additionally, this course utilizes a number of assistant instructors called 'helpers', who will be roving the room to help learners who are having issues, while an instructor (one of the people above) lectures and does exercises . Our helpers are just as integral to our short course being successful as our instructors - perhaps even *more* important!
+## Our Helpers
+
+This course utilizes a number of assistant instructors called 'helpers', who will be roving the room to help learners who are having issues, while an instructor (one of the people above) lectures and does exercises . Our helpers are just as integral to our short course being successful as our instructors - perhaps even *more* important!
 
 Our current roster of helpers (as of Sept 17th), and their contact information:
 
@@ -98,7 +100,7 @@ github profile
 
 David Bapst is an assistant instructional professor at Texas A&M University, where he teaches both on-ground and online classes involve teaching how to do data analysis in R to geoscientists. He is also a certified Software Carpentry instructor and regularly co-organizes and instructs Software Carpentry workshops at TAMU. His research usually involves phylogenies, R, graptolites, and a deep desire to prove that sampled ancestors are real, and you really can talk about them. Really!
 
-Dave has a nice department photo taken recently buts it's not online yet, and he doesn't like the current one. So instead you get the standard seven year old picture of him as a graduate student with some graptolites in a petri dish. Its been a long time since Dave dissolved graptolites out of a limestone though... too long...
+Dave has a nice department photo taken recently but it's not online yet, and he doesn't like the current one. So instead you get the standard seven year old picture of him as a graduate student with some graptolites in a petri dish. Its been a long time since Dave dissolved graptolites out of a limestone though... too long...
 
 You can contact Dave by email at my [gmail](mailto:dwbapst@gmail.com) or my [institutional account at A&M](mailto:dwbapst@tamu.edu).
 
@@ -107,7 +109,7 @@ You can contact Dave by email at my [gmail](mailto:dwbapst@gmail.com) or my [ins
 - [Dave's Faculty Page at Texas A&M University](https://geogeo.tamu.edu/people/faculty/bapstdavidwilliam)
 - [David's Palaeocast Interview about Graptolites](http://www.palaeocast.com/episode-71-graptolites/) *(The interviewer is fellow organizer, Laura Soul!)*
 
-## Rachel Warnock
+### Rachel Warnock
 
 email 
 
