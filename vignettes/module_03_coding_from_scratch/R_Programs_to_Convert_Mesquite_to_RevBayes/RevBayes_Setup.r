@@ -13,7 +13,6 @@ uncertains <- c("cf.","aff.","ex_gr.");
 accio_clade_reunion_given_paleodb_data <- function(clade_members)	{
 paleodb_taxonomic_data <- accio_taxonomic_data_for_list_of_taxa(taxon_list=clade_members);
 basic_taxonomic_data <- evanesco_na_from_matrix(data=paleodb_taxonomic_data$entered_taxa,replacement="");
-#cbind(basic_taxonomic_data$accepted_name,basic_taxonomic_data$parent_name);
 paleodb_stored_ranks <- c("phylum","class","order","family","genus");
 paleodb_not_entered_default <- c("NO_PHYLUM_SPECIFIED","NO_CLASS_SPECIFIED","NO_ORDER_SPECIFIED ","NO_FAMILY_SPECIFIED");
 relv_columns <- (1:ncol(basic_taxonomic_data))[colnames(basic_taxonomic_data) %in% paleodb_stored_ranks];
@@ -49,8 +48,6 @@ nexus_line <- gsub("\xc6","∆",nexus_line);
 nexus_line <- gsub("\xfc\xbe\x8d\xb6\x88\xbc","∑",nexus_line);
 nexus_line <- gsub("\xfc\xbe\x99\x86\x88\xbc","Ω",nexus_line);
 nexus_line <- gsub("\xa5"," ",nexus_line);
-#nexus_line <- gsub("“","\"",nexus_line);
-#nexus_line <- gsub("”","\"",nexus_line);
 nexus_line <- gsub("Á","A",nexus_line);
 nexus_line <- gsub("Ä","A",nexus_line);
 nexus_line <- gsub("ä","a",nexus_line);
@@ -77,7 +74,6 @@ nexus_line <- gsub("š","s",nexus_line);
 nexus_line <- gsub("ů","u",nexus_line);
 nexus_line <- gsub("ü","u",nexus_line);
 nexus_line <- gsub("’","’",nexus_line);
-	#nexus_line <- gsub("’","\\'",,nexus_line)
 nexus_line <- gsub("\x88","a",nexus_line);
 nexus_line <- gsub("Ã„","A",nexus_line);
 nexus_line <- gsub("Á","A",nexus_line);
@@ -103,9 +99,7 @@ nexus_line <- gsub("&#945;","α",nexus_line);
 return(nexus_line);
 }
 
-# routine to read nexus fi"Vascoceratidae_Mertz_2017.nex"le of Mesquite or Maclade format & return important infromation
-#nexus_file_name <- "Vascoceratidae_Mertz_2017.nex"
-#nexus_file_name <- "~/Documents/RevBayes_Projects/data/Vascoceratidae_Mertz_2017.nex"
+# routine to read nexus file of Mesquite or Maclade format & return important infromation
 accio_data_from_nexus_file <- function(nexus_file_name, polymorphs=T, UNKNOWN=-11, INAP=-22, rate_partitions="", trend_partitions="")	{
 # nexus_file_name: name of nexus file (e.g., "Phacopidae_Snow_2000.nex")
 # polymorphs: boolean, if TRUE, then recode "1,2" as "-21"; otherwise, treat as unknown
@@ -630,6 +624,7 @@ if (strat!=0 && geog!=0 && tree_found==1)  {
 return(output)
 }
 
+# routine to prompt user for a nexus file of Mesquite or Maclade format & return important infromation
 accio_data_from_chosen_nexus_file <- function(polymorphs=T, UNKNOWN=-11, INAP=-22, rate_partition="", trend_partition="")	{
 # nexus_file_name: name of nexus file (e.g., "Phacopidae_Snow_2000.nex")
 # polymorphs: boolean, if TRUE, then recode "1,2" as "-21"; otherwise, treat as unknown
@@ -2377,8 +2372,6 @@ print(paste("Median ML estimates for origination is: ",round(origination,4)," pe
 # GET INITIAL BOUNDS FOR DIVERGENCE TIMES;
 print("Get basic estimate of initial divergence time using Bapst's cal-3 method.....")
 phi <- prob_sampling_clade_bapst(p=origination,q=extinction,r=psi);
-#bound_1 <- max(strat_for_Rev_Bayes$fossil_intervals$max[keeper_rows]);
-#bound_2 <- sort(strat_for_Rev_Bayes$fossil_intervals$max[keeper_rows],decreasing=T)[2];
 bound_1 <- max(fossil_intervals_FA$max[keeper_rows]);
 bound_2 <- sort(fossil_intervals_FA$max[keeper_rows],decreasing=T)[2];
 #initial_divergence <- (simple_probability_divergence(bound_1,bound_2,phi,psi) + simple_likelihood_divergence(bound_1,bound_2,psi))/2;
@@ -2410,15 +2403,15 @@ if (fbd_parameterization_script=="")	{
 	filename <- paste(filename,"_FBD_Analysis.Rev",sep="");
 	}
 write(revbayes_babble,file=filename);
-#write(revbayes_babble,file=paste(paste(local_directory,analysis_name,sep=""),"_Partitioned_FBD_Analysis.Rev",sep=""));
 #revbayes_babble <- scribio_Rev_Bayes_script_for_partitioned_character_data(analysis_name,initial_data,matrix_file_names,state_numbers,state_ordering,write_scripts_directory=write_scripts_directory,fbd_parameterization_script,extant_file,set_wdir,output_file_lead="output/",script_file_lead="scripts/",no_runs=4);
 }
 
 scribio_RevBayes_scripts_from_chosen_nexus_file_and_existing_FBD_script_and_data <- function(analysis_name,taxon_subset_file=F,rate_partition="",trend_partition="",write_data_directory="",write_scripts_directory="",local_directory="",set_wdir="",UNKNOWN=-11,INAP=-22)	{
 print("This program will read a Nexus file and then create scripts that RevBayes can use to conduct phylogenetic analyses.");
-print("   If conducting FBD analyses, then it relies on the user to provide the name of an FBD parameterization script as.");
-print("   well as a file giving fossil intervals. IF you do not have these yet, then you should use another routine:" );
-print("\t\tscribio_RevBayes_scripts_from_nexus_file_and_PaleoDB_download()");
+print("\tThe program will prompt you for:");
+print("\t\t1. The original nexus file;");
+print("\t\t2. A .tsv file giving first and last appearance dates of each taxon (in Ma before the youngest taxa);");
+print("\t\t3. A RevBayes script setting up the parameters for diversification & sampling;");
 print("");
 #if (taxon_subset_file && tolower(taxon_subset_file)!="n")	{
 if (taxon_subset_file)	{
@@ -9422,6 +9415,5 @@ if (row_no==1)	{
 	return(rbind(x,new_row));
 	} else	{
 	return(rbind(x[1:(row_no-1),],new_row,x[(row_no:nrow(x)),]));
-#	return(c(x[1:(cell_no-1)],new_value,x[cell_no:length(x)]));
 	}
 }
