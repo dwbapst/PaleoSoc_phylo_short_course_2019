@@ -71,8 +71,10 @@ For the purposes of this tutorial our main focus is on modelling change in conti
 Read in the data, take the natural log of the shape ratio and assign each trait to an individual vector (this format is required by some functions in `geiger`). Make a table of all taxa for which all three traits are available. Fan density is available for fewer taxa than are included in the tree, so make a pruned tree that only includes the overlapping taxa.
 ```{r}
 #read in data
-data <- read.table("Shape_and_CalyxComplexity.txt", header = TRUE)
-Fan_data <- read.table("Fan_density.txt", header = TRUE)
+data <- read.table("Shape_and_CalyxComplexity.txt", 
+                   header = TRUE)
+Fan_data <- read.table("Fan_density.txt", 
+                       header = TRUE)
 
 #log and assign to separate vectors
 Shape <- log(data$Shape)
@@ -83,10 +85,13 @@ Density <- Fan_data$Fan_density
 names(Density) <- row.names(Fan_data) #this is already a logged value
 
 #drop tips to make smaller tree that matches fan density data
-prunedTree <- drop.tip(tree, setdiff(tree$tip.label, names(Density)))
+prunedTree <- drop.tip(tree, 
+                       setdiff(tree$tip.label, names(Density))
+                       )
 
 #make table with no missing data
-overlapTaxa <- intersect(row.names(data), row.names(Fan_data))
+overlapTaxa <- intersect(row.names(data), 
+                         row.names(Fan_data))
 allTraits <- data.frame(
   Species = overlapTaxa, 
   Shape = Shape[overlapTaxa], 
@@ -140,7 +145,7 @@ pgls <- gls(Density ~ Shape,
 
 Now that we have fit both ols and pgls we can compare them using the Akaike information critereon (AIC) to see which is a better model for the data. When there is low or no phylogenetic signal in the residuals of the regression then ols will be the better model as it has fewer parameters.  We can check the AIC scores with the output of `gls`- which is a better model for our crinoid data?
 
-```{r, eval=F}
+```{r, eval=FALSE}
 summary(ols)$AIC
 summary(pgls)$AIC
 ```
@@ -163,7 +168,8 @@ Opening paragraph about model fitting
 First of all, lets take a look at our tree plotted as a traitgram in 'phylomorphospace' this basically just means that the y axis is meaningful (the trait value) rather than when we usually show trees where the branching order but not the position of the tips matters. The `phenogram` function requires that the tree and trait have matching taxa and the trait vector has names corresponding to the tree tip labels (i.e. taxon names).
 
 ```{r}
-phenogram(prunedTree, Density, ftype = "off") #ftype controls how the taxon names are displayed
+#ftype controls how the taxon names are displayed
+phenogram(prunedTree, Density, ftype = "off") 
 phenogram(tree, Shape, ftype = "off") 
 ```
 
@@ -175,8 +181,10 @@ Opning paragraph about BM
 We will begin by fitting brownian motion models to both our continuous traits using a function from the 'geiger' package.
 
 ```{r}
-densityBM <- fitContinuous(phy = prunedTree, dat = Density, model = "BM")
-shapeBM <- fitContinuous(phy = tree, dat = Shape, model = "BM")
+densityBM <- fitContinuous(phy = prunedTree, 
+                           dat = Density, model = "BM")
+shapeBM <- fitContinuous(phy = tree, 
+                         dat = Shape, model = "BM")
 ```
 
 Take a look at the outputs `densityBM` and `shapeBM`. What is the estimated rate of evolution? What is the phylogenetic mean trait value (equivalent to the ancestral state at the root of the tree)?
@@ -192,12 +200,12 @@ It is reasonable to think that a neutral model of evolution is not a reasonable 
 Paragraph about Hansen models
 
 First fit OU models to each trait
-```{r, warning=F}
+```{r, warning=FALSE}
 densityOU <- fitContinuous(phy = prunedTree, dat = Density, model = "OU")
 shapeOU <- fitContinuous(phy = tree, dat = Shape, model = "OU")
 ```
 Then fit an early burst model
-```{r, warning=F}
+```{r, warning=FALSE}
 densityEB <- fitContinuous(phy = prunedTree, dat = Density, model = "EB")
 shapeEB <- fitContinuous(phy = tree, dat = Shape, model = "EB")
 ```
@@ -247,7 +255,19 @@ alpha <- shapeOU$opt$alpha
 sigma.sq <- shapeOU$opt$sigsq
 theta <- shapeOU$opt$z0
 
-simtrait <- replicate(100, OUwie.sim(phy = tree, data = shapeData[,1:2],root.age = tree$root.time, alpha = c(alpha,alpha), sigma.sq = c(sigma.sq,sigma.sq), theta = c(theta,theta), theta0 = theta)$X)
+shapeData <- data.frame(species = names(Shape), 
+                        regime = 1, shape = Shape)
+
+simtrait <- replicate(100, 
+                      OUwie.sim(phy = tree, 
+                                data = shapeData[,1:2], # should this be shapeData or shapeOU?
+                                root.age = tree$root.time, 
+                                alpha = c(alpha,alpha), 
+                                sigma.sq = c(sigma.sq,sigma.sq), 
+                                theta = c(theta,theta), 
+                                theta0 = theta
+                                )
+                      $X)
 ```
 
 # Choose your own adventure
@@ -283,7 +303,10 @@ It is also straightforward to reconstruct ancestral states, this assumes an equa
 ```{r}
 anc.char <- ace(Complexity, tree, type = "discrete")
 plot(ladderize(tree), show.tip.label = FALSE)
-nodelabels(pie = anc.char$lik.anc, piecol = c("lightblue","darkblue", "salmon", "darkred"), cex = 0.5)
+nodelabels(pie = anc.char$lik.anc, 
+           piecol = c("lightblue","darkblue", "salmon", "darkred"), 
+           cex = 0.5
+           )
 ```
 
 ## Multi-regime OU models
@@ -302,10 +325,15 @@ OUwie has a very specific format required for the input data. It requires a thre
 
 First set up data frame and tree correctly
 ```{r}
-shapeData <- data.frame(species = names(Shape), regime = 1, shape = Shape)
-densityData <- data.frame(species = names(Density), regime = 1, density = Density)
-tree$node.label <- sample(c(1,2), Nnode(tree), replace = T) #gets overwritten with correct labels later
-prunedTree$node.label <- sample(c(1,2), Nnode(prunedTree), replace = T)
+shapeData <- data.frame(species = names(Shape), 
+                        regime = 1, shape = Shape)
+densityData <- data.frame(species = names(Density), 
+                          regime = 1, density = Density)
+#gets overwritten with correct labels later
+tree$node.label <- sample(c(1,2), 
+                          Nnode(tree), replace = TRUE) 
+prunedTree$node.label <- sample(c(1,2), 
+                                Nnode(prunedTree), replace = TRUE)
 ```
 
 `OUwie` has several options for models, you can allow the strength of the selection parameter alpha to shift, the trait optimum, or the evolutionary rate sigma squared, you can also fix or vary different combinations of these for each regime.
@@ -333,12 +361,16 @@ densityOU <- OUwie(phy = prunedTree, data = densityData,
 Now lets look at a multi-peak model. There are two subclades within the tree that seem to show many modifications associated with building a dense filtration fan (e.g. many branches per arm or many pinnules on branches). We can test whether this high density of the fan was associated with a different trait mean or rate of evolution. In this example we will define the tip and node regimes ourselves beforehand because it involves more than one clade.
 
 ```{r}
-mrca1 <- getMRCA(prunedTree, c("Blothrocrinus", "Hydreionocrinus")) #find node defining first clade
-first <- c(mrca1, getDescendants(prunedTree, mrca1)) #make a vector of all descending nodes and tips
+#find node defining first clade
+mrca1 <- getMRCA(prunedTree, c("Blothrocrinus", "Hydreionocrinus")) 
+#make a vector of all descending nodes and tips
+first <- c(mrca1, getDescendants(prunedTree, mrca1)) 
 mrca2 <- getMRCA(prunedTree, c("Pirasocrinus", "Zeacrinites"))
 second <- c(mrca2, getDescendants(prunedTree, mrca2))
-desc <- union(first, second) #combine clade vectors
-tips <- prunedTree$tip.label[desc[desc<=Ntip(prunedTree)]] #separate into tip and node vectors
+#combine clade vectors
+desc <- union(first, second) 
+#separate into tip and node vectors
+tips <- prunedTree$tip.label[desc[desc<=Ntip(prunedTree)]] 
 nodes <- desc[desc>Ntip(prunedTree)]-Ntip(prunedTree)
 treeD <- prunedTree
 treeD$node.label <- rep(1, Nnode(treeD))
@@ -353,24 +385,25 @@ We have prepared the tree and table so that they have the regimes defined approp
 
 ```{r}
 high_densityBMS <- OUwie(phy = treeD, data = regimetableD, 
-                         model = "BMS", root.station = T, 
+                         model = "BMS", root.station = TRUE, 
                          root.age = tree$root.time)
 high_densityOUM <- OUwie(phy = treeD, data = regimetableD, 
                          starting.vals = c(0.01,0.01), 
-                         model = "OUM", root.station = T, 
+                         model = "OUM", root.station = TRUE, 
                          root.age = tree$root.time)
 high_densityOUMV <- OUwie(phy = treeD, data = regimetableD, 
                           starting.vals = c(0.01,0.01), 
-                          model = "OUMV", root.station = T, 
+                          model = "OUMV", root.station = TRUE, 
                           root.age = tree$root.time)
 high_densityOUMA <- OUwie(phy = treeD, data = regimetableD, 
                           starting.vals = c(0.01,0.01), 
-                          model = "OUMA", root.station = T, 
+                          model = "OUMA", root.station = TRUE, 
                           root.age = tree$root.time)
+#this is a complex model and may not be fit well
 high_densityOUMVA <- OUwie(phy = treeD, data = regimetableD, 
                            starting.vals = c(0.01,0.01), 
-                           model = "OUMVA", root.station = T, 
-                           root.age = tree$root.time) #this is a complex model and may not be fit well
+                           model = "OUMVA", root.station = TRUE, 
+                           root.age = tree$root.time) 
 ```
 Now we can take a look at the AICcs and the parameter estimates as we did with the simple model, which is the best fit model, what is the AICc difference from the next best model? What are the parameter estimates and what does that suggest to us about the evolution of fan density in this group?
 
