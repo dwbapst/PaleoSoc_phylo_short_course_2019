@@ -17,8 +17,8 @@ Psi. Typically used in Fossilized Birth Death models for the instantaneous 'seri
 Sometimes, \(\psi\) is also used as a symbol for the dated tree we are trying to infer, but this is also often denoted with \(\tau\) (*tau*, see below). Occassionally, authors will use \(\psi\) for both the serial sampling rate and the dated tree in the same manual. In particular, this is typical for RevBayes documentation.
 	
 ## \(\rho\)
-Rho. Typically used for probability of sampling a species at time=zero (e.g. the modern).
-	
+Rho. Typically used for probability of sampling a species at time=zero (e.g. the modern in an analysis with extant-taxa). For analyses where all taxa go extinct before the present, like our cinctan dataset, \(\rho\) (in RevBayes) is the probability of sampling taxa in the final interval and thus generally arbitrarily set so \(\rho = 1\). Note that other phylogenetic programs have ambiguous interpretations, or very different interpretations of \(\rho\) when all taxa are extinct (e.g. MrBayes seems to treat it as the probability of sampling a taxon at the modern, if taxa survived to the modern - such that \(\rho = 1\) means there is a strong presumption the study clade has not living, but unrecognized, survivors).
+
 ## \(\tau\)
 Tau. Often used as a symbol representing the dated phylogeny with branch lengths that we are trying to infer. (Some literature uses Psi to denote the tree.)
 	
@@ -32,7 +32,7 @@ Beta. Typically used as an abbreviation for the Beta distribution.
 Sigma. Symbol used for various parameters, such as the standard deviation of a normal distribution, the log-standard deviation of a lognormal distribution, or the rate of trait change in a non-directional model of trait change (essentially, the expected variance across a time-unit), etc. 
 	
 ## \(\alpha\)
-Alpha.  In models of Markov processes, such as the model used to describe character change, \(\alpha\) is used to denote the instantaneous rate of any particular transition between states (Lewis, 2001). In models of continuous trait evolution, \(\alpha\)  is often used to denote the strength of attractors.
+Alpha.  In models of Markov processes, such as the model used to describe character change, \(\alpha\) is used to denote the instantaneous rate of any particular transition between states (Lewis, 2001). In models of continuous trait evolution, \(\alpha\)  is often used to denote the strength of attractors. For Beta and Gamma distributions (see above), \(\alpha\) denotes the shape parameter.
 	
 ## \(r\) 
 Lower-case \(r\), from the Latin Alphabet. Small \(r\) is often used as the notation for the probability of serial sampling events also causing an immediate death event in that lineage. In the fossil record, this would that preservation was also tied to the extinction of that lineage. When \(r = 1\), there can be no sampled ancestors. Most implementations of the the Fossilized Birth Death model treat \(r = 0\), and it is more commonly referenced in models of disease transmission.
