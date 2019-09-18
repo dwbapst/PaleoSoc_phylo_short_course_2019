@@ -184,10 +184,11 @@ This will prompt a dialog asking you to either obtain XCode, or install develope
 
 ### Installing RevBayes
 
-If you are a regular Linux user, you will be unsurprised to learn that you will need to compile RevBayes yourself. To do so, you will need to first install `cmake`:
+If you are a regular Linux user, you will be unsurprised to learn that you will need to compile RevBayes yourself. To do so, you will need to first install `cmake` and the dev version of Boost, which is named `libboost-dev-all`. For a Ubuntu system that uses `apt`, you can get these with the following:
 
 ```
-sudo apt install cmake
+sudo apt-get install cmake
+sudo apt-get install libboost-dev-all
 ```
 
 Then obtain the source code:

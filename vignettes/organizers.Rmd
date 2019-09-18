@@ -51,8 +51,6 @@ email
 
 ### April Wright
 
-email 
-
 photo
 
 bio
@@ -61,9 +59,11 @@ link to institutional website
 
 github profile (@wrightaprilm)
 
+email
+
 ### David Wright
 
-photo
+![*This Guy Really Likes Echinoderms*](files/DaveyEchinoANMH.jpg){#id .class width=50% height=50%}
 
 Davey is interested in ways phylogenetic methods can be used to better understand the origin, morphologic evolution, and diversification of major lineages of echinoderms, especially crinoids.
 
@@ -76,7 +76,7 @@ link to institutional website
 
 ### Laura Soul
 
-photo
+![*Laura Soul*](files/laura_soul.jpg){#id .class width=50% height=50%}
 
 Laura is interested in understanding the behaviour of phylogenetic methods when applied to the fossil record, and how pcms can be applied to understand drivers of tetrapod evolution, particularly Sauropterygian marine reptiles.
 
