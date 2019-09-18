@@ -166,18 +166,18 @@
 <p>The output from RevBayes has branch lengths, but if all tips are extinct you should set the root age by adding the final extinction time to the maximum root to tip distance. This is required by some analyses and makes plotting on a timescale easier.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tree<span class="op">$</span>root.time &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/ape/man/vcv.phylo.html">vcv</a></span>(tree) <span class="op">+</span><span class="st"> </span><span class="fl">268.8</span>)</code></pre></div>
 <p>The code above makes use of the function vcv; when applied to a tree this gives the phylogenetic variance covariance matrix of that tree. The vcv matrix is very important for many PCMs and it is also an intuitive representation of the tree. Elements on the diagonal of the matrix give the variance, when a tree has branch lengths scaled to time (as paleontological trees usually do) then these values give the root to tip distance for each tip on the tree. This can be very useful, for example <code><a href="https://rdrr.io/r/base/Extremes.html">max(vcv(tree))</a></code> gives the maximum root to tip distance, i.e. the age of the whole tree. The off diagonal elements give the covariance which is the amount of expected shared variance between pairs of taxa. Take a look at the following small example tree and check you can see how it corresponds to the associated vcv matrix.</p>
-<p><img src="module_08_files/figure-html/unnamed-chunk-4-1.png" width="50%"></p>
-<pre><code>##        t3     t6     t4     t5     t2     t1
-## t3 1.1207 0.7567 0.7567 0.0000 0.0000 0.0000
-## t6 0.7567 1.7073 1.2065 0.0000 0.0000 0.0000
-## t4 0.7567 1.2065 2.0224 0.0000 0.0000 0.0000
-## t5 0.0000 0.0000 0.0000 1.5508 1.3225 0.6483
-## t2 0.0000 0.0000 0.0000 1.3225 2.0325 0.6483
-## t1 0.0000 0.0000 0.0000 0.6483 0.6483 0.7239</code></pre>
+<p><img src="module_08_files/figure-html/unnamed-chunk-5-1.png" width="50%"></p>
+<pre><code>##       t2     t5     t3     t4     t6     t1
+## t2 0.206 0.0000 0.0000 0.0000 0.0000 0.0000
+## t5 0.000 2.0175 1.2477 1.2477 0.8636 0.1766
+## t3 0.000 1.2477 2.4630 1.7454 0.8636 0.1766
+## t4 0.000 1.2477 1.7454 2.7373 0.8636 0.1766
+## t6 0.000 0.8636 0.8636 0.8636 1.2436 0.1766
+## t1 0.000 0.1766 0.1766 0.1766 0.1766 0.9540</code></pre>
 <p>The basic plotting function in R doesn’t always do a great job with trees. Here is a tutorial on using <a href="https://4va.github.io/biodatasci/r-ggtree.html">ggtree</a> to make nicer tree plots, if you are interested. However, for now just to take a quick look at our tree use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/ape/man/ladderize.html">ladderize</a></span>(tree), <span class="dt">show.tip.label =</span> <span class="ot">FALSE</span>)
 <span class="kw"><a href="https://rdrr.io/pkg/ape/man/axisPhylo.html">axisPhylo</a></span>() </code></pre></div>
-<p><img src="module_08_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p><img src="module_08_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <p>You can see that some taxa were inferred to be ancestral to others that are included in the tree. Unlike in IcyTree, R displays these ancestors as sister to their descendants with 0 length branches. For the methods we are about to use zero length branches are mathematically intractable, we will therefore add a very short length to them. If you are concerned about bias this could introduce you could also drop these tips from the tree and compare results, note that in this dataset there are several inferred ancestors so this may represent loss of quite a lot of information. Node labels are required later for <code>OUwie</code> so we will add them now too.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tree<span class="op">$</span>edge.length[tree<span class="op">$</span>edge.length <span class="op">==</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="fl">0.001</span>
 tree<span class="op">$</span>node.label &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">1</span>, <span class="kw"><a href="https://rdrr.io/pkg/ape/man/summary.phylo.html">Nnode</a></span>(tree))</code></pre></div>
@@ -224,7 +224,7 @@ allTraits &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.i
      <span class="dt">xlab =</span> <span class="st">"Calyx shape ln(L/W)"</span>, 
      <span class="dt">ylab =</span> <span class="kw"><a href="https://rdrr.io/r/base/expression.html">expression</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"ln[Fan density]"</span>,<span class="st">" "</span>, <span class="st">"("</span>,Omega,<span class="st">")"</span>))
      )</code></pre></div>
-<p><img src="module_08_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="module_08_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <p>The standard test of correlation between two continuous variables is the Pearson correlation coefficient. Does this test indicate shape and fan density are correlated?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/stats/cor.test.html">cor.test</a></span>(allTraits<span class="op">$</span>Shape, allTraits<span class="op">$</span>Density) </code></pre></div>
 <p>Now run an OLS, what is the slope and intercept of the relationship?</p>
@@ -247,7 +247,7 @@ pgls &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(allTraits<span class="op">$</span>Shape, allTraits<span class="op">$</span>Density, <span class="dt">pch =</span> <span class="dv">19</span>)
 <span class="kw"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span>(ols<span class="op">$</span>coefficients)
 <span class="kw"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span>(pgls<span class="op">$</span>coefficients, <span class="dt">lty =</span> <span class="st">"dashed"</span>)</code></pre></div>
-<p><img src="module_08_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
+<p><img src="module_08_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
 <p>There is repeated discussion on whether or not researchers should or should not ‘correct for phylogeny’ in a particular analysis. In the context of analyses like regression or ANOVA to understand trait correlations and adaptation, the key thing to bear in mind is that if there is phylogenetic signal in the <strong>residuals</strong> then the resulting relationship derived is statistically invalid because the assumption of independent data has been violated. Phylogenetic signal in any of the individual traits under investigation does not necessarily mean the residuals will have phylogenetic structure, or vice versa. Liam Revell’s 2010 paper provides a thorough explanation of this issue. If in doubt, rather than using ‘corBrownian’ you can use ‘corPagel’ to define the correlation structure, this will jointly esitmate lambda which is a measure of the phylogenetic signal in the residuals. As lambda gets closer to 0 the estimated coefficients in pgls will converge on those estimated using ols. Also bear in mind that all models are wrong, but some are more wrong than others, and in this case to do a non-phylogenetic analysis is equivalent to assuming the phylogeny is a star.</p>
 </div>
 <div id="tempo-and-mode---brownian-motion-and-more" class="section level2">
@@ -257,9 +257,9 @@ pgls &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg
 <p>First of all, lets take a look at our tree plotted as a traitgram in ‘phylomorphospace’ this basically just means that the y axis is meaningful (the trait value) rather than when we usually show trees where the branching order but not the position of the tips matters. The <code>phenogram</code> function requires that the tree and trait have matching taxa and the trait vector has names corresponding to the tree tip labels (i.e. taxon names).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#ftype controls how the taxon names are displayed</span>
 <span class="kw"><a href="https://rdrr.io/pkg/phytools/man/phenogram.html">phenogram</a></span>(prunedTree, Density, <span class="dt">ftype =</span> <span class="st">"off"</span>) </code></pre></div>
-<p><img src="module_08_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<p><img src="module_08_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/pkg/phytools/man/phenogram.html">phenogram</a></span>(tree, Shape, <span class="dt">ftype =</span> <span class="st">"off"</span>) </code></pre></div>
-<p><img src="module_08_files/figure-html/unnamed-chunk-14-2.png" width="700"></p>
+<p><img src="module_08_files/figure-html/unnamed-chunk-15-2.png" width="700"></p>
 <p>This function is from the package ‘phytools’. Positions of the tips on the y axis are just the trait values, the positions of the nodes are estimated assuming Brownian motion, they should not be considered rigorous estimates of ancestral trait values, at this stage they are just for visualisation.</p>
 </div>
 <div id="brownian-motion" class="section level2">
@@ -379,7 +379,7 @@ simtrait &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io
            <span class="dt">piecol =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"lightblue"</span>,<span class="st">"darkblue"</span>, <span class="st">"salmon"</span>, <span class="st">"darkred"</span>), 
            <span class="dt">cex =</span> <span class="fl">0.5</span>
            )</code></pre></div>
-<p><img src="module_08_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
+<p><img src="module_08_files/figure-html/unnamed-chunk-26-1.png" width="700"></p>
 </div>
 <div id="multi-regime-ou-models" class="section level2">
 <h2 class="hasAnchor">
