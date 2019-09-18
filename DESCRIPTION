@@ -17,14 +17,16 @@ Description: This is a fake R package containing course materials for the worksh
 License: CC0
 Depends:
 	shiny,
-	revealjs
-Imports:
-    phangorn,
-    phytools,
+	revealjs,
+	ape,
+	nlme,
+	geiger,
+	phangorn,
 	pkgdown,
-    ape
+	phytools,
+	OUwie,
+	knitr
 Suggests:
-    knitr,
     testthat,
     rmarkdown
 Encoding: UTF-8
