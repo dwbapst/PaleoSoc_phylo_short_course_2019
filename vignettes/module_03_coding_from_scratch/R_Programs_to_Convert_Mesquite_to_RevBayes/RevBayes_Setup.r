@@ -2385,7 +2385,7 @@ extant_file <- list_faux_extant_taxa(analysis_name,write_scripts_directory,fossi
 extant_taxa <- faux_extant_taxa(fossil_intervals=fossil_intervals_FA[keeper_rows,]);
 #																	 study,              write_scripts_directory,origination,extinction,psi,rho,divergence_bounds,control_taxon,extant_file,otu_names,uncoded_taxa="",script_file_lead="script/"
 fbd_parameterization <- scribio_fbd_portion_of_Rev_Bayes_script(analysis_name,write_scripts_directory,origination,extinction,psi,rho,divergence_bounds,control_taxon,extant_taxa,otu_names,uncoded_taxa=initial_data$Unscored_Taxa,script_file_lead="scripts/");
-fbd_parameterization_script <- fbd_parameterization$filename
+fbd_parameterization_script <- paste("scripts/",fbd_parameterization$filename,sep="");
 
 max_age <- max(fossil_intervals_FA$max[keeper_rows]);
 #scribio_Rev_Bayes_script_for_partitioned_character_data(analysis_name,initial_data,matrix_file_names,state_numbers,state_ordering,write_scripts_directory,fbd_parameterization_script,extant_file,set_wdir,output_file_lead="output/",script_file_lead="script/",no_runs=4);
@@ -2456,13 +2456,7 @@ if (taxa_subset[1]=="")	{
 # we now have all of the information that we need for the character-based part of FBD analyses.
 # However, let's see if there are any taxa that belong to the ingroup-clade that are excluded!
 print("Select .tsv file with first and last appearance dates for the FBD analysis:");
-
-if (species_only)	{
-	taxon_names <- ingroup_taxa;
-	clade_members <- unique(sapply(taxon_names,diffindo_genus_names_from_species_names));
-	} else	{
-	clade_members <- ingroup_taxa;
-	}
+clade_members <- ingroup_taxa;
 
 for (x in 1:10^6)	x <- x;
 fossil_interval_file <- file.choose();
@@ -2539,12 +2533,12 @@ if (taxa_subset[1]=="")	{
 # we now have all of the information that we need for the character-based part of FBD analyses.
 # However, let's see if there are any taxa that belong to the ingroup-clade that are excluded!
 
-if (species_only)	{
-	taxon_names <- ingroup_taxa;
-	clade_members <- unique(sapply(taxon_names,diffindo_genus_names_from_species_names));
-	} else	{
-	clade_members <- ingroup_taxa;
-	}
+#if (species_only)	{
+#	taxon_names <- ingroup_taxa;
+#	clade_members <- unique(sapply(taxon_names,diffindo_genus_names_from_species_names));
+#	} else	{
+clade_members <- ingroup_taxa;
+#	}
 
 fossil_intervals <- read.table(file.choose(),header=T);
 max_age <- max(fossil_intervals$max);
@@ -9415,5 +9409,6 @@ if (row_no==1)	{
 	return(rbind(x,new_row));
 	} else	{
 	return(rbind(x[1:(row_no-1),],new_row,x[(row_no:nrow(x)),]));
+#	return(c(x[1:(cell_no-1)],new_value,x[cell_no:length(x)]));
 	}
 }
