@@ -31,11 +31,10 @@ email
 
 photo
 
-bio
+Sandy Carlson is a Professor at the University of California, Davis, in the Department of Earth and Planetary Science where she has been teaching for a long time. She is obsessed with brachiopods, and has spent decades trying to understand as much about them as she can. She currently chairs the Paleontological Society Government Affairs committee, and is committed to promoting the role of science and scientists in public policy. She is also the Director at UC Davis of a UC-system-wide program that encourages STEM undergraduates to pursue careers as K-12 teachers — the world needs more great math and science teachers!
 
 link to institutional website
 
-github profile
 
 ### Peter Wagner
 
