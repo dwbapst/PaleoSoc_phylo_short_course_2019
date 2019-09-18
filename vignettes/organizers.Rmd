@@ -3,7 +3,6 @@ title: "Who We Are"
 output: html_document
 ---
 
-
 This course is organized by Sandra Carlson & Peter Wagner, with instructors/co-organizers April Wright, Laura Soul, David "Davey" F. Wright, and David Bapst, with instructional material development from Rachel Warnock.
 
 ## Our Helpers
@@ -102,7 +101,7 @@ David Bapst is an assistant instructional professor at Texas A&M University, whe
 
 Dave has a nice department photo taken recently but it's not online yet, and he doesn't like the current one. So instead you get the standard seven year old picture of him as a graduate student with some graptolites in a petri dish. Its been a long time since Dave dissolved graptolites out of a limestone though... too long...
 
-You can contact Dave by email at my [gmail](mailto:dwbapst@gmail.com) or my [institutional account at A&M](mailto:dwbapst@tamu.edu).
+You can contact Dave by email at his [gmail](mailto:dwbapst@gmail.com) or his [institutional email account at A&M](mailto:dwbapst@tamu.edu).
 
 ####Links:
 - [Github Profile: dwbapst](https://github.com/dwbapst)

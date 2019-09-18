@@ -47,20 +47,22 @@ tree$root.time <- max(vcv(tree) + 268.8)
 
 The code above makes use of the function vcv; when applied to a tree this gives the phylogenetic variance covariance matrix of that tree. The vcv matrix is very important for many PCMs and it is also an intuitive representation of the tree. Elements on the diagonal of the matrix give the variance, when a tree has branch lengths scaled to time (as paleontological trees usually do) then these values give the root to tip distance for each tip on the tree. This can be very useful, for example `max(vcv(tree))` gives the maximum root to tip distance, i.e. the age of the whole tree. The off diagonal elements give the covariance which is the amount of expected shared variance between pairs of taxa. Take a look at the following small example tree and check you can see how it corresponds to the associated vcv matrix.
 
-```{r, echo = F, out.width='50%', warning=FALSE}
+```{r, echo = FALSE, out.width='50%', warning=FALSE}
 t <- rtree(6)
-plot(t);axisPhylo()
+plot(t)
+axisPhylo()
 round(vcv(t),4)
 ```
 
 The basic plotting function in R doesn't always do a great job with trees. Here is a tutorial on using [ggtree](https://4va.github.io/biodatasci/r-ggtree.html) to make nicer tree plots, if you are interested. However, for now just to take a quick look at our tree use:
 ```{r}
-plot(ladderize(tree), show.tip.label = F); axisPhylo() 
+plot(ladderize(tree), show.tip.label = FALSE)
+axisPhylo() 
 ```
 
 You can see that some taxa were inferred to be ancestral to others that are included in the tree. Unlike in IcyTree, R displays these ancestors as sister to their descendants with 0 length branches. For the methods we are about to use zero length branches are mathematically intractable, we will therefore add a very short length to them. If you are concerned about bias this could introduce you could also drop these tips from the tree and compare results, note that in this dataset there are several inferred ancestors so this may represent loss of quite a lot of information. Node labels are required later for `OUwie` so we will add them now too.
 ```{r}
-tree$edge.length[tree$edge.length==0] <- 0.001
+tree$edge.length[tree$edge.length == 0] <- 0.001
 tree$node.label <- rep(1, Nnode(tree))
 ```
 
@@ -73,16 +75,24 @@ data <- read.table("Shape_and_CalyxComplexity.txt", header = TRUE)
 Fan_data <- read.table("Fan_density.txt", header = TRUE)
 
 #log and assign to separate vectors
-Shape <- log(data$Shape); names(Shape) <- row.names(data)
-Complexity <- data$Calyx_Complexity; names(Complexity) <- row.names(data)
-Density <- Fan_data$Fan_density; names(Density) <- row.names(Fan_data) #this is already a logged value
+Shape <- log(data$Shape)
+names(Shape) <- row.names(data)
+Complexity <- data$Calyx_Complexity
+names(Complexity) <- row.names(data)
+Density <- Fan_data$Fan_density
+names(Density) <- row.names(Fan_data) #this is already a logged value
 
 #drop tips to make smaller tree that matches fan density data
 prunedTree <- drop.tip(tree, setdiff(tree$tip.label, names(Density)))
 
 #make table with no missing data
 overlapTaxa <- intersect(row.names(data), row.names(Fan_data))
-allTraits <- data.frame(Species = overlapTaxa, Shape = Shape[overlapTaxa], Complexity = Complexity[overlapTaxa], Density = Density[overlapTaxa])
+allTraits <- data.frame(
+  Species = overlapTaxa, 
+  Shape = Shape[overlapTaxa], 
+  Complexity = Complexity[overlapTaxa], 
+  Density = Density[overlapTaxa]
+  )
 ```
 
 ## Phylogenetic non-independence
@@ -95,8 +105,11 @@ Say we are interested in whether calyx shape correlates with fan density, we cou
 
 First of all plot the data!
 ```{r}
-plot(allTraits$Shape, allTraits$Density, pch = 19, main = "", xlab = "Calyx shape ln(L/W)", 
-     ylab = expression(paste("ln[Fan density]"," ", "(",Omega,")")))
+plot(allTraits$Shape, allTraits$Density, 
+     pch = 19, main = "", 
+     xlab = "Calyx shape ln(L/W)", 
+     ylab = expression(paste("ln[Fan density]"," ", "(",Omega,")"))
+     )
 ```
 
 The standard test of correlation between two continuous variables is the Pearson correlation coefficient. Does this test indicate shape and fan density are correlated?
@@ -106,7 +119,8 @@ cor.test(allTraits$Shape, allTraits$Density)
 
 Now run an OLS, what is the slope and intercept of the relationship?
 ```{r}
-ols <- gls(Density ~ Shape, data = allTraits, method = "ML")
+ols <- gls(Density ~ Shape, 
+           data = allTraits, method = "ML")
 ```
 
 Now we will fit a phylogenetic least squares regression line, using the same gls function as before, but this time including the vcv matrix as the expected structure in the residuals. PIC and PGLS are mathematically equivalent  (assuming a Brownian motion model of evolution). Generalised least squares regression is a very flexible framework that allows you to supply correlation structure for the residuals of the regression that can be derived from any potential source of non-independence. For example, here we are using phylogeny, but as some traits are know to vary systematically across space, a matrix of expected spatial covariance could also be used.
@@ -116,7 +130,12 @@ Note that this model uses two extra arguments: `correlation` which defines the e
 ```{r}
 tip.heights <- diag(vcv(phy=prunedTree))
 cor.BM <- corBrownian(phy=prunedTree)
-pgls <- gls(Density ~ Shape, correlation = cor.BM, weights = varFixed(~tip.heights), data = allTraits, method = "ML")
+pgls <- gls(Density ~ Shape, 
+            correlation = cor.BM, 
+            weights = varFixed(~tip.heights), 
+            data = allTraits, 
+            method = "ML"
+            )
 ```
 
 Now that we have fit both ols and pgls we can compare them using the Akaike information critereon (AIC) to see which is a better model for the data. When there is low or no phylogenetic signal in the residuals of the regression then ols will be the better model as it has fewer parameters.  We can check the AIC scores with the output of `gls`- which is a better model for our crinoid data?
@@ -205,8 +224,8 @@ In the previous exercises we have been using the maximum a posteriori tree as th
 
 Load the post burnin posterior set of trees and select a subsample of them, add a root age and extend zero length branches as before
 ```{r}
-trees <- read.tree("Eucladida_PostBurnIn.tre")
-treeset <- trees[sample(1:5000, 100, replace = F)]
+trees <- read.tree("Eucladida_postBurnIn.tre")
+treeset <- trees[sample(1:5000, 100, replace = FALSE)]
 root.time <- 268.8
 for (i in 1:length(treeset)){
 	treeset[[i]]$root.time <- max(vcv(treeset[[i]])) + root.time
@@ -295,10 +314,20 @@ We will start by using the function to estimate brownian motion and OU parameter
 
 Does `OUwie` give the same parameter estimates that the other function in `geiger` did for single regime models? What difference does specifiying error make?
 ```{r}
-shapeBM <- OUwie(phy = tree, data = shapeData, model = "BM1", root.station = FALSE, root.age = tree$root.time)
-shapeOU <- OUwie(phy = tree, data = shapeData, starting.vals = c(0.01,0.01), model = "OU1", root.station = FALSE, root.age = tree$root.time)
-densityBM <- OUwie(phy = prunedTree, data = densityData, model = "BM1", root.station = FALSE, root.age = tree$root.time)
-densityOU <- OUwie(phy = prunedTree, data = densityData, starting.vals = c(0.01,0.01), model = "OU1", root.station = TRUE, root.age = tree$root.time)
+shapeBM <- OUwie(phy = tree, data = shapeData, 
+                 model = "BM1", root.station = FALSE, 
+                 root.age = tree$root.time)
+shapeOU <- OUwie(phy = tree, data = shapeData, 
+                 starting.vals = c(0.01,0.01), 
+                 model = "OU1", root.station = FALSE, 
+                 root.age = tree$root.time)
+densityBM <- OUwie(phy = prunedTree, data = densityData, 
+                   model = "BM1", root.station = FALSE, 
+                   root.age = tree$root.time)
+densityOU <- OUwie(phy = prunedTree, data = densityData, 
+                   starting.vals = c(0.01,0.01), 
+                   model = "OU1", root.station = TRUE, 
+                   root.age = tree$root.time)
 ```
 
 Now lets look at a multi-peak model. There are two subclades within the tree that seem to show many modifications associated with building a dense filtration fan (e.g. many branches per arm or many pinnules on branches). We can test whether this high density of the fan was associated with a different trait mean or rate of evolution. In this example we will define the tip and node regimes ourselves beforehand because it involves more than one clade.
@@ -323,11 +352,25 @@ regimetableD[tips,2] <- 2
 We have prepared the tree and table so that they have the regimes defined appropriately for our question, now we can fit a variety of models.
 
 ```{r}
-high_densityBMS <- OUwie(phy = treeD, data = regimetableD, model = "BMS", root.station = T, root.age = tree$root.time)
-high_densityOUM <- OUwie(phy = treeD, data = regimetableD, starting.vals = c(0.01,0.01), model = "OUM", root.station = T, root.age = tree$root.time)
-high_densityOUMV <- OUwie(phy = treeD, data = regimetableD, starting.vals = c(0.01,0.01), model = "OUMV", root.station = T, root.age = tree$root.time)
-high_densityOUMA <- OUwie(phy = treeD, data = regimetableD, starting.vals = c(0.01,0.01), model = "OUMA", root.station = T, root.age = tree$root.time)
-high_densityOUMVA <- OUwie(phy = treeD, data = regimetableD, starting.vals = c(0.01,0.01), model = "OUMVA", root.station = T, root.age = tree$root.time) #this is a complex model and may not be fit well
+high_densityBMS <- OUwie(phy = treeD, data = regimetableD, 
+                         model = "BMS", root.station = T, 
+                         root.age = tree$root.time)
+high_densityOUM <- OUwie(phy = treeD, data = regimetableD, 
+                         starting.vals = c(0.01,0.01), 
+                         model = "OUM", root.station = T, 
+                         root.age = tree$root.time)
+high_densityOUMV <- OUwie(phy = treeD, data = regimetableD, 
+                          starting.vals = c(0.01,0.01), 
+                          model = "OUMV", root.station = T, 
+                          root.age = tree$root.time)
+high_densityOUMA <- OUwie(phy = treeD, data = regimetableD, 
+                          starting.vals = c(0.01,0.01), 
+                          model = "OUMA", root.station = T, 
+                          root.age = tree$root.time)
+high_densityOUMVA <- OUwie(phy = treeD, data = regimetableD, 
+                           starting.vals = c(0.01,0.01), 
+                           model = "OUMVA", root.station = T, 
+                           root.age = tree$root.time) #this is a complex model and may not be fit well
 ```
 Now we can take a look at the AICcs and the parameter estimates as we did with the simple model, which is the best fit model, what is the AICc difference from the next best model? What are the parameter estimates and what does that suggest to us about the evolution of fan density in this group?
 

@@ -1,0 +1,565 @@
+#NEXUS
+[written Sat Aug 03 18:12:39 CDT 2019 by Mesquite  version 3.40 (build 877) at Wagners_Dark_Tower/10.43.17.254]
+
+BEGIN TAXA;
+	TITLE Taxa;
+	DIMENSIONS NTAX=27;
+	TAXLABELS
+		Ctenocystis Gyrocystis_platessa Gyrocystis_testudiformis Gyrocystis_cruzae Gyrocystis_badulesiensis Gyrocystis_erecta Progyrocystis_disjuncta Protocinctus_mansillaensis Elliptocinctus_barrandei Elliptocinctus_vizcainoi Sucocystis_theronensis Sucocystis_bretoni Lignanicystis_barriosensis Undatacinctus_undata Sucocystis_acrofera Undatacinctus_quadricornuta Undatacinctus_melendezi Asturicystis_jaekeli Sotocinctus_ubaghsi Trochocystites_bohemicus Trochocystoides_parvus Ludwigicinctus_truncatus Graciacystis_ambigua Asturicystis_havliceki Nelegerocystis_ivantzovi Rozanovicystis_triangularis Davidocinctus_pembrokensis 
+	;
+
+END;
+
+
+BEGIN CHARACTERS;
+	TITLE  Character_Matrix;
+	DIMENSIONS  NCHAR=60;
+	FORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = "  0 1 2 3";
+	CHARSTATELABELS 
+		1 Symmetry_of_body,
+		2 Theca_Shape,
+		3 Anterior_margin_shape,
+		4 'Stele Cross-sectional shape immediately below theca',
+		5 Length_of_stele_in_proportion_to_body,
+		6 Mesosphenoid_plates_on_dorsal_surface,
+		7 Mesosphenoidal_plates_on_dorsal_surface,
+		8 Mesosphenoidal_plates_on_ventral_surface,
+		9 Posterior_marginal_plate_arrangement,
+		10 'Number of marginal plates between M0 and the posterior^nclosure of the ring',
+		11 'Number of marginal plates between M0 and the posterior^nclosure of the ring',
+		12 Anterior_margin_of_plate_M0,
+		13 Shape_of_marginal_plates_forming_lateral_part_of_cinctus,
+		14 Interior_dorsal_edge_of_marginal_plates,
+		15 Plate_M2r_exsert_from_ring,
+		16 'Plate M4 hatchet-shaped',
+		17 Protuberance_on_the_dorsal_part_of_plate_M2l,
+		18 Protuberance_on_the_dorsal_part_of_plate_M3l,
+		19 Protuberance_on_the_dorsal_part_of_plate_M3r,
+		20 Protuberance_on_the_dorsal_part_of_plate_M4r,
+		21 Protuberance_on_the_ventral_part_of_plate_M5l,
+		22 Protuberance_on_the_ventral_part_of_plate_M4l,
+		23 Protuberance_on_the_ventral_part_of_plate_M3l,
+		24 Protuberance_on_the_ventral_part_of_plate_M2l,
+		25 Protuberance_on_the_ventral_part_of_plate_M1l,
+		26 Protuberance_on_the_ventral_part_of_plate_M0,
+		27 Protuberance_on_the_ventral_part_of_plate_M1r,
+		28 Protuberance_on_the_ventral_part_of_plate_M2r,
+		29 Protuberance_on_the_ventral_part_of_plate_M3r,
+		30 Protuberance_on_the_ventral_part_of_plate,
+		31 Protuberance_on_the_ventral_part_of_plate_M5r,
+		32 Shape_of_plate_M2,
+		33 Marginal_plates_1l_and_1r_with_strong_dorsal_projections,
+		34 'Marginal plates 1l and 1r with thin, plate-like dorsal flan',
+		35 Projections_from_marginal_plates_M1l_and_M1r,
+		36 Suropercular_facet_on_plates_M1l_and_M1r,
+		37 Number_of_plates_forming_dorsal_margin_of_operculum,
+		38 Central_plate_of_lintel_with_protuberance_or_spine,
+		39 Sutural_epispires_on_dorsal_surface,
+		40 Dorsal_surface,
+		41 Ventral_plated_surface_composition,
+		42 Ventral_plates_distinctly_larger_than_dorsal_plates,
+		43 Ventral_swellings_developed_on_anterior_infracentral_plates,
+		44 'Very large, differentiated ventral infracentrals in anterior  region',
+		45 Dorsal_tegmen_swollen_centrally,
+		46 Plate_M3l_food_groove,
+		47 Plate_M2l_food_groove,
+		48 Plate_M1l_food_groove_on_plate,
+		49 Plate_M0_food_groove_on_plate,
+		50 Plate_M1r_food_groove_on_plate,
+		51 Plate_M2r_food_groove_on_plate,
+		52 Plate_M3r_food_groove_on_plate,
+		53 Plate_M4r_food_groove_on_plate,
+		54 Upper_and_lower_rim_of_food_groove_with_distinct_pits,
+		55 Position_of_food_groove_as_it_passes_around_anterior_of_cinctus,
+		56 Path_of_left_food_groove_as_it_crosses_plate_M0,
+		57 Construction_of_plated_membranes_covering_food_groove,
+		58 'Relative lengths of left- and right-hand food grooves',
+		59 Marginal_ossicles_ventral_shape,
+		60 Marginal_ossicles_dorsal_shape ; 
+	MATRIX
+	Ctenocystis                  011???000?0?????0000?000000000????????0020?00????????????000
+	Gyrocystis_platessa          1101110100(0 1)100000000-0000000000010012020110000001200001-1300
+	Gyrocystis_testudiformis     00011111000100000000-0000100000010012020101110001200001-1310
+	Gyrocystis_cruzae            1001?10?000100000000??000100000010012???0?00?0001200001-?310
+	Gyrocystis_badulesiensis     11011102000110000000-01101011000201120?0010000001200001-1310
+	Gyrocystis_erecta            110??????00110000000-??????????0201120??????00001200001-?3?0
+	Progyrocystis_disjuncta      010?????100100000000-0000000000001001000200000001200001-0300
+	Protocinctus_mansillaensis   010111??200010000000-0022200000000-120??2000?0?122000011?310
+	Elliptocinctus_barrandei     (0 1)(0 1)0111010(1 2)(0 1 2)000000000022201022200201120?01100000122100011?210
+	Elliptocinctus_vizcainoi     0100?0??0100?1000000-0220102??00201120?001000001221?001??210
+	Sucocystis_theronensis       130111011(0 1)(0 1 2)010000000022201022200100121??0100000122000011?310
+	Sucocystis_bretoni           13011??111(0 1)010000000002201022200100120??0100000122000111?310
+	Lignanicystis_barriosensis   13110112011000010000022201022201101120112000000122100000?210
+	Undatacinctus_undata         100?????010010001111-0220102220000-1????0?00?00122100010?211
+	Sucocystis_acrofera          230?????010010000000-02201022200100120??01000001222100110110
+	Undatacinctus_quadricornuta  100?????010010000202-0222222220000-120??0100000122100001?211
+	Undatacinctus_melendezi      130?????010010001111-0220102220000-120??0100?0012210001??211
+	Asturicystis_jaekeli         121111?2000010000000-0000000000000-100??20000012222210110100
+	Sotocinctus_ubaghsi          100?01??0(0 1)0010000000-0000000000000-0000020000012222100110200
+	Trochocystites_bohemicus     1(0 3)(0 1)111010(1 2)(0 1)02000000002220002220000-110112000012222221111?210
+	Trochocystoides_parvus       1000?000000010000000-0022002200000-1????20000122222210110210
+	Ludwigicinctus_truncatus     101?????010010100000-0222222222000-12???000000012200001-?210
+	Graciacystis_ambigua         00(0 1)1011200(0 1)000000000000022200000100000102000001022100010????
+	Asturicystis_havliceki       ????????????????????????????????????????????????????????????
+	Nelegerocystis_ivantzovi     ????????????????????????????????????????????????????????????
+	Rozanovicystis_triangularis  ????????????????????????????????????????????????????????????
+	Davidocinctus_pembrokensis   ????????????????????????????????????????????????????????????
+
+;
+
+END;
+BEGIN LABELS;
+	TAXAGROUPLABEL Outgroup COLOR = (RGB 1 1 1) ;
+	TAXAGROUPLABEL Ingroup COLOR = (RGB 1 1 1) ;
+
+	CHARGROUPLABEL Lognormal COLOR = (RGB 1 1 1) ;
+	CHARGROUPLABEL Exclude COLOR = (RGB 1 1 1) ;
+	CHARGROUPLABEL Gamma;
+	CHARGROUPLABEL Nonfeeding;
+	CHARGROUPLABEL Feeding;
+	CHARGROUPLABEL Include;
+	CHARGROUPLABEL General_Features;
+	CHARGROUPLABEL Stele;
+	CHARGROUPLABEL Marginal_Frame;
+	CHARGROUPLABEL Operculum_and_Porta;
+	CHARGROUPLABEL Membranes;
+	CHARGROUPLABEL Food_Grooves;
+	CHARGROUPLABEL Bonus;
+	CHARGROUPLABEL Unbiased COLOR = (RGB 1 1 1) ;
+	CHARGROUPLABEL Driven COLOR = (RGB 1 1 1) ;
+
+
+END;
+
+BEGIN SETS;
+	TAXPARTITION To_Analyze  =  Outgroup :  1, Ingroup :  2 -  23;
+
+	CHARPARTITION Functional_Partitions  =  Nonfeeding :  1 -  45 58 -  60, Feeding :  46 -  57;
+	CHARPARTITION To_Analyze  =  Include :  1 -  57, Exclude :  58 -  60;
+	CHARPARTITION Authors  =  General_Features :  1 -  3, Stele :  4 -  8, Marginal_Frame :  9 -  32, Operculum_and_Porta :  33 -  38, Membranes :  39 -  45, Food_Grooves :  46 -  57, Bonus :  58 -  60;
+	CHARPARTITION Driven_Trend  =  Unbiased :  1 -  32 34 -  40 43 -  50 52 -  60, Driven :  33 41 -  42 51;
+
+END;
+
+BEGIN ASSUMPTIONS;
+	TYPESET * UNTITLED   =  unord:  1 -  60;
+TYPESET RevBayes   =  unord:  1 -  60;
+
+END;
+
+BEGIN MESQUITECHARMODELS;
+	ProbModelSet * UNTITLED   =  'Mk1 (est.)':  1 -  60;
+END;
+
+BEGIN NOTES;
+
+	TEXT  TAXON = 23 TEXT = 'From Zamora, Rahman & Smith 2013. The ontogeny of cinctans (stem-group Echinodermata) as revealed by a new genus, Graciacystis, from the Middle Cambrian of Spain.  Palaeontology 56(2):399-410.';
+
+END;
+
+Begin MESQUITE;
+		MESQUITESCRIPTVERSION 2;
+		TITLE AUTO;
+		tell ProjectCoordinator;
+		timeSaved 1564873959937;
+		getEmployee #mesquite.minimal.ManageTaxa.ManageTaxa;
+		tell It;
+			setID 0 446649146743680863;
+		endTell;
+		getEmployee #mesquite.charMatrices.ManageCharacters.ManageCharacters;
+		tell It;
+			setID 0 6329011859696130875;
+			mqVersion 340;
+			checksumv 0 3 1227500523 null  getNumChars 60 numChars 60 getNumTaxa 27 numTaxa 27   short true   bits 15   states 15   sumSquaresStatesOnly 5852.0 sumSquares 5852.0 longCompressibleToShort false usingShortMatrix true   NumFiles 1 NumMatrices 1;
+			mqVersion;
+		endTell;
+		getWindow;
+		tell It;
+			suppress;
+			setResourcesState false false 100;
+			setPopoutState 300;
+			setExplanationSize 0;
+			setAnnotationSize 0;
+			setFontIncAnnot 0;
+			setFontIncExp 0;
+			setSize 1530 788;
+			setLocation 8 45;
+			setFont SanSerif;
+			setFontSize 10;
+			getToolPalette;
+			tell It;
+			endTell;
+			desuppress;
+		endTell;
+		getEmployee  #mesquite.minimal.ManageTaxa.ManageTaxa;
+		tell It;
+			showTaxa #446649146743680863 #mesquite.lists.TaxonList.TaxonList;
+			tell It;
+				setTaxa #446649146743680863;
+				getWindow;
+				tell It;
+					useTargetValue off;
+					setTargetValue ;
+					newAssistant  #mesquite.lists.TaxonListCurrPartition.TaxonListCurrPartition;
+					setExplanationSize 30;
+					setAnnotationSize 20;
+					setFontIncAnnot 0;
+					setFontIncExp 0;
+					setSize 1430 716;
+					setLocation 8 45;
+					setFont Gadget;
+					setFontSize 12;
+					getToolPalette;
+					tell It;
+					endTell;
+					setActive;
+				endTell;
+				showWindow;
+				getEmployee #mesquite.lists.ColorTaxon.ColorTaxon;
+				tell It;
+					setColor Red;
+					removeColor off;
+				endTell;
+				getEmployee #mesquite.lists.TaxonListAnnotPanel.TaxonListAnnotPanel;
+				tell It;
+					togglePanel off;
+				endTell;
+			endTell;
+		endTell;
+		getEmployee  #mesquite.trees.BasicTreeWindowCoord.BasicTreeWindowCoord;
+		tell It;
+			makeTreeWindow #446649146743680863  #mesquite.trees.BasicTreeWindowMaker.BasicTreeWindowMaker;
+			tell It;
+				suppressEPCResponse;
+				setTreeSourceEditMode #mesquite.trees.StoredTrees.StoredTrees;
+				tell It;
+					laxMode;
+					setTreeBlock -2147483647;
+					toggleUseWeights off;
+				endTell;
+				setAssignedID 1001.1560903718473.5294326806589831643;
+				getTreeWindow;
+				tell It;
+					setExplanationSize 30;
+					setAnnotationSize 20;
+					setFontIncAnnot 0;
+					setFontIncExp 0;
+					setSize 1430 716;
+					setLocation 8 45;
+					setFont SanSerif;
+					setFontSize 10;
+					getToolPalette;
+					tell It;
+						setTool mesquite.trees.BasicTreeWindowMaker.BasicTreeWindow.arrow;
+					endTell;
+					getTreeDrawCoordinator #mesquite.trees.BasicTreeDrawCoordinator.BasicTreeDrawCoordinator;
+				tell It;
+					suppress;
+					setTreeDrawer  #mesquite.trees.DiagonalDrawTree.DiagonalDrawTree;
+					tell It;
+						setNodeLocs #mesquite.trees.NodeLocsStandard.NodeLocsStandard;
+						tell It;
+							branchLengthsToggle off;
+							toggleScale on;
+							toggleBroadScale off;
+							toggleCenter off;
+							toggleEven off;
+							setFixedTaxonDistance 0;
+						endTell;
+						setEdgeWidth 12;
+						orientUp;
+					endTell;
+					setBackground White;
+					setBranchColor Black;
+					showNodeNumbers off;
+					showBranchColors on;
+					labelBranchLengths off;
+					centerBrLenLabels on;
+					showBrLensUnspecified on;
+					showBrLenLabelsOnTerminals on;
+					setBrLenLabelColor 0 0 255;
+					setNumBrLenDecimals 6;
+					desuppress;
+					getEmployee #mesquite.trees.BasicDrawTaxonNames.BasicDrawTaxonNames;
+					tell It;
+						setFont Gadget;
+						setColor Black;
+						toggleColorPartition off;
+						toggleColorAssigned on;
+						toggleShadePartition off;
+						toggleShowFootnotes on;
+						toggleNodeLabels on;
+						toggleCenterNodeNames off;
+						toggleShowNames on;
+						namesAngle ?;
+					endTell;
+				endTell;
+					setTreeNumber 1;
+					setTree '(1,(18,((21,20),(19,((8,(23,(22,(((14,17),16),(15,((11,12),(13,(10,9)))))))),(7,(2,(3,(4,(5,6))))))))));';
+					setDrawingSizeMode 0;
+					toggleLegendFloat on;
+					scale 0;
+					toggleTextOnTree off;
+					togglePrintName off;
+					showWindow;
+					newAssistant  #mesquite.ancstates.TraceCharOverTrees.TraceCharOverTrees;
+				tell It;
+					suppress ;
+					setHistorySource  #mesquite.ancstates.RecAncestralStates.RecAncestralStates;
+					tell It;
+						getCharacterSource  #mesquite.charMatrices.CharSrcCoordObed.CharSrcCoordObed;
+						tell It;
+							setCharacterSource #mesquite.charMatrices.StoredCharacters.StoredCharacters;
+							tell It;
+								setDataSet #6329011859696130875;
+							endTell;
+						endTell;
+						setMethod  #mesquite.parsimony.ParsAncestralStates.ParsAncestralStates;
+						tell It;
+							setModelSource  #mesquite.parsimony.CurrentParsModels.CurrentParsModels;
+							toggleMPRsMode off;
+						endTell;
+						toggleShowSelectedOnly off;
+					endTell;
+					setCharacter 41;
+					setTreeSource  #mesquite.treefarm.CurrentTree.CurrentTree;
+					tell It;
+						setTreeSource  #mesquite.trees.TreeOfContext.TreeOfContext;
+						tell It;
+							setContextID 1001.1560903718473.5294326806589831643;
+						endTell;
+					endTell;
+					setNumTrees 100;
+					setDisplayMode  #mesquite.ancstates.ShadeStatesOnTree.ShadeStatesOnTree;
+					tell It;
+						toggleLabels off;
+						togglePredictions off;
+						toggleGray off;
+					endTell;
+					toggleShowLegend on;
+					toggleShowNodeAbsent on;
+					toggleShowEquivocal on;
+					setMode Count_Trees_with_Uniquely_Best_States;
+					setInitialOffsetX 4;
+					setInitialOffsetY -311;
+					setLegendWidth 142;
+					setLegendHeight 120;
+					desuppress ;
+				endTell;
+				endTell;
+				setEditMode 'Edited, based on Edited, based on Default Symmetrical Tree+   [Stored Trees]   [Stored Trees]';
+				desuppressEPCResponseNORESET;
+				getEmployee #mesquite.trees.ColorBranches.ColorBranches;
+				tell It;
+					setColor Red;
+					removeColor off;
+				endTell;
+				getEmployee #mesquite.ornamental.BranchNotes.BranchNotes;
+				tell It;
+					setAlwaysOn off;
+				endTell;
+				getEmployee #mesquite.ornamental.ColorTreeByPartition.ColorTreeByPartition;
+				tell It;
+					colorByPartition off;
+				endTell;
+				getEmployee #mesquite.ornamental.DrawTreeAssocDoubles.DrawTreeAssocDoubles;
+				tell It;
+					setOn on;
+					toggleShow consensusFrequency;
+					toggleShow posteriorProbability;
+					toggleShow bootstrapFrequency;
+					toggleShow consensusFrequency;
+					toggleShow posteriorProbability;
+					toggleShow bootstrapFrequency;
+					setDigits 4;
+					setThreshold ?;
+					writeAsPercentage off;
+					toggleCentred off;
+					toggleHorizontal on;
+					toggleWhiteEdges on;
+					toggleShowOnTerminals on;
+					setFontSize 10;
+					setOffset 0  0;
+				endTell;
+				getEmployee #mesquite.ornamental.DrawTreeAssocStrings.DrawTreeAssocStrings;
+				tell It;
+					setOn on;
+					toggleCentred on;
+					toggleHorizontal on;
+					setFontSize 10;
+					setOffset 0  0;
+					toggleShowOnTerminals on;
+				endTell;
+				getEmployee #mesquite.trees.TreeInfoValues.TreeInfoValues;
+				tell It;
+					panelOpen false;
+				endTell;
+			endTell;
+		endTell;
+		getEmployee  #mesquite.charMatrices.BasicDataWindowCoord.BasicDataWindowCoord;
+		tell It;
+			showDataWindow #6329011859696130875 #mesquite.charMatrices.BasicDataWindowMaker.BasicDataWindowMaker;
+			tell It;
+				getWindow;
+				tell It;
+					getTable;
+					tell It;
+						rowNamesWidth 176;
+					endTell;
+					setExplanationSize 30;
+					setAnnotationSize 20;
+					setFontIncAnnot 0;
+					setFontIncExp 0;
+					setSize 1430 716;
+					setLocation 8 45;
+					setFont Gadget;
+					setFontSize 12;
+					getToolPalette;
+					tell It;
+						setTool mesquite.charMatrices.BasicDataWindowMaker.BasicDataWindow.arrow;
+					endTell;
+					setTool mesquite.charMatrices.BasicDataWindowMaker.BasicDataWindow.arrow;
+					colorCells  #mesquite.charMatrices.NoColor.NoColor;
+					colorRowNames  #mesquite.charMatrices.TaxonGroupColor.TaxonGroupColor;
+					colorColumnNames  #mesquite.charMatrices.CharGroupColor.CharGroupColor;
+					colorText  #mesquite.charMatrices.NoColor.NoColor;
+					setBackground White;
+					toggleShowNames on;
+					toggleShowTaxonNames on;
+					toggleTight off;
+					toggleThinRows off;
+					toggleShowChanges on;
+					toggleSeparateLines off;
+					toggleShowStates on;
+					toggleAutoWCharNames on;
+					toggleAutoTaxonNames off;
+					toggleShowDefaultCharNames off;
+					toggleConstrainCW on;
+					toggleBirdsEye off;
+					toggleShowPaleGrid off;
+					toggleShowPaleCellColors off;
+					toggleShowPaleExcluded off;
+					togglePaleInapplicable on;
+					toggleShowBoldCellText off;
+					toggleAllowAutosize on;
+					toggleColorsPanel off;
+					toggleDiagonal on;
+					setDiagonalHeight 80;
+					toggleLinkedScrolling on;
+					toggleScrollLinkedTables off;
+				endTell;
+				showWindow;
+				getWindow;
+				tell It;
+					forceAutosize;
+				endTell;
+				getEmployee #mesquite.charMatrices.AlterData.AlterData;
+				tell It;
+					toggleBySubmenus off;
+				endTell;
+				getEmployee #mesquite.charMatrices.ColorByState.ColorByState;
+				tell It;
+					setStateLimit 9;
+					toggleUniformMaximum on;
+				endTell;
+				getEmployee #mesquite.charMatrices.ColorCells.ColorCells;
+				tell It;
+					setColor Red;
+					removeColor off;
+				endTell;
+				getEmployee #mesquite.categ.StateNamesStrip.StateNamesStrip;
+				tell It;
+					showStrip off;
+				endTell;
+				getEmployee #mesquite.charMatrices.AnnotPanel.AnnotPanel;
+				tell It;
+					togglePanel off;
+				endTell;
+				getEmployee #mesquite.charMatrices.CharReferenceStrip.CharReferenceStrip;
+				tell It;
+					showStrip off;
+				endTell;
+				getEmployee #mesquite.charMatrices.QuickKeySelector.QuickKeySelector;
+				tell It;
+					autotabOff;
+				endTell;
+				getEmployee #mesquite.charMatrices.SelSummaryStrip.SelSummaryStrip;
+				tell It;
+					showStrip off;
+				endTell;
+				getEmployee #mesquite.categ.SmallStateNamesEditor.SmallStateNamesEditor;
+				tell It;
+					panelOpen true;
+				endTell;
+			endTell;
+		endTell;
+		getEmployee  #mesquite.charMatrices.ManageCharacters.ManageCharacters;
+		tell It;
+			showCharacters #6329011859696130875 #mesquite.lists.CharacterList.CharacterList;
+			tell It;
+				setData 0;
+				getWindow;
+				tell It;
+					useTargetValue off;
+					setTargetValue ;
+					newAssistant  #mesquite.lists.DefaultCharOrder.DefaultCharOrder;
+					newAssistant  #mesquite.lists.CharListInclusion.CharListInclusion;
+					newAssistant  #mesquite.lists.CharListPartition.CharListPartition;
+					newAssistant  #mesquite.lists.CharacterStats.CharacterStats;
+				tell It;
+					toggleSelectedOnly off;
+				endTell;
+					getTable;
+					tell It;
+						rowNamesWidth 433;
+						columnWidth 1 56;
+						columnWidth 3 59;
+					endTell;
+					setExplanationSize 30;
+					setAnnotationSize 20;
+					setFontIncAnnot 0;
+					setFontIncExp 0;
+					setSize 1430 716;
+					setLocation 8 45;
+					setFont Gadget;
+					setFontSize 12;
+					getToolPalette;
+					tell It;
+						setTool mesquite.lists.CharacterList.CharacterListWindow.ibeam;
+					endTell;
+				endTell;
+				showWindow;
+				getEmployee #mesquite.lists.CharListAnnotPanel.CharListAnnotPanel;
+				tell It;
+					togglePanel off;
+				endTell;
+			endTell;
+		endTell;
+		getEmployee  #mesquite.charMatrices.ManageCharPartitions.ManageCharPartitions;
+		tell It;
+			showCharacterGroups  #mesquite.lists.CharGroupList.CharGroupList;
+			tell It;
+				getWindow;
+				tell It;
+					useTargetValue off;
+					setTargetValue ;
+					newAssistant  #mesquite.lists.CharGroupListColor.CharGroupListColor;
+					setExplanationSize 30;
+					setAnnotationSize 20;
+					setFontIncAnnot 0;
+					setFontIncExp 0;
+					setSize 1430 716;
+					setLocation 8 45;
+					setFont Gadget;
+					setFontSize 14;
+					getToolPalette;
+					tell It;
+					endTell;
+				endTell;
+				showWindow;
+			endTell;
+		endTell;
+		endTell;
+end;
+
+
