@@ -11,11 +11,7 @@ output: html_document
 
 **Data Partitioned by State Numbers & Reformatted for RevBayes:**
 
-[2-state characters](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Matrix_2_States.nex?raw=true)
-
-[3-state characters](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Matrix_3_States.nex?raw=true)
-
-[4-state characters](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Matrix_4_States.nex?raw=true)
+[Cinctans.nex](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cinctans.nex?raw=true)
 
 **Chronostratigraphic Data formatted for RevBayes (with 0 = Latest First Appearance):**
 
