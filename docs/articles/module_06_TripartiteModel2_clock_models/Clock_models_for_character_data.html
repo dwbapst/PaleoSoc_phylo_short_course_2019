@@ -44,6 +44,12 @@
   </a>
 </li>
 <li>
+  <a href="https://www.paleosoc.org/">
+    <span class=" paleosociety.jpg"></span>
+     
+  </a>
+</li>
+<li>
   <a></a>
 </li>
 <li>
@@ -302,34 +308,32 @@
 <h2 class="hasAnchor">
 <a href="#putting-it-all-together" class="anchor"></a>Putting it all together</h2>
 <p>Finally, we combine each the Mk model of character evolution, gamma-distributed rate heterogeneity (describing variation among characters), the uncorrelated relaxed clock model (describing variation among lineages), and the uniform tree model together into what into a <code>phyloCTMC</code> object. The following loop will apply these model parameters to all morphological character partitions with the same number of states.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    n_max_states &lt;-<span class="st"> </span><span class="dv">7</span>
-    idx =<span class="st"> </span><span class="dv">1</span>
-    morpho_bystate[<span class="dv">1</span>] &lt;-<span class="st"> </span>morpho
-    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>n_max_states) {
-        <span class="co"># make local tmp copy of data</span>
-        <span class="co"># only keep character blocks with state space equal to size i</span>
-        morpho_bystate[i] &lt;-<span class="st"> </span>morpho
-        morpho_bystate[i]<span class="kw">.setNumStatesPartition</span>(i)
-          <span class="co"># get number of characters per character size wth i-sized states</span>
-        nc =<span class="st"> </span>morpho_bystate[i]<span class="kw">.nchar</span>()
-        <span class="co"># for non-empty character blocks</span>
-        <span class="cf">if</span> (nc <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {
-            <span class="co"># make i-by-i rate matrix</span>
-            q[idx] &lt;-<span class="st"> </span><span class="kw">fnJC</span>(i)
-            <span class="co"># create model of evolution for the character block</span>
-            m_morph[idx] <span class="op">~</span><span class="st"> </span><span class="kw">dnPhyloCTMC</span>( <span class="dt">tree=</span>phylogeny,
-                                    <span class="dt">Q=</span>q[idx],
-                                    <span class="dt">nSites=</span>nc,
-                                    <span class="dt">siteRates=</span>rates_morpho,
-                                    <span class="dt">branchRates=</span>branch_rate_var
-                                    <span class="dt">type=</span><span class="st">"Standard"</span>)
-            <span class="co"># attach the data</span>
-            m_morph[idx]<span class="kw">.clamp</span>(morpho_bystate[i])
-            <span class="co"># increment counter</span>
-            idx =<span class="st"> </span>idx <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-      idx
-      }
-    }</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_max_states &lt;-<span class="st"> </span><span class="dv">3</span>
+idx =<span class="st"> </span><span class="dv">1</span>
+morpho_bystate[<span class="dv">1</span>] &lt;-<span class="st"> </span>morpho
+<span class="cf">for</span> (c <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n_max_states) {
+    <span class="co"># make local tmp copy of data</span>
+    <span class="co"># only keep character blocks with state space equal to size i</span>
+    morpho_bystate[c] &lt;-<span class="st"> </span>morpho
+    morpho_bystate[c]<span class="kw">.setNumStatesPartition</span>(c)
+    nc =<span class="st"> </span>morpho_bystate[c]<span class="kw">.nchar</span>()
+    <span class="co"># for non-empty character blocks</span>
+    <span class="cf">if</span> (nc <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {
+        <span class="co"># make i-by-i rate matrix</span>
+        q[idx] &lt;-<span class="st"> </span><span class="kw">fnJC</span>(c)
+        <span class="co"># create model of evolution for the character block</span>
+        m_morph[idx] <span class="op">~</span><span class="st"> </span><span class="kw">dnPhyloCTMC</span>(<span class="dt">tree=</span>phylogeny,
+                                <span class="dt">Q=</span>q[idx],
+                                <span class="dt">nSites=</span>nc,
+                                <span class="dt">siteRates=</span>rates_morpho,
+                                <span class="dt">branchRates=</span>branch_rate_var,
+                                <span class="dt">type=</span><span class="st">"Standard"</span>)
+        <span class="co"># attach the data</span>
+        m_morph[idx]<span class="kw">.clamp</span>(morpho_bystate[c])
+        <span class="co"># increment counter</span>
+        idx =<span class="st"> </span>idx <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+  }
+}</code></pre></div>
 <p>Note that this script is very similar to the one used in in the previous module (Tripartite Model 1 - Descrete Morphology). Can you spot the difference? It’s subtle, but very important!</p>
 <p>Now that all of the components of the model are specified, we can run an analysis!</p>
 </div>
@@ -370,7 +374,7 @@
 <p>When the analysis is complete, RevBayes will quit and can contain all of the files you specified with the monitors in the directory <code>output</code>.</p>
 <p>We can look at the log files in the software <code>Tracer</code>. We can also calculate several different types of summary trees:</p>
 <pre><code># Read in the tree trace and construct different kinds of summary trees 
-trace = readTreeTrace("output/ucln__rel_clock.trees")
+trace = readTreeTrace("output/ucln_relaxed_clock.trees", nruns=2)
 # Summarize tree trace and save trees to file
 mccTree(trace, file="output/ucln_rel_clock.mcc.tre" )
 mapTree(trace, file="output/ucln_rel_clock.map.tre" )

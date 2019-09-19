@@ -47,6 +47,6 @@ Who are we? We are a bunch of people who are very excited about phylogenetics in
 
 ## What's Next
 
-Many of the organizers and several helpers are involved in organizing a paleo-phylo topical session at GSA. This session will be on the morning after the workshop. You can see the list of oral talks in that session on the GSA technical program site: [T100. Phylogenetic Paleobiology: Good Things Come in Trees](https://gsa.confex.com/gsa/2019AM/meetingapp.cgi/Session/47757). There are also a number of other phylogenetic-related sessions and talks through the whole of GSA 2019 - what a week!
+Many of the organizers and several helpers are involved in organizing a paleo-phylo topical session at GSA. This session will be on the morning after the workshop. You can see the list of oral talks in that session on the GSA technical program site: [T100. Phylogenetic Paleobiology: Good Things Come in Trees](https://gsa.confex.com/gsa/2019AM/meetingapp.cgi/Session/47757). There are also a number of other phylogenetic-related sessions and talks through the whole of GSA 2019 - what a week!  
 
 As far as what's coming *after* GSA, we are working on a series of written contributions that will be published in Elements of Paleontology; they are not completed yet, but should appear in the coming year, and we will inform all of you when they do.
