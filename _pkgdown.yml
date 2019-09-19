@@ -10,6 +10,7 @@ navbar:
    structure:
      left:
       - github
+      - paleoSoc
      right: 
       - schedule
       - organizers
