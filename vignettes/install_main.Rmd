@@ -188,7 +188,7 @@ If you are a regular Linux user, you will be unsurprised to learn that you will 
 
 ```
 sudo apt-get install cmake
-sudo apt-get install libboost-dev-all
+sudo apt-get install libboost-all-dev
 ```
 
 Then obtain the source code:

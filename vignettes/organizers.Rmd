@@ -88,7 +88,7 @@ link to institutional website
 
 ### David Bapst
 
-![*(David Bapst in 2012)*](files/dwbapst_in_2012.png){#id .class width=50% height=50%}
+![*David Bapst in 2012*](files/dwbapst_in_2012.png){#id .class width=50% height=50%}
 
 David Bapst is an assistant instructional professor at Texas A&M University, where he teaches both on-ground and online classes involve teaching how to do data analysis in R to geoscientists. He is also a certified Software Carpentry instructor and regularly co-organizes and instructs Software Carpentry workshops at TAMU. His research usually involves phylogenies, R, graptolites, and a deep desire to prove that sampled ancestors are real, and you really can talk about them. Really!
 
