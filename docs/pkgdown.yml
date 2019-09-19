@@ -12,7 +12,6 @@ articles:
   module_04: module_04_Intro_RevBayes_Graphical_Modeling/module_04.html
   05_RB_MCMC_Discrete_Morph: module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html
   Clock_models_for_character_data: module_06_TripartiteModel2_clock_models/Clock_models_for_character_data.html
-  module_06: module_06_TripartiteModel2_clock_models/module_06.html
   module_07: module_07_TripartiteModel3_Fossilized_Birth_death/module_07.html
   module_08: module_08_worked_PCM_example/module_08.html
   workshop_end: module_end_summary/workshop_end.html
