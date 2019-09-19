@@ -1,21 +1,30 @@
 ---
 title: "Required Materials and Data Downloads"
+author: "The Gang"
+date: "9/19/2019"
 output: html_document
 ---
 
 **Original Data Set:**
-Smith & Zamora matrix + subsequently added species: [link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Smith_&_Zamora_2009.nex)
+
+[Smith & Zamora matrix + subsequently added species](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Smith_&_Zamora_2009.nex)
 
 **Data Partitioned by State Numbers & Reformatted for RevBayes:**
-2-state characters: [link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Matrix_2_States.nex)
-3-state characters: [link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Matrix_3_States.nex)
-4-state characters: [link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Matrix_4_States.nex)
+
+[2-state characters](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Matrix_2_States.nex)
+
+[3-state characters](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Matrix_3_States.nex)
+
+[4-state characters](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Matrix_4_States.nex)
 
 **Chronostratigraphic Data formatted for RevBayes (with 0 = Latest First Appearance):**
-cincta_fossil_intervals_FA.tsv: [link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/cincta_fossil_intervals_FA.tsv)
+
+[cincta_fossil_intervals_FA.tsv](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/cincta_fossil_intervals_FA.tsv)
 
 **Everything Cinctan in one zip file!:**
-Whole Shebang: [link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data.zip)
 
-**Eucladida Data set (.RData file):**
-Eucladida: [link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Eucladida_Inputs.RData)
+[Whole Shebang](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data.zip)
+
+**Eucladida Data set for PCM Module (.RData file):**
+
+[Eucladida](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Eucladida_Inputs.RData)
