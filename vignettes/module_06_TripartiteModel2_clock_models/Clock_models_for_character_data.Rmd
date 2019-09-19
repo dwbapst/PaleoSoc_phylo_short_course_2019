@@ -17,10 +17,10 @@ This tutorial will give an overview of time tree analyses, clock models of moprh
 
 ## Unconstrained trees vs. time Trees
 
-This tutorial is about morphological clock models for paleontological data. Many commonly used phylogenetic methods in paleontology, such as maximum parsimony or undated Bayesian phylogenetic analysis (e.g., in MrBayes), do not incorporate time and therefore do not use clock models. We refer to branch lengths derived from such methods as _unconstrained_ because time and rates are confounded. 
+This tutorial is about morphological clock models for paleontological data. Many commonly used phylogenetic methods in paleontology, such as maximum parsimony or undated Bayesian phylogenetic analysis (e.g., in MrBayes), do not incorporate time and therefore do not use clock models. We refer to branch lengths derived from such methods as *unconstrained* because time and rates are confounded. 
 
 ![Branch_lengths](images/BL_plot-01.png)
-_Figure 1. In an undated phylogenetic analysis, the branch lengths are said to be unconstrained because they reflect the product of the morphological rates and time (left). In contrast, tip-dating and similar methods incorporate clock models of character change and temporal information from the fossil record to scale branch lengths in units of time (right)._ 
+*Figure 1. In an undated phylogenetic analysis, the branch lengths are said to be unconstrained because they reflect the product of the morphological rates and time (left). In contrast, tip-dating and similar methods incorporate clock models of character change and temporal information from the fossil record to scale branch lengths in units of time (right).*
 
 \newpage
 
@@ -34,14 +34,14 @@ Methods that involving estimating divergences, such as fossil tip-dating, aim to
 Clock models are essential in divergence dating analyses because they describe how rates of character change varies (or does not vary) across the phylogeny. Although clock models originate from biological literature concerning the "molecular clock", from a modeling perspective it does not matter whether our data are molecules or morphology. In a remarkable analysis (at least I think it is!), Lee et al. (2013) applied molecular and morphological clock models to a combined dataset of molecular and morphological data of extant arthropods (no fossils were included as tips in their tree). They found evidence that rates of morphological evolution were higher during the Cambrian than other times throughout the Paleozoic.It's fascinating to see how molecular and morphological clock models can be used to test a predominately paleontological hypothesis (i.e., the Cambrian "explosion") with extant taxa alone! Do you think their results would change if morphological data from fossils were included? Why or why not?
 
 ![Cambrian rates](images/Cambrian_rates.png)
-_Figure 2. Results of molecular and morphological clock analysis of extant arthropods. From Lee et al. (2013)._
+*Figure 2. Results of molecular and morphological clock analysis of extant arthropods. From Lee et al. (2013).*
 
 Although the Lee et al. (2013) example involved extant species, morphological clock models can also be used to test macroevolutionary hypotheses of entirely extinct clades. Examples of such studies are numerous and span a diverse array of taxa and timescales,including fossil hominids (Dembo et al., 2015), Mesozoic mammals (Close et al., 2015), Paleozoic crinoids (Wright, 2017a), Cambrian trilobites (Patterson et al., 2019), and many other studies. 
 
 
 # A Brief Classification of Clock Models
 
-There are many kinds of clock models described in the literature (see Lepage et al., 2007; Heath and Moore, 2014; Ho and Duchene, 2014). We will only mention a few here. All clock models can be placed into two categories: **strict clock** and **relaxed clocks**, which is equivalent to saying "strict clock" vs. "everthing else". A strict clock assumes a _constant rate_ of evolution whereas relaxed clocks apply a model of _rate variation_. The distinction here between strick and relaxed clocks is broadly similar to other paleontological pursuits that use either a "set rate" or "distributed rate", such as models of taxonomic diversification and methods accounting for incomplete sampling over time or spatial scales.
+There are many kinds of clock models described in the literature (see Lepage et al., 2007; Heath and Moore, 2014; Ho and Duchene, 2014). We will only mention a few here. All clock models can be placed into two categories: **strict clock** and **relaxed clocks**, which is equivalent to saying "strict clock" vs. "everthing else". A strict clock assumes a *constant rate* of evolution whereas relaxed clocks apply a model of *rate variation*. The distinction here between strick and relaxed clocks is broadly similar to other paleontological pursuits that use either a "set rate" or "distributed rate", such as models of taxonomic diversification and methods accounting for incomplete sampling over time or spatial scales.
 
 * **Strict Clock**
 
@@ -66,7 +66,7 @@ Relaxed clocks form a family of models that differ in their underlying assumptio
 **Other models.** There are many other ways to model morphological rate variation among lineages. With access to modular software like RevBayes, we can create nearly any clock model we can dream up. For instance, another way to relax the clock could involve modeling branch rates as either "decaying" over time or time-specific shifts.  "Early Burst" models of morphological diversification, whereby morphologic character changes are concentrated early in the history of a clade, are one example of a time-varing model. 
 
 ![Clock trees](images/Clocks.png)
-_Figure 3. Phylogenetic trees showing differences in how rate variation is distributed across different clock models. Although this example uses extant species, the same logic applies to paleontological phylogenies. (Upper left), chronogram where branch lengths are in units of time. The scale bar is 1 time unit. All other panels show clock models with branch lengths measured in number of molecular substitutions per site (analogous to character changes for morphologic data). Figure modified from Ho and Duchene (2014)._
+*Figure 3. Phylogenetic trees showing differences in how rate variation is distributed across different clock models. Although this example uses extant species, the same logic applies to paleontological phylogenies. (Upper left), chronogram where branch lengths are in units of time. The scale bar is 1 time unit. All other panels show clock models with branch lengths measured in number of molecular substitutions per site (analogous to character changes for morphologic data). Figure modified from Ho and Duchene (2014).*
 
 
 # Example: Applying a relaxed morphological clock model 
@@ -134,9 +134,9 @@ Cinctan echinoderms occur throughout middle Cambrian (Miaolingian) rocks, so the
 
 Node ages for time-calibrated trees are intuitive: they increase from the tips toward the root (i.e., backwards in time), with the root being the oldest node in the tree. However, it is important to note that in RevBayes, the "end" of the tree generating process ends at time, _(t)_ = 0. This makes sense for analyses including extant species because the youngest time unit is the present day. For paleontologists, this awkward because many of us study lineages that are completely extinct, such as for cinctan echinoderms. However, it is straightforward to rescale our age dates relative to the end of time of interest.
 
-The youngest taxon in our analysis is _Sucocystis acrofera_, which has its FAD at ~498.8 Ma. Since this is the youngest occurrence in the analysis, we can effectively treat it as "extant". To obtain the dates listed in the variable `taxonData`, we rescaled the absolute ages such that RevBayes treats _Sucocystis acrofera_ as "extant" (i.e., 498.8 Ma = 0 Ma). 
+The youngest taxon in our analysis is *Sucocystis acrofera*, which has its FAD at ~498.8 Ma. Since this is the youngest occurrence in the analysis, we can effectively treat it as "extant". To obtain the dates listed in the variable `taxonData`, we rescaled the absolute ages such that RevBayes treats *Sucocystis acrofera* as "extant" (i.e., 498.8 Ma = 0 Ma). 
 
-Given their fossil record, cinctans diverged from other echinoderms by at least the middle Cambrian Miaolingian Series, but probably do not have "deep" roots in the early Cambrian or Precambrian. We will place a uniform distribution on the root age to correspond to Cambrian _Stage 4_, spanning 509 Ma to 514 Ma. Rescaling these to relative time units, we find 509 Ma = 10.2 Ma and 514 Ma = 15.2 Ma.
+Given their fossil record, cinctans diverged from other echinoderms by at least the middle Cambrian Miaolingian Series, but probably do not have "deep" roots in the early Cambrian or Precambrian. We will place a uniform distribution on the root age to correspond to Cambrian *Stage 4*, spanning 509 Ma to 514 Ma. Rescaling these to relative time units, we find 509 Ma = 10.2 Ma and 514 Ma = 15.2 Ma.
 
 ```{r, include=TRUE, eval = FALSE}
     origin_time ~ dnUnif(10.2, 15.2);
@@ -187,12 +187,12 @@ We will be using the Mk model of morphological character evolution, which we wil
     moves[mvi++] = mvScale(alpha_morpho, lambda=1, weight=2.0)
 ```
 
-As discussed in the previous module, this allows for rate variation _among characters_ (i.e., different characters may evolve at different rates). Next, we will set up a clock model that allows for rate variation _among lineages_.
+As discussed in the previous module, this allows for rate variation *among characters* (i.e., different characters may evolve at different rates). Next, we will set up a clock model that allows for rate variation *among lineages*.
 
 
 ## The Uncorrelated Lognormal Relaxed Clock
 
-The uncorrelated lognormal (UCLN) relaxed clock model assumes rate heterogeneity across branches and models this process by drawing independent and identically distributed branch rates from an underlying lognormal distribution. Although rates are drawn from the same underlying distribution, the rate of evolution along a particular branch does _not_ depend on other branches in the tree, including its ancestor or close relatives. 
+The uncorrelated lognormal (UCLN) relaxed clock model assumes rate heterogeneity across branches and models this process by drawing independent and identically distributed branch rates from an underlying lognormal distribution. Although rates are drawn from the same underlying distribution, the rate of evolution along a particular branch does *not* depend on other branches in the tree, including its ancestor or close relatives. 
 
 Like other independent rate clock models, rates in the UCLN model vary in a "branch-wise" manner, meaning that change is modeling between branches rather than within branches. Consequently, this model might be is particularly attractive to paleontologists interested in "punctuated" morphological change. Further, independent rate models like the UCNL allows for episodic change to occur anywhere throughout the tree. This aspect of the model may help account for instances where a lineage (or subset of lineages) experience "bursts" of morphological evolution, such as if a subclade undergoes adaptive radiation or if extrinsic factors lead to unusually high (or low) rates through time (Hopkins and Smith, 2015; Wright, 2017a) Even in lineages where morphological evolution may have been "gradual" (i.e., slow and continuous), the protracted temporal scales over which paleontologists commonly sample taxa may give rise to substantial morphologic variation among sampled lineages. In such cases, uncorrelated models may provide good  parameter estimates even though the underlying generation to generations evolutionary dynamics were gradualistic. 
 
@@ -202,7 +202,7 @@ A wide variety of probability distributions are available to choose from when ch
  
 Why use the lognormal disribution? The lognormal has a few nice properties: (1) it's a distribution of positive values (can evolutionary rates can be negative?); (2) it can assume a wide variety of different shapes, making it useful for describing a wide variety of of data; and (3) lognormal distributions often arise as a multiplicative product of independent variables. If the factors that underly rate differences in morphological evolution are the product of multiple probabilistic processes (Wagner 2011), then the lognormal might be expected to be a useful distribution for modeling morphological data.
 
-A lognormal distribution is paramterized by $\mu$ and $\sigma$, which describe the location and scale of the distribution. The parameters of a lognormal distribution could be either fixed or estimated as part of the analyses. In most instances, we don't have information on how best to parameratize the lognormal distribution. Because we don't know what these parameters should be for our cinctan data, we will treat them as _hyperpriors_ so we can sample a mixture of lognormal distributions during MCMC analysis.
+A lognormal distribution is paramterized by $\mu$ and $\sigma$, which describe the location and scale of the distribution. The parameters of a lognormal distribution could be either fixed or estimated as part of the analyses. In most instances, we don't have information on how best to parameratize the lognormal distribution. Because we don't know what these parameters should be for our cinctan data, we will treat them as *hyperpriors* so we can sample a mixture of lognormal distributions during MCMC analysis.
 
 **Setting hyperpriors on the clock rate**
 
