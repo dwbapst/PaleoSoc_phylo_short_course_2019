@@ -38,17 +38,15 @@ Sandy Carlson is a Professor at the University of California, Davis, in the Depa
 
 ### Peter Wagner
 
-photo
+![*Peter Wagner at home...*](files/Peter_Took.jpg){#id .class width=50% height=50%}
 
-Pete’s interest in phylogenetic methods stem the twin goals of deriving better phylogenetic methods for supposedly character-poor systems such as gastropod shells and finding tree-based approaches that simultaneously assess phylogeny & macroevolutionary models.
+Pete’s interest in phylogenetic methods stem the twin goals of deriving better phylogenetic methods for supposedly character-poor systems such as gastropod shells and finding tree-based approaches that simultaneously assess phylogeny & macroevolutionary models. Do not expect Pete to be in a good mood if the Cubs have lost, though....
 
 #####Links
 
-link to institutional website
-
-github profile (PeterJWagner3)
-
-email 
+- [Email Pete](mailto:pwagner16@unl.edu)
+- [Pete's Science Extras](https://sites.google.com/site/peterwagnersscienceextras/)
+github profile (@PeterJWagner3)
 
 
 ### April Wright
