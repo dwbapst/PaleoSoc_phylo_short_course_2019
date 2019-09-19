@@ -14,5 +14,8 @@ Smith & Zamora matrix + subsequently added species: [link](https://github.com/dw
 **Chronostratigraphic Data formatted for RevBayes (with 0 = Latest First Appearance):**
 cincta_fossil_intervals_FA.tsv: [link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/cincta_fossil_intervals_FA.tsv)
 
-**Everything in one zip file!:**
+**Everything Cinctan in one zip file!:**
 Whole Shebang: [link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data.zip)
+
+**Eucladida Data set (.RData file):**
+Eucladida: [link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Eucladida_Inputs.RData)
