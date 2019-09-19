@@ -46,7 +46,8 @@ Pete’s interest in phylogenetic methods stem the twin goals of deriving better
 
 - [Email Pete](mailto:pwagner16@unl.edu)
 - [Pete's Science Extras](https://sites.google.com/site/peterwagnersscienceextras/)
-github profile (@PeterJWagner3)
+- [Github Profile: PeterJWagner3](https://github.com/PeterJWagner3)
+
 
 
 ### April Wright
@@ -84,7 +85,6 @@ When he's not thinking about echinoderms or obsessing over phylogenies, he regal
 Laura is interested in understanding the behaviour of phylogenetic methods when applied to the fossil record, and how pcms can be applied to understand drivers of tetrapod evolution, particularly Sauropterygian marine reptiles.
 
 #####Links
-
 - [Github Profile: laurasoul](https://github.com/laurasoul)
 - email 
 - link to institutional website
