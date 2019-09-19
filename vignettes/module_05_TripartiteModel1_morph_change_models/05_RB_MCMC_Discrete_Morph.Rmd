@@ -104,7 +104,7 @@ In this section you will begin the file and write the Rev commands for loading i
 
 **Load Data Matrices**
 
-RevBayes uses the function `readDiscreteCharacterData()` to load a data matrix to the workspace from a formatted file. This function can be used for both molecular sequences and discrete morphological characters. Import the morphological character matrix and assign it to the variable `morpho`. 
+RevBayes uses the function `readDiscreteCharacterData()` to load a data matrix to the workspace from a formatted file. This function can be used for both molecular sequences and discrete morphological characters. Import the morphological character matrix and assign it the variable `morpho`. 
 
 
 ```{r, include=TRUE, eval = FALSE}
@@ -124,7 +124,7 @@ We will first create a constant node called `num_taxa` that is equal to the numb
     num_branches <- 2 * num_taxa - 2
 ```
 
-Next, create two workspace variables called `mvi` and `mni`. These variable are iterators that will build a vector containing all of the MCMC moves used to propose new states for every stochastic node in the model graph. Each time a new move is added to the vector, `mvi` will be incremented by a
+Next, create two workspace variables called `mvi` and `mni`. These variables are iterators that will build a vector containing all of the MCMC moves used to propose new states for every stochastic node in the model graph. Each time a new move is added to the vector, `mvi` will be incremented by a
 value of `1`.
 
 
@@ -138,14 +138,14 @@ One important distinction here is that `mvi` is part of the RevBayes workspace a
 
 ## The Mk Model 
 
-First, we will create a joint on the branch lengths.
+First, we will create a joint prior on the branch lengths.
 
 
 ```{r, include=TRUE, eval = FALSE}
     br_len_lambda ~ dnExp(0.2)
     moves[mvi++] = mvScale(br_len_lambda, weight=2)
 ```
-This prior specifies that branch lengths will be drawns from an exponential distribution with parameter .2. If you're not familiar with what an exponential distribution, try setting the below code to `eval = FALSE` to run the R code and visualize the distribution. Set `eval = FALSE` when you are done. 
+This prior specifies that branch lengths will be drawns from an exponential distribution with parameter 0.2. If you're not familiar with what an exponential distribution, try setting the below code to `eval = FALSE` to run the R code and visualize the distribution. Set `eval = FALSE` when you are done. 
 
 ```{r, include=TRUE, eval=FALSE}
 library(ggplot2)
@@ -164,12 +164,12 @@ Now, we combine the branch lengths with a uniform prior on topology to make a tr
     tree_length := phylogeny.treeLength()
 ```
 
-We will add Gamma-distributed rate variation and specify moves on the parameter to the Gamma distribution.
+We will add Gamma-distributed rate variation and specify moves on the parameter of the Gamma distribution.
 
 ```{r, include=TRUE, eval = FALSE}
     alpha_morpho ~ dnUniform( 0, 1E6 )
     rates_morpho := fnDiscretizeGamma( alpha_morpho, alpha_morpho, 4 )
-    #Moves on the parameters to the Gamma distribution.
+    #Moves on the parameters of the Gamma distribution.
     moves[mvi++] = mvScale(alpha_morpho, lambda=1, weight=2.0)
 ```
 
@@ -183,9 +183,9 @@ draws <- rgamma(1000, shape = alpha_morpho, rate = alpha_morpho)
 hist(draws)
 ```
 
-Next, we will create a $Q$ matrix. Recall that the Mk model is simply a generalization of the JC model. Therefore, we will create a $Q$ matrix using `fnJC`, which initializes Q-matrices with equal transition probabilities between all states. Since we have multistate data, we need to specify different Q-matrices for the different number of character states. For example, it would not make sense to model a 5-state character using a model saying there are only two character states. 
+Next, we will create a $Q$-matrix. Recall that the Mk model is simply a generalization of the JC model. Therefore, we will create a $Q$-matrix using `fnJC`, which initializes $Q$-matrices with equal transition probabilities between all states. Since we have multistate data, we need to specify different $Q$-matrices for the different number of character states. For example, it would not make sense to model a 5-state character using a model saying there are only two character states. 
 
-To do this, we have written a loop in which we break up the data set into partitions according to the number of character states that character has. Then, we specify a Q-matrix in the correct dimensions. We do not retain any partitions that do not have any characters. For example, if we tried to partition the characters with 4 states, and there were none, we would not create a Q-matrix. 
+To do this, we have written a loop in which we break up the data set into partitions according to the number of character states that character has. Then, we specify a $Q$-matrix in the correct dimensions. We do not retain any partitions that do not have any characters. For example, if we tried to partition the characters with 4 states, and there were none, we would not create a $Q$-matrix. 
 
 Then, we combine each partition, Gamma-distributed rate heterogeneity, and the tree together into what is called the `phyloCTMC`. This is the joint set of model paramters
 that will be used the model these data. Each partition is then clamped to its model.
@@ -217,14 +217,14 @@ for (i in 2:n_max_states) {
 
         # increment counter
         idx = idx + 1
-idx
-}
+        idx
+    }
 }
 ```
 
 
 
-We see some familiar pieces: tree, $Q$ matrix and `rates_morpho`.
+We see some familiar pieces: tree, $Q$-matrix and `rates_morpho`.
 We also have two new keywords: data type and coding. The data type argument specifies the type of data - in our case, “Standard”, the specification for morphology.
 All of the components of the model are now specified.
 
@@ -300,7 +300,7 @@ With all the parameters specified and all analysis components in place, you are 
 knitr::purl("module_05_TripartiteModel1_morph_change_models/RB_Discrete_Morphology/RB_MCMC_Discrete_Morph.Rmd")
 ```
 
-This will create a .R file containing our analysis script. Move it into the `scripts` folder and rename it to mk_gamma.R
+This will create a .R file containing our analysis script. Move it into the `scripts` folder and rename it to mk_gamma.Rev
 
 >Begin by running the RevBayes executable. In Unix systems, type the
 >following in your terminal (if the RevBayes binary is in your path):

@@ -17,7 +17,7 @@ RevBayes is a terminal-based program for Bayesian phylogenetic analysis which gi
 
 #### **NOTE** RevBayes was *just* updated!
 
-In the week before the workshop, one of us (A. Wright) push a number of changes to the RevBayes source and compiled new pre-release versions for our GSA workshop, labeled as release version 1.0.13. In particular, and of significance for us paleontologists, this allows us to load character matrices containing characters that entail differing numbers of character states. Previously, matrices with mixtures of characters with differing numbers of states had to be seperated beforehand to be loaded by RevBayes. If you have an older version of RevBayes from before this week, please update!
+In the week before the workshop, one of us (A. Wright) pushed a number of changes to the RevBayes source and compiled new pre-release versions for our GSA workshop, labeled as release version 1.0.13. In particular, and of significance for us paleontologists, this allows us to load character matrices containing characters that entail differing numbers of character states. Previously, matrices with mixtures of characters with differing numbers of states had to be seperated beforehand to be loaded by RevBayes. If you have an older version of RevBayes from before this week, please update!
 
 ### R and RStudio
 
