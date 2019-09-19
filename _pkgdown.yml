@@ -1,4 +1,4 @@
-title: 2019 Paleo. Society Short Course on Quant. Approaches to Phylogenetic Paleobiology at GSA 2019
+title: 2019 PS Short Course on Phylogenetic Paleobiology at GSA
 template:
   params:
     bootswatch: cosmo
@@ -28,6 +28,9 @@ navbar:
      home:
        icon: fas fa-home fa-lg
        href: index.html
+     paleoSoc: 
+       icon: paleosociety.jpg
+       href: https://www.paleosoc.org/
      schedule:
        text: Workshop Schedule
        href: articles/schedule.html
