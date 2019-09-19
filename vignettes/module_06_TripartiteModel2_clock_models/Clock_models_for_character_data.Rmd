@@ -12,7 +12,7 @@ One of the great strengths and unique perspectives of paleontology among evoluti
 
 This tutorial will give an overview of time tree analyses, clock models of moprhological evolution, and assumptions when estimating time-calibrated phylogenies of extinct clades. The analysis will be conducted on morphological characters and fossil occurrence data using clade of extinct, cinctan echinoderms that diversified throughout the middle Cambrian Period (~ 497 Ma - 509 Ma). 
 
-## Unconstrained trees vs. time Trees
+## Unconstrained trees vs. time trees
 
 This tutorial is about morphological clock models for paleontological data. Many commonly used phylogenetic methods in paleontology, such as maximum parsimony or undated Bayesian phylogenetic analysis (e.g., in MrBayes), do not incorporate time and therefore do not use clock models. We refer to branch lengths derived from such methods as *unconstrained* because time and rates are confounded. 
 
@@ -36,7 +36,7 @@ Clock models are essential in divergence dating analyses because they describe h
 Although the Lee et al. (2013) example involved extant species, morphological clock models can also be used to test macroevolutionary hypotheses of entirely extinct clades. Examples of such studies are numerous and span a diverse array of taxa and timescales,including fossil hominids (Dembo et al., 2015), Mesozoic mammals (Close et al., 2015), Paleozoic crinoids (Wright, 2017a), Cambrian trilobites (Patterson et al., 2019), and many other studies. 
 
 
-# A Brief Classification of Clock Models
+# A brief classification of clock models
 
 There are many kinds of clock models described in the literature (see Lepage et al., 2007; Heath and Moore, 2014; Ho and Duchene, 2014). We will only mention a few here. All clock models can be placed into two categories: **strict clock** and **relaxed clocks**, which is equivalent to saying "strict clock" vs. "everthing else". A strict clock assumes a *constant rate* of evolution whereas relaxed clocks apply a model of *rate variation*. The distinction here between strick and relaxed clocks is broadly similar to other paleontological pursuits that use either a "set rate" or "distributed rate", such as models of taxonomic diversification and methods accounting for incomplete sampling over time or spatial scales.
 
