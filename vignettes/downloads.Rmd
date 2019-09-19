@@ -23,8 +23,8 @@ output: html_document
 
 **Everything Cinctan in one zip file!:**
 
-[Whole Shebang](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data.zip)
+[Whole Shebang](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data.zip?raw=true)
 
 **Eucladida Data set for PCM Module (.RData file):**
 
-[Eucladida](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Eucladida_Inputs.RData)
+[Eucladida](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Eucladida_Inputs.RData?raw=true)
