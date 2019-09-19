@@ -3,6 +3,17 @@ title: "Required Materials and Data Downloads"
 output: html_document
 ---
 
+**Original Data Set:**
+[link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Smith_&_Zamora_2009.nex)
+
+**Data Partitioned by State Numbers & Reformatted for RevBayes:**
+[link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Matrix_2_States.nex)
+[link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Matrix_3_States.nex)
+[link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Matrix_4_States.nex)
+
+**Chronostratigraphic Data formatted for RevBayes (with 0 = Latest First Appearance):**
+[link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/cincta_fossil_intervals_FA.tsv)
+
 we have data to download
 
 I think? 
