@@ -81,7 +81,7 @@ In this tutorial, we will apply an uncorrelated lognormal relaxed clock model to
 Use the function `readDiscreteCharacterData()` to load the cinctan matrix to the workspace and assign it to the variable `morpho`. 
 
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     morpho <- readDiscreteCharacterData("data/Cinctans.nex")
 ```
 
@@ -91,7 +91,7 @@ Use the function `readDiscreteCharacterData()` to load the cinctan matrix to the
 RevBayes uses the function `readTaxonData()` to load fossil age data to the workspace from a formatted file. Import the fossil age data and assign it to the variable `taxonData`. 
 
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     taxonData <- readTaxonData(file="data/cincta_fossil_intervals_FA.tsv")
 ```
 
@@ -106,7 +106,7 @@ Recall in the previous module we had to create helper variables that are used in
 
 We will first create a constant node called `num_taxa` that is equal to the number of species in our analysis. We will also create a constant node called `num_branches` representing the number of branches in the tree, and one of the taxon names. This list will be used to initialize the tree.
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     # Get the names and number of species in the analysis
     taxa <- morpho.names()
     num_taxa <- morpho.size() 
@@ -116,7 +116,7 @@ We will first create a constant node called `num_taxa` that is equal to the numb
 
 Next, we need to set up workspace variables called `mvi` and `mni`to use as iterators during the MCMC analysis.
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     # MCMC iterator variables
     mvi = 1
     mni = 1
@@ -135,7 +135,7 @@ The youngest taxon in our analysis is *Sucocystis acrofera*, which has its FAD a
 
 Given their fossil record, cinctans diverged from other echinoderms by at least the middle Cambrian Miaolingian Series, but probably do not have "deep" roots in the early Cambrian or Precambrian. We will place a uniform distribution on the root age to correspond to Cambrian *Stage 4*, spanning 509 Ma to 514 Ma. Rescaling these to relative time units, we find 509 Ma = 10.2 Ma and 514 Ma = 15.2 Ma.
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     origin_time ~ dnUnif(10.2, 15.2);
     # Set MCMC move on the parameter
     moves[mvi++] = mvSlide(origin_time, delta=0.01, weight=4)
@@ -151,13 +151,13 @@ Although these rescaled ages may seem awkward to us paleontologists accustomed t
 
 Now that we have a prior on the root age, we need to place a prior distribution on the tree topology. We'll use the function `dnUniformTimeTree()` to set a tree prior that is a function of the root age and places equal probabability on all possible phylogenies.
     
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
    phylogeny ~ dnUniformTimeTree(rootAge=origin_time, taxa=taxa)
 ```
 
 Next, we will place MCMC moves on both the topology and node ages of the time tree, as well as set a deterministic node to monitor the tree length.
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
    # Set MCMC moves for tree topology
    moves[mvi++]  = mvFNPR(phylogeny, weight=num_branches/2.0);
    moves[mvi++] = mvNNI(phylogeny, weight=num_branches/2.0)
@@ -177,7 +177,7 @@ The uniform tree prior, which considers all possible tree topologies to be equal
 
 We will be using the Mk model of morphological character evolution, which we will specify further below. For now, we will set up a add Gamma-distributed rate variation to the Mk model and specify moves on the parameter to the Gamma distribution. 
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     alpha_morpho ~ dnUniform( 0, 1E6 )
     rates_morpho := fnDiscretizeGamma( alpha_morpho, alpha_morpho, 4 )
     #Moves on the parameters to the Gamma distribution.
@@ -209,7 +209,7 @@ $$M = e^{\mu +\frac{\sigma^2}{2}}. $$
 
 Here, we'll set hyperpriors by assuming that both $M$ and $\sigma$ follow an exponential distribution.Then, we'll set a deterministic node to monitor $\sigma^2$. 
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     # M
     ucln_mean ~ dnExponential(2.0)
     # sigma
@@ -224,7 +224,7 @@ $$\mu = ln(M) - \frac{\sigma^2}{2}.$$
 
 Using this relationship, we can set a deterministic node that records the parameter $\mu$ of the lognormal distribuiton. 
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     # set deterministic parameter giving mu on branch rates
     ucln_mu := ln(ucln_mean) - (ucln_var * 0.5)
 ```
@@ -232,7 +232,7 @@ Using this relationship, we can set a deterministic node that records the parame
 As usual, we need to set MCMC moves on parameters. In this case, because $\mu$ is a function of $M$ and $\sigma$, we need to place MCMC moves on these parameters.
 
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     # Set MCMC moves
     moves[mvi++] = mvScale(ucln_mean, lambda=1.0, tune=true, weight=4.0)
     moves[mvi++] = mvScale(ucln_sigma, lambda=0.5, tune=true, weight=4.0)
@@ -245,7 +245,7 @@ As usual, we need to set MCMC moves on parameters. In this case, because $\mu$ i
 Now, we have all the relavant parameters for drawing branch rates. Using $\mu$ and $\sigma$, we can write a loop to draw a rate for all branches in the tree. In the loop, we'll place the branch rates in a vector called `branch_rate_var` and set a MCMC move to tune the branch rates.
 
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     # assign rates to branches and add mcmc move
     for (i in 1:num_branches){
         branch_rate_var[i] ~ dnLognormal(ucln_mu, ucln_sigma)
@@ -255,7 +255,7 @@ Now, we have all the relavant parameters for drawing branch rates. Using $\mu$ a
 
 We've already placed a MCMC move on branch rate variation, but it is often helpful to place additional moves to improve MCMC mixing and obtain better parameter estimates. Let's add two additonal moves. 
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     # As usual, we need to set MCMC moves on these parameters.
     moves[mvi++] = mvVectorScale(branch_rate_var,lambda=1.0,tune=true,weight=2.0);
     moves[mvi++] = mvVectorSingleElementScale(branch_rate_var,lambda=30.0,tune=true,weight=1.0)
@@ -266,7 +266,7 @@ We've already placed a MCMC move on branch rate variation, but it is often helpf
 
 Finally, we combine each the Mk model of character evolution, gamma-distributed rate heterogeneity (describing variation among characters), the uncorrelated relaxed clock model (describing variation among lineages), and the uniform tree model together into what into a `phyloCTMC` object. The following loop will apply these model parameters to all morphological character partitions with the same number of states.
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
 n_max_states <- 3
 idx = 1
 morpho_bystate[1] <- morpho
@@ -307,7 +307,7 @@ Now that all of the components of the model are specified, we can run an analysi
 
 Create our workspace model variable wwith the `model()` function and provide a single node in the graph (`phylogeny`).
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     mymodel = model(phylogeny)
 ```
 
@@ -318,19 +318,19 @@ We often want to monitor every named random variable in our model graph. This st
 output file and state how often we would like to record parameter values..
 
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     monitors[mni++] = mnModel(filename="output/ucnl_relaxed_clock.log", printgen=10)
 ```
 
 We use the function `mnFile()` to save phylogenies sampled in the analysis.
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     monitors[mni++] = mnFile(filename="output/ucln_relaxed_clock.trees", printgen=10, phylogeny)
 ```
 
 If you're like me, you'll want to print information to the screen to monitor the results as the MCMC is running.
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     monitors[mni++] = mnScreen(printgen=100)
 ```
 
@@ -338,21 +338,21 @@ If you're like me, you'll want to print information to the screen to monitor the
 
 Once we have set up our model, moves, and monitors, we can now create the workspace variable that defines our MCMC run. We do this using the `mcmc()` function that simply takes the three main analysis components as arguments.
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")
 ```
 
 The MCMC object that we named `mymcmc` has a member method called `.run()`. This will execute our analysis and we will set the chain length to `10000` cycles using the `generations` option.
 
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     mymcmc.run(generations=10000, tuningInterval=200)
 ```
 
 Once our Markov chain has terminated, we will want RevBayes to close. Tell the program to quit using the `q()` function.
 
 
-```{r, include=TRUE, eval = TRUE}
+```{r, include=TRUE, eval = FALSE}
     q()
 ```
 
@@ -371,7 +371,7 @@ This will create a .R file containing our analysis script. Move it into the `scr
 Provided that you started RevBayes from the correct directory, you can then use the `source()` function to feed RevBayes your Rev-script file (`ucln_rel_clock.Rev`).
 
 
-```{bash eval = TRUE, include = TRUE}
+```{bash eval = FALSE, include = TRUE}
     source("scripts/ucln_rel_clock.Rev")
 ```
 
@@ -381,7 +381,7 @@ We can look at the log files in the software `Tracer`. We can also calculate sev
 
 ```
 # Read in the tree trace and construct different kinds of summary trees 
-trace = readTreeTrace("output/ucln__rel_clock.trees")
+trace = readTreeTrace("output/ucln_relaxed_clock.trees", nruns=2)
 # Summarize tree trace and save trees to file
 mccTree(trace, file="output/ucln_rel_clock.mcc.tre" )
 mapTree(trace, file="output/ucln_rel_clock.map.tre" )
