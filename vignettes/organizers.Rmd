@@ -81,7 +81,7 @@ When he's not thinking about echinoderms or obsessing over phylogenies, he regal
 
 ### Laura Soul
 
-![*Laura Soul*](files/laura_soul.jpg){#id .class width=50% height=50%}
+![*Laura Soul*](files/laura_soul.jpg){#id .class width=20% height=20%}
 
 Laura is interested in understanding the behaviour of phylogenetic methods when applied to the fossil record, and how pcms can be applied to understand drivers of tetrapod evolution, particularly Sauropterygian marine reptiles.
 

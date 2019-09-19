@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tripartite Model 2 - Clock Models for Character Data • PhyloShortCourseGSA2019</title>
+<title>Tripartite Model 2 - Clock Models for Character Data • 2019 PS Short Course on Phylogenetic Paleobiology at GSA</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
@@ -30,7 +30,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../../index.html">PhyloShortCourseGSA2019</a>
+        <a class="navbar-link" href="../../index.html">2019 PS Short Course on Phylogenetic Paleobiology at GSA</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">9.21.2019</span>
       </span>
     </div>
@@ -38,11 +38,19 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+  <a href="https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
+<li>
+  <a></a>
+</li>
+<li>
+  <a></a>
+</li>
+      </ul>
+<ul class="nav navbar-nav navbar-right">
 <li>
   <a href="../../articles/schedule.html">Workshop Schedule</a>
 </li>
@@ -113,16 +121,8 @@
   <a href="../../articles/symbols.html">Notation Guide</a>
 </li>
 <li>
-  <a></a>
-</li>
-<li>
-  <a></a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="../../index.html">
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -179,7 +179,7 @@
 <ul>
 <li><strong>Strict Clock</strong></li>
 </ul>
-<p>The strict clock model is most simple clock model. It assumes that all branches follow a single, constant rate of morphological evolution. Although this may strike you as overly simplistic (and you might not be wrong!), some studies have found surprising degree of concordance with fossil data fitting a strict morphological clock even when models incorporating rate variation provide a better statistical fit (Wright, 2017b; Drummond and Stadler, 2016). The strict clock model has one advantage in its simplicity: it adds only one parameter to the analyses, whereas relaxed clock models requires many additional parameters. Depending on the size and degree of rate varition, it is entirely possible strict clock models could be preferred in some paleontological datasets, especially in cases where rate variation among lineages is low.</p>
+<p>The strict clock model is most simple clock model. It assumes that all branches follow a single, constant rate of morphological evolution. Although this may strike you as overly simplistic (and you might not be wrong!), some studies have found surprising degree of concordance with fossil data fitting a strict morphological clock even when models incorporating rate variation provide a better statistical fit (Wright, 2017b, Drummond and Stadler, 2016). The strict clock model has one advantage in its simplicity: it adds only one parameter to the analyses, whereas relaxed clock models requires many additional parameters. Depending on the size and degree of rate varition, it is entirely possible strict clock models could be preferred in some paleontological datasets, especially in cases where rate variation among lineages is low.</p>
 <ul>
 <li><strong>Relaxed Clock</strong></li>
 </ul>
@@ -446,7 +446,12 @@ conTree(trace, file="output/ucln_rel_clock.con.tre" )</code></pre>
 <a href="#example-applying-a-relaxed-morphological-clock-model">Example: Applying a relaxed morphological clock model</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#the-uncorrelated-lognormal-relaxed-clock">The Uncorrelated Lognormal Relaxed Clock</a></li>
       <li><a href="#putting-it-all-together">Putting it all together</a></li>
-      <li><a href="#complete-mcmc-analysis">Complete MCMC Analysis</a></li>
+      <li>
+<a href="#complete-mcmc-analysis">Complete MCMC Analysis</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#set-up-the-mcmc">Set-Up the MCMC</a></li>
+      <li><a href="#youve-finished-dont-forget-to-save-all-of-your-files-">You’ve finished! Don’t forget to save all of your files.</a></li>
+      </ul>
+</li>
       </ul>
 </li>
       <li>
