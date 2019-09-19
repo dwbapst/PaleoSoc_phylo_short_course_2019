@@ -9,9 +9,9 @@
 &nbsp;
 &nbsp;
 
-The 2019 Paleontological Society Short Course, ***Quantitative Methods in Phylogenetic Paleobiology***, will beheld on conjunction with the 2019 Geological Society of American Annual Meeting in Phoenix, Arizona. This short course is organized by Sandra Carlson, Peter Wagner, April Wright, Laura Soul, David Wright, David Bapst, and Rachel Warnock. 
+The 2019 Paleontological Society Short Course, ***Quantitative Methods in Phylogenetic Paleobiology***, will be held in conjunction with the 2019 Geological Society of American Annual Meeting in Phoenix, Arizona. This short course is organized by Sandra Carlson, Peter Wagner, April Wright, Laura Soul, David Wright, David Bapst, and Rachel Warnock. 
 
-In the past decade, there has been considerable of Bayesian methods for inferring phylogenetic relationships, involving probabilistic models of phenotypic character evolution, and new 'tip-dating' approaches for inferring dated phylogenies containing fossils as operational tip taxa, particularly those that use a method that accounts for the incomplete sampling of the fossil record, known as the *Fossilized Birth-Death Model*. The 2019 Paleontological Society Short Course will be a day-long workshop-style short course that will feature not just lectures about methodological advances, but also hands-on exercises for the audience members to perform on their laptop computers.
+In the past decade, there has been considerable development and implementation of Bayesian methods for inferring phylogenetic relationships with probabilistic models of phenotypic character evolution, and new 'tip-dating' approaches for inferring dated phylogenies containing fossils as operational tip taxa. In particular,  that accounts for the incomplete sampling of the fossil record, known as the *Fossilized Birth-Death Model*. The 2019 Paleontological Society Short Course will be a day-long workshop-style short course that will feature not just lectures about methodological advances, but also hands-on exercises for the audience members to perform on their laptop computers.
 
 ## When and Where
 
@@ -44,3 +44,11 @@ Please note that we will be expecting all who are attending the short course to 
 ## Who We Are
 
 Who are we? We are a bunch of people who are very excited about phylogenetics in paleontology - and make sure that everyone knows these tools and how to use them. You can learn more about our team - helpers, instructors, organizers - at our  [organizers page](https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/organizers.html).
+
+## What's Next
+
+Many of the organizers and several helpers are involved in organizing a paleo-phylo topical session at GSA. This session will be on the morning after the workshop. You can see the list of oral talks in that session on the GSA technical program site: [T100. Phylogenetic Paleobiology: Good Things Come in Trees](https://gsa.confex.com/gsa/2019AM/meetingapp.cgi/Session/47757).
+
+There are also a number of other phylogenetic-related sessions and talks through the whole of GSA 2019 - what a week!
+
+As far as what's coming after GSA, we are working on a series of written contributions that will be published in Elements of Paleontology; they are not completed yet, but should appear in the coming year, and we will inform all of you when they do.
