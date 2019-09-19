@@ -63,7 +63,7 @@ email
 
 ### David Wright
 
-![*This Guy Really Likes Echinoderms*](files/DaveyEchinoANMH.jpg){#id .class width=50% height=50%}
+![*This Guy Really Likes Echinoderms*](files/Davey_fossils_ANMH.jpg){#id .class width=50% height=50%}
 
 Davey is interested in ways phylogenetic methods can be used to better understand the origin, morphologic evolution, and diversification of major lineages of echinoderms, especially crinoids. He's currently a postdoctoral researcher at the American Museum of Natural History and was previously a Peter Buck Fellow at he National Museum of Natural History (Smithsonian Institution). 
 
