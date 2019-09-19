@@ -32,15 +32,17 @@ Below is some information about your organizers! This area is still a little und
 
 Sandy Carlson is a Professor at the University of California, Davis, in the Department of Earth and Planetary Science where she has been teaching for a long time. She is obsessed with brachiopods, and has spent decades trying to understand as much about them as she can. She currently chairs the Paleontological Society Government Affairs committee, and is committed to promoting the role of science and scientists in public policy. She is also the Director at UC Davis of a UC-system-wide program that encourages STEM undergraduates to pursue careers as K-12 teachers — the world needs more great math and science teachers!
 
-[Email Sandy](mailto:sjcarlson@ucdavis.edu)
-
-[Sandy's Departmental Website](http://www.geology.ucdavis.edu/faculty/carlson.html)
+#####Links
+- [Email Sandy](mailto:sjcarlson@ucdavis.edu)
+- [Sandy's Departmental Website](http://www.geology.ucdavis.edu/faculty/carlson.html)
 
 ### Peter Wagner
 
 photo
 
 Pete’s interest in phylogenetic methods stem the twin goals of deriving better phylogenetic methods for supposedly character-poor systems such as gastropod shells and finding tree-based approaches that simultaneously assess phylogeny & macroevolutionary models.
+
+#####Links
 
 link to institutional website
 
@@ -54,6 +56,8 @@ email
 photo
 
 bio
+
+#####Links
 
 link to institutional website
 
@@ -69,11 +73,10 @@ Davey is interested in ways phylogenetic methods can be used to better understan
 
 When he's not thinking about echinoderms or obsessing over phylogenies, he regales himself with natural history, birding, punk rock music, baseball, Vonnegut novels, craft beer, and NYC pizza.
 
-[Email Davey](mailto:dwright@amnh.org) 
-
-github profile (@daveyfwright)
-
-[Davey's Personal Website](https://daveyfwright.wordpress.com)
+#####Links
+- [Email Davey](mailto:dwright@amnh.org) 
+- github profile (@daveyfwright)
+- [Davey's Personal Website](https://daveyfwright.wordpress.com)
 
 
 ### Laura Soul
@@ -82,11 +85,11 @@ github profile (@daveyfwright)
 
 Laura is interested in understanding the behaviour of phylogenetic methods when applied to the fossil record, and how pcms can be applied to understand drivers of tetrapod evolution, particularly Sauropterygian marine reptiles.
 
-email 
+#####Links
 
-github profile (@laurasoul)
-
-link to institutional website
+- [Github Profile: laurasoul](https://github.com/laurasoul)
+- email 
+- link to institutional website
 
 ### David Bapst
 
@@ -98,7 +101,8 @@ Dave has a nice department photo taken recently but it's not online yet, and he 
 
 You can contact Dave by email at his [gmail](mailto:dwbapst@gmail.com) or his [institutional email account at A&M](mailto:dwbapst@tamu.edu).
 
-####Links:
+#####Links
+
 - [Github Profile: dwbapst](https://github.com/dwbapst)
 - [Dave's Faculty Page at Texas A&M University](https://geogeo.tamu.edu/people/faculty/bapstdavidwilliam)
 - [David's Palaeocast Interview about Graptolites](http://www.palaeocast.com/episode-71-graptolites/) *(The interviewer is fellow organizer, Laura Soul!)*

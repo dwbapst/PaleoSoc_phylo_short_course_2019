@@ -10,6 +10,8 @@ navbar:
    structure:
      left:
       - home
+      - github
+     right: 
       - schedule
       - organizers
       - conduct
@@ -17,8 +19,7 @@ navbar:
       - downloads
       - readings
       - lessons
-      - symbols
-     right: github
+      - symbols	  
    components:
      articles:
        text: 
