@@ -15,7 +15,7 @@ In the past decade, there has been considerable of Bayesian methods for inferrin
 
 ## When and Where
 
-As usual for Paleontological Short Courses, our workshop will be held on the preceding Saturday, August 21st, before oral and poster sessions begin at GSA. The short course will run from 8:00 AM to 5:00 PM (local Arizona time), and because this short course is being conducted as a workshop rather than a day-long symposium, we emphase that **attendees will get the most out of the course by attending the entire session**. The workshop we be held in the ‘Valley of the Sun’ ballroom at the Sheraton Phoenix Downtown Hotel. This hotel is located two blocks from the Phoenix Convention Center. Click [here for a pinned location on Google Maps](https://goo.gl/maps/h2arwUPWQLysU3N36).
+As usual for Paleontological Short Courses, our workshop will be held on the preceding Saturday, September 21st, before oral and poster sessions begin at GSA. The short course will run from 8:00 AM to 5:00 PM (local Arizona time), and because this short course is being conducted as a workshop rather than a day-long symposium, we emphase that **attendees will get the most out of the course by attending the entire session**. The workshop we be held in the ‘Valley of the Sun’ ballroom at the Sheraton Phoenix Downtown Hotel. This hotel is located two blocks from the Phoenix Convention Center. Click [here for a pinned location on Google Maps](https://goo.gl/maps/h2arwUPWQLysU3N36).
 
 ## If You Want to Attend...
 
