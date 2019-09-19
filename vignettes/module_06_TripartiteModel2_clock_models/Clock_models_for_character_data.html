@@ -393,7 +393,7 @@ summary {
 <ul>
 <li><strong>Strict Clock</strong></li>
 </ul>
-<p>The strict clock model is most simple clock model. It assumes that all branches follow a single, constant rate of morphological evolution. Although this may strike you as overly simplistic (and you might not be wrong!), some studies have found surprising degree of concordance with fossil data fitting a strict morphological clock even when models incorporating rate variation provide a better statistical fit (Wright, 2017b; Drummond and Stadler, 2016). The strict clock model has one advantage in its simplicity: it adds only one parameter to the analyses, whereas relaxed clock models requires many additional parameters. Depending on the size and degree of rate varition, it is entirely possible strict clock models could be preferred in some paleontological datasets, especially in cases where rate variation among lineages is low.</p>
+<p>The strict clock model is most simple clock model. It assumes that all branches follow a single, constant rate of morphological evolution. Although this may strike you as overly simplistic (and you might not be wrong!), some studies have found surprising degree of concordance with fossil data fitting a strict morphological clock even when models incorporating rate variation provide a better statistical fit (Wright, 2017b, Drummond and Stadler, 2016). The strict clock model has one advantage in its simplicity: it adds only one parameter to the analyses, whereas relaxed clock models requires many additional parameters. Depending on the size and degree of rate varition, it is entirely possible strict clock models could be preferred in some paleontological datasets, especially in cases where rate variation among lineages is low.</p>
 <ul>
 <li><strong>Relaxed Clock</strong></li>
 </ul>
@@ -578,7 +578,7 @@ summary {
 <p>When the analysis is complete, RevBayes will quit and can contain all of the files you specified with the monitors in the directory <code>output</code>.</p>
 <p>We can look at the log files in the software <code>Tracer</code>. We can also calculate several different types of summary trees:</p>
 <pre><code># Read in the tree trace and construct different kinds of summary trees 
-trace = readTreeTrace(&quot;output/ucln__rel_clock.trees&quot;)
+trace = readTreeTrace(&quot;output/ucln_rel_clock.trees&quot;, nruns = 2)
 # Summarize tree trace and save trees to file
 mccTree(trace, file=&quot;output/ucln_rel_clock.mcc.tre&quot; )
 mapTree(trace, file=&quot;output/ucln_rel_clock.map.tre&quot; )
