@@ -14,7 +14,5 @@ output: html_document
 **Chronostratigraphic Data formatted for RevBayes (with 0 = Latest First Appearance):**
 [link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/cincta_fossil_intervals_FA.tsv)
 
-we have data to download
-
-I think? 
-
+**Everything in one zip file!:**
+[link](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data.zip)
