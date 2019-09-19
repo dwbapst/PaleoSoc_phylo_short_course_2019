@@ -146,7 +146,7 @@
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>One of the great strengths and unique perspectives of paleontology among evolutionary sciences is its temporal dimension. For this reason, fossils have long played a role in dating the Tree of Life, yet most paleontological studies inferring phylogenies of extinct species do not include this potentially important element. However, with the advent of Bayesian tip-dating methods, paleontologists have increasingly begun to time directly into their analysis to estimate divergences times and/or phylogenetic relationships of extinct lineages. The clock models used in these methods play an important role in disentangling rates and time. This issue particularly relevant to us paleonotologists because many of our most treasured hypotheses and far-reaching insights revolve around knowledge of the timing or rate of change during major events in the history of life.</p>
+<p>One of the great strengths and unique perspectives of paleontology among evolutionary sciences is its temporal dimension. For this reason, fossils have long played a role in dating the Tree of Life, yet most paleontological studies inferring phylogenies of extinct species do not include this potentially important element. However, with the advent of Bayesian tip-dating methods, paleontologists have increasingly begun to incorporate time directly into their analysis to estimate divergences times and/or phylogenetic relationships of extinct lineages. The clock models used in these methods play an important role in disentangling rates and time. This issue particularly relevant to us paleonotologists because many of our most treasured hypotheses and far-reaching insights revolve around knowledge of the timing or rate of change during major events in the history of life.</p>
 <p>This tutorial will give an overview of time tree analyses, clock models of moprhological evolution, and assumptions when estimating time-calibrated phylogenies of extinct clades. The analysis will be conducted on morphological characters and fossil occurrence data using clade of extinct, cinctan echinoderms that diversified throughout the middle Cambrian Period (~ 497 Ma - 509 Ma).</p>
 <div id="unconstrained-trees-vs-time-trees" class="section level2">
 <h2 class="hasAnchor">
@@ -278,14 +278,15 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co"># Set MCMC moves</span>
     moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvScale</span>(ucln_mean, <span class="dt">lambda=</span><span class="fl">1.0</span>, <span class="dt">tune=</span>true, <span class="dt">weight=</span><span class="fl">4.0</span>)
     moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvScale</span>(ucln_sigma, <span class="dt">lambda=</span><span class="fl">0.5</span>, <span class="dt">tune=</span>true, <span class="dt">weight=</span><span class="fl">4.0</span>)</code></pre></div>
-<p><strong>Assigning rates to branches</strong></p>
+
+<p>*Assigning rates to branches**</p>
 <p>Now, we have all the relavant parameters for drawing branch rates. Using <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, we can write a loop to draw a rate for all branches in the tree. In the loop, we’ll place the branch rates in a vector called <code>branch_rate_var</code> and set a MCMC move to tune the branch rates.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co"># assign rates to branches and add mcmc move</span>
     <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>num_branches){
         branch_rate_var[i] <span class="op">~</span><span class="st"> </span><span class="kw">dnLognormal</span>(ucln_mu, ucln_sigma)
         moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvScale</span>(branch_rate_var[i], <span class="dt">lambda=</span><span class="dv">1</span>, <span class="dt">tune=</span>true, <span class="dt">weight=</span><span class="fl">2.0</span>)
     }</code></pre></div>
-<p>Although we’ve already placed a single MCMC move on branch rate variation, it is often helpful to place additional moves to improve MCMC mixing and obtain better parameter estimates. Thus, we can add several additonal moves.</p>
+<p>We’ve already placed a MCMC move on branch rate variation, but it is often helpful to place additional moves to improve MCMC mixing and obtain better parameter estimates. Let’s add two additonal moves.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co"># As usual, we need to set MCMC moves on these parameters.</span>
     moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvVectorScale</span>(branch_rate_var,<span class="dt">lambda=</span><span class="fl">1.0</span>,<span class="dt">tune=</span>true,<span class="dt">weight=</span><span class="fl">2.0</span>);
     moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvVectorSingleElementScale</span>(branch_rate_var,<span class="dt">lambda=</span><span class="fl">30.0</span>,<span class="dt">tune=</span>true,<span class="dt">weight=</span><span class="fl">1.0</span>)</code></pre></div>
@@ -293,7 +294,7 @@
 <div id="putting-it-all-together" class="section level2">
 <h2 class="hasAnchor">
 <a href="#putting-it-all-together" class="anchor"></a>Putting it all together</h2>
-<p>Finally, we combine each the Mk model of character evolution, gamma-distributed rate heterogeneity (describing variation among characters), the uncorrelated relaxed clock model (describing variation among lineages), and the uniform tree model together into what into a <code>phyloCTMC</code> object. The following loop will apply these model parameters to all morphological partitions (i.e., character sets with the same number of states).</p>
+<p>Finally, we combine each the Mk model of character evolution, gamma-distributed rate heterogeneity (describing variation among characters), the uncorrelated relaxed clock model (describing variation among lineages), and the uniform tree model together into what into a <code>phyloCTMC</code> object. The following loop will apply these model parameters to all morphological character partitions with the same number of states.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    n_max_states &lt;-<span class="st"> </span><span class="dv">7</span>
     idx =<span class="st"> </span><span class="dv">1</span>
     morpho_bystate[<span class="dv">1</span>] &lt;-<span class="st"> </span>morpho
