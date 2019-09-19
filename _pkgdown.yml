@@ -66,7 +66,7 @@ navbar:
         -  text: 5 - Tripartite Model I - Discrete Morphology - Models and Tree Inference
            href: articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html
         -  text: 6 - Tripartite Model II - Clock Models of Character Change
-           href: articles/module_06_TripartiteModel2_clock_models/module_06.html
+           href: articles/module_06_TripartiteModel2_clock_models/Clock_models_for_character_data.html
         -  text: 7 - Tripartite Model III - Fossilized Birth Death Model
            href: articles/module_07_TripartiteModel3_Fossilized_Birth_death/module_07.html
         -  text: 8 - Phylogenetic Comparative Methods
