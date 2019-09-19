@@ -1,11 +1,11 @@
 #NEXUS
-[written Fri Jul 05 15:04:39 CDT 2019 by Mesquite  version 3.6 (build 917) at eas-6bcec7.unl.edu/10.43.113.153]
+[written Sat Sep 07 14:50:52 CDT 2019 by Mesquite  version 3.40 (build 877) at Wagners_Dark_Tower/10.43.126.58]
 
 BEGIN TAXA;
 	TITLE Taxa;
 	DIMENSIONS NTAX=27;
 	TAXLABELS
-		Ctenocystis Gyrocystis_platessa Gyrocystis_testudiformis Gyrocystis_cruzae Gyrocystis_badulesiensis Gyrocystis_erecta Progyrocystis_disjuncta Protocinctus_mansillaensis Elliptocinctus_barrandei Elliptocinctus_vizcainoi Sucocystis_theronensis Sucocystis_bretoni Lignanicystis_barriosensis Undatacinctus_undata Sucocystis_acrofera Undatacinctus_quadricornuta Undatacinctus_melendezi Asturicystis_jaekeli Sotocinctus_ubaghsi Trochocystites_bohemicus Trochocystoides_parvus Ludwigicinctus_truncatus Graciacystis_ambigua Asturicystis_havliceki Nelegerocystis_ivantzovi Rozanovicystis_triangularis Davidocinctus_pembrokensis 
+		Ctenocystis_utahensis Gyrocystis_platessa Gyrocystis_testudiformis Gyrocystis_cruzae Gyrocystis_badulesiensis Gyrocystis_erecta Progyrocystis_disjuncta Protocinctus_mansillaensis Elliptocinctus_barrandei Elliptocinctus_vizcainoi Sucocystis_theronensis Sucocystis_bretoni Lignanicystis_barriosensis Undatacinctus_undata Sucocystis_acrofera Undatacinctus_quadricornuta Undatacinctus_melendezi Asturicystis_jaekeli Sotocinctus_ubaghsi Trochocystites_bohemicus Trochocystoides_parvus Ludwigicinctus_truncatus Graciacystis_ambigua Asturicystis_havliceki Nelegerocystis_ivantzovi Rozanovicystis_triangularis Davidocinctus_pembrokensis 
 	;
 
 END;
@@ -14,70 +14,71 @@ END;
 BEGIN CHARACTERS;
 	TITLE  Character_Matrix;
 	DIMENSIONS  NCHAR=60;
-	FORMAT DATATYPE = STANDARD RESPECTCASE GAP = - MISSING = ? SYMBOLS = "  0 1 2 3";
+	FORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = "  0 1 2 3";
 	CHARSTATELABELS 
-		1 Symmetry_of_body,
-		2 Theca_Shape,
-		3 Anterior_margin_shape,
-		4 'Stele Cross-sectional shape immediately below theca',
-		5 Length_of_stele_in_proportion_to_body,
-		6 Mesosphenoid_plates_on_dorsal_surface,
-		7 Mesosphenoidal_plates_on_dorsal_surface,
-		8 Mesosphenoidal_plates_on_ventral_surface,
-		9 Posterior_marginal_plate_arrangement,
-		10 'Number of marginal plates between M0 and the posterior^nclosure of the ring',
-		11 'Number of marginal plates between M0 and the posterior^nclosure of the ring',
-		12 Anterior_margin_of_plate_M0,
-		13 Shape_of_marginal_plates_forming_lateral_part_of_cinctus,
-		14 Interior_dorsal_edge_of_marginal_plates,
-		15 Plate_M2r_exsert_from_ring,
-		16 'Plate M4 hatchet-shaped',
-		17 Protuberance_on_the_dorsal_part_of_plate_M2l,
-		18 Protuberance_on_the_dorsal_part_of_plate_M3l,
-		19 Protuberance_on_the_dorsal_part_of_plate_M3r,
-		20 Protuberance_on_the_dorsal_part_of_plate_M4r,
-		21 Protuberance_on_the_ventral_part_of_plate_M5l,
-		22 Protuberance_on_the_ventral_part_of_plate_M4l,
-		23 Protuberance_on_the_ventral_part_of_plate_M3l,
-		24 Protuberance_on_the_ventral_part_of_plate_M2l,
-		25 Protuberance_on_the_ventral_part_of_plate_M1l,
-		26 Protuberance_on_the_ventral_part_of_plate_M0,
-		27 Protuberance_on_the_ventral_part_of_plate_M1r,
-		28 Protuberance_on_the_ventral_part_of_plate_M2r,
-		29 Protuberance_on_the_ventral_part_of_plate_M3r,
-		30 Protuberance_on_the_ventral_part_of_plate_M4r,
-		31 Protuberance_on_the_ventral_part_of_plate_M5r,
-		32 Shape_of_plate_M2,
-		33 Marginal_plates_1l_and_1r_with_strong_dorsal_projections,
-		34 'Marginal plates 1l and 1r with thin, plate-like dorsal flan',
-		35 Projections_from_marginal_plates_M1l_and_M1r,
-		36 Suropercular_facet_on_plates_M1l_and_M1r,
-		37 Number_of_plates_forming_dorsal_margin_of_operculum,
-		38 Central_plate_of_lintel_with_protuberance_or_spine,
-		39 Sutural_epispires_on_dorsal_surface,
-		40 Dorsal_surface,
-		41 Ventral_plated_surface_composition,
-		42 Ventral_plates_distinctly_larger_than_dorsal_plates,
-		43 Ventral_swellings_developed_on_anterior_infracentral_plates,
-		44 'Very large, differentiated ventral infracentrals in anterior  region',
-		45 Dorsal_tegmen_swollen_centrally,
-		46 Plate_M3l_food_groove,
-		47 Plate_M2l_food_groove,
-		48 Plate_M1l_food_groove_on_plate,
-		49 Plate_M0_food_groove_on_plate,
-		50 Plate_M1r_food_groove_on_plate,
-		51 Plate_M2r_food_groove_on_plate,
-		52 Plate_M3r_food_groove_on_plate,
-		53 Plate_M4r_food_groove_on_plate,
-		54 Upper_and_lower_rim_of_food_groove_with_distinct_pits,
-		55 Position_of_food_groove_as_it_passes_around_anterior_of_cinctus,
-		56 Path_of_left_food_groove_as_it_crosses_plate_M0,
-		57 Construction_of_plated_membranes_covering_food_groove,
-		58 'Relative lengths of left- and right-hand food grooves',
-		59 Marginal_ossicles_ventral_shape,
-		60 Marginal_ossicles_dorsal_shape ; 
+		1 Symmetry_of_body /  bilaterally_symmetrical_in_outline slightly_asymmetric 'strongly asymmetric, with obvious posterior right embayment',
+		2 Theca_Shape /  subcircular_theca_approximately_as_wide_as_long ovate_theca_much_narrower_than_long Theca_widest_proximally_and_tapering_towards_appendage wider_than_long,
+		3 Anterior_margin_shape /  rounded 'straight, horizontal',
+		4 'Stele Cross-sectional shape immediately below theca' /  ovate 'lozenge-shaped',
+		5 Length_of_stele_in_proportion_to_body /  'greater than half the ^nlength of the cinctus' 'shorter than half the length of the^ncinctus',
+		6 Mesosphenoid_plates_on_dorsal_surface /  absent_proximally present_proximally,
+		7 Mesosphenoidal_plates_on_dorsal_surface /  absent present,
+		8 Mesosphenoidal_plates_on_ventral_surface /  absent a_few_scattered_plates_about_midlength 'present throughout forming a near continuous^nseries',
+		9 Posterior_marginal_plate_arrangement /  'marginal plates abut^nforming a continuous circlet' marginal_plates_separated_at_posterior_extremity_by_intercalated_plates_extending_in_from_the_ventral_plated_membrane 'left and right marginal plates separated by one^ninfracentral plate',
+		10 Number_of_marginal_plates_between_M0_and_the_posterior_closure_of_the_ring /  five six seven,
+		11 'Number of marginal plates between M0 and the posterior^nclosure of the ring' /  four five six_or_seven,
+		12 Anterior_margin_of_plate_M0 /  vertical_or_rounded projecting_as_a_strong_flange,
+		13 Shape_of_marginal_plates_forming_lateral_part_of_cinctus /  wedge?shaped_with_lateral_flange_ without_lateral_flange rounded_in_external_section,
+		14 Interior_dorsal_edge_of_marginal_plates /  smooth corrugated,
+		15 Plate_M2r_exsert_from_ring /  absent present,
+		16 'Plate M4 hatchet-shaped' /  absent present,
+		17 Protuberance_on_the_dorsal_part_of_plate_M2l /  absent present,
+		18 Protuberance_on_the_dorsal_part_of_plate_M3l /  absent present,
+		19 Protuberance_on_the_dorsal_part_of_plate_M3r /  absent present,
+		20 Protuberance_on_the_dorsal_part_of_plate_M4r /  absent small_node large_projecting_spike,
+		21 Protuberance_on_the_ventral_part_of_plate_M5l /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
+		22 Protuberance_on_the_ventral_part_of_plate_M4l /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
+		23 Protuberance_on_the_ventral_part_of_plate_M3l /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
+		24 Protuberance_on_the_ventral_part_of_plate_M2l /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
+		25 Protuberance_on_the_ventral_part_of_plate_M1l /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
+		26 Protuberance_on_the_ventral_part_of_plate_M0 /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
+		27 Protuberance_on_the_ventral_part_of_plate_M1r /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
+		28 Protuberance_on_the_ventral_part_of_plate_M2r /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
+		29 Protuberance_on_the_ventral_part_of_plate_M3r /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
+		30 Protuberance_on_the_ventral_part_of_plate_M4r /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
+		31 Protuberance_on_the_ventral_part_of_plate_M5r /  absent isolated_mound part_of_continuous_ridge_with_contiguous_plates,
+		32 Shape_of_plate_M2 /  'uniform, trapezoidal with rounded outer edge' distinctly_angled,
+		33 Marginal_plates_1l_and_1r_with_strong_dorsal_projections /  absent small 'peg-like spike',
+		34 'Marginal plates 1l and 1r with thin, plate-like dorsal flan' /  absent present,
+		35 Projections_from_marginal_plates_M1l_and_M1r /  vertically_oriented directed_towards_the_anterior,
+		36 Suropercular_facet_on_plates_M1l_and_M1r /  rudimentary_or_absent forming_an_obvious_flat_triangular_zone,
+		37 Number_of_plates_forming_dorsal_margin_of_operculum /  six_or_seven five three_or_four,
+		38 Central_plate_of_lintel_with_protuberance_or_spine /  absent present,
+		39 Sutural_epispires_on_dorsal_surface /  absent 'present as arc on left-hand side' 'present scattered on right-hand side',
+		40 Dorsal_surface /  uniform_ornament_&_plating distinct_anterior_&_marginal_zones,
+		41 Ventral_plated_surface_composition /  very_few_large_plates '40-75' many_small_uniform_plates,
+		42 Ventral_plates_distinctly_larger_than_dorsal_plates /  absent present,
+		43 Ventral_swellings_developed_on_anterior_infracentral_plates /  absent present,
+		44 'Very large, differentiated ventral infracentrals in anterior  region' /  absent present,
+		45 Dorsal_tegmen_swollen_centrally /  absent present,
+		46 Plate_M3l_food_groove /  absent extends_onto_plate_without_crossing crosses_plate,
+		47 Plate_M2l_food_groove /  absent extends_onto_plate_without_crossing crosses_plate,
+		48 Plate_M1l_food_groove_on_plate /  absent extends_onto_plate_without_crossing crosses_plate,
+		49 Plate_M0_food_groove_on_plate /  absent extends_onto_plate_without_crossing crosses_plate,
+		50 Plate_M1r_food_groove_on_plate /  absent extends_onto_plate_without_crossing crosses_plate,
+		51 Plate_M2r_food_groove_on_plate /  absent extends_onto_plate_without_crossing crosses_plate,
+		52 Plate_M3r_food_groove_on_plate /  absent extends_onto_plate_without_crossing crosses_plate,
+		53 Plate_M4r_food_groove_on_plate /  absent extends_onto_plate_without_crossing crosses_plate,
+		54 Upper_and_lower_rim_of_food_groove_with_distinct_pits /  absent present,
+		55 Position_of_food_groove_as_it_passes_around_anterior_of_cinctus /  below_ambitus_and_facing_downwards_ at_ambitus_and_facing_forwards,
+		56 Path_of_left_food_groove_as_it_crosses_plate_M0 /  curved_ventrally straight,
+		57 Construction_of_plated_membranes_covering_food_groove /  upper_and_lower_sheets_of_multiple_small_elements an_upper_and_lower_biseries_of_plates,
+		58 'Relative lengths of left- and right-hand food grooves' /  symmetric_left_and_right_food_grooves_extending_the_same_number_of_marginal_plates_away_from_the_mouth asymmetric_with_left?hand_food_groove_extending_no_more_than_1_plate_further_than_the_right?hand_food_groove asymmetric_with_left?hand_food_groove_extended_by_2_or_more_plates_further_than_the_right?hand_food_groove 'asymmetric, right?hand food groove completely absent ',
+		59 Marginal_ossicles_ventral_shape /  smooth_and_flat_ventrally with_distinct_ventral_swellings_on_at_least_some_plates,
+		60 Marginal_ossicles_dorsal_shape /  smoothly_rounded_dorsally with_distinct_node_or_spike_on_at_least_some_plates ;
+		
 	MATRIX
-	Ctenocystis                  011???000?0?????0000?000000000????????0020?00????????????000
+	Ctenocystis_utahensis        011???000?0?????0000?000000000????????0020?00????????????000
 	Gyrocystis_platessa          1101110100(0 1)100000000-0000000000010012020110000001200001-1300
 	Gyrocystis_testudiformis     00011111000100000000-0000100000010012020101110001200001-1310
 	Gyrocystis_cruzae            1001?10?000100000000??000100000010012???0?00?0001200001-?310
@@ -108,12 +109,13 @@ BEGIN CHARACTERS;
 ;
 
 END;
-BEGIN LABELS;
-	TAXAGROUPLABEL Outgroup;
-	TAXAGROUPLABEL Ingroup;
 
-	CHARGROUPLABEL Lognormal;
-	CHARGROUPLABEL Exclude;
+BEGIN LABELS;
+	TAXAGROUPLABEL Outgroup COLOR = (RGB 1 1 1) ;
+	TAXAGROUPLABEL Ingroup COLOR = (RGB 1 1 1) ;
+
+	CHARGROUPLABEL Lognormal COLOR = (RGB 1 1 1) ;
+	CHARGROUPLABEL Exclude COLOR = (RGB 1 1 1) ;
 	CHARGROUPLABEL Gamma;
 	CHARGROUPLABEL Nonfeeding;
 	CHARGROUPLABEL Feeding;
@@ -125,35 +127,51 @@ BEGIN LABELS;
 	CHARGROUPLABEL Membranes;
 	CHARGROUPLABEL Food_Grooves;
 	CHARGROUPLABEL Bonus;
-	CHARGROUPLABEL Unbiased;
-	CHARGROUPLABEL Driven;
+	CHARGROUPLABEL Unbiased COLOR = (RGB 1 1 1) ;
+	CHARGROUPLABEL Driven COLOR = (RGB 1 1 1) ;
 
 
 END;
 
 BEGIN SETS;
-	TAXPARTITION To_Analyze  =  Outgroup :  1, Ingroup :  2- 23;
+	TAXPARTITION To_Analyze  =  Outgroup :  1, Ingroup :  2 -  23;
 
-	CHARPARTITION Functional_Partitions  =  Nonfeeding :  1- 45 58- 60, Feeding :  46- 57;
-	CHARPARTITION To_Analyze  =  Include :  1- 57, Exclude :  58- 60;
-	CHARPARTITION Authors  =  General_Features :  1- 3, Stele :  4- 8, Marginal_Frame :  9- 32, Operculum_and_Porta :  33- 38, Membranes :  39- 45, Food_Grooves :  46- 57, Bonus :  58- 60;
-	CHARPARTITION Driven_Trend  =  Unbiased :  1- 32 34- 40 43- 50 52- 60, Driven :  33 41- 42 51;
+	CHARPARTITION Functional_Partitions  (CHARACTERS = Character_Matrix) =  Nonfeeding :  1 -  45 58 -  60, Feeding :  46 -  57;
+	CHARPARTITION To_Analyze  (CHARACTERS = Character_Matrix) =  Include :  1 -  57, Exclude :  58 -  60;
+	CHARPARTITION Authors  (CHARACTERS = Character_Matrix) =  General_Features :  1 -  3, Stele :  4 -  8, Marginal_Frame :  9 -  32, Operculum_and_Porta :  33 -  38, Membranes :  39 -  45, Food_Grooves :  46 -  57, Bonus :  58 -  60;
+	CHARPARTITION Driven_Trend  (CHARACTERS = Character_Matrix) =  Unbiased :  1 -  32 34 -  40 43 -  50 52 -  60, Driven :  33 41 -  42 51;
 
 END;
 
 BEGIN ASSUMPTIONS;
-	TYPESET * UNTITLED   =  unord:  1- 60;
-TYPESET RevBayes   =  unord:  1- 60;
+	TYPESET * UNTITLED  (CHARACTERS = Character_Matrix)  =  unord:  1 -  60;
+TYPESET RevBayes  (CHARACTERS = Character_Matrix)  =  unord:  1 -  60;
+TYPESET * UNTITLED  (CHARACTERS = Alteration_of__matrix_Character_Matrix_by_Recode_Characters)  =  unord:  1 -  60;
 
 END;
 
 BEGIN MESQUITECHARMODELS;
-	ProbModelSet * UNTITLED   =  'Mk1 (est.)':  1- 60;
+	ProbModelSet * UNTITLED  (CHARACTERS = Character_Matrix)  =  'Mk1 (est.)':  1 -  60;
+ProbModelSet * UNTITLED  (CHARACTERS = Alteration_of__matrix_Character_Matrix_by_Recode_Characters)  =  'Mk1 (est.)':  1 -  60;
 END;
 
 BEGIN NOTES;
 
+	TEXT  TAXON = 1 TEXT = 'Given as just "Ctenocystis" in published matrix';
 	TEXT  TAXON = 23 TEXT = 'From Zamora, Rahman & Smith 2013. The ontogeny of cinctans (stem-group Echinodermata) as revealed by a new genus, Graciacystis, from the Middle Cambrian of Spain.  Palaeontology 56(2):399-410.';
+	TEXT  TAXON = 24 TEXT = 'Uncoded: included for FBD purposes';
+	TEXT  TAXON = 25 TEXT = 'Uncoded: included for FBD purposes';
+	TEXT  TAXON = 26 TEXT = 'Uncoded: included for FBD purposes';
+	TEXT  TAXON = 27 TEXT = 'Uncoded: included for FBD purposes';
+
+	CHARACTERS = Character_Matrix TAXA = Taxa;
+	TEXT   CHARACTER = 1 TEXT = 'Body asymmetry was measured^nby taking a line from the point of stele attachment to^nthe centre of marginal plate M0 and measuring maximum^ndistance to the edge of the cinctus to both left (Lwidth) and right (Rwidth) of this line (Text-fig. 2). The ratio of these ^ntwo measurements provides a metric for how asymmetric the ^nbody is in outline.';
+
+	CHARACTERS = Alteration_of__matrix_Character_Matrix_by_Recode_Characters TAXA = Taxa;
+
+	TEXT   CHARACTERS = Character_Matrix CHARACTER = 1 STATE = 0 TEXT = 'cinctan ^nLwidth ? Rwidth >0.9)';
+	TEXT   CHARACTERS = Character_Matrix CHARACTER = 1 STATE = 1 TEXT = 'Lwidth ? Rwidth <0.9, >0.75';
+	TEXT   CHARACTERS = Character_Matrix CHARACTER = 1 STATE = 2 TEXT = 'Lwidth ?^nRwidth <0.75';
 
 END;
 
@@ -161,7 +179,7 @@ Begin MESQUITE;
 		MESQUITESCRIPTVERSION 2;
 		TITLE AUTO;
 		tell ProjectCoordinator;
-		timeSaved 1562357079464;
+		timeSaved 1567885852513;
 		getEmployee #mesquite.minimal.ManageTaxa.ManageTaxa;
 		tell It;
 			setID 0 446649146743680863;
@@ -169,197 +187,32 @@ Begin MESQUITE;
 		getEmployee #mesquite.charMatrices.ManageCharacters.ManageCharacters;
 		tell It;
 			setID 0 6329011859696130875;
-			mqVersion 360;
-			checksumv 0 3 1227500523 null  getNumChars 60 numChars 60 getNumTaxa 27 numTaxa 27   short true   bits 15   states 15   sumSquaresStatesOnly 5852.0 sumSquares 5852.0 longCompressibleToShort false usingShortMatrix true   NumFiles 1 NumMatrices 1;
+			mqVersion 340;
+			checksumv 0 3 1227500523 null  getNumChars 60 numChars 60 getNumTaxa 27 numTaxa 27   short true   bits 15   states 15   sumSquaresStatesOnly 5852.0 sumSquares 5852.0 longCompressibleToShort false usingShortMatrix true   NumFiles 1 NumMatrices 2;
+			mqVersion;
+			setID 1 5976786255293554737;
+			mqVersion 340;
+			checksumv 1 3 1227500523 null  getNumChars 60 numChars 60 getNumTaxa 27 numTaxa 27   short true   bits 15   states 15   sumSquaresStatesOnly 5852.0 sumSquares 5852.0 longCompressibleToShort false usingShortMatrix true   NumFiles 1 NumMatrices 2;
 			mqVersion;
 		endTell;
 		getWindow;
 		tell It;
 			suppress;
-			setResourcesState false false 100;
+			setResourcesState true false 100;
 			setPopoutState 300;
 			setExplanationSize 0;
 			setAnnotationSize 0;
 			setFontIncAnnot 0;
 			setFontIncExp 0;
 			setSize 1530 788;
-			setLocation 0 23;
+			setLocation 106 204;
 			setFont SanSerif;
 			setFontSize 10;
 			getToolPalette;
 			tell It;
 			endTell;
+			setActive;
 			desuppress;
-		endTell;
-		getEmployee  #mesquite.trees.BasicTreeWindowCoord.BasicTreeWindowCoord;
-		tell It;
-			makeTreeWindow #446649146743680863  #mesquite.trees.BasicTreeWindowMaker.BasicTreeWindowMaker;
-			tell It;
-				suppressEPCResponse;
-				setTreeSourceEditMode #mesquite.trees.StoredTrees.StoredTrees;
-				tell It;
-					laxMode;
-					setTreeBlock -2147483647;
-					toggleUseWeights off;
-				endTell;
-				setAssignedID 1001.1560903718473.5294326806589831643;
-				getTreeWindow;
-				tell It;
-					setExplanationSize 30;
-					setAnnotationSize 20;
-					setFontIncAnnot 0;
-					setFontIncExp 0;
-					setSize 1430 716;
-					setLocation 0 23;
-					setFont SanSerif;
-					setFontSize 10;
-					getToolPalette;
-					tell It;
-						setTool mesquite.trees.BasicTreeWindowMaker.BasicTreeWindow.arrow;
-					endTell;
-					getTreeDrawCoordinator #mesquite.trees.BasicTreeDrawCoordinator.BasicTreeDrawCoordinator;
-				tell It;
-					suppress;
-					setTreeDrawer  #mesquite.trees.DiagonalDrawTree.DiagonalDrawTree;
-					tell It;
-						setNodeLocs #mesquite.trees.NodeLocsStandard.NodeLocsStandard;
-						tell It;
-							branchLengthsToggle off;
-							toggleScale on;
-							toggleBroadScale off;
-							toggleCenter off;
-							toggleEven off;
-							setFixedTaxonDistance 0;
-						endTell;
-						setEdgeWidth 12;
-						orientUp;
-					endTell;
-					setBackground White;
-					setBranchColor Black;
-					showNodeNumbers off;
-					showBranchColors on;
-					labelBranchLengths off;
-					centerBrLenLabels on;
-					showBrLensUnspecified on;
-					showBrLenLabelsOnTerminals on;
-					setBrLenLabelColor 0 0 255;
-					setNumBrLenDecimals 6;
-					setSelectedTaxonHighlightMode 1;
-					desuppress;
-					getEmployee #mesquite.trees.BasicDrawTaxonNames.BasicDrawTaxonNames;
-					tell It;
-						setFont Gadget;
-						setColor Black;
-						setTaxonNameStyler  #mesquite.trees.NoColorForTaxon.NoColorForTaxon;
-						toggleShadePartition off;
-						toggleShowFootnotes on;
-						toggleNodeLabels on;
-						toggleCenterNodeNames off;
-						toggleShowNames on;
-						namesAngle ?;
-					endTell;
-				endTell;
-					setTreeNumber 1;
-					setTree '(1,(18,((21,20),(19,((8,(23,(22,(((14,17),16),(15,((11,12),(13,(10,9)))))))),(7,(2,(3,(4,(5,6))))))))));';
-					setDrawingSizeMode 0;
-					toggleLegendFloat on;
-					scale 0;
-					toggleTextOnTree off;
-					togglePrintName off;
-					showWindow;
-					newAssistant  #mesquite.ancstates.TraceCharOverTrees.TraceCharOverTrees;
-				tell It;
-					suppress ;
-					setHistorySource  #mesquite.ancstates.RecAncestralStates.RecAncestralStates;
-					tell It;
-						getCharacterSource  #mesquite.charMatrices.CharSrcCoordObed.CharSrcCoordObed;
-						tell It;
-							setCharacterSource #mesquite.charMatrices.StoredCharacters.StoredCharacters;
-							tell It;
-								setDataSet #6329011859696130875;
-							endTell;
-						endTell;
-						setMethod  #mesquite.parsimony.ParsAncestralStates.ParsAncestralStates;
-						tell It;
-							setModelSource  #mesquite.parsimony.CurrentParsModels.CurrentParsModels;
-							toggleMPRsMode off;
-						endTell;
-						toggleShowSelectedOnly off;
-					endTell;
-					setCharacter 41;
-					setTreeSource  #mesquite.treefarm.CurrentTree.CurrentTree;
-					tell It;
-						setTreeSource  #mesquite.trees.TreeOfContext.TreeOfContext;
-						tell It;
-							setContextID 1001.1560903718473.5294326806589831643;
-						endTell;
-					endTell;
-					setNumTrees 100;
-					setDisplayMode  #mesquite.ancstates.ShadeStatesOnTree.ShadeStatesOnTree;
-					tell It;
-						toggleLabels off;
-						togglePredictions off;
-						toggleGray off;
-					endTell;
-					toggleShowLegend on;
-					toggleShowNodeAbsent on;
-					toggleShowEquivocal on;
-					setMode Count_Trees_with_Uniquely_Best_States;
-					setInitialOffsetX 4;
-					setInitialOffsetY -311;
-					setLegendWidth 142;
-					setLegendHeight 209;
-					desuppress ;
-				endTell;
-				endTell;
-				setEditMode 'Edited, based on Edited, based on Default Symmetrical Tree+   [Stored Trees]';
-				desuppressEPCResponseNORESET;
-				getEmployee #mesquite.trees.ColorBranches.ColorBranches;
-				tell It;
-					setColor Red;
-					removeColor off;
-				endTell;
-				getEmployee #mesquite.ornamental.BranchNotes.BranchNotes;
-				tell It;
-					setAlwaysOn off;
-				endTell;
-				getEmployee #mesquite.ornamental.ColorTreeByPartition.ColorTreeByPartition;
-				tell It;
-					colorByPartition off;
-				endTell;
-				getEmployee #mesquite.ornamental.DrawTreeAssocDoubles.DrawTreeAssocDoubles;
-				tell It;
-					setOn on;
-					toggleShow consensusFrequency;
-					toggleShow posteriorProbability;
-					toggleShow bootstrapFrequency;
-					toggleShow consensusFrequency;
-					toggleShow posteriorProbability;
-					toggleShow bootstrapFrequency;
-					setDigits 4;
-					setThreshold ?;
-					writeAsPercentage off;
-					toggleCentred off;
-					toggleHorizontal on;
-					toggleWhiteEdges on;
-					toggleShowOnTerminals on;
-					setFontSize 10;
-					setOffset 0  0;
-				endTell;
-				getEmployee #mesquite.ornamental.DrawTreeAssocStrings.DrawTreeAssocStrings;
-				tell It;
-					setOn on;
-					toggleCentred on;
-					toggleHorizontal on;
-					setFontSize 10;
-					setOffset 0  0;
-					toggleShowOnTerminals on;
-				endTell;
-				getEmployee #mesquite.trees.TreeInfoValues.TreeInfoValues;
-				tell It;
-					panelOpen false;
-				endTell;
-			endTell;
 		endTell;
 		getEmployee  #mesquite.charMatrices.BasicDataWindowCoord.BasicDataWindowCoord;
 		tell It;
@@ -369,21 +222,20 @@ Begin MESQUITE;
 				tell It;
 					getTable;
 					tell It;
-						rowNamesWidth 163;
+						rowNamesWidth 176;
 					endTell;
 					setExplanationSize 30;
 					setAnnotationSize 20;
 					setFontIncAnnot 0;
 					setFontIncExp 0;
-					setSize 1430 716;
-					setLocation 0 23;
+					setSize 0 -72;
+					setLocation 106 204;
 					setFont Gadget;
 					setFontSize 12;
 					getToolPalette;
 					tell It;
 						setTool mesquite.charMatrices.BasicDataWindowMaker.BasicDataWindow.arrow;
 					endTell;
-					setActive;
 					setTool mesquite.charMatrices.BasicDataWindowMaker.BasicDataWindow.arrow;
 					colorCells  #mesquite.charMatrices.NoColor.NoColor;
 					colorRowNames  #mesquite.charMatrices.TaxonGroupColor.TaxonGroupColor;
@@ -406,7 +258,6 @@ Begin MESQUITE;
 					toggleShowPaleCellColors off;
 					toggleShowPaleExcluded off;
 					togglePaleInapplicable on;
-					togglePaleMissing off;
 					toggleShowBoldCellText off;
 					toggleAllowAutosize on;
 					toggleColorsPanel off;
@@ -415,11 +266,11 @@ Begin MESQUITE;
 					toggleLinkedScrolling on;
 					toggleScrollLinkedTables off;
 				endTell;
-				showWindow;
 				getWindow;
 				tell It;
 					forceAutosize;
 				endTell;
+				hideWindow;
 				getEmployee #mesquite.charMatrices.AlterData.AlterData;
 				tell It;
 					toggleBySubmenus off;
@@ -459,72 +310,94 @@ Begin MESQUITE;
 					panelOpen true;
 				endTell;
 			endTell;
-		endTell;
-		getEmployee  #mesquite.charMatrices.ManageCharacters.ManageCharacters;
-		tell It;
-			showCharacters #6329011859696130875 #mesquite.lists.CharacterList.CharacterList;
+			showDataWindow #5976786255293554737 #mesquite.charMatrices.BasicDataWindowMaker.BasicDataWindowMaker;
 			tell It;
-				setData 0;
 				getWindow;
 				tell It;
-					useTargetValue off;
-					setTargetValue ;
-					newAssistant  #mesquite.lists.DefaultCharOrder.DefaultCharOrder;
-					newAssistant  #mesquite.lists.CharListInclusion.CharListInclusion;
-					newAssistant  #mesquite.lists.CharListPartition.CharListPartition;
-					newAssistant  #mesquite.parsimony.CharListParsModels.CharListParsModels;
-					newAssistant  #mesquite.stochchar.CharListProbModels.CharListProbModels;
-					newAssistant  #mesquite.lists.CharacterStats.CharacterStats;
-				tell It;
-					toggleSelectedOnly off;
-				endTell;
-					getTable;
-					tell It;
-						rowNamesWidth 433;
-						columnWidth 1 56;
-					endTell;
 					setExplanationSize 30;
 					setAnnotationSize 20;
 					setFontIncAnnot 0;
 					setFontIncExp 0;
-					setSize 1430 716;
-					setLocation 0 23;
-					setFont Gadget;
-					setFontSize 12;
+					setSize 0 -72;
+					setLocation 106 204;
+					setFont SanSerif;
+					setFontSize 10;
 					getToolPalette;
 					tell It;
-						setTool mesquite.lists.CharacterList.CharacterListWindow.ibeam;
 					endTell;
+					setTool mesquite.charMatrices.BasicDataWindowMaker.BasicDataWindow.arrow;
+					colorCells  #mesquite.charMatrices.NoColor.NoColor;
+					colorRowNames  #mesquite.charMatrices.TaxonGroupColor.TaxonGroupColor;
+					colorColumnNames  #mesquite.charMatrices.CharGroupColor.CharGroupColor;
+					colorText  #mesquite.charMatrices.NoColor.NoColor;
+					setBackground White;
+					toggleShowNames on;
+					toggleShowTaxonNames on;
+					toggleTight off;
+					toggleThinRows off;
+					toggleShowChanges on;
+					toggleSeparateLines off;
+					toggleShowStates on;
+					toggleAutoWCharNames on;
+					toggleAutoTaxonNames off;
+					toggleShowDefaultCharNames off;
+					toggleConstrainCW on;
+					toggleBirdsEye off;
+					toggleShowPaleGrid off;
+					toggleShowPaleCellColors off;
+					toggleShowPaleExcluded off;
+					togglePaleInapplicable on;
+					toggleShowBoldCellText off;
+					toggleAllowAutosize on;
+					toggleColorsPanel off;
+					toggleDiagonal on;
+					setDiagonalHeight 80;
+					toggleLinkedScrolling on;
+					toggleScrollLinkedTables off;
 				endTell;
-				showWindow;
-				getEmployee #mesquite.lists.CharListAnnotPanel.CharListAnnotPanel;
+				getWindow;
+				tell It;
+					forceAutosize;
+				endTell;
+				hideWindow;
+				getEmployee #mesquite.charMatrices.AlterData.AlterData;
+				tell It;
+					toggleBySubmenus off;
+				endTell;
+				getEmployee #mesquite.charMatrices.ColorByState.ColorByState;
+				tell It;
+					setStateLimit 9;
+					toggleUniformMaximum on;
+				endTell;
+				getEmployee #mesquite.charMatrices.ColorCells.ColorCells;
+				tell It;
+					setColor Red;
+					removeColor off;
+				endTell;
+				getEmployee #mesquite.categ.StateNamesStrip.StateNamesStrip;
+				tell It;
+					showStrip off;
+				endTell;
+				getEmployee #mesquite.charMatrices.AnnotPanel.AnnotPanel;
 				tell It;
 					togglePanel off;
 				endTell;
-			endTell;
-		endTell;
-		getEmployee  #mesquite.charMatrices.ManageCharPartitions.ManageCharPartitions;
-		tell It;
-			showCharacterGroups  #mesquite.lists.CharGroupList.CharGroupList;
-			tell It;
-				getWindow;
+				getEmployee #mesquite.charMatrices.CharReferenceStrip.CharReferenceStrip;
 				tell It;
-					useTargetValue off;
-					setTargetValue ;
-					newAssistant  #mesquite.lists.CharGroupListColor.CharGroupListColor;
-					setExplanationSize 30;
-					setAnnotationSize 20;
-					setFontIncAnnot 0;
-					setFontIncExp 0;
-					setSize 1430 716;
-					setLocation 0 23;
-					setFont Gadget;
-					setFontSize 14;
-					getToolPalette;
-					tell It;
-					endTell;
+					showStrip off;
 				endTell;
-				showWindow;
+				getEmployee #mesquite.charMatrices.QuickKeySelector.QuickKeySelector;
+				tell It;
+					autotabOff;
+				endTell;
+				getEmployee #mesquite.charMatrices.SelSummaryStrip.SelSummaryStrip;
+				tell It;
+					showStrip off;
+				endTell;
+				getEmployee #mesquite.categ.SmallStateNamesEditor.SmallStateNamesEditor;
+				tell It;
+					panelOpen true;
+				endTell;
 			endTell;
 		endTell;
 		endTell;

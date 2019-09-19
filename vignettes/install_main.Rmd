@@ -28,7 +28,7 @@ R is a programming language that is especially powerful for data exploration, vi
 When you’re done installing R and RStudio, regardless of what operating system you are on, you will need to install several additional packages that contain additional, specialized functions that we will cover in our lessons. R’s versatility greatly comes from its thousands of such specialized packages, written by other users, and submitted to the CRAN repository, and not included in the base installation. We will use eight of those packages: `ape`, `geiger`, `paleotree`, `phytools`, `nlme`, `knitr`, `devtools`, and `OUwie`. To install all of these packages, we only need to open R (by opening RStudio, or any other alternative you prefer) and paste the following command:
 
 ```
-install.packages(c('knitr', ‘nlme’, 'devtools’, ‘ape’, ‘geiger’, ‘phytools’, ‘paleotree’,  ‘OUwie’))
+install.packages(c('knitr', 'nlme', 'devtools', 'ape', 'geiger', 'phytools', 'paleotree',  'OUwie'))
 ```
 
 Note that these packages have about *150* additional packages that depend on, or recursively depend on, and thus this process may take 10-20 minutes depending on your internet connection.

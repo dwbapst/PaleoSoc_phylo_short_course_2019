@@ -4,7 +4,7 @@ BEGIN DATA;
 	DIMENSIONS  NTAX=27 NCHAR=21;
 	FORMAT DATATYPE = STANDARD RESPECTCASE GAP = - MISSING = ? SYMBOLS = "   0 1 2 ";
 	MATRIX
-	Ctenocystis                     000?0?0000000??02????
+	Ctenocystis_utahensis           000?0?0000000??02????
 	Gyrocystis_platessa             1100(01)0000000012210000
 	Gyrocystis_testudiformis        010000000010012210000
 	Gyrocystis_cruzae               1?0000000010012?00000

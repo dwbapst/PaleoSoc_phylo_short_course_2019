@@ -6,12 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Discrete morphology - Models and Tree Inference • 2019 PS Short Course on Phylogenetic Paleobiology at GSA</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
 <script src="../../pkgdown.js"></script><meta property="og:title" content="Discrete morphology - Models and Tree Inference">
 <meta property="og:description" content="">
+<meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -223,7 +230,7 @@
 <p>In this exercise, you will work primarily in this R text editor and create a set of files that will be easily managed and interchanged.</p>
 <p>In this section you will begin the file and write the Rev commands for loading in the taxon list and managing the data matrices. Then, starting in section Mk Model, you will move on to specifying each of the model components. Once the model specifications are complete, you will complete the script with the instructions given in section</p>
 <p><strong>Load Data Matrices</strong></p>
-<p>RevBayes uses the function <code>readDiscreteCharacterData()</code> to load a data matrix to the workspace from a formatted file. This function can be used for both molecular sequences and discrete morphological characters. Import the morphological character matrix and assign it to the variable <code>morpho</code>.</p>
+<p>RevBayes uses the function <code>readDiscreteCharacterData()</code> to load a data matrix to the workspace from a formatted file. This function can be used for both molecular sequences and discrete morphological characters. Import the morphological character matrix and assign it the variable <code>morpho</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    morpho &lt;-<span class="st"> </span><span class="kw">readDiscreteCharacterData</span>(<span class="st">"data/Cinctans.nex"</span>)</code></pre></div>
 <p><strong>Create Helper Variables</strong></p>
 <p>We will dig into the model momentarily. But first, we will create some variables that are used in our analysis, but are not parameters. We will assign these variables with the constant node assignment operator, <code>&lt;-</code>. Even though these values are used in our scripts, they are not parameters of the model.</p>
@@ -231,7 +238,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    taxa &lt;-<span class="st"> </span><span class="kw">morpho.names</span>()
     num_taxa &lt;-<span class="st"> </span><span class="kw">morpho.size</span>() 
     num_branches &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>num_taxa <span class="op">-</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
-<p>Next, create two workspace variables called <code>mvi</code> and <code>mni</code>. These variable are iterators that will build a vector containing all of the MCMC moves used to propose new states for every stochastic node in the model graph. Each time a new move is added to the vector, <code>mvi</code> will be incremented by a value of <code>1</code>.</p>
+<p>Next, create two workspace variables called <code>mvi</code> and <code>mni</code>. These variables are iterators that will build a vector containing all of the MCMC moves used to propose new states for every stochastic node in the model graph. Each time a new move is added to the vector, <code>mvi</code> will be incremented by a value of <code>1</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    mvi =<span class="st"> </span><span class="dv">1</span>
     mni =<span class="st"> </span><span class="dv">1</span></code></pre></div>
 <p>One important distinction here is that <code>mvi</code> is part of the RevBayes workspace and not the hierarchical model. Thus, we use the workspace assignment operator <code>=</code> instead of the constant node assignment <code>&lt;-</code>.</p>
@@ -240,10 +247,10 @@
 <div id="the-mk-model-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-mk-model-1" class="anchor"></a>The Mk Model</h2>
-<p>First, we will create a joint on the branch lengths.</p>
+<p>First, we will create a joint prior on the branch lengths.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    br_len_lambda <span class="op">~</span><span class="st"> </span><span class="kw">dnExp</span>(<span class="fl">0.2</span>)
     moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvScale</span>(br_len_lambda, <span class="dt">weight=</span><span class="dv">2</span>)</code></pre></div>
-<p>This prior specifies that branch lengths will be drawns from an exponential distribution with parameter .2. If you’re not familiar with what an exponential distribution, try setting the below code to <code>eval = FALSE</code> to run the R code and visualize the distribution. Set <code>eval = FALSE</code> when you are done.</p>
+<p>This prior specifies that branch lengths will be drawns from an exponential distribution with parameter 0.2. If you’re not familiar with what an exponential distribution, try setting the below code to <code>eval = FALSE</code> to run the R code and visualize the distribution. Set <code>eval = FALSE</code> when you are done.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)
 draws &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span>(<span class="dv">10000</span>, <span class="fl">.2</span>)
 <span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(draws)</code></pre></div>
@@ -253,10 +260,10 @@ draws &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/
     moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvSPR</span>(phylogeny, <span class="dt">weight=</span>num_branches<span class="op">/</span><span class="fl">10.0</span>)
     moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvBranchLengthScale</span>(phylogeny, <span class="dt">weight=</span>num_branches)
     tree_length <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">phylogeny.treeLength</span>()</code></pre></div>
-<p>We will add Gamma-distributed rate variation and specify moves on the parameter to the Gamma distribution.</p>
+<p>We will add Gamma-distributed rate variation and specify moves on the parameter of the Gamma distribution.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    alpha_morpho <span class="op">~</span><span class="st"> </span><span class="kw">dnUniform</span>( <span class="dv">0</span>, <span class="fl">1E6</span> )
     rates_morpho <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">fnDiscretizeGamma</span>( alpha_morpho, alpha_morpho, <span class="dv">4</span> )
-    <span class="co">#Moves on the parameters to the Gamma distribution.</span>
+    <span class="co">#Moves on the parameters of the Gamma distribution.</span>
     moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvScale</span>(alpha_morpho, <span class="dt">lambda=</span><span class="dv">1</span>, <span class="dt">weight=</span><span class="fl">2.0</span>)</code></pre></div>
 <p>If you are unfamiliar with the gamma distribution, feel free to run the below code to visualize the distribution.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)
@@ -264,8 +271,8 @@ alpha_morpho &lt;-<span class="st"> </span><span class="kw"><a href="https://rdr
 
 draws &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/GammaDist.html">rgamma</a></span>(<span class="dv">1000</span>, <span class="dt">shape =</span> alpha_morpho, <span class="dt">rate =</span> alpha_morpho)
 <span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(draws)</code></pre></div>
-<p>Next, we will create a <span class="math inline">\(Q\)</span> matrix. Recall that the Mk model is simply a generalization of the JC model. Therefore, we will create a <span class="math inline">\(Q\)</span> matrix using <code>fnJC</code>, which initializes Q-matrices with equal transition probabilities between all states. Since we have multistate data, we need to specify different Q-matrices for the different number of character states. For example, it would not make sense to model a 5-state character using a model saying there are only two character states.</p>
-<p>To do this, we have written a loop in which we break up the data set into partitions according to the number of character states that character has. Then, we specify a Q-matrix in the correct dimensions. We do not retain any partitions that do not have any characters. For example, if we tried to partition the characters with 4 states, and there were none, we would not create a Q-matrix.</p>
+<p>Next, we will create a <span class="math inline">\(Q\)</span>-matrix. Recall that the Mk model is simply a generalization of the JC model. Therefore, we will create a <span class="math inline">\(Q\)</span>-matrix using <code>fnJC</code>, which initializes <span class="math inline">\(Q\)</span>-matrices with equal transition probabilities between all states. Since we have multistate data, we need to specify different <span class="math inline">\(Q\)</span>-matrices for the different number of character states. For example, it would not make sense to model a 5-state character using a model saying there are only two character states.</p>
+<p>To do this, we have written a loop in which we break up the data set into partitions according to the number of character states that character has. Then, we specify a <span class="math inline">\(Q\)</span>-matrix in the correct dimensions. We do not retain any partitions that do not have any characters. For example, if we tried to partition the characters with 4 states, and there were none, we would not create a <span class="math inline">\(Q\)</span>-matrix.</p>
 <p>Then, we combine each partition, Gamma-distributed rate heterogeneity, and the tree together into what is called the <code>phyloCTMC</code>. This is the joint set of model paramters that will be used the model these data. Each partition is then clamped to its model.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_max_states &lt;-<span class="st"> </span><span class="dv">7</span>
 idx =<span class="st"> </span><span class="dv">1</span>
@@ -293,10 +300,10 @@ morpho_bystate[<span class="dv">1</span>] &lt;-<span class="st"> </span>morpho
 
         <span class="co"># increment counter</span>
         idx =<span class="st"> </span>idx <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-idx
-}
+        idx
+    }
 }</code></pre></div>
-<p>We see some familiar pieces: tree, <span class="math inline">\(Q\)</span> matrix and <code>rates_morpho</code>. We also have two new keywords: data type and coding. The data type argument specifies the type of data - in our case, “Standard”, the specification for morphology. All of the components of the model are now specified.</p>
+<p>We see some familiar pieces: tree, <span class="math inline">\(Q\)</span>-matrix and <code>rates_morpho</code>. We also have two new keywords: data type and coding. The data type argument specifies the type of data - in our case, “Standard”, the specification for morphology. All of the components of the model are now specified.</p>
 <div id="complete-mcmc-analysis" class="section level3">
 <h3 class="hasAnchor">
 <a href="#complete-mcmc-analysis" class="anchor"></a>Complete MCMC Analysis</h3>
@@ -329,7 +336,7 @@ idx
 <a href="#you-made-it-save-all-of-your-files-" class="anchor"></a>You made it! Save all of your files.</h2>
 <p>With all the parameters specified and all analysis components in place, you are now ready to run your analysis. RevBayes cannot run inside the RStudio window. So we will need to copy our code out of RStudio. Luckily, the knitr package makes this very easy. Run the following in the console:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/knit.html">purl</a></span>(<span class="st">"module_05_TripartiteModel1_morph_change_models/RB_Discrete_Morphology/RB_MCMC_Discrete_Morph.Rmd"</span>)</code></pre></div>
-<p>This will create a .R file containing our analysis script. Move it into the <code>scripts</code> folder and rename it to mk_gamma.R</p>
+<p>This will create a .R file containing our analysis script. Move it into the <code>scripts</code> folder and rename it to mk_gamma.Rev</p>
 <blockquote>
 <p>Begin by running the RevBayes executable. In Unix systems, type the following in your terminal (if the RevBayes binary is in your path): rb</p>
 </blockquote>

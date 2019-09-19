@@ -4,7 +4,7 @@ BEGIN DATA;
 	DIMENSIONS  NTAX=27 NCHAR=1;
 	FORMAT DATATYPE = STANDARD RESPECTCASE GAP = - MISSING = ? SYMBOLS = "   0 1 2 3 ";
 	MATRIX
-	Ctenocystis                     1
+	Ctenocystis_utahensis           1
 	Gyrocystis_platessa             1
 	Gyrocystis_testudiformis        0
 	Gyrocystis_cruzae               0
