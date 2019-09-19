@@ -19,6 +19,10 @@ RevBayes is a terminal-based program for Bayesian phylogenetic analysis which gi
 
 In the week before the workshop, one of us (A. Wright) pushed a number of changes to the RevBayes source and compiled new pre-release versions for our GSA workshop, labeled as release version 1.0.13. In particular, and of significance for us paleontologists, this allows us to load character matrices containing characters that entail differing numbers of character states. Previously, matrices with mixtures of characters with differing numbers of states had to be seperated beforehand to be loaded by RevBayes. If you have an older version of RevBayes from before this week, please update!
 
+#### **NOTE 2** Do not worry about RevStudio!
+
+RevStudio is an analog of RStudio that allows one to edit, debug and run RevBayes scripts in an IDE environment.  However, the latest version does not seem to run on all computers.  Do not worry: *we will be using RevBayes in the terminal mode and not relying on RevStudio.*
+
 ### R and RStudio
 
 R is a programming language that is especially powerful for data exploration, visualization, and statistical analysis. We will interact with R via RStudio, a popular Integrated Development Environment (IDE) that provides a helpful, beginner friendly experience that allows for easy writing and editing of R scripts. This includes the writing and processing of Rmarkdown files which are regular text documents with interspersed ‘chunks’,that can be converted to PDF or HTML format as dynamic reports. Throughout much of the workshop, we will use the script editing features of RStudio essentially as a plain-text editor, to read and edit scripts for RevBayes. 
