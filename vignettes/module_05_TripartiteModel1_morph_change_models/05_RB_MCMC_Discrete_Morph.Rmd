@@ -1,10 +1,10 @@
 ---
 title: "Discrete morphology - Models and Tree Inference"
-output: html_document
-author:
-- April M. Wright
+author: "April M. Wright"
+output:
+  html_document: default
+  pdf_document: default
 bibliography: ../refs.bib
-
 ---
 
 # Introduction to phylogenetic models of morphological evolution
@@ -378,7 +378,7 @@ $$Q = \begin{pmatrix} -\mu_0\pi0 & \mu_{01}\pi0 \\
 \end{pmatrix} \mbox{  ,}$$
 
 
-In which the probability of changing states depends not solely on the transition probability, but also the frequency of the starting state. For example, if we have a rare character state, we do not expect to see many transitions from the rare state to another. \pi is the value chosen to represent state frequency commonly in phylogenetic models.
+In which the probability of changing states depends not solely on the transition probability, but also the frequency of the starting state. For example, if we have a rare character state, we do not expect to see many transitions from the rare state to another. $\pi$ is the value chosen to represent state frequency commonly in phylogenetic models.
 
 We can exploit the relationship between state frequencies and observed
 changes to allow for variable Q-matrices across characters. To do this, we generate a beta distribution on state frequencies, and use the state frequencies from that distribution to generate a series of Q-matrices used to evaluate our data [@Pagel2004, @Nylander2004, @Wright2016].
