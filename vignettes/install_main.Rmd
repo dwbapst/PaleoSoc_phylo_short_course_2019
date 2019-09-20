@@ -21,7 +21,8 @@ In the week before the workshop, one of us (A. Wright) pushed a number of change
 
 #### **NOTE 2** Do not worry about RevStudio!
 
-RevStudio is an analog of RStudio that allows one to edit, debug and run RevBayes scripts in an IDE environment.  However, the latest version does not seem to run on all computers.  Do not worry: *we will be using RevBayes in the terminal mode and not relying on RevStudio.*
+RevStudio is an analog of RStudio that allows one to edit, debug and run RevBayes scripts in an IDE environment.  However, the latest version of RevBayes
+does not seem to run on all computers - particular issues that have been reported are that it does not work currently on mac OC computers (and it does not exist at all for Linux, anyway).  Do not worry: we will be using RevBayes in the terminal mode (`rb`) and *not* relying on RevStudio.
 
 ### R and RStudio
 

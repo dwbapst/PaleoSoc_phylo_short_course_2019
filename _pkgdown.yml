@@ -31,7 +31,7 @@ navbar:
        icon: fas fa-home fa-lg
        href: index.html
      paleoSoc: 
-       icon: paleosociety.jpg
+       icon: pkgdown/favicon/favicon.ico
        href: https://www.paleosoc.org/
      schedule:
        text: Workshop Schedule
