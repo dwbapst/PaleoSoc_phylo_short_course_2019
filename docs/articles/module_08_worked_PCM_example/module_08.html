@@ -152,11 +152,11 @@
 <p><strong>This tutorial.</strong> What follows is an overview of some of the approaches that can be used when you already have a tree in hand. These approaches are what people commonly think of as phylogenetic comparative methods, and some of you may already be familiar with them. Many of these PCMs are used to model trait change through time, and the relationship between that trait change and other variables. But, unlike what we have been doing today so far, most do not model the underlying process that generates the trait change, just it’s outcome. Therefore, as we will see later, different underlying processes can be best fit by the same model. There is also a large suite of approaches (phylogenetic and non) that can be used to estimate diversification rates, those are more likely to be familiar to paleontologists, so for today we will stick to morphology.</p>
 <p>New PCMs have been rapidly proliferating in the past 5-10 years, and the kinds of questions they can be used to rigorously answer is now very diverse. Have a look at <a href="https://coggle.it/diagram/WhbkkxE2BAAB0R0m/t/summary-of-phylogenetic-comparative-methods-diogo-b-provete">this infographic</a> by Diogo B. Provete to see what we have available to play with! In this tutorial we will start with some fundamental approaches that are conceptually important, and move on to more complex models if there is time, or if you are already familiar with the fundamentals. Multiple books have been written on this vast topic, but hopefully this is enough to get started or understand some of the idiosyncracies of relevant R functions!</p>
 <div class="figure">
-<img src="Summary_of_PCMS.png">
+<img src="Summary_of_PCMs.png">
 </div>
 <p><em>A tree of approaches that can be applied to trees</em></p>
-<p><strong>A note on ‘the dark side’ of phylogenetic comparative methods.</strong> There are several papers (even a whole MEE edition!) that highlight situations where phylogenetic comparative approaches do not seem to do the job that we would like them too. It is very important to make sure that the method you use is appropriate for your question and data, and that you apply it correctly, but don’t let these debates deter you from trying out PCMs. When applied correctly they can be very powerful tools for macroevolutionary inference, and it is often the case that considering phylogeny at all will give you more information than ignoring it. Many of the criticisms boil down to needing to fully understand the method you are implementing, not going too far with conclusions, and doing things like checking that parameter estimates are reasonable. If in doubt, simulation can be a powerful tool to try and characterise the behaviour of a particular method when applied to data similar to your own. In this tutorial we have tried to introduce some ways to establish the robustness of results derived from PCMs.</p>
-<p>For the worked example we will be switching to a different dataset, for which we already have a set of trees. They’re still echinoderms though! To find out more about the crinoid group Eucladida look at <span class="citation">(Wright 2017)</span>(<a href="https://www.nature.com/articles/s41598-017-13979-9" class="uri">https://www.nature.com/articles/s41598-017-13979-9</a>). We will use a variety of PCMs to characterise the evolutionary history of some traits that are relevant to their feeding ecology.</p>
+<p><strong>A note on ‘the dark side’ of phylogenetic comparative methods.</strong> There are several papers (even a whole issue of the journal Methods in Ecology and Evolution!) that highlight situations where phylogenetic comparative approaches do not seem to do the job that we would like them too. It is very important to make sure that the method you use is appropriate for your question and data, and that you apply it correctly, but don’t let these debates deter you from trying out PCMs. When applied correctly they can be very powerful tools for macroevolutionary inference, and it is often the case that considering phylogeny at all will give you more information than ignoring it. Many of the criticisms boil down to needing to fully understand the method you are implementing, not going too far with conclusions, and doing things like checking that parameter estimates are reasonable. If in doubt, simulation can be a powerful tool to try and characterise the behaviour of a particular method when applied to data similar to your own. In this tutorial we have tried to introduce some ways to establish the robustness of results derived from PCMs.</p>
+<p>For the worked example we will be switching to a different dataset, for which we already have a set of trees. They’re still echinoderms though! To find out more about the crinoid group Eucladida look at <a href="https://www.nature.com/articles/s41598-017-13979-9">Wright’s 2017 paper</a> (<span class="citation">Wright (2017)</span>). We will use a variety of PCMs to characterise the evolutionary history of some traits that are relevant to their feeding ecology.</p>
 </div>
 <div id="getting-started---data-and-phylogeny" class="section level1">
 <h1 class="hasAnchor">
@@ -181,11 +181,11 @@
 ## t4 0.000 1.2477 1.7454 2.7373 0.8636 0.1766
 ## t6 0.000 0.8636 0.8636 0.8636 1.2436 0.1766
 ## t1 0.000 0.1766 0.1766 0.1766 0.1766 0.9540</code></pre>
-<p>The basic plotting function for phylogeny in R from the package <code>ape</code> doesn’t always do a great job. Here is a tutorial on using <a href="https://4va.github.io/biodatasci/r-ggtree.html">ggtree</a> to make nicer tree plots, if you are interested. However, for now just to take a quick look at our tree use:</p>
+<p>The basic plotting function for phylogeny in R from the package <code>ape</code> doesn’t always do a great job. <a href="https://4va.github.io/biodatasci/r-ggtree.html">Here is a tutorial on using ggtree</a> to make nicer tree plots, if you are interested. However, for now just to take a quick look at our tree use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/ape/man/ladderize.html">ladderize</a></span>(tree), <span class="dt">show.tip.label =</span> <span class="ot">FALSE</span>)
 <span class="kw"><a href="https://rdrr.io/pkg/ape/man/axisPhylo.html">axisPhylo</a></span>() </code></pre></div>
 <p><img src="module_08_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
-<p>You can see that some taxa were inferred to be ancestral to others that are included in the tree. Unlike in IcyTree, R displays these ancestors as sister to their descendants with 0 length branches. For the methods we are about to use zero length branches are mathematically intractable, we will therefore add a very short length to them. If you are concerned about bias this could introduce you could also drop these tips from the tree and compare results, note that in this dataset there are several inferred ancestors so this may represent loss of quite a lot of information. Node labels are required later for <code>OUwie</code> so we will add them now too.</p>
+<p>You can see that some taxa were inferred to be ancestral to others that are included in the tree. Unlike in IcyTree, R displays these ancestors as sister to their descendants with 0 length branches. For the methods we are about to use, zero length branches are mathematically intractable, so we will therefore add a very short length to them. If you are concerned about bias this could introduce you could also drop these tips from the tree and compare results, note that in this dataset there are several inferred ancestors so this may represent loss of quite a lot of information. Node labels are required later for <code>OUwie</code> so we will add them now too. ,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tree<span class="op">$</span>edge.length[tree<span class="op">$</span>edge.length <span class="op">==</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="fl">0.001</span>
 tree<span class="op">$</span>node.label &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">1</span>, <span class="kw"><a href="https://rdrr.io/pkg/ape/man/summary.phylo.html">Nnode</a></span>(tree))</code></pre></div>
 <p>For the purposes of this tutorial our main focus is on modelling change in continuous characters, but there is one discrete character for use later on. The three traits we will be modelling are calyx shape (measured as the length/width ratio of the calyx), fan density (approximate number of proximal feeding appendages an individual of the species has), and calyx complexity (number of plates interrupting the posterior interray), which is a discrete trait that could be ordered or unordered, depending on who you ask.</p>
@@ -199,8 +199,10 @@ Fan_data &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io
 <span class="co">#log and assign to separate vectors</span>
 Shape &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(data<span class="op">$</span>Shape)
 <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(Shape) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span>(data)
+
 Complexity &lt;-<span class="st"> </span>data<span class="op">$</span>Calyx_Complexity
 <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(Complexity) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span>(data)
+
 Density &lt;-<span class="st"> </span>Fan_data<span class="op">$</span>Fan_density
 <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(Density) &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span>(Fan_data) <span class="co">#this is already a logged value</span>
 
@@ -275,7 +277,7 @@ pgls &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg
 <p><img src="module_08_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/pkg/phytools/man/phenogram.html">phenogram</a></span>(tree, Shape, <span class="dt">ftype =</span> <span class="st">"off"</span>) </code></pre></div>
 <p><img src="module_08_files/figure-html/unnamed-chunk-15-2.png" width="700"></p>
-<p>This function is from the package ‘phytools’. Positions of the tips on the y axis are just the trait values, the positions of the nodes are estimated assuming Brownian motion, they should not be considered rigorous estimates of ancestral trait values, at this stage they are just for visualisation.</p>
+<p>This function is from the package <code>phytools</code>. Positions of the tips on the y axis are just the trait values, the positions of the nodes are estimated assuming Brownian motion, they should not be considered rigorous estimates of ancestral trait values, at this stage they are just for visualisation.</p>
 <div id="brownian-motion" class="section level2">
 <h2 class="hasAnchor">
 <a href="#brownian-motion" class="anchor"></a>Brownian motion</h2>
@@ -283,6 +285,7 @@ pgls &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg
 <p>We will begin by fitting Brownian motion models to both of our continuous traits using a function from the <code>geiger</code> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">densityBM &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/geiger/man/fitContinuous.html">fitContinuous</a></span>(<span class="dt">phy =</span> prunedTree, 
                            <span class="dt">dat =</span> Density, <span class="dt">model =</span> <span class="st">"BM"</span>)
+
 shapeBM &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/geiger/man/fitContinuous.html">fitContinuous</a></span>(<span class="dt">phy =</span> tree, 
                          <span class="dt">dat =</span> Shape, <span class="dt">model =</span> <span class="st">"BM"</span>)</code></pre></div>
 <p>Take a look at the outputs <code>densityBM</code> and <code>shapeBM</code>. What is the estimated rate of evolution? What is the phylogenetic mean trait value (equivalent to the ancestral state at the root of the tree)?</p>
@@ -294,6 +297,7 @@ shapeBM &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/
 <p>Aside from OU, other models you may have heard of are ‘Early Burst’ or ‘ACDC’, those are models where the step rate <span class="math inline">\(\sigma\)</span> changes through time. A Brownian motion with a trend model is identical to Brownian motion except that each evolutionary change per step is consistently biased in one direction.</p>
 <p>Lets take a look at some simulations to get a better sense of what trait evolution on a phylogeny might look like under these different models. Try changing sig2 (sigma squared) the evolutionary rate parameter to see what happens.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simtree &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ape/man/rtree.html">rtree</a></span>(<span class="dv">50</span>)
+
 bmsim &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/phytools/man/bmPlot.html">bmPlot</a></span>(<span class="dt">tree =</span> simtree, 
        <span class="dt">type=</span><span class="st">"BM"</span>, 
        <span class="dt">anc=</span><span class="dv">0</span>, 
@@ -309,6 +313,7 @@ bmsim &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pk
 BM &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ape/man/rTraitCont.html">rTraitCont</a></span>(<span class="dt">phy =</span> simtree,
                  <span class="dt">model =</span> <span class="st">"BM"</span>,
                  <span class="dt">sigma =</span> <span class="fl">0.1</span>)
+
 <span class="kw"><a href="https://rdrr.io/pkg/phytools/man/phenogram.html">phenogram</a></span>(<span class="dt">tree =</span> simtree,
           <span class="dt">x=</span>BM,
           <span class="dt">ftype =</span> <span class="st">"off"</span>)</code></pre></div>
@@ -319,15 +324,16 @@ BM &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/a
                  <span class="dt">alpha =</span> <span class="fl">0.1</span>,
                  <span class="dt">theta =</span> <span class="dv">0</span>,
                  <span class="dt">root.value =</span> <span class="dv">0</span>)
+
 <span class="kw"><a href="https://rdrr.io/pkg/phytools/man/phenogram.html">phenogram</a></span>(<span class="dt">tree =</span> simtree,
           <span class="dt">x=</span>OU,
           <span class="dt">ftype =</span> <span class="st">"off"</span>)</code></pre></div>
 <p><img src="module_08_files/figure-html/unnamed-chunk-18-2.png" width="700"></p>
 <p>Now that we’ve used simulations to get a sense of the effect of the specified model and each model parameter on the shape of the trait distribution let’s try fitting some models to our real data.</p>
-<p>First fit OU models to each trait</p>
+<p>First fit OU models to each trait:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">densityOU &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/geiger/man/fitContinuous.html">fitContinuous</a></span>(<span class="dt">phy =</span> prunedTree, <span class="dt">dat =</span> Density, <span class="dt">model =</span> <span class="st">"OU"</span>)
 shapeOU &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/geiger/man/fitContinuous.html">fitContinuous</a></span>(<span class="dt">phy =</span> tree, <span class="dt">dat =</span> Shape, <span class="dt">model =</span> <span class="st">"OU"</span>)</code></pre></div>
-<p>Then fit an early burst model</p>
+<p>Then fit an early burst model:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">densityEB &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/geiger/man/fitContinuous.html">fitContinuous</a></span>(<span class="dt">phy =</span> prunedTree, <span class="dt">dat =</span> Density, <span class="dt">model =</span> <span class="st">"EB"</span>)
 shapeEB &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/geiger/man/fitContinuous.html">fitContinuous</a></span>(<span class="dt">phy =</span> tree, <span class="dt">dat =</span> Shape, <span class="dt">model =</span> <span class="st">"EB"</span>)</code></pre></div>
 <p>Look at the paramater values for each model fit, are they biologically reasonable? (You should get a warning for one of them, which is a first indicator that the parameter or model might not be a good one for the data) Checking parameter estimates is an important step, particularly because for OU models the different parameter estimates can interact with each other.</p>
@@ -343,14 +349,15 @@ shapeOU<span class="op">$</span>opt<span class="op">$</span>aicc
 shapeEB<span class="op">$</span>opt<span class="op">$</span>aicc</code></pre></div>
 </div>
 </div>
-<div id="varitaion-across-trees" class="section level1">
+<div id="variation-across-trees" class="section level1">
 <h1 class="hasAnchor">
-<a href="#varitaion-across-trees" class="anchor"></a>Varitaion across trees</h1>
+<a href="#variation-across-trees" class="anchor"></a>Variation across Trees</h1>
 <p>In the previous exercises we have been using the maximum a posteriori tree as the phylogenetic framework. However, all the exercises that you did earlier resulted in a posterior distibution of trees. Given that none of us expect that the maximum a posteriori tree perfectly represents evolutionary truth, it is important to get some measure of the robustness of our results to variation in topology and branch lengths. This is true whatever approach is used to infer the tree topology and branch lengths; using a point estimate of the tree is never recommended. The easiest way to understand how important variation across trees is for your result, is to run the analysis over a set of different trees. Here we will randomly select 100 from the posterior distribution. Other commonly used sizes for tree sets are 500 and 1000, really it is arbitrary and at the researchers discretion as to how large a set of trees they need to include in order to fully characterise the variation in results. If you haven’t used a Bayesian inference approach you could select a set of trees from the MPTs, and/or a set of trees from the output of a timescaling algorithm to understand the effect of branch length variation.</p>
 <p>Load the post burnin posterior set of trees and select a subsample of them, add a root age and extend zero length branches as before</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trees &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ape/man/read.tree.html">read.tree</a></span>(<span class="st">"Eucladida_postBurnIn.tre"</span>)
 treeset &lt;-<span class="st"> </span>trees[<span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5000</span>, <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">FALSE</span>)]
 root.time &lt;-<span class="st"> </span><span class="fl">268.8</span>
+
 <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(treeset)){
     treeset[[i]]<span class="op">$</span>root.time &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/ape/man/vcv.phylo.html">vcv</a></span>(treeset[[i]])) <span class="op">+</span><span class="st"> </span>root.time
 }</code></pre></div>
@@ -405,16 +412,16 @@ simContrasts &lt;-<span class="st"> </span><span class="kw"><a href="https://rdr
 </div>
 <div id="choose-your-own-adventure" class="section level1">
 <h1 class="hasAnchor">
-<a href="#choose-your-own-adventure" class="anchor"></a>Choose your own adventure</h1>
+<a href="#choose-your-own-adventure" class="anchor"></a>Choose Your Own Adventure</h1>
 <p>As I mentioned right at the beginning of the tutorial there are now <strong>a lot</strong> of different phylogenetic comparative approaches that can be applied to treesets to answer a diversity of questions.</p>
 <p>If you have gotten this far, please check that your table companions are not in need of assisstance. Then investigate one of the following approaches; there is only a full working example for modelling discrete traits using <code>geiger</code> and for multi-regime models in <code>OUwie</code>, but the instructors have example code for several of the other approaches if you are interested.</p>
 <div id="post-hoc-modelling-of-discrete-characters" class="section level2">
 <h2 class="hasAnchor">
-<a href="#post-hoc-modelling-of-discrete-characters" class="anchor"></a>Post-hoc modelling of discrete characters</h2>
+<a href="#post-hoc-modelling-of-discrete-characters" class="anchor"></a>Post-hoc Modelling of Discrete Characters</h2>
 <p>If a discrete trait is inluded in the phyloegnetic inference analysis then rates and ancestral states can be jointly estimated as with other parameters. However, if you have a tree already and want to characterise a discrete trait that was not included in the inference analysis then you can use <code>geiger</code> similarly to how we used it to fit continuous traits earlier.</p>
 <p>First fit a model with a single parameter for all transition rates</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ER &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/geiger/man/fitDiscrete.html">fitDiscrete</a></span>(tree, <span class="dt">dat =</span> Complexity, <span class="dt">model =</span> <span class="st">"ER"</span>)</code></pre></div>
-<p>Then a model where each rate is a unique parameter</p>
+<p>Then a model where each rate is a unique parameter:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ARD &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/geiger/man/fitDiscrete.html">fitDiscrete</a></span>(tree, <span class="dt">dat =</span> Complexity, <span class="dt">model =</span> <span class="st">"ARD"</span>)</code></pre></div>
 <p>Given that this is a multistate character, you might think (as some echinoderm workers do) that the character is ordered so that transitions can only occur between consecutive states. In this case you can use the <code>meristic</code> model</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MER &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/geiger/man/fitDiscrete.html">fitDiscrete</a></span>(tree, <span class="dt">dat =</span> Complexity, <span class="dt">model =</span> <span class="st">"meristic"</span>)</code></pre></div>
@@ -439,13 +446,14 @@ MER[[<span class="dv">4</span>]]<span class="op">$</span>aicc</code></pre></div>
 <p>Fortunately it is possible to model shifts in the evolutionary regime through time, by estimating new parameter values for different sections of the phylogeny. The package <code>OUwie</code> has model fitting and trait simulaiton functions for this. It requires a priori definition of clade or time regime shift points, it is therefore suitable for hypothesis testsing. See also packages <code>mvMorph</code>, <code>mvSLOUCH</code>, <code>OUCH</code> and <code>ape</code>.</p>
 <p><code>OUwie</code> can be used to fit models where one or more of the rate of evolution, strength of alpha or trait optimum value can change at shift points.</p>
 <p>Multi-regime OU models can be very complex, and are therefore often difficult for the function to fit. It is <strong>especially</strong> important that you check the parameter values when you use this function, to make sure that they are sensible. For example if you get values for <span class="math inline">\(\theta\)</span> or theta_0 that are outside the known range of trait values, or get unreasonably high values for the amount of expected evolutionary change per step <span class="math inline">\(\sigma\)</span>. Looking to the literature for rates that might be reasonable for your trait could also help.</p>
-<p>The following example uses the same crinoid data that we have been using previously, with possible regime shift points based on Davey’s prior knowledge as a crinoid systematist &amp; taxonomist familiar with their morphology and ontogeny, derived from previous experience and knowledge of the published literature. When choosing possible shift points for your own trees, it will be helpful to relate them to specific hypotheses about factors that may have effected their evolutionary history (e.g. novel adaptation, dispersal to new region, environmental change like sea level fall).</p>
+<p>The following example uses the same crinoid data that we have been using previously, with possible regime shift points based on Davey’s prior knowledge as a crinoid systematist &amp; taxonomist familiar with their morphology and ontogeny, derived from previous experience and knowledge of the published literature. When choosing possible shift points for your own trees, it will be helpful to relate them to specific hypotheses about factors that may have effected their evolutionary history (e.g. novel adaptation, dispersal to a new region, environmental change like sea level fall).</p>
 <p>OUwie has a very specific format required for the input data. It requires a three column data frame where the first column is the taxon names, the second is the regime each tip is in (this can be overwritten later by defining a clade that has its own regime using the ‘clade =’ argument, see script below) and the third column is the trait data. You can optionally give a fourth column with the standard error of the trait measurements (this means an estimate of the intraspecific error if you have multiple specimens, plus measurement error), this is adviseable whenever it is possible. The tree must have internal node labels corresponding to the regime, again this can either be set in advance, or overwritten using the ‘clade =’ argument within the function. If set in advance you must set two or more regimes even if you are going to fit a single regime model where these will be overwritten, or you will get an error.</p>
-<p>First set up data frame and tree correctly</p>
+<p>First set up data frame and tree correctly:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">shapeData &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">species =</span> <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(Shape), 
                         <span class="dt">regime =</span> <span class="dv">1</span>, <span class="dt">shape =</span> Shape)
 densityData &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">species =</span> <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(Density), 
-                          <span class="dt">regime =</span> <span class="dv">1</span>, <span class="dt">density =</span> Density) <span class="co">#gets overwritten with correct labels later</span>
+                          <span class="dt">regime =</span> <span class="dv">1</span>, <span class="dt">density =</span> Density) 
+<span class="co">#gets overwritten with correct labels later</span>
 tree<span class="op">$</span>node.label &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>,<span class="dv">2</span>), 
                           <span class="kw"><a href="https://rdrr.io/pkg/ape/man/summary.phylo.html">Nnode</a></span>(tree), <span class="dt">replace =</span> <span class="ot">TRUE</span>) 
 prunedTree<span class="op">$</span>node.label &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>,<span class="dv">2</span>), 
@@ -457,15 +465,18 @@ prunedTree<span class="op">$</span>node.label &lt;-<span class="st"> </span><spa
                  <span class="dt">model =</span> <span class="st">"BM1"</span>, <span class="dt">root.station =</span> <span class="ot">FALSE</span>, 
                  <span class="dt">quiet =</span> <span class="ot">TRUE</span>,
                  <span class="dt">root.age =</span> tree<span class="op">$</span>root.time)
+
 shapeOU &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/OUwie/man/OUwie.html">OUwie</a></span>(<span class="dt">phy =</span> tree, <span class="dt">data =</span> shapeData, 
                  <span class="dt">starting.vals =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>), 
                  <span class="dt">quiet =</span> <span class="ot">TRUE</span>,
                  <span class="dt">model =</span> <span class="st">"OU1"</span>, <span class="dt">root.station =</span> <span class="ot">FALSE</span>, 
                  <span class="dt">root.age =</span> tree<span class="op">$</span>root.time)
+
 densityBM &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/OUwie/man/OUwie.html">OUwie</a></span>(<span class="dt">phy =</span> prunedTree, <span class="dt">data =</span> densityData, 
                    <span class="dt">model =</span> <span class="st">"BM1"</span>, <span class="dt">root.station =</span> <span class="ot">FALSE</span>, 
                    <span class="dt">quiet =</span> <span class="ot">TRUE</span>,
                    <span class="dt">root.age =</span> tree<span class="op">$</span>root.time)
+
 densityOU &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/OUwie/man/OUwie.html">OUwie</a></span>(<span class="dt">phy =</span> prunedTree, <span class="dt">data =</span> densityData, 
                    <span class="dt">starting.vals =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>), 
                    <span class="dt">quiet =</span> <span class="ot">TRUE</span>,
@@ -474,12 +485,15 @@ densityOU &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.i
 <p>Now lets look at a multi-peak model. There are two subclades within the tree that seem to show many modifications associated with building a dense filtration fan (e.g. many branches per arm or many pinnules on branches). We can test whether this high density of the fan was associated with a different trait mean or rate of evolution. In this example we will define the tip and node regimes ourselves beforehand because it involves more than one clade. If we hypothesise a rate shift in only one clade it is easiest to use the <code>clade=</code> argument withinthe <code>OUwie</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#find node defining first clade</span>
 mrca1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ape/man/mrca.html">getMRCA</a></span>(prunedTree, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Blothrocrinus"</span>, <span class="st">"Hydreionocrinus"</span>)) 
+
 <span class="co">#make a vector of all descending nodes and tips</span>
 first &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(mrca1, <span class="kw"><a href="https://rdrr.io/pkg/phytools/man/getDescendants.html">getDescendants</a></span>(prunedTree, mrca1)) 
 mrca2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ape/man/mrca.html">getMRCA</a></span>(prunedTree, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Pirasocrinus"</span>, <span class="st">"Zeacrinites"</span>))
 second &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(mrca2, <span class="kw"><a href="https://rdrr.io/pkg/phytools/man/getDescendants.html">getDescendants</a></span>(prunedTree, mrca2))
+
 <span class="co">#combine clade vectors</span>
 desc &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sets.html">union</a></span>(first, second) 
+
 <span class="co">#separate into tip and node vectors</span>
 tips &lt;-<span class="st"> </span>prunedTree<span class="op">$</span>tip.label[desc[desc<span class="op">&lt;=</span><span class="kw"><a href="https://rdrr.io/pkg/ape/man/summary.phylo.html">Ntip</a></span>(prunedTree)]] 
 nodes &lt;-<span class="st"> </span>desc[desc<span class="op">&gt;</span><span class="kw"><a href="https://rdrr.io/pkg/ape/man/summary.phylo.html">Ntip</a></span>(prunedTree)]<span class="op">-</span><span class="kw"><a href="https://rdrr.io/pkg/ape/man/summary.phylo.html">Ntip</a></span>(prunedTree)
@@ -494,21 +508,25 @@ regimetableD[tips,<span class="dv">2</span>] &lt;-<span class="st"> </span><span
                          <span class="dt">model =</span> <span class="st">"BMS"</span>, <span class="dt">root.station =</span> <span class="ot">TRUE</span>, 
                          <span class="dt">quiet =</span> <span class="ot">TRUE</span>,
                          <span class="dt">root.age =</span> tree<span class="op">$</span>root.time)
+
 high_densityOUM &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/OUwie/man/OUwie.html">OUwie</a></span>(<span class="dt">phy =</span> treeD, <span class="dt">data =</span> regimetableD, 
                          <span class="dt">starting.vals =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>), 
                          <span class="dt">model =</span> <span class="st">"OUM"</span>, <span class="dt">root.station =</span> <span class="ot">TRUE</span>, 
                          <span class="dt">quiet =</span> <span class="ot">TRUE</span>,
                          <span class="dt">root.age =</span> tree<span class="op">$</span>root.time)
+
 high_densityOUMV &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/OUwie/man/OUwie.html">OUwie</a></span>(<span class="dt">phy =</span> treeD, <span class="dt">data =</span> regimetableD, 
                           <span class="dt">starting.vals =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>), 
                           <span class="dt">model =</span> <span class="st">"OUMV"</span>, <span class="dt">root.station =</span> <span class="ot">TRUE</span>, 
                           <span class="dt">quiet =</span> <span class="ot">TRUE</span>,
                           <span class="dt">root.age =</span> tree<span class="op">$</span>root.time)
+
 high_densityOUMA &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/OUwie/man/OUwie.html">OUwie</a></span>(<span class="dt">phy =</span> treeD, <span class="dt">data =</span> regimetableD, 
                           <span class="dt">starting.vals =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>), 
                           <span class="dt">model =</span> <span class="st">"OUMA"</span>, <span class="dt">root.station =</span> <span class="ot">TRUE</span>, 
                           <span class="dt">quiet =</span> <span class="ot">TRUE</span>,
                           <span class="dt">root.age =</span> tree<span class="op">$</span>root.time)
+
 <span class="co">#this is a complex model and may not be fit well</span>
 high_densityOUMVA &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/OUwie/man/OUwie.html">OUwie</a></span>(<span class="dt">phy =</span> treeD, <span class="dt">data =</span> regimetableD, 
                            <span class="dt">starting.vals =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>), 
@@ -609,11 +627,11 @@ high_densityOUMVA &lt;-<span class="st"> </span><span class="kw"><a href="https:
       <li><a href="#and-more---alternative-models-of-trait-change">And more - alternative models of trait change</a></li>
       </ul>
 </li>
-      <li><a href="#varitaion-across-trees">Varitaion across trees</a></li>
+      <li><a href="#variation-across-trees">Variation across Trees</a></li>
       <li><a href="#model-fit-and-model-adequacy">Model fit and model adequacy</a></li>
       <li>
-<a href="#choose-your-own-adventure">Choose your own adventure</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#post-hoc-modelling-of-discrete-characters">Post-hoc modelling of discrete characters</a></li>
+<a href="#choose-your-own-adventure">Choose Your Own Adventure</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#post-hoc-modelling-of-discrete-characters">Post-hoc Modelling of Discrete Characters</a></li>
       <li>
 <a href="#multi-regime-ou-models">Multi-regime OU models</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#using-another-trait-to-define-regimes">Using another trait to define regimes</a></li>
