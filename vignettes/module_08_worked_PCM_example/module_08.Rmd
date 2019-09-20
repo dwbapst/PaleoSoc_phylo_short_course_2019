@@ -14,9 +14,9 @@ set.seed(1)
 # Introduction
 
 **What is a PCM?**
-The approaches we have been using so far today are focussed on phylogenetic inference, i.e. on estimating the most probable evolutionary relationships between taxa. One of the advantages of a framework that incorporates explicit models of diversification, is that it allows joint inference of various parameters that have traditionally been of interest to paleobiologists, like the rate of origination and extinction through time. As you have seen, it is possible to extract these estimated rates from the output of the analysis. These kinds of approaches - where we model the generating processes of diversification and character change together- can be referred to as process-based. Other types of information (for example biogeography) can also be used in this modelling framework, and as new models are developed the potential questions that can be answered will increase. This framework can be thought of as a phylogenetic comparative method because it can be used to test evolutionary hypotheses about the nature of trait change or diversification. However, process-based models, and particularly their implementation, are a relatively recent development. Prior to this unified framework, there was a clearer distinction between phylogenetic inference (inferring relationships) and PCMs (testing hypotheses while treating the tree as known).
+The approaches we have been using so far today are focussed on phylogenetic inference, i.e. on estimating the most probable evolutionary relationships between taxa. One of the advantages of a framework that incorporates explicit models of diversification, is that it allows joint inference of various parameters that have traditionally been of interest to paleobiologists, like the rate of origination and extinction through time. As you have seen, it is possible to extract these estimated rates from the output of the analysis. These kinds of approaches - where we model the generating processes of diversification and character change together - can be referred to as process-based (@Heath2014, @Gavry2014). Other types of information (for example biogeography; see @Landis2017) can also be used in this modelling framework, and as new models are developed the potential questions that can be answered will increase. This framework can be thought of as a phylogenetic comparative method because it can be used to test evolutionary hypotheses about the nature of trait change or diversification. However, process-based models, and particularly their implementation, are a relatively recent development. Prior to this unified framework, there was a clearer distinction between phylogenetic inference (inferring relationships) and PCMs (testing hypotheses while treating the tree as known).
 
-There are many reasons (perhaps particularly for paleobiologists) that it might not be feasible, or of interest, to infer phylogenetic relationships as a means to answer other macroevolutionary questions (i.e. to use a process-based approach). Perhaps you have previously estimated a phylogeny but now want to use it to answer new questions, perhaps you are interested in combining several smaller phylogenies to generate a supertree, or perhaps your specific question is not yet answerable in a Bayesian process-based framework. The good news is that when we have a phylogeny that includes extinct taxa as tips, and it is appropriately scaled to time using the stratigraphic record as an extra source of information, trees constructed in many different ways can be used in PCMs to make reliable inferences about morphological change (@Soul2015). This is far less so the case for trees that only include living species - thumbs up for paleontology!
+There are many reasons (perhaps particularly for paleobiologists) that it might not be feasible, or of interest, to infer phylogenetic relationships as a means to answer other macroevolutionary questions (i.e. to use a process-based approach). Perhaps you have previously estimated a phylogeny but now want to use it to answer new questions, perhaps you are interested in combining several smaller phylogenies to generate a supertree, or perhaps your specific question is not yet answerable in a Bayesian process-based framework. The good news is that when we have a phylogeny that includes extinct taxa as tips, and it is appropriately scaled to time using the stratigraphic record as an extra source of information, trees constructed in many different ways can be used in PCMs to make reliable inferences about evolution (@Soul2015). This is far less so the case for trees that only include living species (@Slater2012, @Louca2019) - thumbs up for paleontology!
 
 **This tutorial.** What follows is an overview of some of the approaches that can be used when you already have a tree in hand. These approaches are what people commonly think of as phylogenetic comparative methods, and some of you may already be familiar with them. Many of these PCMs are used to model trait change through time, and the relationship between that trait change and other variables. But, unlike what we have been doing today so far, most do not model the underlying process that generates the trait change, just it's outcome. Therefore, as we will see later, different underlying processes can be best fit by the same model. There is also a large suite of approaches (phylogenetic and non) that can be used to estimate diversification rates, those are more likely to be familiar to paleontologists, so for today we will stick to morphology.
 
@@ -28,7 +28,7 @@ _A tree of approaches that can be applied to trees_
 
 **A note on 'the dark side' of phylogenetic comparative methods.** There are several papers (even a whole issue of the journal Methods in Ecology and Evolution!) that highlight situations where phylogenetic comparative approaches do not seem to do the job that we would like them too. It is very important to make sure that the method you use is appropriate for your question and data, and that you apply it correctly, but don't let these debates deter you from trying out PCMs. When applied correctly they can be very powerful tools for macroevolutionary inference, and it is often the case that considering phylogeny at all will give you more information than ignoring it. Many of the criticisms boil down to needing to fully understand the method you are implementing, not going too far with conclusions, and doing things like checking that parameter estimates are reasonable. If in doubt, simulation can be a powerful tool to try and characterise the behaviour of a particular method when applied to data similar to your own. In this tutorial we have tried to introduce some ways to establish the robustness of results derived from PCMs.
 
-For the worked example we will be switching to a different dataset, for which we already have a set of trees. They're still echinoderms though! To find out more about the crinoid group Eucladida look at [Wright's 2017 paper](https://www.nature.com/articles/s41598-017-13979-9) (@Wright2017). We will use a variety of PCMs to characterise the evolutionary history of some traits that are relevant to their feeding ecology.
+For the worked example we will be switching to a different dataset, for which we already have a set of trees. They're still echinoderms though! To find out more about the crinoid group Eucladida look at [Wright's paper](https://www.nature.com/articles/s41598-017-13979-9) about variation in rates of character change (@Wright2017). We will use a variety of PCMs to characterise the evolutionary history of some traits that are relevant to their feeding ecology.
 
 # Getting Started - data and phylogeny
 
@@ -44,7 +44,7 @@ library(phytools) #additional plotting and simulation functions
 library(OUwie) #fitting Hansen models (discussed later)
 ```
 
-You can either read in the tree and data objects I prepared earlier using `load("Eucladida_inputs.RData")` Or follow these instructions to format them ready for analysis. Begin by reading in the maximum a posteriori tree. This is to be used **ONLY** as an example, actual analyses should be performed over a set of trees to assess how robust a result is to topology and branch length variation; more on that later.
+You can either read in the tree and data objects pre-prepared using `load("Eucladida_inputs.RData")` Or follow these instructions to format them ready for analysis. Begin by reading in the maximum a posteriori tree. This is to be used **ONLY** as an example, actual analyses should be performed over a set of trees to assess how robust a result is to topology and branch length variation; more on that later.
 
 ```{r}
 tree <- read.tree("Eucladida_MAP.tre")
@@ -122,7 +122,7 @@ Felsenstein outlined the problem of the non-independence of species trait data, 
 
 _The problem of species non-independence and how standardised phylogenetic independent contrasts resolves this. The red line would be the slope of the ols regression. Adapted from @Nunn2001 _
 
-The problem: The extreme case of the problem of non-independence of species data is shown in the original @Felsenstein1985 paper as well as the example figure above. Basically, there could be a relatively shallow relationship between two traits, but an early split in a clade has lead to species in one part of the tree having overall higher values in both traits than species in the other part of the tree. The early split means that species in the two parts of the tree have been evolving separatetely from one another for a long time, and so have had a long time to accumulate differences between them, species in the same clade are more similar because of their shared evolutionary history. This leads to a regression line that is too steep when all the species data are considered together. Regression analysis assumes that individual data points are statistically independent from one another, this assumption is violated by species data because of shared evolutionary history. PIC is an intuitive approach, it takes the average trait value of sister clades and weights this by the amount of time they have been evolving separately. Most researchers now use phylogenetic generalised least squares (PIC is a special case of PGLS, they are mathematically equivalent when you assume a Brownian motion model of trait change; see the tempo and mode section for an explanation of Brownian motion). After an ordinary least squares (OLS) regression is done on species data, there will be phylogenetic signal that dictates how far each datapoint is from the regression line (its residual), we say therefore that there is phylogenetic structure in the residuals of the regression. PGLS adjusts the regression line so that the residuals are normally distibuted, rather than structured. 
+The problem: The extreme case of the problem of non-independence of species data is shown in the original @Felsenstein1985 paper, as well as the example figure above. Basically, there could be a relatively shallow relationship between two traits, but an early split in a clade has lead to species in one part of the tree having overall higher values in both traits than species in the other part of the tree. The early split means that species in the two parts of the tree have been evolving separatetely from one another for a long time, and so have had a long time to accumulate differences between them, species in the same clade are more similar because of their shared evolutionary history. This leads to a regression line that is too steep when all the species data are considered together. Regression analysis assumes that individual data points are statistically independent from one another, this assumption is violated by species data because of shared evolutionary history. PIC is an intuitive approach, it takes the average trait value of sister clades and weights this by the amount of time they have been evolving separately. Most researchers now use phylogenetic generalised least squares (PIC is a special case of PGLS, they are mathematically equivalent when you assume a Brownian motion model of trait change; see the tempo and mode section for an explanation of Brownian motion). After an ordinary least squares (OLS) regression is done on species data, there will be phylogenetic signal that dictates how far each datapoint is from the regression line (its residual), we say therefore that there is phylogenetic structure in the residuals of the regression. PGLS adjusts the regression line so that the residuals are normally distibuted, rather than structured. 
 
 For our worked example we will start by using PGLS. Say we are interested in whether calyx shape correlates with fan density, we could use the pearson correlation co-efficient, or perform an OLS regression:
 
@@ -164,7 +164,7 @@ pgls <- gls(Density ~ Shape,
             )
 ```
 
-Now that we have fit both OLS and PGLS we can compare them using the Akaike Information Critereon (AIC) to see which is a better model for the data. When there is low or no phylogenetic signal in the residuals of the regression then ols will be the better model as it has fewer parameters.  We can check the AIC scores with the output of the `gls` function that we stored in the objects ols and pgls. Which is a better model for our crinoid data?
+Now that we have fit both OLS and PGLS we can compare them using the Akaike Information Critereon (AIC) to see which is a better model for the data. When there is low or no phylogenetic signal in the residuals of the regression then ols will be the better model as it has fewer parameters.  We can check the AIC scores with the output of the `gls` function that we stored in the objects ols and pgls. Which is a better model for our crinoid data? Are the two traits significantly correlated?
 
 ```{r, eval=FALSE}
 summary(ols)$AIC
@@ -201,7 +201,7 @@ This function is from the package `phytools`. Positions of the tips on the y axi
 
 ## Brownian motion
 
-Brownian motion (sometimes known as a 'random walk' model of evolution) is a model that can be used to describe the expected variance of a trait along branches of a phylogeny through time. It is called a random walk because the direction and amount of change in each time step is independent of the direction and amount of change in the previous time step. The amount of change expected in each time step (the step rate, referred to by the model parameter sigma \(\sigma\)) is constant over time, so the trait variance across the tips of the phylogeny increases over time. The model assumes no directionality of trait change, so there is a phylogenetic trait mean (referred to by the model parameter theta) that is also the trait value for the ancestral node of the phylogeny. Trait values of lineages wander around this phylogenetic mean through time. The longer a branch on the tree is, the greater potential there is for change in the trait value, and the less time it is since two branches split from a common ancestral branch the more similar they are expected to be because there has been less time for them to accumulate change and therefore difference between them. The name 'random walk' is perhaps a little misleading, on macroevolutionary timescales it is not random in the sense that genetic drift might be considered random, the change over time is most likely as a result of the combination of selection acting on the trait as well as genetic drift, and the direction of selection might fluctuate over time as a result of different causes. It is therefore best thought of as a stochastic model for patterns of character change. For other explanations of Brownian motion on phylogenies see @Nunn2011 or @Harmon2019.
+Brownian motion (sometimes known as a 'random walk' model of evolution) is a model that can be used to describe the expected variance of a trait along branches of a phylogeny through time. It is called a random walk because the direction and amount of change in each time step is independent of the direction and amount of change in the previous time step. The amount of change expected in each time step (the step rate, referred to by the model parameter $\sigma^{2}$ is constant over time, so the trait variance across the tips of the phylogeny increases over time. The model assumes no directionality of trait change, so there is a phylogenetic trait mean (referred to by the model parameter $\theta$ that is also the trait value for the ancestral node of the phylogeny. Trait values of lineages wander around this phylogenetic mean through time. The longer a branch on the tree is, the greater potential there is for change in the trait value, and the less time it is since two branches split from a common ancestral branch the more similar they are expected to be because there has been less time for them to accumulate change and therefore difference between them. The name 'random walk' is perhaps a little misleading, on macroevolutionary timescales it is not random in the sense that genetic drift might be considered random, the change over time is most likely as a result of the combination of selection acting on the trait as well as genetic drift, and the direction of selection might fluctuate over time as a result of different causes. It is therefore best thought of as a stochastic model for patterns of character change. For other explanations of Brownian motion on phylogenies see @Nunn2011 or @Harmon2019.
 
 We will begin by fitting Brownian motion models to both of our continuous traits using a function from the `geiger` package.
 
@@ -217,11 +217,11 @@ Take a look at the outputs `densityBM` and `shapeBM`. What is the estimated rate
 
 ##And more - alternative models of trait change
 
-It is reasonable to think that a random walk model of evolution might not be an adequate description of patterns of morphological variation over millions of years. As paleontologists we can think of many examples when patterns in the fossil record suggest periods of constraint or rapid increases in morphological disparity. Fortunately there is a straightforward framework that extends the Brownian motion model and can be used to model these kinds of patterns. The most commonly implemented alternative model is one that can be used to describe stabilising selection - the Ornstein-Uhlenbeck model. In this model there is an additional parameter - alpha \(\alpha\). Theta still is in the model but now it can more appropriately be thought of as the optimum value for the trait. There is still a random walk included, the actual value of the trait varies along branches, but it is biased towards getting closer to the optimum, the strength of that bias or attraction towards the trait optimum is \(\alpha\). Unlike in pure Brownian motion the variance does not increase linearly with time, traits evolving under OU will therefore be less tightly linked to the structure of the phylogeny, in other words they will have less phylogenetic signal. 
+It is reasonable to think that a simple Brownian motion model of evolution might not be an adequate description of patterns of morphological variation over millions of years. As paleontologists, we can think of many examples when patterns in the fossil record suggest periods of constraint or rapid increases in morphological disparity. Fortunately there is a straightforward framework that extends the Brownian motion model and can be used to model these kinds of patterns. The most commonly implemented alternative model is one that can be used to describe stabilising selection - the Ornstein-Uhlenbeck model (OU, or a Hansen model after @Hansen1997 who fit it to phylogeny). In this model there is an additional parameter - alpha \(\alpha\). $\theta$ still is a parameter in the model, but now it can more appropriately be thought of as the optimum value for the trait. There is still a random walk included, the actual value of the trait varies along branches, but it is biased towards getting closer to the optimum. The strength of that bias or attraction towards the trait optimum is \(\alpha\). Unlike in pure Brownian motion the variance does not increase linearly with time, traits evolving under OU will therefore be less tightly linked to the structure of the phylogeny, in other words they will have less phylogenetic signal. For a helpful summary of rates of evolution in this model framework, and how they relate to different models, see @Hunt2012 and @Hunt2014. @Nunn2011 also contains straightforward descriptions of BM and OU.
 
-Aside from OU, other models you may have heard of are 'Early Burst' or 'ACDC', those are models where the step rate \(\sigma\) changes through time. A Brownian motion with a trend model is identical to Brownian motion except that each evolutionary change per step is consistently biased in one direction.
+Aside from OU, other models you may have heard of are 'Early Burst' or 'ACDC', those are models where the step rate $\sigma^{2}$ changes through time. A Brownian motion with a trend model (a biased random walk) has two parameters, the step rate $\sigma^{2}$ and the mean step change $\mu$ which gives the direction and magnitude of the bias.
 
-Lets take a look at some simulations to get a better sense of what trait evolution on a phylogeny might look like under these different models. Try changing sig2 (sigma squared) the evolutionary rate parameter to see what happens.
+Lets take a look at some simulations to get a better sense of what trait evolution on a phylogeny might look like under these different models. Try changing `sig2` ($\sigma^{2}$) the evolutionary rate parameter to see what happens.
 
 ```{r}
 simtree <- rtree(50)
@@ -279,7 +279,7 @@ shapeEB <- fitContinuous(phy = tree, dat = Shape, model = "EB")
 
 Look at the paramater values for each model fit, are they biologically reasonable? (You should get a warning for one of them, which is a first indicator that the parameter or model might not be a good one for the data) Checking parameter estimates is an important step, particularly because for OU models the different parameter estimates can interact with each other. 
 
-I have turned off the warnings here but if you take a look at them you will see that OU gives a warning about using the vcv matrix. In the original version of this function, to fit OU quickly, the algorithm rescaled the branch lengths, this is problematic for non-ultrametic trees so now this and other functions modify the variance-covariance matrix directly to avoid the issue. Almost all PCMs (especially commonly used ones) can be applied to non-ultrametric trees using R implementations, but this is a good reminder that it is important to check.
+We have turned off the warnings here but if you take a look at them you will see that OU gives a warning about using the vcv matrix. In the original version of this function, to fit OU quickly, the algorithm rescaled the branch lengths, this is problematic for non-ultrametic trees so now this and other functions modify the variance-covariance matrix directly to avoid the issue. Almost all PCMs (especially commonly used ones) can be applied to non-ultrametric trees using R implementations, but this is a good reminder that it is important to check.
 
 **Something to think about** If there are errors (relative to actual evolutionary relationships) in the tree topology we are using, what kind of model will this bias our analyses towards? What about error in the trait measurements? Silvestro et al. show with simulation that incorporating an estimate error should be a priority, and that not doing so in general biases towards OU as the best fit model even when trait change was simulated as BM (@Silvestro2015b).
 
@@ -295,7 +295,7 @@ shapeOU$opt$aicc
 shapeEB$opt$aicc
 ```
 
-# Variation across Trees
+# Variation across trees
 
 In the previous exercises we have been using the maximum a posteriori tree as the phylogenetic framework. However, all the exercises that you did earlier resulted in a posterior distibution of trees. Given that none of us expect that the maximum a posteriori tree perfectly represents evolutionary truth, it is important to get some measure of the robustness of our results to variation in topology and branch lengths. This is true whatever approach is used to infer the tree topology and branch lengths; using a point estimate of the tree is never recommended. The easiest way to understand how important variation across trees is for your result, is to run the analysis over a set of different trees. Here we will randomly select 100 from the posterior distribution. Other commonly used sizes for tree sets are 500 and 1000, really it is arbitrary and at the researchers discretion as to how large a set of trees they need to include in order to fully characterise the variation in results. If you haven't used a Bayesian inference approach you could select a set of trees from the MPTs, and/or a set of trees from the output of a timescaling algorithm to understand the effect of branch length variation.
 
@@ -339,9 +339,10 @@ Much of what we have just done involved fitting models of evolution to data, by 
 5) Compare test statistics of the contrasts from the real data and distribution of simulated data.
 6) If real data test statitics fall within the distributions of simulated test statistics the model is adequate
 
-For example, was the OU model that earlier we found was the best out of the models we fit to our shape data, actually a good model?
+For example, was the OU model that earlier we found was the best out of the single regime models we fit to our shape data, actually a good model? We test this below by comparing the mean of the squared contrasts, and the coefficient of variation of the absolute contrasts as examples. For other test statistics see [Arbutus code](https://github.com/mwpennell/arbutus/blob/master/R/summary-stats.R).
 
-```{r}
+```{r, out.width = '50%'}
+#assign the estimated parameters from the best fit model
 alpha <- shapeOU$opt$alpha
 sigma.sq <- shapeOU$opt$sigsq
 theta <- shapeOU$opt$z0
@@ -349,6 +350,7 @@ theta <- shapeOU$opt$z0
 shapeData <- data.frame(species = names(Shape), 
                         regime = 1, shape = Shape)
 
+#simulate on the tree under the best fit model
 simtrait <- replicate(100, 
                       OUwie.sim(phy = tree, 
                                 data = shapeData[,1:2], #This just gives the tips and regime, no data
@@ -361,13 +363,31 @@ simtrait <- replicate(100,
                       $X)
 
 rownames(simtrait) <- shapeData[,1]
-realContrasts <- pic(phy = tree, x = Shape)
-simContrasts <- matrix(nrow = 100, ncol = 81)
+realContrasts <- pic(phy = tree, x = Shape) #phylogenetic independent contrasts of real data
+simContrasts <- apply(X=simtrait,MARGIN=2,FUN=pic,phy = tree) #phylogenetic independent contrasts of simulated data
+
+#Two example test statistics
+sqsimContrasts <- simContrasts^2
+abssimContrasts <- abs(simContrasts)
+CofVar <- function(x) {
+  res <- sd(x)/mean(x)
+  return(res)
+}
+
+simMSContrasts <- apply(X=sqsimContrasts, MARGIN=2,FUN=mean)
+simCofVar <- apply(X=abssimContrasts,MARGIN=2,FUN=CofVar)
+
+#Plot to see where real test statistic falls in distribution of simulated test statistic
+hist(simCofVar, main="Mean squared PIC", xlab = "Mean squared PIC")
+abline(v=CofVar(abs(realContrasts)), col = "red")
+
+hist(simMSContrasts, main = "Coefficient of Variation", xlab = "coefficient of Variation")
+abline(v=mean(realContrasts^2), col = "red")
 ```
 
 # Choose Your Own Adventure
 
-As I mentioned right at the beginning of the tutorial there are now **a lot** of different phylogenetic comparative approaches that can be applied to treesets to answer a diversity of questions.
+As we mentioned right at the beginning of the tutorial there are now **a lot** of different phylogenetic comparative approaches that can be applied to treesets to answer a diversity of questions.
 
 If you have gotten this far, please check that your table companions are not in need of assisstance. Then investigate one of the following approaches; there is only a full working example for modelling discrete traits using `geiger` and for multi-regime models in `OUwie`, but the instructors have example code for several of the other approaches if you are interested.
 
@@ -377,19 +397,19 @@ If a discrete trait is inluded in the phyloegnetic inference analysis then rates
 
 First fit a model with a single parameter for all transition rates
 
-```{r}
+```{r, eval = FALSE}
 ER <- fitDiscrete(tree, dat = Complexity, model = "ER")
 ```
 
 Then a model where each rate is a unique parameter:
 
-```{r}
+```{r, eval = FALSE}
 ARD <- fitDiscrete(tree, dat = Complexity, model = "ARD")
 ```
 
 Given that this is a multistate character, you might think (as some echinoderm workers do) that the character is ordered so that transitions can only occur between consecutive states. In this case you can use the `meristic` model
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, eval = FALSE}
 MER <- fitDiscrete(tree, dat = Complexity, model = "meristic")
 ```
 
@@ -422,7 +442,7 @@ Fortunately it is possible to model shifts in the evolutionary regime through ti
 
 `OUwie` can be used to fit models where one or more of the rate of evolution, strength of alpha or trait optimum value can change at shift points.
 
-Multi-regime OU models can be very complex, and are therefore often difficult for the function to fit. It is **especially** important that you check the parameter values when you use this function, to make sure that they are sensible. For example if you get values for \(\theta\) or theta_0 that are outside the known range of trait values, or get unreasonably high values for the amount of expected evolutionary change per step \(\sigma\). Looking to the literature for rates that might be reasonable for your trait could also help.
+Multi-regime OU models can be very complex, and are therefore often difficult for the function to fit. It is **especially** important that you check the parameter values when you use this function, to make sure that they are sensible. For example if you get values for \(\theta\) or \(\theta\)_0 that are outside the known range of trait values, or get unreasonably high values for the step rate $\sigma^{2}$. Looking to the literature for rates that might be reasonable for your trait could also help.
 
 The following example uses the same crinoid data that we have been using previously, with possible regime shift points based on Davey's prior knowledge as a crinoid systematist & taxonomist familiar with their morphology and ontogeny, derived from previous experience and knowledge of the published literature. When choosing possible shift points for your own trees, it will be helpful to relate them to specific hypotheses about factors that may have effected their evolutionary history (e.g. novel adaptation, dispersal to a new region, environmental change like sea level fall).
 
@@ -446,7 +466,7 @@ prunedTree$node.label <- sample(c(1,2),
 
 We will start by using the function to estimate brownian motion and OU parameters applied to the whole of the tree, for both shape and density, as we did previously using the `fitContinuous` function in `geiger`. As an argument in the function you must also provide the time of the root of the tree with `root.age=`, because this tree does not end at the present day. You can optionally provide starting values, often there is no problem but sometimes without them the function can have difficulty estimating parameters for the models (especially if the models do not fit the data well). This was the case here for the OU models. Ideally you would start the algorithm from a variety of values to make sure that it converges on the same parameter estimates, and not local optima. The argument `root.station` says whether the algorithm should estimate theta_0 the starting state (trait value) should be estimated as part of the model. Sometimes estimates of theta_0 and \(\alpha\) can interact, setting `root.station = TRUE` means that the starting state is not estimated, this can stabilise estimates of the adaptive optimum theta. If you have reason to think there may be a trend (different starting and optimum trait means) then include theta_0 but be sure to check that the final parameter estimates are sensible. It can be sensible to check the results with both and compare.
 
-Does `OUwie` give the same parameter estimates that the other function in `geiger` did for single regime models? What difference does specifiying error make?
+Does `OUwie` give the same parameter estimates that the other function in `geiger` did for single regime models? What difference does specifying the error make?
 
 ```{r, message=FALSE, warning=FALSE}
 shapeBM <- OUwie(phy = tree, data = shapeData, 
@@ -497,7 +517,7 @@ regimetableD <- densityData
 regimetableD[tips,2] <- 2
 ```
 
-We have prepared the tree and table so that they have the regimes defined appropriately for our question, now we can fit a variety of models. Here I have dropped theta_0 from the model, if you want to you can add it back in using `root.station=FALSE` to see whether it makes a difference, but remember to check for sensible parameter estimates.
+We have prepared the tree and table so that they have the regimes defined appropriately for our question, now we can fit a variety of models. Here we have dropped theta_0 from the model, if you want to you can add it back in using `root.station=FALSE` to see whether it makes a difference, but remember to check for sensible parameter estimates.
 
 ```{r, warning=FALSE, message=FALSE}
 high_densityBMS <- OUwie(phy = treeD, data = regimetableD, 
@@ -545,9 +565,11 @@ Similarly to the relaxed clock models for character change that you discussed an
 
 _Different rates on each branch, from @Soul2017 _
 
-## OU without a priori shifts
+## Multiple regimes without a priori shifts
 
-The package `surface` can be used to estimate OU parameters jointly with regime shift points, using maximum likelihood. However, be warned, surface has been shown to be biased towards more complex models because the AIC (which is used by the shift point estimation algorithm to assess whether adding or removing new regimes provides a better fit) does not penalise additional parameters enough. It is possible to use a similar approach but substitute AIC for BIC which penalises appropriately in this scenario.
+The package `surface` can be used to estimate OU parameters jointly with regime shift points, using maximum likelihood. It tries to combine branches wherever they are on the tree to those that were experiencing attraction to the same optimum, in this way it can be thought of as a model of convergence. However, be warned, surface has been shown to be biased towards more complex models because the AIC (which is used by the shift point estimation algorithm to assess whether adding or removing new regimes provides a better fit) does not penalise additional parameters enough. It is possible to use a similar approach but substitute AIC for BIC which penalises appropriately in this scenario.
+
+A highly flexible modelling framework was published this year by @Mitov2019. This approach searches for shift points in regime over a phylogeny but allows and gaussian model of evolution to describe the regime, rather than just OU. The appendix of this publication compares the performance of the approach to the performance of `surface`. A tutorial and the R code to implement the approach is available on github [here](https://venelin.github.io/PCMfit).
 
 ## A general model for estimating macroevolutionary landscapes
 
@@ -567,12 +589,11 @@ Luke Harmon's freely availiable book 'Phylogenetic Comparative Methods' covers a
 
 Modern Phylogenetic Comparative Methods and Their Application in Evolutionary Biology is comprehensive albeit expensive, and is somewhat focussed on approaches relevant to molecular trees although there is a David Bapst chapter at the very end for the paleontologists!
 
-### References for other new methods
+### References for other methods
 
-BioGeoBears
-Levy Models
-Bokma models
-Threshold model
+Levy Models in @Landis2017
+Change at speciation in @Bokma2002 and @Bokma2010
+Threshold models see chapter 9 of @Harmon2019 and implementation in @Revell2014
 
 
 # References
