@@ -149,7 +149,7 @@ Although these rescaled ages may seem awkward to us paleontologists accustomed t
 
 **Place a prior distribution on the tree**
 
-Now that we have a prior on the root age, we need to place a prior distribution on the tree topology. We'll use the function `dnUniformTimeTree()` to set a tree prior that is a function of the root age and places equal probability on all possible phylogenies.
+Now that we have a prior on the root age, we need to place a prior distribution on the tree topology. We'll use the function `dnUniformTimeTree()` to set a time tree prior that is a function of the root age and places equal probability on all possible phylogenies.
     
 ```{r, include=TRUE, eval = FALSE}
    phylogeny ~ dnUniformTimeTree(rootAge=origin_time, taxa=taxa)
@@ -170,7 +170,7 @@ Next, we will place MCMC moves on both the topology and node ages of the time tr
    tree_length := phylogeny.treeLength()
 ```
 
-The uniform tree prior, which considers all possible tree topologies to be equally likely, is very simplistic. In the next module, Tripartite Model 3: Fossilized Birth Death, you will learn more about tree priors and how to incorporate paleontologically-inspired methods into your analysis, such as integrating diversification and/or sampling through time. So you'll hear more on this topic later!
+The uniform time tree prior, which considers all possible tree topologies to be equally likely, is very simplistic and *makes very unrealistic assumptions about fossil sampling*. In the next module, Tripartite Model 3: Fossilized Birth Death, you will learn more about tree priors and how to incorporate paleontologically-inspired methods into your analysis, such as integrating diversification and/or sampling through time. So you'll hear more on this topic later!
 
 
 **Place a prior distribution on Mk model: rate variation among characters**
