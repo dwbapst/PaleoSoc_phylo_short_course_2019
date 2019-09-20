@@ -107,12 +107,7 @@ You can contact Dave by email at his [gmail](mailto:dwbapst@gmail.com) or his [i
 
 ### Rachel Warnock
 
-photo
+Rachel is a postdoctoral researcher at ETH Zürich interested in phylogenetic models that incorporate information from the rock and fossil records. 
 
-bio
-
-link to institutional profile
-
-github profile (@rachelwarnock)
-
-email 
+- [Email Rachel](mailto:rachel.warnock@bsse.ethz.ch) 
+- github profile (@rachelwarnock)
