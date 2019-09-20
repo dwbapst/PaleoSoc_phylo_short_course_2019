@@ -449,7 +449,7 @@ summary {
     Root_age := origin_time</code></pre>
 <p>Although these rescaled ages may seem awkward to us paleontologists accustomed to working in units of absolute time, note that the relative timescale (in millions of years), and therefore the relative divergences, are unchanged by this translation. Moreover, the divergence times can be rescaled back to their correct absolute time after the analysis. For example, if the root age of the cinctan tree was estimated to be 14.8 Ma on the relative scale, the “corrected” root age would be 14.8 Ma + 498.8 Ma = 513.6 Ma.</p>
 <p><strong>Place a prior distribution on the tree</strong></p>
-<p>Now that we have a prior on the root age, we need to place a prior distribution on the tree topology. We’ll use the function <code>dnUniformTimeTree()</code> to set a tree prior that is a function of the root age and places equal probability on all possible phylogenies.</p>
+<p>Now that we have a prior on the root age, we need to place a prior distribution on the tree topology. We’ll use the function <code>dnUniformTimeTree()</code> to set a time tree prior that is a function of the root age and places equal probability on all possible phylogenies.</p>
 <pre class="r"><code>   phylogeny ~ dnUniformTimeTree(rootAge=origin_time, taxa=taxa)</code></pre>
 <p>Next, we will place MCMC moves on both the topology and node ages of the time tree, as well as set a deterministic node to monitor the tree length.</p>
 <pre class="r"><code>   # Set MCMC moves for tree topology
@@ -462,7 +462,7 @@ summary {
 
    # Set MCMC monitor for tree length
    tree_length := phylogeny.treeLength()</code></pre>
-<p>The uniform tree prior, which considers all possible tree topologies to be equally likely, is very simplistic. In the next module, Tripartite Model 3: Fossilized Birth Death, you will learn more about tree priors and how to incorporate paleontologically-inspired methods into your analysis, such as integrating diversification and/or sampling through time. So you’ll hear more on this topic later!</p>
+<p>The uniform time tree prior, which considers all possible tree topologies to be equally likely, is very simplistic and <em>makes very unrealistic assumptions about fossil sampling</em>. In the next module, Tripartite Model 3: Fossilized Birth Death, you will learn more about tree priors and how to incorporate paleontologically-inspired methods into your analysis, such as integrating diversification and/or sampling through time. So you’ll hear more on this topic later!</p>
 <p><strong>Place a prior distribution on Mk model: rate variation among characters</strong></p>
 <p>We will be using the Mk model of morphological character evolution, which we will specify further below. For now, we will set up a Gamma-distributed rate variation to the Mk model and specify moves on the parameters of the Gamma distribution.</p>
 <pre class="r"><code>    alpha_morpho ~ dnUniform( 0, 1E6 )
