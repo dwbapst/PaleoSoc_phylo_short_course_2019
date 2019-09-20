@@ -2,8 +2,8 @@
 title: "Tripartite Model 2 - Clock Models for Character Data"
 author: "David F. Wright"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 # Introduction  

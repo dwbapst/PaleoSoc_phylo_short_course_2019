@@ -1,9 +1,9 @@
 ---
 title: "Phylogenetic Comparative Methods for Paleobiology"
-
-author: 
-- Laura C. Soul, David F. Wright
-output: html_document
+author: "Laura C. Soul, David F. Wright"
+output:
+  pdf_document: default
+  html_document: default
 bibliography: PS short course.bib
 ---
 
