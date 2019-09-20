@@ -29,7 +29,7 @@ zip(zipfile = "data.zip",
 
 ### Data Formatted for RevBayes:
 
-- [Cinctans_for_RevBayes.nex](data_for_downloads/Cinctans_for_RevBayes.nex)
+- [Cinctans_for_RevBayes.nex](data_for_downloads/Cinctans.nex)
 
 ### Chronostratigraphic Data formatted for RevBayes:
 
