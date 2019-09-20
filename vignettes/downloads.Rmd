@@ -1,10 +1,14 @@
 ---
 title: "Required Materials and Data Downloads"
 output: html_document
+resource_files: 
+  - data_for_downloads/Cinctans_for_RevBayes.nex
 ---
 
 ```{r echo = FALSE}
-zip(zipfile = "../data.zip", files = "data_for_downloads")
+zip(zipfile = "data.zip", 
+    files = "data_for_downloads"
+    )
 ```
 
 &nbsp;
@@ -12,7 +16,7 @@ zip(zipfile = "../data.zip", files = "data_for_downloads")
 
 ## All Data in One Single Zip File:
 
-- [data.zip](data_for_downloads/data.zip)
+- [data.zip](data.zip)
   
 ***
 

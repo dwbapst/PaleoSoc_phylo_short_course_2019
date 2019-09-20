@@ -1,7 +1,10 @@
 ---
 title: "Our Expectations of Conduct"
 output: html_document
+resource_files: 
+  - files/Expectations for Conduct for the 2019 Paleontological Society Short Course.pdf
 ---
+
 Please read the following. The official PDF version of this document is [here](files/Expectations for Conduct for the 2019 Paleontological Society Short Course.pdf).
 
 ******
