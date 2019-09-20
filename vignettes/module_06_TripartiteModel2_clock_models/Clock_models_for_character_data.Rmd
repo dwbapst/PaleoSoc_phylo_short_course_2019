@@ -175,7 +175,7 @@ The uniform tree prior, which considers all possible tree topologies to be equal
 
 **Place a prior distribution on Mk model: rate variation among characters**
 
-We will be using the Mk model of morphological character evolution, which we will specify further below. For now, we will set up a Gamma-distributed rate variation to the Mk model and specify moves on the parameters to the Gamma distribution. 
+We will be using the Mk model of morphological character evolution, which we will specify further below. For now, we will set up a Gamma-distributed rate variation to the Mk model and specify moves on the parameters of the Gamma distribution. 
 
 ```{r, include=TRUE, eval = FALSE}
     alpha_morpho ~ dnUniform( 0, 1E6 )
