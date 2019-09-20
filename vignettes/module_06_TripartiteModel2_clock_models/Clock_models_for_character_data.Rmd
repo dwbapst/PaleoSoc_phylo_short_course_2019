@@ -21,7 +21,7 @@ This tutorial is about morphological clock models for paleontological data. Many
 
 \newpage
 
-To see how this is the case, consider how branch lengths are defined in unconstrained analyses. Under parsimony, branch lengths may relate to the number of parsimony "steps" (# of character changes) along branches, whereas in model-based methods branch lengths reflect the mean number of "substitutions" (i.e., character state transitions) per "site" (i.e., morphologic character). In both cases, the intuition is the same: longer branches indicate more changes have occurred. However, it is impossible to disentangle rates from time without additional information. For example, if a branch is "long" (i.e., it has experienced many evolutionary changes), is it becaue that lineage is characterized by higher rates of evolution? Or did that lineage just have longer to evolve? 
+To see how this is the case, consider how branch lengths are defined in unconstrained analyses. Under parsimony, branch lengths may relate to the number of parsimony "steps" (# of character changes) along branches, whereas in model-based methods branch lengths reflect the mean number of "substitutions" (i.e., character state transitions) per "site" (i.e., morphologic character). In both cases, the intuition is the same: longer branches indicate more changes have occurred. However, it is impossible to disentangle rates from time without additional information. For example, if a branch is "long" (i.e., it has experienced many evolutionary changes), is it becaue that lineage is characterized by higher rates of evolution? Or did that lineage just have longer to evolve and accumulate character changes? 
 
 Methods that involve estimating divergences, such as fossil tip-dating, aim to co-estimate branch durations (in units of time) and branch rate (in units of expected changes per character). This requires three important ingredients: (1) external, geological information, primarily in the form of **fossil occurrence times**; (2)  a **clock model** that describes how character change is distributed throughout the tree, and (3) a **tree prior** model. Although we will use all three ingredients in the tutorial, you'll learn more about tree prior models in the next module. 
 
@@ -48,11 +48,11 @@ The strict clock model is most simple clock model. It assumes that all branches 
 
 Relaxed clocks form a family of models that differ in their underlying assumptions about how rates are distributed throughout the tree. These include:
 
-+ Uncorrelated Rates
++ Uncorrelated rates
 
-+ Autocorrelated Rates
++ Autocorrelated rates
 
-+ Local Clocks and Mixture Models
++ Local clocks and mixture models
 
 **Uncorrelated models.** Sometimes referred to as "independent rate models" in the literature, uncorrelated models account for rate variation by assuming each branch has its own, independent rate drawn from a shared underlying probability distribution. A biological interpretation of an uncorrelated model suggests that evolutionary rates in ancestral lineages do not influence rates in descendants. Moreover, rates of evolution may change episodically throughout the tree but are "branch-wise", meaning change is only modeling as occurring at lineage splitting events (Heath and Moore, 2014). How many paleontological hypotheses can you think of invoke some degree of episodic or punctated change? Uncorrelated models are very commonly applied in the literature and their assumptions and biological implications will be discussed further in the section below called "The Uncorrelated Lognormal Relaxed Clock".
 
