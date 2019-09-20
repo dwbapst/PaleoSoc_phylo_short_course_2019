@@ -22,7 +22,7 @@ There are many reasons (perhaps particularly for paleobiologists) that it might 
 
 New PCMs have been rapidly proliferating in the past 5-10 years, and the kinds of questions they can be used to rigorously answer is now very diverse. Have a look at [this infographic](https://coggle.it/diagram/WhbkkxE2BAAB0R0m/t/summary-of-phylogenetic-comparative-methods-diogo-b-provete) by Diogo B. Provete to see what we have available to play with! In this tutorial we will start with some fundamental approaches that are conceptually important, and move on to more complex models if there is time, or if you are already familiar with the fundamentals. Multiple books have been written on this vast topic, but hopefully this is enough to get started or understand some of the idiosyncracies of relevant R functions! 
 
-![](Summary_of_PCMS.png)
+![](Summary_of_PCMs.png)
 
 _A tree of approaches that can be applied to trees_
 
