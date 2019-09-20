@@ -1,26 +1,36 @@
 ---
 title: "Required Materials and Data Downloads"
-author: "The Gang"
-date: "9/19/2019"
 output: html_document
 ---
 
-**Original Data Set:**
+```{r echo = FALSE}
+zip(zipfile = "../data.zip", files = "data_for_downloads")
+```
 
-[Smith & Zamora matrix + subsequently added species](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cincta_Smith_&_Zamora_2009.nex?raw=false)
+&nbsp;
+&nbsp;
 
-**Data Formatted for RevBayes:**
+## All Data in One Single Zip File:
 
-[Cinctans.nex](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Cinctans.nex?raw=false)
+- [data.zip](data_for_downloads/data.zip)
+  
+***
 
-**Chronostratigraphic Data formatted for RevBayes (with 0 = Latest First Appearance):**
+### Original Data Set:
 
-[cincta_fossil_intervals_FA.tsv](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/cincta_fossil_intervals_FA.tsv?raw=false)
+- [Smith & Zamora matrix + subsequently added species](data_for_downloads/Cincta_Smith_&_Zamora_2009.nex)
 
-**Everything Cinctan in one zip file!:**
+### Data Formatted for RevBayes:
 
-[Whole Shebang](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data.zip)
+- [Cinctans_for_RevBayes.nex](data_for_downloads/Cinctans_for_RevBayes.nex)
 
-**Eucladida Data set for PCM Module (.RData file):**
+### Chronostratigraphic Data formatted for RevBayes:
 
-[Eucladida](https://github.com/dwbapst/PaleoSoc_phylo_short_course_2019/blob/master/data/Eucladida_Inputs.RData)
+  *(Note: In this file, taxa are listed as point-occurrences at their first-appearance times, and all are shifted so the youngest FAD is at 0 time-units.)*
+
+- [cincta_fossil_intervals_FA.tsv](../data/cincta_fossil_intervals_FA.tsv)
+
+### Eucladida Data set for PCM Module (.RData file):
+
+- [Download Here](../data/Eucladida_Inputs.RData)
+
