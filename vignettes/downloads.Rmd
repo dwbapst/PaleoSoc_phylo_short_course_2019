@@ -3,6 +3,9 @@ title: "Required Materials and Data Downloads"
 output: html_document
 resource_files: 
   - data_for_downloads/Cinctans_for_RevBayes.nex
+  - data_for_downloads/Cincta_Smith_&_Zamora_2009.nex
+  - data_for_downloads/cincta_fossil_intervals_FA.tsv
+  - data_for_downloads/Eucladida_Inputs.RData
 ---
 
 ```{r echo = FALSE}
@@ -32,9 +35,9 @@ zip(zipfile = "data.zip",
 
   *(Note: In this file, taxa are listed as point-occurrences at their first-appearance times, and all are shifted so the youngest FAD is at 0 time-units.)*
 
-- [cincta_fossil_intervals_FA.tsv](../data/cincta_fossil_intervals_FA.tsv)
+- [cincta_fossil_intervals_FA.tsv](data_for_downloads/cincta_fossil_intervals_FA.tsv)
 
 ### Eucladida Data set for PCM Module (.RData file):
 
-- [Download Here](../data/Eucladida_Inputs.RData)
+- [Eucladida_Inputs.RData](data_for_downloads/Eucladida_Inputs.RData)
 
