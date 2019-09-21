@@ -26,11 +26,11 @@ zip(zipfile = "data.zip",
 
 ### Original Data Set:
 
-- [Smith & Zamora matrix + subsequently added species](data_for_downloads/Cincta_Smith_&_Zamora_2009.nex)
+- [Smith & Zamora matrix + subsequently added species](data_for_downloads/Cincta_Smith_and_Zamora_2009.nex)
 
 ### Data Formatted for RevBayes:
 
-- [Cinctans_for_RevBayes.nex](data_for_downloads/)
+- [Cinctans_for_RevBayes.nex](data_for_downloads/Cinctans_for_RevBayes.nex)
 
 ### Chronostratigraphic Data formatted for RevBayes:
 
