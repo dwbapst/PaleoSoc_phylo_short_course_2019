@@ -73,7 +73,7 @@ In this tutorial, we will apply an uncorrelated lognormal relaxed clock model to
 
 **Data and Files**
 
->In the previous module, you should have created a directory called **PaleoSoc_phylo_short_course_2019**. The data you will need for this tutorial should be in the subdirectory **data** and it should contain the following two files: [`Cinctans.nex`](data/Cinctans.nex) and [`cincta_fossil_intervals_FA.tsv`](data/cincta_fossil_intervals.tsv).
+>In the previous module, you should have created a directory called **PaleoSoc_phylo_short_course_2019**. The data you will need for this tutorial should be in the subdirectory **data** and it should contain the following two files: [`Cinctans_for_RevBayes.nex`](data/Cinctans_for_RevBayes.nex) and [`cincta_fossil_intervals_FA.tsv`](data/cincta_fossil_intervals.tsv).
 
 
 **Load Data Matrices**
@@ -82,7 +82,7 @@ In RevBayes, use the function `readDiscreteCharacterData()` to load the cinctan 
 
 
 ```{r, include=TRUE, eval = FALSE}
-    morpho <- readDiscreteCharacterData("data/Cinctans.nex")
+    morpho <- readDiscreteCharacterData("data/Cinctans_for_RevBayes.nex")
 ```
 
 

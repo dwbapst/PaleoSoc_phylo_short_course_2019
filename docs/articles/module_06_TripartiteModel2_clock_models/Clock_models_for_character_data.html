@@ -195,11 +195,11 @@
 <p>In this tutorial, we will apply an uncorrelated lognormal relaxed clock model to infer a time-calibrated phylogeny of cinctan echinoderms.</p>
 <p><strong>Data and Files</strong></p>
 <blockquote>
-<p>In the previous module, you should have created a directory called <strong>PaleoSoc_phylo_short_course_2019</strong>. The data you will need for this tutorial should be in the subdirectory <strong>data</strong> and it should contain the following two files: <a href="data/Cinctans.nex"><code>Cinctans.nex</code></a> and <a href="data/cincta_fossil_intervals.tsv"><code>cincta_fossil_intervals_FA.tsv</code></a>.</p>
+<p>In the previous module, you should have created a directory called <strong>PaleoSoc_phylo_short_course_2019</strong>. The data you will need for this tutorial should be in the subdirectory <strong>data</strong> and it should contain the following two files: <a href="data/Cinctans_for_RevBayes.nex"><code>Cinctans_for_RevBayes.nex</code></a> and <a href="data/cincta_fossil_intervals.tsv"><code>cincta_fossil_intervals_FA.tsv</code></a>.</p>
 </blockquote>
 <p><strong>Load Data Matrices</strong></p>
 <p>In RevBayes, use the function <code>readDiscreteCharacterData()</code> to load the cinctan matrix to the workspace and assign it to the variable <code>morpho</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    morpho &lt;-<span class="st"> </span><span class="kw">readDiscreteCharacterData</span>(<span class="st">"data/Cinctans.nex"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    morpho &lt;-<span class="st"> </span><span class="kw">readDiscreteCharacterData</span>(<span class="st">"data/Cinctans_for_RevBayes.nex"</span>)</code></pre></div>
 <p><strong>Load Fossil Age Data</strong></p>
 <p>RevBayes uses the function <code>readTaxonData()</code> to load fossil age data to the workspace from a formatted file. Import the fossil age data and assign it to the variable <code>taxonData</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    taxonData &lt;-<span class="st"> </span><span class="kw">readTaxonData</span>(<span class="dt">file=</span><span class="st">"data/cincta_fossil_intervals_FA.tsv"</span>)</code></pre></div>

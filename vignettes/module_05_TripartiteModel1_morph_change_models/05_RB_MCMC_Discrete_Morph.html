@@ -419,7 +419,7 @@ summary {
 <p>It is important to be aware that some PDF viewers may render some characters given as differently. Thus, if you copy and paste text from this PDF, you may introduce some incorrect characters. Because of this, we recommend that you type the instructions in this tutorial or copy them from the scripts provided.</p>
 <p><strong>Data and Files</strong></p>
 <blockquote>
-<p>On your own computer, there should be a directory called <strong>PaleoSoc_phylo_short_course_2019</strong>. The data for this tutorial are in the subdirectory <strong>data</strong> This directory should contain: <a href="data/Cinctans.nex"><code>Cinctans.nex</code></a>.</p>
+<p>On your own computer, there should be a directory called <strong>PaleoSoc_phylo_short_course_2019</strong>. The data for this tutorial are in the subdirectory <strong>data</strong> This directory should contain: <a href="data/Cinctans_for_RevBayes.nex"><code>Cinctans_for_RevBayes.nex</code></a>.</p>
 </blockquote>
 <p><strong>Getting Started</strong></p>
 <blockquote>
@@ -431,7 +431,7 @@ summary {
 <p>In this section you will begin the file and write the Rev commands for loading in the taxon list and managing the data matrices. Then, starting in section Mk Model, you will move on to specifying each of the model components. Once the model specifications are complete, you will complete the script with the instructions given in section</p>
 <p><strong>Load Data Matrices</strong></p>
 <p>RevBayes uses the function <code>readDiscreteCharacterData()</code> to load a data matrix to the workspace from a formatted file. This function can be used for both molecular sequences and discrete morphological characters. Import the morphological character matrix and assign it the variable <code>morpho</code>.</p>
-<pre class="r"><code>    morpho &lt;- readDiscreteCharacterData(&quot;data/Cinctans.nex&quot;)</code></pre>
+<pre class="r"><code>    morpho &lt;- readDiscreteCharacterData(&quot;data/Cinctans_for_RevBayes.nex&quot;)</code></pre>
 <p><strong>Create Helper Variables</strong></p>
 <p>We will dig into the model momentarily. But first, we will create some variables that are used in our analysis, but are not parameters. We will assign these variables with the constant node assignment operator, <code>&lt;-</code>. Even though these values are used in our scripts, they are not parameters of the model.</p>
 <p>We will first create a constant node called <code>num_taxa</code> that is equal to the number of species in our analysis (23). We will also create a constant node called <code>num_branches</code> representing the number of branches in the tree, and one of the taxon names. This list will be used to initialize the tree.</p>
