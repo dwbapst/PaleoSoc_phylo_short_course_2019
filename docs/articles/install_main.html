@@ -187,6 +187,8 @@
 <p>Tracer is a popular program for examining, measuring and depicting the output of Bayesian analyses. While it was designed originally to work with output from the Bayesian phylogenetics program BEAST, and its successor, BEAST2, it is widely used with all sorts of Bayesian analyses that utilize a Monte Carlo Markov Chain (MCMC) to sample parameter values from the posterior distribution. Archives containing compiled executables for any operating system can be found here:</p>
 <p><a href="https://github.com/beast-dev/tracer/releases/tag/v1.7.1" class="uri">https://github.com/beast-dev/tracer/releases/tag/v1.7.1</a></p>
 <p>The archives, once unpacked, should contain a readily useable executable for your OS.</p>
+<p>On Linux, if you find that blocks executing <code>tracer.jar</code> because it isn’t a marked as an executable file (‘it lacks an executable bit’), you will need to set the executable permissions via <code>chmod</code>. Navigate to the directory the file is in and run:</p>
+<pre><code>sudo chmod +x ./tracer.jar </code></pre>
 </div>
 <div id="icytree" class="section level3">
 <h3 class="hasAnchor">
