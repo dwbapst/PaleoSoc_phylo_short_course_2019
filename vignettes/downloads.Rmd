@@ -5,7 +5,7 @@ resource_files:
   - data_for_downloads/Cinctans_for_RevBayes.nex
   - data_for_downloads/Cincta_Smith_and_Zamora_2009.nex
   - data_for_downloads/cincta_fossil_intervals_FA.tsv
-  - data_for_downloads/Eucladida_Inputs.RData
+  - data_for_downloads/Eucladida_inputs.RData
   - ./data.zip
 ---
 
@@ -40,5 +40,5 @@ zip(zipfile = "data.zip",
 
 ### Eucladida Data set for PCM Module (.RData file):
 
-- [Eucladida_Inputs.RData](data_for_downloads/Eucladida_Inputs.RData)
+- [Eucladida_inputs.RData](data_for_downloads/Eucladida_inputs.RData)
 
