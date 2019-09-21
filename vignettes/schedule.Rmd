@@ -1,6 +1,8 @@
 ---
 title: "Workshop Schedule"
 output: html_document
+resource_files: 
+  - module_05_TripartiteModel1_morph_change_models/MorphModels.key
 ---
 
 | Time | Duration | Module | Instructors | Topic  |  Exercises |
@@ -8,9 +10,9 @@ output: html_document
 |08:00 AM|15 min.|Module 1|Sandra Carlson|Introduction:Tree Thinking|  |
 |08:15 AM|10 min.|Module 2|David Wright|Meet Our Data: Smith and Zamora, 2009|What is a Cinctan?|
 |08:25 AM|35 min.|Module 3|Peter Wagner|Coding Morphological Characters from Scratch|Hands-On with Mesquite, Code two Ctenocystoids|
-|09:00 AM|45 min.|Module 4|April Wright|[Intro to RevBayes & Graphical Models](https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/module_04_Intro_RevBayes_Graphical_Modeling/module_04.html)| Graph an Example Model|
+|09:00 AM|45 min.|Module 4|April Wright| [Intro to RevBayes & Graphical Models](https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/module_04_Intro_RevBayes_Graphical_Modeling/module_04.html),  [Slides](module_05_TripartiteModel1_morph_change_models/MorphModels.key)| Graph an Example Model|
 |09:45 AM|15 min.| | | Break | |
-|10:00 AM|2 hours|Module 5|April Wright|Tripartite Model 1: Morphological Character Change Models|[Hands-On with RevBayes](https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html)| |12:00 PM|1 hour, 30 min.| | | LUNCH | |
+|10:00 AM|2 hours|Module 5|April Wright|Tripartite Model 1: Morphological Character Change Models| [Hands-On with RevBayes](https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html), [Slides](module_05_TripartiteModel1_morph_change_models/MorphModels.key)| |12:00 PM|1 hour, 30 min.| | | LUNCH | |
 |01:30 PM|45 min.|Module 6|David Wright|Tripartite Model 2: Clock Models for Character Change|Hands-On with RevBayes| 
 |02:15 PM|1 hour, 15 min.|Module 7|David Bapst|Tripartite Model 3: Fossilized Birth Death|Hands-On with RevBayes| 
 |03:30 PM|15 min.| | | Break | |

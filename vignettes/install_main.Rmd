@@ -51,6 +51,12 @@ Tracer is a popular program for examining, measuring and depicting the output of
 
 The archives, once unpacked, should contain a readily useable executable for your OS.
 
+On Linux, if you find that blocks executing `tracer.jar` because it isn't a marked as an executable file ('it lacks an executable bit'), you will need to set the executable permissions via `chmod`. Navigate to the directory the file is in and run:
+
+```
+sudo chmod +x ./tracer.jar 
+```
+
 ### IcyTree
 
 An application you don’t have to install, IcyTree is a web-based phylogeny depiction tool which, nearly alone among all phylogeny depiction tools, will remove sampled ancestors (rather than displaying them as tips attached to the tree by ‘zero-length’ terminal branches) and then annotate the tree with dots to depict the collapsed sampled ancestor. IcyTree can be found at:

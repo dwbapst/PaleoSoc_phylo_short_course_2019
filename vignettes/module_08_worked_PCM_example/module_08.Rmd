@@ -265,14 +265,14 @@ Now that we've used simulations to get a sense of the effect of the specified mo
 
 First fit OU models to each trait:
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, cache=TRUE}
 densityOU <- fitContinuous(phy = prunedTree, dat = Density, model = "OU")
 shapeOU <- fitContinuous(phy = tree, dat = Shape, model = "OU")
 ```
 
 Then fit an early burst model:
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, cache=TRUE}
 densityEB <- fitContinuous(phy = prunedTree, dat = Density, model = "EB")
 shapeEB <- fitContinuous(phy = tree, dat = Shape, model = "EB")
 ```
@@ -299,8 +299,9 @@ shapeEB$opt$aicc
 
 In the previous exercises we have been using the maximum a posteriori tree as the phylogenetic framework. However, all the exercises that you did earlier resulted in a posterior distibution of trees. Given that none of us expect that the maximum a posteriori tree perfectly represents evolutionary truth, it is important to get some measure of the robustness of our results to variation in topology and branch lengths. This is true whatever approach is used to infer the tree topology and branch lengths; using a point estimate of the tree is never recommended. The easiest way to understand how important variation across trees is for your result, is to run the analysis over a set of different trees. Here we will randomly select 100 from the posterior distribution. Other commonly used sizes for tree sets are 500 and 1000, really it is arbitrary and at the researchers discretion as to how large a set of trees they need to include in order to fully characterise the variation in results. If you haven't used a Bayesian inference approach you could select a set of trees from the MPTs, and/or a set of trees from the output of a timescaling algorithm to understand the effect of branch length variation.
 
-Load the post burnin posterior set of trees and select a subsample of them, add a root age and extend zero length branches as before
-```{r}
+Load the post burnin posterior set of trees and select a subsample of them, add a root age and extend zero length branches as before:
+  
+```{r cache=TRUE}
 trees <- read.tree("Eucladida_postBurnIn.tre")
 treeset <- trees[sample(1:5000, 100, replace = FALSE)]
 root.time <- 268.8
@@ -309,9 +310,11 @@ for (i in 1:length(treeset)){
 	treeset[[i]]$root.time <- max(vcv(treeset[[i]])) + root.time
 }
 ```
+
 Choose one of the previous analyses and run it over the entire treeset. How much variation is there? How much confidence do you now have in the result you obtained previously?
 
-For example you could fit BM to each tree (warning this could take a while)
+For example you could fit BM to each tree (warning this could take a while):
+
 ```{r, eval=FALSE}
 sigmas <- vector(length=100)
 for(i in 1:100) {
@@ -468,7 +471,7 @@ We will start by using the function to estimate brownian motion and OU parameter
 
 Does `OUwie` give the same parameter estimates that the other function in `geiger` did for single regime models? What difference does specifying the error make?
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, cache = TRUE}
 shapeBM <- OUwie(phy = tree, data = shapeData, 
                  model = "BM1", root.station = FALSE, 
                  quiet = TRUE,
@@ -519,7 +522,7 @@ regimetableD[tips,2] <- 2
 
 We have prepared the tree and table so that they have the regimes defined appropriately for our question, now we can fit a variety of models. Here we have dropped theta_0 from the model, if you want to you can add it back in using `root.station=FALSE` to see whether it makes a difference, but remember to check for sensible parameter estimates.
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, cache=TRUE}
 high_densityBMS <- OUwie(phy = treeD, data = regimetableD, 
                          model = "BMS", root.station = TRUE, 
                          quiet = TRUE,
