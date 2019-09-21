@@ -300,8 +300,8 @@ shapeEB$opt$aicc
 In the previous exercises we have been using the maximum a posteriori tree as the phylogenetic framework. However, all the exercises that you did earlier resulted in a posterior distibution of trees. Given that none of us expect that the maximum a posteriori tree perfectly represents evolutionary truth, it is important to get some measure of the robustness of our results to variation in topology and branch lengths. This is true whatever approach is used to infer the tree topology and branch lengths; using a point estimate of the tree is never recommended. The easiest way to understand how important variation across trees is for your result, is to run the analysis over a set of different trees. Here we will randomly select 100 from the posterior distribution. Other commonly used sizes for tree sets are 500 and 1000, really it is arbitrary and at the researchers discretion as to how large a set of trees they need to include in order to fully characterise the variation in results. If you haven't used a Bayesian inference approach you could select a set of trees from the MPTs, and/or a set of trees from the output of a timescaling algorithm to understand the effect of branch length variation.
 
 Load the post burnin posterior set of trees and select a subsample of them, add a root age and extend zero length branches as before:
-
-```{r}
+  
+```{r cache=TRUE}
 trees <- read.tree("Eucladida_postBurnIn.tre")
 treeset <- trees[sample(1:5000, 100, replace = FALSE)]
 root.time <- 268.8
