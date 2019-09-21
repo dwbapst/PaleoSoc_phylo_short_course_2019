@@ -42,3 +42,13 @@ zip(zipfile = "data.zip",
 
 - [Eucladida_inputs.RData](data_for_downloads/Eucladida_inputs.RData)
 
+### Eucladida Data set for PCM Module (Individual Text files):
+
+- [Eucladida_MAP.tre](data_for_downloads/Eucladida_MAP.tre)
+
+- [Eucladida_postBurnIn.tre](data_for_downloads/Eucladida_postBurnIn.tre)
+
+- [Shape_and_CalyxComplexity.txt](data_for_downloads/Shape_and_CalyxComplexity.txt)
+
+- [Fan_density.txt](data_for_downloads/Fan_density.txt)
+
