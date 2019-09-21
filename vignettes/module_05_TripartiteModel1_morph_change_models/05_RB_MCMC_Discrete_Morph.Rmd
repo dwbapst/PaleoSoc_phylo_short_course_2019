@@ -88,7 +88,7 @@ It is important to be aware that some PDF viewers may render some characters giv
 **Data and Files**
 
 >On your own computer, there should be a directory called **PaleoSoc_phylo_short_course_2019**. The data for this tutorial are in the subdirectory **data**
->This directory should contain: [`Cinctans.nex`](data/Cinctans.nex).
+>This directory should contain: [`Cinctans_for_RevBayes.nex`](data/Cinctans_for_RevBayes.nex).
 
 **Getting Started**
 
@@ -108,7 +108,7 @@ RevBayes uses the function `readDiscreteCharacterData()` to load a data matrix t
 
 
 ```{r, include=TRUE, eval = FALSE}
-    morpho <- readDiscreteCharacterData("data/Cinctans.nex")
+    morpho <- readDiscreteCharacterData("data/Cinctans_for_RevBayes.nex")
 ```
 
 **Create Helper Variables**

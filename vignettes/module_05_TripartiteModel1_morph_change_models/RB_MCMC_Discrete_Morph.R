@@ -6,7 +6,7 @@
 
 
 ## ---- include=TRUE, eval = TRUE------------------------------------------
-    morpho <- readDiscreteCharacterData("data/Cinctans.nex")
+    morpho <- readDiscreteCharacterData("data/Cinctans_for_RevBayes.nex")
 
 
 ## ---- include=TRUE, eval = TRUE------------------------------------------
