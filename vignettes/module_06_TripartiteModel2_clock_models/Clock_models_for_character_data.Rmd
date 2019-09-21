@@ -118,8 +118,8 @@ Next, we need to set up workspace variables called `mvi` and `mni` to use as ite
 
 ```{r, include=TRUE, eval = FALSE}
     # MCMC iterator variables
-    mvi = 1
-    mni = 1
+    moves = 1
+    monitors = 1
 ```
 
 
@@ -138,7 +138,7 @@ Given their fossil record, cinctans diverged from other echinoderms by at least 
 ```{r, include=TRUE, eval = FALSE}
     origin_time ~ dnUnif(10.2, 15.2);
     # Set MCMC move on the parameter
-    moves[mvi++] = mvSlide(origin_time, delta=0.01, weight=4)
+    moves.append(mvSlide(origin_time, delta=0.01, weight=4))
     # Set up a monitor for the root age of the tree
     Root_age := origin_time
 ```
@@ -159,12 +159,12 @@ Next, we will place MCMC moves on both the topology and node ages of the time tr
 
 ```{r, include=TRUE, eval = FALSE}
    # Set MCMC moves for tree topology
-   moves[mvi++]  = mvFNPR(phylogeny, weight=num_branches/2.0);
-   moves[mvi++] = mvNNI(phylogeny, weight=num_branches/2.0)
+   moves.append(mvFNPR(phylogeny, weight=num_branches/2.0))
+   moves.append(mvNNI(phylogeny, weight=num_branches/2.0))
   
    # Set MCMC moves for node ages
-   moves[mvi++] = mvNodeTimeSlideUniform(phylogeny, weight=num_branches/10)
-   moves[mvi++] = mvRootTimeSlideUniform(phylogeny, origin_time, weight=5)
+   moves.append(mvNodeTimeSlideUniform(phylogeny, weight=num_branches/10))
+   moves.append(mvRootTimeSlideUniform(phylogeny, origin_time, weight=5))
 
    # Set MCMC monitor for tree length
    tree_length := phylogeny.treeLength()
@@ -181,7 +181,7 @@ We will be using the Mk model of morphological character evolution, which we wil
     alpha_morpho ~ dnUniform( 0, 1E6 )
     rates_morpho := fnDiscretizeGamma( alpha_morpho, alpha_morpho, 4 )
     #Moves on the parameters to the Gamma distribution.
-    moves[mvi++] = mvScale(alpha_morpho, lambda=1, weight=2.0)
+    moves.append(mvScale(alpha_morpho, lambda=1, weight=2.0))
 ```
 
 As discussed in the previous module, this allows for rate variation *among characters* (i.e., different characters may evolve at different rates). Next, we will set up a clock model that allows for rate variation *among lineages*.
@@ -234,8 +234,8 @@ As usual, we need to set MCMC moves on parameters. In this case, because $\mu$ i
 
 ```{r, include=TRUE, eval = FALSE}
     # Set MCMC moves
-    moves[mvi++] = mvScale(ucln_mean, lambda=1.0, tune=true, weight=4.0)
-    moves[mvi++] = mvScale(ucln_sigma, lambda=0.5, tune=true, weight=4.0)
+    moves.append(mvScale(ucln_mean, lambda=1.0, tune=true, weight=4.0))
+    moves.append(mvScale(ucln_sigma, lambda=0.5, tune=true, weight=4.0))
 
 ```
 
@@ -249,7 +249,7 @@ Now, we have all the relevant parameters for drawing branch rates. Using $\mu$ a
     # assign rates to branches and add mcmc move
     for (i in 1:num_branches){
         branch_rate_var[i] ~ dnLognormal(ucln_mu, ucln_sigma)
-        moves[mvi++] = mvScale(branch_rate_var[i], lambda=1, tune=true, weight=2.0)
+        moves.append(mvScale(branch_rate_var[i], lambda=1, tune=true, weight=2.0))
     }
 ```
 
@@ -257,8 +257,8 @@ We've already placed a MCMC move on branch rate variation, but it is often helpf
 
 ```{r, include=TRUE, eval = FALSE}
     # As usual, we need to set MCMC moves on these parameters.
-    moves[mvi++] = mvVectorScale(branch_rate_var,lambda=1.0,tune=true,weight=2.0);
-    moves[mvi++] = mvVectorSingleElementScale(branch_rate_var,lambda=30.0,tune=true,weight=1.0)
+    moves.append(mvVectorScale(branch_rate_var,lambda=1.0,tune=true,weight=2.0))
+    moves.append(mvVectorSingleElementScale(branch_rate_var,lambda=30.0,tune=true,weight=1.0))
 ```
 
 
@@ -319,19 +319,19 @@ output file and state how often we would like to record parameter values.
 
 
 ```{r, include=TRUE, eval = FALSE}
-    monitors[mni++] = mnModel(filename="output/ucnl_relaxed_clock.log", printgen=10)
+    monitors.append(mnModel(filename="output/ucnl_relaxed_clock.log", printgen=10))
 ```
 
 We use the function `mnFile()` to save phylogenies sampled in the analysis.
 
 ```{r, include=TRUE, eval = FALSE}
-    monitors[mni++] = mnFile(filename="output/ucln_relaxed_clock.trees", printgen=10, phylogeny)
+    monitors.append(mnFile(filename="output/ucln_relaxed_clock.trees", printgen=10, phylogeny))
 ```
 
 If you're like me, you'll want to print information to the screen to monitor the results as the MCMC is running.
 
 ```{r, include=TRUE, eval = FALSE}
-    monitors[mni++] = mnScreen(printgen=100)
+    monitors.append(mnScreen(printgen=100))
 ```
 
 ### Set-Up the MCMC
