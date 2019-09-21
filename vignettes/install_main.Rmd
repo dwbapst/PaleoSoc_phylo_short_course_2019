@@ -15,11 +15,11 @@ We require five particular software applications: **RevBayes**, **R**, **RStudio
 
 RevBayes is a terminal-based program for Bayesian phylogenetic analysis which gives users greater freedom in defining their own models and priors than previous software, designed around graphical models (Höhna et al. 2016). RevBayes also contains an interpreted, scripted language resembling R, rather than a set of fixed commands. It is a spiritual successor to the program MrBayes, which is still maintained but in static form, with no ongoing active development.
 
-#### **NOTE** RevBayes was *just* updated!
+##### **NOTE** RevBayes was *just* updated!
 
 In the week before the workshop, one of us (A. Wright) pushed a number of changes to the RevBayes source and compiled new pre-release versions for our GSA workshop, labeled as release version 1.0.13. In particular, and of significance for us paleontologists, this allows us to load character matrices containing characters that entail differing numbers of character states. Previously, matrices with mixtures of characters with differing numbers of states had to be seperated beforehand to be loaded by RevBayes. If you have an older version of RevBayes from before this week, please update!
 
-#### **NOTE 2** Do not worry about RevStudio!
+##### **NOTE 2** Do not worry about RevStudio!
 
 RevStudio is an analog of RStudio that allows one to edit, debug and run RevBayes scripts in an IDE environment.  However, the latest version of RevBayes
 does not seem to run on all computers - particular issues that have been reported are that it does not work currently on mac OC computers (and it does not exist at all for Linux, anyway).  Do not worry: we will be using RevBayes in the terminal mode (`rb`) and *not* relying on RevStudio.
@@ -28,7 +28,7 @@ does not seem to run on all computers - particular issues that have been reporte
 
 R is a programming language that is especially powerful for data exploration, visualization, and statistical analysis. We will interact with R via RStudio, a popular Integrated Development Environment (IDE) that provides a helpful, beginner friendly experience that allows for easy writing and editing of R scripts. This includes the writing and processing of Rmarkdown files which are regular text documents with interspersed ‘chunks’,that can be converted to PDF or HTML format as dynamic reports. Throughout much of the workshop, we will use the script editing features of RStudio essentially as a plain-text editor, to read and edit scripts for RevBayes. 
 
-#### **NOTE** Required R Packages (All Operating Systems!)
+##### **NOTE** Required R Packages (All Operating Systems!)
 
 When you’re done installing R and RStudio, regardless of what operating system you are on, you will need to install several additional packages that contain additional, specialized functions that we will cover in our lessons. R’s versatility greatly comes from its thousands of such specialized packages, written by other users, and submitted to the CRAN repository, and not included in the base installation. We will use eight of those packages: `ape`, `geiger`, `paleotree`, `phytools`, `nlme`, `knitr`, `devtools`, and `OUwie`. To install all of these packages, we only need to open R (by opening RStudio, or any other alternative you prefer) and paste the following command:
 
@@ -47,7 +47,7 @@ A helpful utility program for creating, formatting, and editing character matric
 
 Tracer is a popular program for examining, measuring and depicting the output of Bayesian analyses. While it was designed originally to work with output from the Bayesian phylogenetics program BEAST, and its successor, BEAST2, it is widely used with all sorts of Bayesian analyses that utilize a Monte Carlo Markov Chain (MCMC) to sample parameter values from the posterior distribution. Archives containing compiled executables for any operating system can be found here:
 
-    https://github.com/beast-dev/tracer/releases/tag/v1.7.1 
+  https://github.com/beast-dev/tracer/releases/tag/v1.7.1 
 
 The archives, once unpacked, should contain a readily useable executable for your OS.
 
@@ -55,9 +55,9 @@ The archives, once unpacked, should contain a readily useable executable for you
 
 An application you don’t have to install, IcyTree is a web-based phylogeny depiction tool which, nearly alone among all phylogeny depiction tools, will remove sampled ancestors (rather than displaying them as tips attached to the tree by ‘zero-length’ terminal branches) and then annotate the tree with dots to depict the collapsed sampled ancestor. IcyTree can be found at:
 
-    https://icytree.org/
+  https://icytree.org/
 
-# Operating System Specific Instructions for Installing RevBayes, R, RStudio and Mesquite
+# Operating System Specific Instructions
 
 ## Windows Operating Systems
 
@@ -65,35 +65,35 @@ An application you don’t have to install, IcyTree is a web-based phylogeny dep
 
 To obtain RevBayes, download and unzip the compiled binaries for Windows systems, found at: 
 
-    https://github.com/revbayes/revbayes/releases/tag/v1.0.13 
+  https://github.com/revbayes/revbayes/releases/tag/v1.0.13 
 
 This unzipped directory will contain two executables (among many other files): `rb.exe`, which will open a command-line application in your respective terminal (probably MS Command Prompt, unless you have an alternative such as bash installed), and `RevStudio.exe`, which will open a primitive GUI for running RevBayes scripts.
 
 You can see more details at the download page:
 
-    https://revbayes.github.io/download 
+  https://revbayes.github.io/download 
 
 ### Installing R and RStudio
 
 Install R by downloading and running this `.exe` file from CRAN:
 
-    https://cran.r-project.org/bin/windows/base/release.htm 
+  https://cran.r-project.org/bin/windows/base/release.htm 
 
 Also, please install the RStudio IDE by visiting their website and downloading the installer file for your respective system:
 
-    https://www.rstudio.com/products/rstudio/download/#download 
+  https://www.rstudio.com/products/rstudio/download/#download 
 
 Note that if you have separate user and admin accounts, you should run the installers as administrator (to do this, right-click on the `.exe` file and select "Run as administrator" instead of double-clicking). Otherwise problems may occur later, for example when installing R packages.
 
 Video Tutorial of Installing R on Windows, Courtesy of Software Carpentry:
 
-    https://www.youtube.com/watch?v=q0PjTAylwoU 
+  https://www.youtube.com/watch?v=q0PjTAylwoU 
 
 ### Installing Mesquite
 
 You can download Mesquite from its Github repository at:
 
-    https://github.com/MesquiteProject/MesquiteCore/releases
+  https://github.com/MesquiteProject/MesquiteCore/releases
 
 For Windows, download the file ending in `.zip` and unpack its contents.
 
@@ -103,11 +103,11 @@ For Windows 10, enter the Properties of the ‘Mesquite.exe’ file by right-cli
 
 Mesquite requires Java to run in. If you don't have Java installed, Mesquite should ask you to install it the first time it runs. In case that doesn't happen, you can download Java from: 
 
-    http://java.com/download 
+  http://java.com/download 
 
 You can find more detailed instructions about how to install Mesquite for Windows at:
 
-    https://www.mesquiteproject.org/Installation%20on%20Windows.html 
+  https://www.mesquiteproject.org/Installation%20on%20Windows.html 
 
 ### Possibly Necessary for Windows: Setting Your Path Variables
 
@@ -117,7 +117,7 @@ The easiest way to edit the PATH on a Windows machine, if you are not familiar w
 
 You can find additional details about editing your PATH, and particularly adding Java to your path on the Java website, at:
 
-    https://www.java.com/en/download/help/path.xml 
+  https://www.java.com/en/download/help/path.xml 
 
 ## macOS Systems
 
@@ -125,27 +125,27 @@ You can find additional details about editing your PATH, and particularly adding
 
 To obtain RevBayes, download and unpackage the compiled binaries for macOS systems, found at: 
 
-    https://github.com/revbayes/revbayes/releases/tag/v1.0.13
+  https://github.com/revbayes/revbayes/releases/tag/v1.0.13
 
 This archived directory, once unpacked, should contain two executable files in the top-level: `rb`, which will open as a command-line application in your system’s shell, and `RevStudio`, which will open a primitive GUI for running RevBayes scripts.
 
 You can see more details at the download page:
 
-    https://revbayes.github.io/download 
+  https://revbayes.github.io/download 
 
 ### Installing R & RStudio
 
 Install R by going to CRAN and downloading, and running, this `.pkg` file:
 
-    https://cran.r-project.org/bin/macosx/R-latest.pkg 
+  https://cran.r-project.org/bin/macosx/R-latest.pkg 
 
 Also, please install the RStudio IDE by visiting their website and downloading the installer file for macOS:
 
-    https://www.rstudio.com/products/rstudio/download/#download 
+  https://www.rstudio.com/products/rstudio/download/#download 
 
 Video Tutorial of Installing R on macOS, Courtesy of Software Carpentry: 
 
-    https://www.youtube.com/watch?v=5-ly3kyxwEg 
+  https://www.youtube.com/watch?v=5-ly3kyxwEg 
 
 
 ### Installing Mesquite
@@ -154,11 +154,11 @@ On Mac OS, Mesquite requires Java of an appropriate version. Machines with Mac O
 
 To install Java 1.7 or higher, if you only have Java 1.6, get the updated version from: 
 
-    http://java.com/download 
+  http://java.com/download 
 
 You can download Mesquite from its Github repository at:
 
-    https://github.com/MesquiteProject/MesquiteCore/releases
+  https://github.com/MesquiteProject/MesquiteCore/releases
 
 For Mac OS X, download a file ending in `.dmg`, selecting the release that matches your Java version. There are two alternatives, one for Java 1.6 (recommended for OS X 10.9, Mavericks, and lower), the other for Java 1.7 and above (recommended for OS X 10.10, Yosemite, and higher).
 
@@ -170,7 +170,7 @@ If the downloaded file doesn't mount into a disk image automatically, double cli
 
 Additional details about installing and running Mesquite on macOS computers can be found at:
 
-    https://www.mesquiteproject.org/Installation%20on%20MacOS%20X.html
+  https://www.mesquiteproject.org/Installation%20on%20MacOS%20X.html
 
 
 ### XCode - In Case You Need to Compile Something
@@ -215,31 +215,31 @@ cd revbayes/projects/cmake
 
 This will take a while (about half an hour on a relatively new Linux laptop with four cores and 8 GB of RAM). You can see more details at the download page:
 
-    https://revbayes.github.io/download 
+  https://revbayes.github.io/download 
 
 ### Installing R & RStudio
 
 You can download the binary files for your distribution from CRAN:
 
-    https://cran.r-project.org/index.html
+  https://cran.r-project.org/index.html
 
 Or you can use your package manager (e.g. for Debian/Ubuntu run `sudo apt-get install r-base` and for Fedora run `sudo dnf install R`). 
 
 Also, please install the RStudio IDE by visiting their website, and downloading the installer file for your respective flavor of Linux:
 
-    https://www.rstudio.com/products/rstudio/download/#download
+  https://www.rstudio.com/products/rstudio/download/#download
 
 ### Installing Mesquite
 
 You can download the latest version for Mesquite from the Github repository:
 
-    https://github.com/MesquiteProject/MesquiteCore/releases 
+  https://github.com/MesquiteProject/MesquiteCore/releases 
 
 For Linux, download the packaged archive files ending in `.tgz`, and extract the contents of the downloaded archive. To start Mesquite, execute the mesquite.sh script from the terminal, which should automatically identify your java installation. If Mesquite cannot find Java, you may need to set your `JAVA_HOME` environment variable.
 
 Installing Mesquite on Linux can be a headache, as most Java Virtual Machines present in modern distros (e.g. modern Ubuntuu distros, like Linux Mint), are known to not properly run Mesquite. The only exception is the official Sun/Oracle VM, but that may not be available or tested for your distribution. Please see here for instructions and troubleshooting related to installing Mesquite on Linux machines: 
 
-    https://www.mesquiteproject.org/Installation%20on%20Linux.html
+  https://www.mesquiteproject.org/Installation%20on%20Linux.html
 
 
 ******
