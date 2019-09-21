@@ -3,25 +3,17 @@ title: "Required Materials and Data Downloads"
 output: html_document
 resource_files: 
   - ./data.zip
-  - data_for_downloads/Cinctans_for_RevBayes.nex
-  - data_for_downloads/Cincta_Smith_and_Zamora_2009.nex
-  - data_for_downloads/cincta_fossil_intervals_FA.tsv
-  - data_for_downloads/Eucladida_inputs.RData
-  - data_for_downloads/Eucladida_MAP.tre
-  - data_for_downloads/Eucladida_postBurnIn.tre
-  - data_for_downloads/Shape_and_CalyxComplexity.txt
-  - data_for_downloads/Fan_density.txt
+  - dataRevBayes.nex
+  - data/Cincta_Smdata9.nex
+  - data/cincta_fossil_intervalsdataucladida_inputs.RData
+  - data/Eucladataata/Eucladida_postBurnIn.tredatad_CalyxComplexity.txt
+ datay.txt
   
 ---
 
-```{r echo = FALSE}
-zip(zipfile = "data.zip", 
-    files = "data_for_downloads"
-    )
-```
-
-&nbsp;
-&nbsp;
+```{r echo = FALdata"data.zip", 
+    files = "data"
+   datasp;
 
 ## All Data in One Single Zip File:
 
@@ -29,31 +21,32 @@ zip(zipfile = "data.zip",
   
 ***
 
-### Original Data Set:
-
-- [Smith & Zamora matrix + subsequently added species](data_for_downloads/Cincta_Smith_and_Zamora_2009.nex)
+### Origindatamith & Zamora matrix + subsequently added species](data/Cincta_Smith_and_Zamora_2009.nex)
 
 ### Data Formatted for RevBayes:
 
-- [Cinctans_for_RevBayes.nex](data_for_downloads/Cinctans_for_RevBayes.nex)
+- [Cinctans_for_RevBayes.nex](data/Cinctans_for_RevBdataonostratigraphic Data formatted for RevBayes:
 
-### Chronostratigraphic Data formatted for RevBayes:
+  *(Note: In this file, taxa are listed as point-occudatairst-appearance times, and all are shifted so the youngest FAD is at 0 time-units.)*
 
-  *(Note: In this file, taxa are listed as point-occurrences at their first-appearance times, and all are shifted so the youngest FAD is at 0 time-units.)*
-
-- [cincta_fossil_intervals_FA.tsv](data_for_downloads/cincta_fossil_intervals_FA.tsv)
+- [cincta_fossil_intervals_FA.tsv](data/cincta_fossil_intervals_FA.tsv)
 
 ### Eucladida Data set for PCM Module (.RData file):
 
-- [Eucladida_inputs.RData](data_for_downloads/Eucladida_inputs.RData)
+- [Eucladida_inputs.RData](data/Eucladida_inputs.RData)
 
-### Eucladida Data set for PCM Module (Individual Text files):
+### Edatafor PCM Module (Individual Text files):
 
-- [Eucladida_MAP.tre](data_for_downloads/Eucladida_MAP.tre)
+- [Eucladida_MAP.tre](data/Eucladida_MAP.tre)
 
-- [Eucladida_postBurnIn.tre](data_for_downloads/Eucladida_postBurnIn.tre)
+- [Eucladida_postBurnIn.tredataostBurnIn.tre)
 
-- [Shape_and_CalyxComplexity.txt](data_for_downloads/Shape_and_CalyxComplexity.txt)
+- [Shape_and_CalyxComplexity.txt](data/Shape_and_CalyxComplexity.txt)
 
-- [Fan_density.txt](data_for_downloads/Fan_density.txt)
+- [Fan_density.txt](data/datadatadatadataAP.tre)
 
+- [Eucladida_postBurnIn.tre](data/Eucladida_postBurnIn.tre)
+
+- [Shape_and_CalyxComplexity.txt](data/Shape_and_CalyxComplexity.txt)
+
+- [Fan_density.txt](data
