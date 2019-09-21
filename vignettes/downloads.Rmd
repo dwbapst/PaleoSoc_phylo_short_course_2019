@@ -3,9 +3,10 @@ title: "Required Materials and Data Downloads"
 output: html_document
 resource_files: 
   - data_for_downloads/Cinctans_for_RevBayes.nex
-  - data_for_downloads/Cincta_Smith_&_Zamora_2009.nex
+  - data_for_downloads/Cincta_Smith_and_Zamora_2009.nex
   - data_for_downloads/cincta_fossil_intervals_FA.tsv
   - data_for_downloads/Eucladida_Inputs.RData
+  - data.zip
 ---
 
 ```{r echo = FALSE}
@@ -29,7 +30,7 @@ zip(zipfile = "data.zip",
 
 ### Data Formatted for RevBayes:
 
-- [Cinctans_for_RevBayes.nex](data_for_downloads/Cinctans_for_RevBayes.nex)
+- [Cinctans_for_RevBayes.nex](data_for_downloads/)
 
 ### Chronostratigraphic Data formatted for RevBayes:
 
