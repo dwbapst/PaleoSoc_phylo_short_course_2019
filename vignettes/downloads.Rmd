@@ -2,11 +2,16 @@
 title: "Required Materials and Data Downloads"
 output: html_document
 resource_files: 
+  - ./data.zip
   - data_for_downloads/Cinctans_for_RevBayes.nex
   - data_for_downloads/Cincta_Smith_and_Zamora_2009.nex
   - data_for_downloads/cincta_fossil_intervals_FA.tsv
   - data_for_downloads/Eucladida_inputs.RData
-  - ./data.zip
+  - data_for_downloads/Eucladida_MAP.tre
+  - data_for_downloads/Eucladida_postBurnIn.tre
+  - data_for_downloads/Shape_and_CalyxComplexity.txt
+  - data_for_downloads/Fan_density.txt
+  
 ---
 
 ```{r echo = FALSE}
