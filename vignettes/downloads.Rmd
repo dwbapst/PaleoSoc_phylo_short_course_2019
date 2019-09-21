@@ -6,7 +6,7 @@ resource_files:
   - data_for_downloads/Cincta_Smith_and_Zamora_2009.nex
   - data_for_downloads/cincta_fossil_intervals_FA.tsv
   - data_for_downloads/Eucladida_Inputs.RData
-  - data.zip
+  - ./data.zip
 ---
 
 ```{r echo = FALSE}
@@ -20,7 +20,7 @@ zip(zipfile = "data.zip",
 
 ## All Data in One Single Zip File:
 
-- [data.zip](data.zip)
+- [data.zip](./data.zip)
   
 ***
 
