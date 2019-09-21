@@ -219,7 +219,7 @@ needed to build the model, specify the analysis, or execute the run are
 given in separate shaded boxes. For example, we will instruct you to
 create a constant node called [[`rho`]{}]{} that is equal to
 [[`1.0`]{}]{} using the [[`<-`]{}]{} operator like this:
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     rho <- .506
 ```
@@ -277,7 +277,7 @@ instructions given in section Complete MCMC\].
 Begin the [`Rev`]{}script by loading in the list of taxon names from the
 [[`bears_taxa.tsv`]{}]{} file using the [[`readTaxonData()`]{}]{}
 function.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
     taxa <- readTaxonData("data/cincta_fossil_intervals_FA.tsv")
 ```
 
@@ -295,7 +295,7 @@ characters.
 Next, import the morphological character matrix and assign it to the
 variable [[`morpho`]{}]{}.
 
-```{r,  eval = TRUE}
+```{r eval = FALSE}
     morpho <- readDiscreteCharacterData("data/Cinctans_for_RevBayes.nex")
 ```
 
@@ -311,7 +311,7 @@ to initialize them in the master file.
 Create a new constant node called [[`n_taxa`]{}]{} that is equal to the
 number of species in our analysis (22).
 
-```{r,  eval = TRUE}
+```{r eval = FALSE}
     n_taxa <- taxa.size() 
 ```
 
@@ -320,7 +320,7 @@ an iterator that will build a vector containing all of the MCMC moves
 used to propose new states for every stochastic node in the model graph.
 Each time a new move is added to the vector, [[`moves`]{}]{} will be
 incremented by a value of [[`1`]{}]{}.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
     moves = VectorMoves()
     monitors = VectorMonitors()
     ```
@@ -366,7 +366,7 @@ distribution with $\delta = 10$ has an expected value (mean) of $1/10$.
 Create the exponentially distributed stochastic nodes for the
 [[`speciation_rate`]{}]{} and [[`extinction_rate`]{}]{} using the
 [[`~`]{}]{} operator.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     speciation_rate ~ dnExponential(10)
     extinction_rate ~ dnExponential(10)
@@ -386,7 +386,7 @@ require us to set a *tuning value*, called [[`lambda`]{}]{} for
 Here, we will use three scale moves for each parameter with different
 values of lambda. By using multiple moves for a single parameter, we
 will improve the mixing of the Markov chain.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     moves.append(mvScale(speciation_rate, lambda=0.01, weight=1))
     moves.append(mvScale(speciation_rate, lambda=0.1,  weight=1))
@@ -423,7 +423,7 @@ a deterministic transformation of the speciation and extinction rates,
 we can monitor (that is, track the values of these parameters, and print
 them to a file) their values by creating two deterministic nodes using
 the [[`:=`]{}]{} operator.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     diversification := speciation_rate - extinction_rate
     turnover := extinction_rate/speciation_rate
@@ -438,7 +438,7 @@ speciation and extinction rates
 (Sect. FBD-Speciation & Extinction\]), we will use an
 exponential prior on this parameter and use scale moves to sample values
 from the posterior distribution.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     psi ~ dnExponential(10) 
     moves.append(mvScale(psi, lambda=0.01, weight=1))
@@ -449,7 +449,7 @@ from the posterior distribution.
 
 We also need to specify sampling at the last time interval where we had Cinctans. We have about 50\% of the known Cinctans in this matrix.
 
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     rho <- .506 
 ```
@@ -463,7 +463,7 @@ parameter uniformly within an interval (defined by the half-width
 [[`delta`]{}]{}). Sliding window moves can be tricky for small values,
 as the window may overlap zero. However, for parameters such as the
 origin age, there is little risk of this being an issue.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     origin_time ~ dnUnif(10.2, 15.2);
     moves.append(mvSlide(origin_time, delta=0.01, weight=5.0))
@@ -482,7 +482,7 @@ to [[`speciation_rate`]{}]{}, [[`extinction_rate`]{}]{}, or
 All the parameters of the FBD process have now been specified. The next
 step is to use these parameters to define the FBD tree prior
 distribution, which we will call [[`fbd_dist`]{}]{}.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     fbd_dist = dnFBDP(origin=origin_time, lambda=speciation_rate, mu=extinction_rate, psi=psi, rho=rho, taxa=taxa)
 ```
@@ -494,7 +494,7 @@ Here we use the stochastic assignment operator `~` to create a
 stochastic node for our constrained, FBD-tree variable (called
 [[`fbd_tree`]{}]{}).
 
-```{r,  eval = TRUE}
+```{r eval = FALSE}
     fbd_tree ~ dnConstrainedTopology(fbd_dist)
 ```
 
@@ -510,7 +510,7 @@ a fossil that is a sampled ancestor (see Fig. 2 and
 Sect. Intro to FBD) so that it is on its own branch and vice
 versa. In addition, when conditioning on the origin time, we also need
 to explicitly sample the root age ([[`mvRootTimeSlideUniform`]{}]{}).
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     moves.append(mvFNPR(fbd_tree, weight=15.0))
     moves.append(mvCollapseExpandFossilBranch(fbd_tree, origin_time, weight=6.0))
@@ -523,7 +523,7 @@ Next, we need to account for uncertainty in the age estimates of our
 fossils using the observed minimum and maximum stratigraphic ages
 provided in the file [[`bears_fossil_intervals.tsv`]{}]{}. First, we
 read this file into a matrix called [[`intervals`]{}]{}.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     intervals = readDataDelimitedFile(file="data/cincta_fossil_intervals_FA.tsv", header=true)
 ```
@@ -538,9 +538,8 @@ observed stratigraphic interval, we know the likelihood is equal to one
 when $a_i < t_i < b_i$, or equivalently $t_i - b_i < 0 < t_i - a_i$. So
 let’s represent the likelihood using a uniform random variable uniformly
 distributed in $(t_i - b_i, t_i - a_i)$ and clamped at zero.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
-intervals = readDataDelimitedFile(file="data/cincta_fossil_intervals_FA.tsv", header=true)
 # Setup the fossil tip sampling #
 # Use a for loop to create a uniform distribution on the occurence time for each fossil #
 # The boundaries of the uniform distribution are specified in the tsv file #
@@ -558,7 +557,7 @@ for(i in 1:intervals.size())
 ```
 Finally, we add a move that samples the ages of the fossil nodes on the
 tree.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     moves.append(mvFossilTimeSlideUniform(fbd_tree, origin_time, weight=5.0))
 ```
@@ -572,7 +571,7 @@ deterministic nodes to sample the posterior distributions of these
 parameters. Create a deterministic node called [[`num_samp_anc`]{}]{}
 that will compute the number of sampled ancestors in our
 [[`fbd_tree`]{}]{}.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
     num_samp_anc := fbd_tree.numSampledAncestors()
 ```
 
@@ -592,7 +591,7 @@ Enter the [`Rev`]{}code provided in this section in this file.
 [`Rev`]{}files into the workspace. Use this function to load in the
 model scripts we have written in the text editor and saved in the
 [[`scripts`]{}]{} directory.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     source("Clock_models_for_character_data.Rev")
 
@@ -602,7 +601,7 @@ model scripts we have written in the text editor and saved in the
 We can now create our workspace model variable with our fully specified
 model DAG. We will do this with the [[`model()`]{}]{} function and
 provide a single node in the graph ([[`sf`]{}]{}).
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     mymodel = model(fbd_tree)
 ``` 
@@ -627,7 +626,7 @@ can be opened by accessory programs for evaluating such parameters. We
 will also name the output file for this monitor and indicate that we
 wish to sample our MCMC every 10 cycles.
 
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     monitors.append(mnModel(filename="output/cinc_dated.log", printgen=10))
 ```
@@ -641,7 +640,7 @@ Since the tree topology is not included in the [[`mnModel`]{}]{} monitor
 tree to file by specifying our [[`pruned_tree`]{}]{} variable in the
 arguments. Remember, we are monitoring the tree with nuisance taxa
 pruned out (section FBD Deterministic Nodes).
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     monitors.append(mnFile(filename="output/cinc_dated.trees", printgen=10, pruned_tree))
 ```
@@ -651,7 +650,7 @@ which parameters we’d like to see updated on the screen. We will choose
 the age of the MCRCA of living bears ([[`age_extant`]{}]{}), the number
 of sampled ancestors ([[`num_samp_anc`]{}]{}), and the origin time
 ([[`origin_time`]{}]{}).
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     monitors.append(mnScreen(printgen=10, num_samp_anc, origin_time))
 ```
@@ -661,7 +660,7 @@ Once we have set up our model, moves, and monitors, we can now create
 the workspace variable that defines our MCMC run. We do this using the
 [[`mcmc()`]{}]{} function that simply takes the three main analysis
 components as arguments.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     mymcmc = mcmc(mymodel, monitors, moves)
 ```
@@ -669,13 +668,13 @@ The MCMC object that we named [[`mymcmc`]{}]{} has a member method
 called [[`.run()`]{}]{}. This will execute our analysis and we will set
 the chain length to [[`10000`]{}]{} cycles using the
 [[`generations`]{}]{} option.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     mymcmc.run(generations=10000)
 ```
 Once our Markov chain has terminated, we will want [`RevBayes`]{}to
 close. Tell the program to quit using the [[`q()`]{}]{} function.
-```{r,  eval = TRUE}
+```{r eval = FALSE}
 
     q()
 ```
