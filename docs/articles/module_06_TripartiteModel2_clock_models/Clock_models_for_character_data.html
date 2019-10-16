@@ -73,7 +73,10 @@
       <a href="../../articles/module_06_TripartiteModel2_clock_models/Clock_models_for_character_data.html">Tripartite Model 2 - Clock Models for Character Data</a>
     </li>
     <li>
-      <a href="../../articles/module_07_TripartiteModel3_Fossilized_Birth_death/module_07.html">Tripartite Model 3: Fossilized Birth Death</a>
+      <a href="../../articles/module_07_TripartiteModel3_Fossilized_Birth_death/RB_Total_Evidence_Tutorial.html">RevBayes Total Evidence Tree Estimation</a>
+    </li>
+    <li>
+      <a href="../../articles/module_07_TripartiteModel3_Fossilized_Birth_death/module_07.html">RevBayes Total Evidence Tree Estimation</a>
     </li>
     <li>
       <a href="../../articles/module_08_worked_PCM_example/module_08.html">Phylogenetic Comparative Methods for Paleobiology</a>
@@ -253,57 +256,58 @@
 </blockquote>
 <p><strong>Load Data Matrices</strong></p>
 <p>In RevBayes, use the function <code>readDiscreteCharacterData()</code> to load the cinctan matrix to the workspace and assign it to the variable <code>morpho</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>    morpho &lt;-<span class="st"> </span><span class="kw">readDiscreteCharacterData</span>(<span class="st">"data/Cinctans_for_RevBayes.nex"</span>)</span></code></pre></div>
+<pre class="revbayes"><code>    morpho &lt;- readDiscreteCharacterData("data/Cinctans.nex")</code></pre>
+<pre><code>## Successfully read one character matrix from file 'data/Cinctans.nex'</code></pre>
 <p><strong>Load Fossil Age Data</strong></p>
 <p>RevBayes uses the function <code>readTaxonData()</code> to load fossil age data to the workspace from a formatted file. Import the fossil age data and assign it to the variable <code>taxonData</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>    taxonData &lt;-<span class="st"> </span><span class="kw">readTaxonData</span>(<span class="dt">file=</span><span class="st">"data/cincta_fossil_intervals_FA.tsv"</span>)</span></code></pre></div>
+<pre class="revbayes"><code>    taxonData &lt;- readTaxonData(file="data/cincta_fossil_intervals_FA.tsv")</code></pre>
 <p>This file contains the names of each species in the dataset and the approximate time of their first appearance, according to their occurrences in trilobite biostratigraphic zones. This is the First Appearance Datum, or FAD, for each species. If you examine the dates in the .tsv file, you may notice these ages do not look like they represent accurate ages for Cambrian echinoderms. They do–sort of. We’ll get to what they represent later when setting a prior distribution on the tree age.</p>
 <p>Although we’re using the approximate time of first appearances for this analysis, please note that this assumption is not required by RevBayes and may not be appropriate for all (or even most) paleontological datasets! In fact, you can place a probability distribution on fossil occurrence times, such as a uniform distribution, or even incorporate the stratigraphic range of a taxon directly into the analysis. But in this example, keep in mind we’re using FADs to constrain fossil ages.</p>
 <p><strong>Create Helper Variables and MCMC move iterators</strong></p>
 <p>Recall in the previous module we had to create helper variables that are used in our MCMC analysis, but are not model parameters. We will assign these variables with the constant node assignment operator, <code>&lt;-</code>. Even though these values are used in our scripts, they are not parameters of the model.</p>
 <p>We will first create a constant node called <code>num_taxa</code> that is equal to the number of species in our analysis. We will also create a constant node called <code>num_branches</code> representing the number of branches in the tree, and one of the taxon names. This list will be used to initialize the tree.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>    <span class="co"># Get the names and number of species in the analysis</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>    taxa &lt;-<span class="st"> </span><span class="kw">morpho.names</span>()</span>
-<span id="cb3-3"><a href="#cb3-3"></a>    num_taxa &lt;-<span class="st"> </span><span class="kw">morpho.size</span>() </span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="co"># Number of branches in a rooted tree = 2*(number of taxa) - 2</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>    num_branches &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>num_taxa <span class="op">-</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<pre class="revbayes"><code>    # Get the names and number of species in the analysis
+    taxa &lt;- morpho.names()
+    num_taxa &lt;- morpho.size() 
+    # Number of branches in a rooted tree = 2*(number of taxa) - 2
+    num_branches &lt;- 2 * num_taxa - 2</code></pre>
 <p>Next, we need to set up workspace variables called <code>mvi</code> and <code>mni</code> to use as iterators during the MCMC analysis.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>    <span class="co"># MCMC iterator variables</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>    moves =<span class="st"> </span><span class="kw">VectorMoves</span>()</span>
-<span id="cb4-3"><a href="#cb4-3"></a>    monitors =<span class="st"> </span><span class="kw">VectorMonitors</span>()</span></code></pre></div>
+<pre class="revbayes"><code>    # MCMC iterator variables
+    moves = VectorMoves()
+    monitors = VectorMonitors()</code></pre>
 <p><strong>Place a prior on the root age of the tree</strong></p>
 <p>Because this analysis will use temporal data to co-estimate divergence times and phylogenetic relationships, we need to specify a prior distribution for the origin of our focal clade (i.e., the root age of the tree).</p>
 <p>Cinctan echinoderms occur throughout middle Cambrian (Miaolingian) rocks, so the clade must have diverged at some point earlier in time. But how much earlier did they diverge? Because we do not know with certainty or have any other information on their divergence (and because this workshop is focused on RevBayes), we’re going to be good Bayesians and treat the root age of the tree as a random variable that we can estimate. Estimating the root age will add an additional parameter to the analysis.</p>
 <p>Node ages for time-calibrated trees are intuitive: they increase from the tips toward the root (i.e., backwards in time), with the root being the oldest node in the tree. However, it is important to note that in RevBayes, the “end” of the tree generating process ends at time, <em>(t)</em> = 0. This makes sense for analyses including extant species because the youngest time unit is the present day. For paleontologists, this is awkward because many of us study lineages that are completely extinct, such as for cinctan echinoderms. However, it is straightforward to rescale our age dates relative to the end of time of interest.</p>
 <p>The youngest taxon in our analysis is <em>Sucocystis acrofera</em>, which has its FAD at ~498.8 Ma. Since this is the youngest occurrence in the analysis, we can effectively treat it as “extant”. To obtain the dates listed in the variable <code>taxonData</code>, we rescaled the absolute ages such that RevBayes treats <em>Sucocystis acrofera</em> as “extant” (i.e., 498.8 Ma = 0 Ma).</p>
 <p>Given their fossil record, cinctans diverged from other echinoderms by at least the middle Cambrian Miaolingian Series, but probably do not have “deep” roots in the early Cambrian or Precambrian. We will place a uniform distribution on the root age to correspond to Cambrian <em>Stage 4</em>, spanning 509 Ma to 514 Ma. Rescaling these to relative time units, we find 509 Ma = 10.2 Ma and 514 Ma = 15.2 Ma.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>    origin_time <span class="op">~</span><span class="st"> </span><span class="kw">dnUnif</span>(<span class="fl">10.2</span>, <span class="fl">15.2</span>);</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    <span class="co"># Set MCMC move on the parameter</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="kw">moves.append</span>(<span class="kw">mvSlide</span>(origin_time, <span class="dt">delta=</span><span class="fl">0.01</span>, <span class="dt">weight=</span><span class="dv">4</span>))</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="co"># Set up a monitor for the root age of the tree</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>    Root_age <span class="op">:</span><span class="er">=</span><span class="st"> </span>origin_time</span></code></pre></div>
+<pre class="revbayes"><code>    origin_time ~ dnUnif(10.2, 15.2);
+    # Set MCMC move on the parameter
+    moves.append(mvSlide(origin_time, delta=0.01, weight=4))
+    # Set up a monitor for the root age of the tree
+    Root_age := origin_time</code></pre>
 <p>Although these rescaled ages may seem awkward to us paleontologists accustomed to working in units of absolute time, note that the relative timescale (in millions of years), and therefore the relative divergences, are unchanged by this translation. Moreover, the divergence times can be rescaled back to their correct absolute time after the analysis. For example, if the root age of the cinctan tree was estimated to be 14.8 Ma on the relative scale, the “corrected” root age would be 14.8 Ma + 498.8 Ma = 513.6 Ma.</p>
 <p><strong>Place a prior distribution on the tree</strong></p>
 <p>Now that we have a prior on the root age, we need to place a prior distribution on the tree topology. We’ll use the function <code>dnUniformTimeTree()</code> to set a time tree prior that is a function of the root age and places equal probability on all possible phylogenies.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>   phylogeny <span class="op">~</span><span class="st"> </span><span class="kw">dnUniformTimeTree</span>(<span class="dt">rootAge=</span>origin_time, <span class="dt">taxa=</span>taxa)</span></code></pre></div>
+<pre class="revbayes"><code>   phylogeny ~ dnUniformTimeTree(rootAge=origin_time, taxa=taxa)</code></pre>
 <p>Next, we will place MCMC moves on both the topology and node ages of the time tree, as well as set a deterministic node to monitor the tree length.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>   <span class="co"># Set MCMC moves for tree topology</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>   <span class="kw">moves.append</span>(<span class="kw">mvFNPR</span>(phylogeny, <span class="dt">weight=</span>num_branches<span class="op">/</span><span class="fl">2.0</span>))</span>
-<span id="cb7-3"><a href="#cb7-3"></a>   <span class="kw">moves.append</span>(<span class="kw">mvNNI</span>(phylogeny, <span class="dt">weight=</span>num_branches<span class="op">/</span><span class="fl">2.0</span>))</span>
-<span id="cb7-4"><a href="#cb7-4"></a>  </span>
-<span id="cb7-5"><a href="#cb7-5"></a>   <span class="co"># Set MCMC moves for node ages</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>   <span class="kw">moves.append</span>(<span class="kw">mvNodeTimeSlideUniform</span>(phylogeny, <span class="dt">weight=</span>num_branches<span class="op">/</span><span class="dv">10</span>))</span>
-<span id="cb7-7"><a href="#cb7-7"></a>   <span class="kw">moves.append</span>(<span class="kw">mvRootTimeSlideUniform</span>(phylogeny, origin_time, <span class="dt">weight=</span><span class="dv">5</span>))</span>
-<span id="cb7-8"><a href="#cb7-8"></a></span>
-<span id="cb7-9"><a href="#cb7-9"></a>   <span class="co"># Set MCMC monitor for tree length</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a>   tree_length <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">phylogeny.treeLength</span>()</span></code></pre></div>
+<pre class="revbayes"><code>   # Set MCMC moves for tree topology
+   moves.append(mvFNPR(phylogeny, weight=num_branches/2.0))
+   moves.append(mvNNI(phylogeny, weight=num_branches/2.0))
+  
+   # Set MCMC moves for node ages
+   moves.append(mvNodeTimeSlideUniform(phylogeny, weight=num_branches/10))
+   moves.append(mvRootTimeSlideUniform(phylogeny, origin_time, weight=5))
+
+   # Set MCMC monitor for tree length
+   tree_length := phylogeny.treeLength()</code></pre>
 <p>The uniform time tree prior, which considers all possible tree topologies to be equally likely, is very simplistic and <em>makes very unrealistic assumptions about fossil sampling</em>. In the next module, Tripartite Model 3: Fossilized Birth Death, you will learn more about tree priors and how to incorporate paleontologically-inspired methods into your analysis, such as integrating diversification and/or sampling through time. So you’ll hear more on this topic later!</p>
 <p><strong>Place a prior distribution on Mk model: rate variation among characters</strong></p>
 <p>We will be using the Mk model of morphological character evolution, which we will specify further below. For now, we will set up a Gamma-distributed rate variation to the Mk model and specify moves on the parameters of the Gamma distribution.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>    alpha_morpho <span class="op">~</span><span class="st"> </span><span class="kw">dnUniform</span>( <span class="dv">0</span>, <span class="fl">1E6</span> )</span>
-<span id="cb8-2"><a href="#cb8-2"></a>    rates_morpho <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">fnDiscretizeGamma</span>( alpha_morpho, alpha_morpho, <span class="dv">4</span> )</span>
-<span id="cb8-3"><a href="#cb8-3"></a>    <span class="co">#Moves on the parameters to the Gamma distribution.</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>    <span class="kw">moves.append</span>(<span class="kw">mvScale</span>(alpha_morpho, <span class="dt">lambda=</span><span class="dv">1</span>, <span class="dt">weight=</span><span class="fl">2.0</span>))</span></code></pre></div>
+<pre class="revbayes"><code>    alpha_morpho ~ dnUniform( 0, 1E6 )
+    rates_morpho := fnDiscretizeGamma( alpha_morpho, alpha_morpho, 4 )
+    #Moves on the parameters to the Gamma distribution.
+    moves.append(mvScale(alpha_morpho, lambda=1, weight=2.0))</code></pre>
 <p>As discussed in the previous module, this allows for rate variation <em>among characters</em> (i.e., different characters may evolve at different rates). Next, we will set up a clock model that allows for rate variation <em>among lineages</em>.</p>
 <div id="the-uncorrelated-lognormal-relaxed-clock" class="section level2">
 <h2 class="hasAnchor">
@@ -318,64 +322,65 @@
 <p>Because it can be difficult to interpret a hyperprior placed on the location parameter <span class="math inline">\(\mu\)</span>, it is preferable to place a hyperprior on the mean <span class="math inline">\((M)\)</span> of the lognormal distribution (Heath and Moore, 2014). The expected value (i.e., the arithmetic mean) of a lognormally distributed random variable is related to the location and scale parameters by:</p>
 <p><span class="math display">\[M = e^{\mu +\frac{\sigma^2}{2}}. \]</span></p>
 <p>Here, we’ll set hyperpriors by assuming that both <span class="math inline">\(M\)</span> and <span class="math inline">\(\sigma\)</span> follow an exponential distribution. Then, we’ll set a deterministic node to monitor <span class="math inline">\(\sigma^2\)</span>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>    <span class="co"># M</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>    ucln_mean <span class="op">~</span><span class="st"> </span><span class="kw">dnExponential</span>(<span class="fl">2.0</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>    <span class="co"># sigma</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>    ucln_sigma <span class="op">~</span><span class="st"> </span><span class="kw">dnExponential</span>(<span class="fl">3.0</span>) </span>
-<span id="cb9-5"><a href="#cb9-5"></a>    <span class="co"># Set a deterministic node on sigma^2 </span></span>
-<span id="cb9-6"><a href="#cb9-6"></a>    ucln_var <span class="op">:</span><span class="er">=</span><span class="st"> </span>ucln_sigma <span class="op">*</span><span class="st"> </span>ucln_sigma </span></code></pre></div>
+<pre class="revbayes"><code>    # M
+    ucln_mean ~ dnExponential(2.0)
+    # sigma
+    ucln_sigma ~ dnExponential(3.0) 
+    # Set a deterministic node on sigma^2 
+    ucln_var := ucln_sigma * ucln_sigma </code></pre>
 <p>Now that we’ve placed hyperpriors on <span class="math inline">\(M\)</span> and <span class="math inline">\(\sigma^2\)</span>, we can rearrange the equation above in terms of <span class="math inline">\(\mu\)</span>,</p>
 <p><span class="math display">\[\mu = ln(M) - \frac{\sigma^2}{2}.\]</span></p>
 <p>Using this relationship, we can set a deterministic node that records the parameter <span class="math inline">\(\mu\)</span> of the lognormal distribution.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>    <span class="co"># set deterministic parameter giving mu on branch rates</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>    ucln_mu <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">ln</span>(ucln_mean) <span class="op">-</span><span class="st"> </span>(ucln_var <span class="op">*</span><span class="st"> </span><span class="fl">0.5</span>)</span></code></pre></div>
+<pre class="revbayes"><code>    # set deterministic parameter giving mu on branch rates
+    ucln_mu := ln(ucln_mean) - (ucln_var * 0.5)</code></pre>
 <p>As usual, we need to set MCMC moves on parameters. In this case, because <span class="math inline">\(\mu\)</span> is a function of <span class="math inline">\(M\)</span> and <span class="math inline">\(\sigma\)</span>, we need to place MCMC moves on these parameters.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>    <span class="co"># Set MCMC moves</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>    <span class="kw">moves.append</span>(<span class="kw">mvScale</span>(ucln_mean, <span class="dt">lambda=</span><span class="fl">1.0</span>, <span class="dt">tune=</span>true, <span class="dt">weight=</span><span class="fl">4.0</span>))</span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="kw">moves.append</span>(<span class="kw">mvScale</span>(ucln_sigma, <span class="dt">lambda=</span><span class="fl">0.5</span>, <span class="dt">tune=</span>true, <span class="dt">weight=</span><span class="fl">4.0</span>))</span></code></pre></div>
+<pre class="revbayes"><code>    # Set MCMC moves
+    moves.append(mvScale(ucln_mean, lambda=1.0, tune=true, weight=4.0))
+    moves.append(mvScale(ucln_sigma, lambda=0.5, tune=true, weight=4.0))
+</code></pre>
 
 <p><strong>Assigning rates to branches</strong></p>
 <p>Now, we have all the relevant parameters for drawing branch rates. Using <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, we can write a loop to draw a rate for all branches in the tree. In the loop, we’ll place the branch rates in a vector called <code>branch_rate_var</code> and set a MCMC move to tune the branch rates.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>    <span class="co"># assign rates to branches and add mcmc move</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>num_branches){</span>
-<span id="cb12-3"><a href="#cb12-3"></a>        branch_rate_var[i] <span class="op">~</span><span class="st"> </span><span class="kw">dnLognormal</span>(ucln_mu, ucln_sigma)</span>
-<span id="cb12-4"><a href="#cb12-4"></a>        <span class="kw">moves.append</span>(<span class="kw">mvScale</span>(branch_rate_var[i], <span class="dt">lambda=</span><span class="dv">1</span>, <span class="dt">tune=</span>true, <span class="dt">weight=</span><span class="fl">2.0</span>))</span>
-<span id="cb12-5"><a href="#cb12-5"></a>    }</span></code></pre></div>
+<pre class="revbayes"><code>    # assign rates to branches and add mcmc move
+    for (i in 1:num_branches){
+        branch_rate_var[i] ~ dnLognormal(ucln_mu, ucln_sigma)
+        moves.append(mvScale(branch_rate_var[i], lambda=1, tune=true, weight=2.0))
+    }</code></pre>
 <p>We’ve already placed a MCMC move on branch rate variation, but it is often helpful to place additional moves to improve MCMC mixing and obtain better parameter estimates. Let’s add two additonal moves.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>    <span class="co"># As usual, we need to set MCMC moves on these parameters.</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="kw">moves.append</span>(<span class="kw">mvVectorScale</span>(branch_rate_var,<span class="dt">lambda=</span><span class="fl">1.0</span>,<span class="dt">tune=</span>true,<span class="dt">weight=</span><span class="fl">2.0</span>))</span>
-<span id="cb13-3"><a href="#cb13-3"></a>    <span class="kw">moves.append</span>(<span class="kw">mvVectorSingleElementScale</span>(branch_rate_var,<span class="dt">lambda=</span><span class="fl">30.0</span>,<span class="dt">tune=</span>true,<span class="dt">weight=</span><span class="fl">1.0</span>))</span></code></pre></div>
+<pre class="revbayes"><code>    # As usual, we need to set MCMC moves on these parameters.
+    moves.append(mvVectorScale(branch_rate_var,lambda=1.0,tune=true,weight=2.0))
+    moves.append(mvVectorSingleElementScale(branch_rate_var,lambda=30.0,tune=true,weight=1.0))</code></pre>
 </div>
 <div id="putting-it-all-together" class="section level2">
 <h2 class="hasAnchor">
 <a href="#putting-it-all-together" class="anchor"></a>Putting it all together</h2>
 <p>Finally, we combine each the Mk model of character evolution, gamma-distributed rate heterogeneity (describing variation among characters), the uncorrelated relaxed clock model (describing variation among lineages), and the uniform tree model together into a <code>phyloCTMC</code> object. The following loop will apply these model parameters to all morphological character partitions with the same number of states.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>n_max_states &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>idx =<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>morpho_bystate[<span class="dv">1</span>] &lt;-<span class="st"> </span>morpho</span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="cf">for</span> (c <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n_max_states) {</span>
-<span id="cb14-5"><a href="#cb14-5"></a>    <span class="co"># make local tmp copy of data</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a>    <span class="co"># only keep character blocks with state space equal to size i</span></span>
-<span id="cb14-7"><a href="#cb14-7"></a>    morpho_bystate[c] &lt;-<span class="st"> </span>morpho</span>
-<span id="cb14-8"><a href="#cb14-8"></a>    morpho_bystate[c]<span class="kw">.setNumStatesPartition</span>(c)</span>
-<span id="cb14-9"><a href="#cb14-9"></a>    nc =<span class="st"> </span>morpho_bystate[c]<span class="kw">.nchar</span>()</span>
-<span id="cb14-10"><a href="#cb14-10"></a>    <span class="co"># for non-empty character blocks</span></span>
-<span id="cb14-11"><a href="#cb14-11"></a>    <span class="cf">if</span> (nc <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb14-12"><a href="#cb14-12"></a>        <span class="co"># make i-by-i rate matrix</span></span>
-<span id="cb14-13"><a href="#cb14-13"></a>        q[idx] &lt;-<span class="st"> </span><span class="kw">fnJC</span>(c)</span>
-<span id="cb14-14"><a href="#cb14-14"></a>        <span class="co"># create model of evolution for the character block</span></span>
-<span id="cb14-15"><a href="#cb14-15"></a>        m_morph[idx] <span class="op">~</span><span class="st"> </span><span class="kw">dnPhyloCTMC</span>(<span class="dt">tree=</span>phylogeny,</span>
-<span id="cb14-16"><a href="#cb14-16"></a>                                <span class="dt">Q=</span>q[idx],</span>
-<span id="cb14-17"><a href="#cb14-17"></a>                                <span class="dt">nSites=</span>nc,</span>
-<span id="cb14-18"><a href="#cb14-18"></a>                                <span class="dt">siteRates=</span>rates_morpho,</span>
-<span id="cb14-19"><a href="#cb14-19"></a>                                <span class="dt">branchRates=</span>branch_rate_var,</span>
-<span id="cb14-20"><a href="#cb14-20"></a>                                <span class="dt">type=</span><span class="st">"Standard"</span>)</span>
-<span id="cb14-21"><a href="#cb14-21"></a>        <span class="co"># attach the data</span></span>
-<span id="cb14-22"><a href="#cb14-22"></a>        m_morph[idx]<span class="kw">.clamp</span>(morpho_bystate[c])</span>
-<span id="cb14-23"><a href="#cb14-23"></a>        <span class="co"># increment counter</span></span>
-<span id="cb14-24"><a href="#cb14-24"></a>        idx =<span class="st"> </span>idx <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb14-25"><a href="#cb14-25"></a>  }</span>
-<span id="cb14-26"><a href="#cb14-26"></a>}</span></code></pre></div>
+<pre class="revbayes"><code>n_max_states &lt;- 3
+idx = 1
+morpho_bystate[1] &lt;- morpho
+for (c in 1:n_max_states) {
+    # make local tmp copy of data
+    # only keep character blocks with state space equal to size i
+    morpho_bystate[c] &lt;- morpho
+    morpho_bystate[c].setNumStatesPartition(c)
+    nc = morpho_bystate[c].nchar()
+    # for non-empty character blocks
+    if (nc &gt; 0) {
+        # make i-by-i rate matrix
+        q[idx] &lt;- fnJC(c)
+        # create model of evolution for the character block
+        m_morph[idx] ~ dnPhyloCTMC(tree=phylogeny,
+                                Q=q[idx],
+                                nSites=nc,
+                                siteRates=rates_morpho,
+                                branchRates=branch_rate_var,
+                                type="Standard")
+        # attach the data
+        m_morph[idx].clamp(morpho_bystate[c])
+        # increment counter
+        idx = idx + 1
+  }
+}</code></pre>
 <p>Note that this script is very similar to the one used in in the previous module (Tripartite Model 1 - Discrete Morphology). Can you spot the difference? It’s subtle, but very important!</p>
 <p>Now that all of the components of the model are specified, we can run an analysis!</p>
 </div>
@@ -384,35 +389,181 @@
 <a href="#complete-mcmc-analysis" class="anchor"></a>Complete MCMC Analysis</h2>
 <p><strong>Create Model Object</strong></p>
 <p>Create our workspace model variable with the <code>model()</code> function and provide a single node in the graph (<code>phylogeny</code>).</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>    mymodel =<span class="st"> </span><span class="kw">model</span>(phylogeny)</span></code></pre></div>
+<pre class="revbayes"><code>    mymodel = model(phylogeny)</code></pre>
 <p><strong>Specify Monitors and Output Filenames</strong></p>
 <p>We often want to monitor every named random variable in our model graph. This step will write all numerical parameters to a tab-separated text file that can be opened by other programs for evaluating parameters and assessing convergence. We will also name the output file and state how often we would like to record parameter values.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>    <span class="kw">monitors.append</span>(<span class="kw">mnModel</span>(<span class="dt">filename=</span><span class="st">"output/ucnl_relaxed_clock.log"</span>, <span class="dt">printgen=</span><span class="dv">10</span>))</span></code></pre></div>
+<pre class="revbayes"><code>    monitors.append(mnModel(filename="output/ucnl_relaxed_clock.log", printgen=10))</code></pre>
 <p>We use the function <code>mnFile()</code> to save phylogenies sampled in the analysis.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>    <span class="kw">monitors.append</span>(<span class="kw">mnFile</span>(<span class="dt">filename=</span><span class="st">"output/ucln_relaxed_clock.trees"</span>, <span class="dt">printgen=</span><span class="dv">10</span>, phylogeny))</span></code></pre></div>
+<pre class="revbayes"><code>    monitors.append(mnFile(filename="output/ucln_relaxed_clock.trees", printgen=10, phylogeny))</code></pre>
 <p>If you’re like me, you’ll want to print information to the screen to monitor the results as the MCMC is running.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>    <span class="kw">monitors.append</span>(<span class="kw">mnScreen</span>(<span class="dt">printgen=</span><span class="dv">100</span>))</span></code></pre></div>
+<pre class="revbayes"><code>    monitors.append(mnScreen(printgen=100))</code></pre>
 <div id="set-up-the-mcmc" class="section level3">
 <h3 class="hasAnchor">
 <a href="#set-up-the-mcmc" class="anchor"></a>Set-Up the MCMC</h3>
 <p>Once we have set up our model, moves, and monitors, we can now create the workspace variable that defines our MCMC run. We do this using the <code>mcmc()</code> function that simply takes the three main analysis components as arguments.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>    mymcmc =<span class="st"> </span><span class="kw">mcmc</span>(mymodel, monitors, moves, <span class="dt">nruns=</span><span class="dv">2</span>, <span class="dt">combine=</span><span class="st">"mixed"</span>)</span></code></pre></div>
+<pre class="revbayes"><code>    mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")</code></pre>
+<pre><code>## [1] Could not compute lnProb for node m_morph[2].
+## [2] Standard character matrix with 27 taxa and 60 charact
+## [3] Drawing new initial states ...</code></pre>
 <p>The MCMC object that we named <code>mymcmc</code> has a member method called <code>.run()</code>. This will execute our analysis and we will set the chain length to <code>10000</code> cycles using the <code>generations</code> option.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>    <span class="kw">mymcmc.run</span>(<span class="dt">generations=</span><span class="dv">10000</span>, <span class="dt">tuningInterval=</span><span class="dv">200</span>)</span></code></pre></div>
+<pre class="revbayes"><code>    mymcmc.run(generations=10000, tuningInterval=200)</code></pre>
+<pre><code>## [1] Could not compute lnProb for node m_morph[2].
+## [2] Standard character matrix with 27 taxa and 60 charact
+## [3] Drawing new initial states ...
+## [4] Could not compute lnProb for node m_morph[2].
+## [5] Standard character matrix with 27 taxa and 60 charact
+## [6] Drawing new initial states ...
+## [7] Could not compute lnProb for node m_morph[2].
+## [8] Standard character matrix with 27 taxa and 60 charact
+## [9] Drawing new initial states ...
+## [10] Could not compute lnProb for node m_morph[2].
+## [11] Standard character matrix with 27 taxa and 60 charact
+## [12] Drawing new initial states ...
+## [13] Could not compute lnProb for node m_morph[3].
+## [14] Standard character matrix with 27 taxa and 60 charact
+## [15] Drawing new initial states ...
+## [16] Could not compute lnProb for node m_morph[2].
+## [17] Standard character matrix with 27 taxa and 60 charact
+## [18] Drawing new initial states ...
+## [19] Could not compute lnProb for node m_morph[2].
+## [20] Standard character matrix with 27 taxa and 60 charact
+## [21] Drawing new initial states ...
+## [22] Could not compute lnProb for node m_morph[3].
+## [23] Standard character matrix with 27 taxa and 60 charact
+## [24] Drawing new initial states ...
+## [25] Could not compute lnProb for node m_morph[2].
+## [26] Standard character matrix with 27 taxa and 60 charact
+## [27] Drawing new initial states ...
+## [28] Running MCMC simulation
+## [29] This simulation runs 2 independent replicates.
+## [30] The simulator uses 62 different moves in a random move schedule with 183.2 moves per iteration
+## [31] Iter        |      Posterior   |     Likelihood   |          Prior   |    elapsed   |        ETA   |
+## [32] ----------------------------------------------------------------------------------------------------
+## [33] 0           |       -873.282   |       -845.676   |       -27.6066   |   00:00:00   |   --:--:--   |
+## [34] 100         |        -472.28   |       -441.745   |       -30.5354   |   00:00:03   |   --:--:--   |
+## [35] 200         |       -340.986   |       -403.623   |        62.6371   |   00:00:06   |   00:04:54   |
+## [36] 300         |       -314.035   |       -411.322   |        97.2872   |   00:00:09   |   00:04:51   |
+## [37] 400         |       -302.814   |       -418.955   |        116.141   |   00:00:12   |   00:04:48   |
+## [38] 500         |       -299.022   |       -413.063   |         114.04   |   00:00:15   |   00:04:45   |
+## [39] 600         |       -337.965   |       -414.964   |        76.9987   |   00:00:18   |   00:04:42   |
+## [40] 700         |       -314.797   |       -413.311   |        98.5137   |   00:00:20   |   00:04:25   |
+## [41] 800         |       -299.753   |       -407.255   |        107.503   |   00:00:23   |   00:04:24   |
+## [42] 900         |       -326.722   |       -396.776   |        70.0543   |   00:00:26   |   00:04:22   |
+## [43] 1000        |       -343.918   |        -397.68   |        53.7613   |   00:00:29   |   00:04:21   |
+## [44] 1100        |       -326.931   |       -400.421   |        73.4905   |   00:00:32   |   00:04:18   |
+## [45] 1200        |       -333.805   |        -404.03   |        70.2247   |   00:00:35   |   00:04:16   |
+## [46] 1300        |       -301.662   |        -422.88   |        121.218   |   00:00:38   |   00:04:14   |
+## [47] 1400        |       -299.161   |       -414.171   |        115.009   |   00:00:41   |   00:04:11   |
+## [48] 1500        |       -300.135   |       -400.017   |        99.8823   |   00:00:43   |   00:04:03   |
+## [49] 1600        |       -312.934   |       -435.196   |        122.262   |   00:00:46   |   00:04:01   |
+## [50] 1700        |       -297.798   |       -404.237   |        106.439   |   00:00:49   |   00:03:59   |
+## [51] 1800        |       -321.287   |       -410.986   |        89.6989   |   00:00:52   |   00:03:56   |
+## [52] 1900        |       -302.576   |       -402.075   |        99.4992   |   00:00:55   |   00:03:54   |
+## [53] Iter        |      Posterior   |     Likelihood   |          Prior   |    elapsed   |        ETA   |
+## [54] ----------------------------------------------------------------------------------------------------
+## [55] 2000        |       -322.707   |        -417.55   |        94.8438   |   00:00:58   |   00:03:52   |
+## [56] 2100        |       -333.467   |       -409.954   |        76.4871   |   00:01:01   |   00:03:49   |
+## [57] 2200        |       -293.062   |        -406.44   |        113.377   |   00:01:03   |   00:03:43   |
+## [58] 2300        |       -341.586   |       -408.136   |        66.5499   |   00:01:06   |   00:03:40   |
+## [59] 2400        |       -323.518   |       -395.861   |        72.3428   |   00:01:09   |   00:03:38   |
+## [60] 2500        |       -320.675   |       -398.034   |        77.3587   |   00:01:12   |   00:03:36   |
+## [61] 2600        |        -320.06   |       -397.693   |         77.633   |   00:01:15   |   00:03:33   |
+## [62] 2700        |        -318.15   |       -428.738   |        110.588   |   00:01:18   |   00:03:30   |
+## [63] 2800        |       -306.894   |       -416.632   |        109.738   |   00:01:21   |   00:03:28   |
+## [64] 2900        |       -308.903   |       -401.229   |        92.3261   |   00:01:23   |   00:03:23   |
+## [65] 3000        |       -319.335   |       -418.287   |        98.9526   |   00:01:26   |   00:03:20   |
+## [66] 3100        |       -305.659   |       -410.076   |        104.417   |   00:01:29   |   00:03:18   |
+## [67] 3200        |       -305.376   |       -398.851   |        93.4757   |   00:01:32   |   00:03:15   |
+## [68] 3300        |       -336.963   |       -401.367   |        64.4042   |   00:01:35   |   00:03:12   |
+## [69] 3400        |       -315.227   |       -398.625   |        83.3975   |   00:01:38   |   00:03:10   |
+## [70] 3500        |       -321.194   |       -394.877   |        73.6838   |   00:01:41   |   00:03:07   |
+## [71] 3600        |       -309.426   |       -399.593   |        90.1672   |   00:01:44   |   00:03:04   |
+## [72] 3700        |       -310.698   |       -397.271   |        86.5736   |   00:01:46   |   00:03:00   |
+## [73] 3800        |       -309.807   |       -407.671   |        97.8641   |   00:01:49   |   00:02:57   |
+## [74] 3900        |       -318.877   |       -416.849   |        97.9724   |   00:01:52   |   00:02:55   |
+## [75] Iter        |      Posterior   |     Likelihood   |          Prior   |    elapsed   |        ETA   |
+## [76] ----------------------------------------------------------------------------------------------------
+## [77] 4000        |       -328.285   |       -414.079   |        85.7944   |   00:01:55   |   00:02:52   |
+## [78] 4100        |       -320.687   |       -407.058   |        86.3702   |   00:01:58   |   00:02:49   |
+## [79] 4200        |       -309.875   |       -408.517   |        98.6428   |   00:02:01   |   00:02:47   |
+## [80] 4300        |       -335.858   |       -405.203   |        69.3448   |   00:02:04   |   00:02:44   |
+## [81] 4400        |       -306.959   |        -426.47   |        119.511   |   00:02:07   |   00:02:41   |
+## [82] 4500        |       -300.558   |       -416.121   |        115.563   |   00:02:10   |   00:02:38   |
+## [83] 4600        |       -298.147   |       -411.032   |        112.885   |   00:02:13   |   00:02:36   |
+## [84] 4700        |       -298.879   |       -404.649   |         105.77   |   00:02:16   |   00:02:33   |
+## [85] 4800        |       -327.702   |        -412.92   |         85.218   |   00:02:18   |   00:02:29   |
+## [86] 4900        |       -324.367   |       -399.869   |        75.5012   |   00:02:21   |   00:02:26   |
+## [87] 5000        |       -298.387   |       -412.981   |        114.594   |   00:02:24   |   00:02:24   |
+## [88] 5100        |       -309.207   |        -410.88   |        101.673   |   00:02:27   |   00:02:21   |
+## [89] 5200        |       -317.075   |       -409.181   |        92.1066   |   00:02:30   |   00:02:18   |
+## [90] 5300        |       -318.009   |       -399.125   |        81.1161   |   00:02:33   |   00:02:15   |
+## [91] 5400        |       -328.457   |       -404.692   |        76.2356   |   00:02:36   |   00:02:12   |
+## [92] 5500        |       -330.938   |       -411.973   |        81.0357   |   00:02:39   |   00:02:10   |
+## [93] 5600        |       -340.799   |        -417.86   |         77.061   |   00:02:42   |   00:02:07   |
+## [94] 5700        |       -319.736   |       -408.048   |        88.3122   |   00:02:44   |   00:02:03   |
+## [95] 5800        |       -344.769   |       -406.623   |        61.8547   |   00:02:47   |   00:02:00   |
+## [96] 5900        |       -318.711   |       -401.909   |        83.1979   |   00:02:50   |   00:01:58   |
+## [97] Iter        |      Posterior   |     Likelihood   |          Prior   |    elapsed   |        ETA   |
+## [98] ----------------------------------------------------------------------------------------------------
+## [99] 6000        |       -335.908   |       -412.467   |        76.5594   |   00:02:53   |   00:01:55   |
+## [100] 6100        |       -328.024   |       -402.352   |        74.3284   |   00:02:56   |   00:01:52   |
+## [101] 6200        |       -322.384   |       -406.352   |        83.9684   |   00:02:59   |   00:01:49   |
+## [102] 6300        |       -306.033   |       -404.202   |         98.169   |   00:03:02   |   00:01:46   |
+## [103] 6400        |       -309.364   |       -418.436   |        109.072   |   00:03:05   |   00:01:44   |
+## [104] 6500        |       -333.842   |       -405.374   |        71.5315   |   00:03:08   |   00:01:41   |
+## [105] 6600        |        -324.96   |       -412.037   |        87.0771   |   00:03:11   |   00:01:38   |
+## [106] 6700        |       -310.798   |        -405.62   |        94.8225   |   00:03:14   |   00:01:35   |
+## [107] 6800        |       -303.165   |       -406.498   |        103.333   |   00:03:16   |   00:01:32   |
+## [108] 6900        |       -312.242   |       -419.254   |        107.012   |   00:03:19   |   00:01:29   |
+## [109] 7000        |       -274.512   |       -428.525   |        154.013   |   00:03:22   |   00:01:26   |
+## [110] 7100        |       -312.303   |       -410.725   |        98.4218   |   00:03:25   |   00:01:23   |
+## [111] 7200        |       -320.472   |       -412.144   |        91.6722   |   00:03:28   |   00:01:20   |
+## [112] 7300        |       -292.037   |       -420.236   |        128.199   |   00:03:31   |   00:01:18   |
+## [113] 7400        |       -302.433   |        -415.11   |        112.677   |   00:03:34   |   00:01:15   |
+## [114] 7500        |       -298.847   |       -435.797   |        136.951   |   00:03:37   |   00:01:12   |
+## [115] 7600        |       -314.802   |       -406.872   |        92.0698   |   00:03:39   |   00:01:09   |
+## [116] 7700        |       -298.962   |       -399.034   |        100.073   |   00:03:42   |   00:01:06   |
+## [117] 7800        |       -314.978   |       -405.915   |        90.9375   |   00:03:45   |   00:01:03   |
+## [118] 7900        |       -333.049   |       -408.432   |        75.3829   |   00:03:48   |   00:01:00   |
+## [119] Iter        |      Posterior   |     Likelihood   |          Prior   |    elapsed   |        ETA   |
+## [120] ----------------------------------------------------------------------------------------------------
+## [121] 8000        |        -316.55   |       -409.051   |        92.5014   |   00:03:51   |   00:00:57   |
+## [122] 8100        |        -321.59   |       -405.517   |        83.9274   |   00:03:54   |   00:00:54   |
+## [123] 8200        |        -321.03   |        -399.76   |        78.7301   |   00:03:57   |   00:00:52   |
+## [124] 8300        |       -325.004   |       -391.425   |        66.4209   |   00:04:00   |   00:00:49   |
+## [125] 8400        |       -298.355   |       -401.852   |        103.497   |   00:04:03   |   00:00:46   |
+## [126] 8500        |       -308.442   |       -405.751   |        97.3092   |   00:04:06   |   00:00:43   |
+## [127] 8600        |       -299.516   |       -415.125   |        115.609   |   00:04:08   |   00:00:40   |
+## [128] 8700        |       -328.533   |       -414.664   |         86.131   |   00:04:11   |   00:00:37   |
+## [129] 8800        |       -302.344   |       -414.248   |        111.904   |   00:04:14   |   00:00:34   |
+## [130] 8900        |        -318.89   |       -417.712   |        98.8217   |   00:04:17   |   00:00:31   |
+## [131] 9000        |       -311.145   |       -396.485   |        85.3404   |   00:04:20   |   00:00:28   |
+## [132] 9100        |       -335.224   |       -423.428   |         88.204   |   00:04:23   |   00:00:26   |
+## [133] 9200        |       -308.364   |       -411.868   |        103.504   |   00:04:26   |   00:00:23   |
+## [134] 9300        |       -310.553   |       -399.952   |        89.3993   |   00:04:29   |   00:00:20   |
+## [135] 9400        |       -320.885   |       -409.903   |        89.0185   |   00:04:32   |   00:00:17   |
+## [136] 9500        |       -286.842   |       -416.562   |         129.72   |   00:04:34   |   00:00:14   |
+## [137] 9600        |       -284.357   |       -433.222   |        148.865   |   00:04:37   |   00:00:11   |
+## [138] 9700        |       -294.916   |       -418.886   |         123.97   |   00:04:40   |   00:00:08   |
+## [139] 9800        |       -292.357   |       -418.166   |        125.809   |   00:04:43   |   00:00:05   |
+## [140] 9900        |       -303.176   |       -394.672   |         91.496   |   00:04:46   |   00:00:02   |
+## [141] Iter        |      Posterior   |     Likelihood   |          Prior   |    elapsed   |        ETA   |
+## [142] ----------------------------------------------------------------------------------------------------
+## [143] 10000       |       -318.597   |       -405.343   |        86.7463   |   00:04:49   |   00:00:00   |</code></pre>
 <p>Once our Markov chain has terminated, we will want RevBayes to close. Tell the program to quit using the <code><a href="https://www.rdocumentation.org/packages/base/topics/quit">q()</a></code> function.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/quit">q</a></span>()</span></code></pre></div>
+<pre class="revbayes"><code><a href="https://www.rdocumentation.org/packages/base/topics/quit">    q()</a></code></pre>
 </div>
 <div id="youve-finished-dont-forget-to-save-all-of-your-files-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#youve-finished-dont-forget-to-save-all-of-your-files-" class="anchor"></a>You’ve finished! Don’t forget to save all of your files.</h3>
 <p>With all the parameters specified and all analysis components in place, you are now ready to run your analysis. RevBayes cannot run inside the RStudio window. So we will need to copy our code out of RStudio. Luckily, the knitr package makes this very easy. Run the following in the console:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/knit">purl</a></span>(<span class="st">"Clock_models_for_character_data.Rmd"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/knit">purl</a></span>(<span class="st">"Clock_models_for_character_data.Rmd"</span>)</span></code></pre></div>
 <p>This will create a .R file containing our analysis script. Move it into the <code>scripts</code> folder and rename it <code>ucln_rel_clock.Rev</code>.</p>
 <blockquote>
 <p>Begin by running the RevBayes executable.</p>
 </blockquote>
 <p>Provided that you started RevBayes from the correct directory, you can then use the <code><a href="https://www.rdocumentation.org/packages/base/topics/source">source()</a></code> function to feed RevBayes your Rev-script file (<code>ucln_rel_clock.Rev</code>).</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1"></a>    <span class="bu">source</span>(<span class="st">"scripts/ucln_rel_clock.Rev"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1"></a>    <span class="bu">source</span>(<span class="st">"scripts/ucln_rel_clock.Rev"</span>)</span></code></pre></div>
 <p>When the analysis is complete, RevBayes will quit and all of the associated files will be in the directory <code>output</code>.</p>
 <p>We can look at the log files in the software <code>Tracer</code>. We can also calculate several different types of summary trees:</p>
 <pre><code># Read in the tree trace and construct different kinds of summary trees 
