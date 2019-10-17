@@ -73,7 +73,7 @@
       <a href="../../articles/module_06_TripartiteModel2_clock_models/Clock_models_for_character_data.html">Tripartite Model 2 - Clock Models for Character Data</a>
     </li>
     <li>
-      <a href="../../articles/module_07_TripartiteModel3_Fossilized_Birth_death/RB_Total_Evidence_Tutorial.html">RevBayes Total Evidence Tree Estimation</a>
+      <a href="../../articles/module_07_TripartiteModel3_Fossilized_Birth_death/module_7.html">RevBayes Total Evidence Tree Estimation</a>
     </li>
     <li>
       <a href="../../articles/module_08_worked_PCM_example/module_08.html">Phylogenetic Comparative Methods for Paleobiology</a>
@@ -367,6 +367,15 @@ for (i in 2:n_max_states) {
 <a href="#set-up-the-mcmc" class="anchor"></a>Set-Up the MCMC</h3>
 <p>Once we have set up our model, moves, and monitors, we can now create the workspace variable that defines our MCMC run. We do this using the <code>mcmc()</code> function that simply takes the three main analysis components as arguments.</p>
 <pre class="revbayes"><code>    mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")</code></pre>
+<pre><code>## [1] Could not compute lnProb for node m_morph[1].
+## [2] Standard character matrix with 27 taxa and 60 charact
+## [3] Drawing new initial states ...
+## [4] Could not compute lnProb for node m_morph[1].
+## [5] Standard character matrix with 27 taxa and 60 charact
+## [6] Drawing new initial states ...
+## [7] Could not compute lnProb for node m_morph[1].
+## [8] Standard character matrix with 27 taxa and 60 charact
+## [9] Drawing new initial states ...</code></pre>
 <p>The MCMC object that we named <code>mymcmc</code> has a member method called <code>.run()</code>. This will execute our analysis and we will set the chain length to <code>10000</code> cycles using the <code>generations</code> option.</p>
 <pre class="revbayes"><code>    mymcmc.run(generations=10000, tuningInterval=200)</code></pre>
 <p>Once our Markov chain has terminated, we will want RevBayes to close. Tell the program to quit using the <code><a href="https://www.rdocumentation.org/packages/base/topics/quit">q()</a></code> function.</p>
@@ -374,19 +383,19 @@ for (i in 2:n_max_states) {
 <pre><code>## [1] Could not compute lnProb for node m_morph[1].
 ## [2] Standard character matrix with 27 taxa and 60 charact
 ## [3] Drawing new initial states ...
-## [4] Could not compute lnProb for node m_morph[2].
+## [4] Could not compute lnProb for node m_morph[1].
 ## [5] Standard character matrix with 27 taxa and 60 charact
 ## [6] Drawing new initial states ...
 ## [7] Could not compute lnProb for node m_morph[1].
 ## [8] Standard character matrix with 27 taxa and 60 charact
 ## [9] Drawing new initial states ...
-## [10] Could not compute lnProb for node m_morph[2].
+## [10] Could not compute lnProb for node m_morph[1].
 ## [11] Standard character matrix with 27 taxa and 60 charact
 ## [12] Drawing new initial states ...
 ## [13] Could not compute lnProb for node m_morph[1].
 ## [14] Standard character matrix with 27 taxa and 60 charact
 ## [15] Drawing new initial states ...
-## [16] Could not compute lnProb for node m_morph[1].
+## [16] Could not compute lnProb for node m_morph[2].
 ## [17] Standard character matrix with 27 taxa and 60 charact
 ## [18] Drawing new initial states ...</code></pre>
 </div>
@@ -395,13 +404,13 @@ for (i in 2:n_max_states) {
 <h2 class="hasAnchor">
 <a href="#you-made-it-save-all-of-your-files-" class="anchor"></a>You made it! Save all of your files.</h2>
 <p>With all the parameters specified and all analysis components in place, you are now ready to run your analysis. RevBayes cannot run inside the RStudio window. So we will need to copy our code out of RStudio. Luckily, the knitr package makes this very easy. Run the following in the console:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/knit">purl</a></span>(<span class="st">"module_05_TripartiteModel1_morph_change_models/RB_Discrete_Morphology/RB_MCMC_Discrete_Morph.Rmd"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/knit">purl</a></span>(<span class="st">"module_05_TripartiteModel1_morph_change_models/RB_Discrete_Morphology/RB_MCMC_Discrete_Morph.Rmd"</span>)</span></code></pre></div>
 <p>This will create a .R file containing our analysis script. Move it into the <code>scripts</code> folder and rename it to mk_gamma.Rev</p>
 <blockquote>
 <p>Begin by running the RevBayes executable. In Unix systems, type the following in your terminal (if the RevBayes binary is in your path): rb</p>
 </blockquote>
 <p>Provided that you started RevBayes from the correct directory, you can then use the <code><a href="https://www.rdocumentation.org/packages/base/topics/source">source()</a></code> function to feed RevBayes your Rev-script file (<code>mk_gamma.Rev</code>).</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1"></a>    <span class="bu">source</span>(<span class="st">"scripts/mk_gamma.Rev"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1"></a>    <span class="bu">source</span>(<span class="st">"scripts/mk_gamma.Rev"</span>)</span></code></pre></div>
 <p>When the analysis is complete, RevBayes will quit and you will have a new directory called <code>output</code> that will contain all of the files you specified with the monitors.</p>
 <p>We can look at the log files in the software <code>Tracer</code>. We can also calculate several different types of summary trees:</p>
 <pre><code># Read in the tree trace and construct the maximum clade credibility (MCC) tree #

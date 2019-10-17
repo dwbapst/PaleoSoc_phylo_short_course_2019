@@ -73,7 +73,7 @@
       <a href="../../articles/module_06_TripartiteModel2_clock_models/Clock_models_for_character_data.html">Tripartite Model 2 - Clock Models for Character Data</a>
     </li>
     <li>
-      <a href="../../articles/module_07_TripartiteModel3_Fossilized_Birth_death/RB_Total_Evidence_Tutorial.html">RevBayes Total Evidence Tree Estimation</a>
+      <a href="../../articles/module_07_TripartiteModel3_Fossilized_Birth_death/module_7.html">RevBayes Total Evidence Tree Estimation</a>
     </li>
     <li>
       <a href="../../articles/module_08_worked_PCM_example/module_08.html">Phylogenetic Comparative Methods for Paleobiology</a>
@@ -405,9 +405,27 @@ for (c in 1:n_max_states) {
 ## [4] Could not compute lnProb for node m_morph[2].
 ## [5] Standard character matrix with 27 taxa and 60 charact
 ## [6] Drawing new initial states ...
-## [7] Could not compute lnProb for node m_morph[2].
+## [7] Could not compute lnProb for node m_morph[3].
 ## [8] Standard character matrix with 27 taxa and 60 charact
-## [9] Drawing new initial states ...</code></pre>
+## [9] Drawing new initial states ...
+## [10] Could not compute lnProb for node m_morph[2].
+## [11] Standard character matrix with 27 taxa and 60 charact
+## [12] Drawing new initial states ...
+## [13] Could not compute lnProb for node m_morph[2].
+## [14] Standard character matrix with 27 taxa and 60 charact
+## [15] Drawing new initial states ...
+## [16] Could not compute lnProb for node m_morph[2].
+## [17] Standard character matrix with 27 taxa and 60 charact
+## [18] Drawing new initial states ...
+## [19] Could not compute lnProb for node m_morph[3].
+## [20] Standard character matrix with 27 taxa and 60 charact
+## [21] Drawing new initial states ...
+## [22] Could not compute lnProb for node m_morph[2].
+## [23] Standard character matrix with 27 taxa and 60 charact
+## [24] Drawing new initial states ...
+## [25] Could not compute lnProb for node m_morph[3].
+## [26] Standard character matrix with 27 taxa and 60 charact
+## [27] Drawing new initial states ...</code></pre>
 <p>The MCMC object that we named <code>mymcmc</code> has a member method called <code>.run()</code>. This will execute our analysis and we will set the chain length to <code>10000</code> cycles using the <code>generations</code> option.</p>
 <pre class="revbayes"><code>    mymcmc.run(generations=10000, tuningInterval=200)</code></pre>
 <p>Once our Markov chain has terminated, we will want RevBayes to close. Tell the program to quit using the <code><a href="https://www.rdocumentation.org/packages/base/topics/quit">q()</a></code> function.</p>
@@ -415,7 +433,7 @@ for (c in 1:n_max_states) {
 <pre><code>## [1] Could not compute lnProb for node m_morph[2].
 ## [2] Standard character matrix with 27 taxa and 60 charact
 ## [3] Drawing new initial states ...
-## [4] Could not compute lnProb for node m_morph[3].
+## [4] Could not compute lnProb for node m_morph[2].
 ## [5] Standard character matrix with 27 taxa and 60 charact
 ## [6] Drawing new initial states ...
 ## [7] Could not compute lnProb for node m_morph[2].
@@ -426,7 +444,19 @@ for (c in 1:n_max_states) {
 ## [12] Drawing new initial states ...
 ## [13] Could not compute lnProb for node m_morph[2].
 ## [14] Standard character matrix with 27 taxa and 60 charact
-## [15] Drawing new initial states ...</code></pre>
+## [15] Drawing new initial states ...
+## [16] Could not compute lnProb for node m_morph[2].
+## [17] Standard character matrix with 27 taxa and 60 charact
+## [18] Drawing new initial states ...
+## [19] Could not compute lnProb for node m_morph[2].
+## [20] Standard character matrix with 27 taxa and 60 charact
+## [21] Drawing new initial states ...
+## [22] Could not compute lnProb for node m_morph[2].
+## [23] Standard character matrix with 27 taxa and 60 charact
+## [24] Drawing new initial states ...
+## [25] Could not compute lnProb for node m_morph[3].
+## [26] Standard character matrix with 27 taxa and 60 charact
+## [27] Drawing new initial states ...</code></pre>
 </div>
 <div id="youve-finished-dont-forget-to-save-all-of-your-files-" class="section level3">
 <h3 class="hasAnchor">
