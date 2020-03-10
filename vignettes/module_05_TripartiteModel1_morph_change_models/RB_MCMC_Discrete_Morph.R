@@ -1,4 +1,5 @@
 ## ----global_options, eval = TRUE, include=TRUE---------------------------
+name = "mk_gamma"
 
 
 ## ----eval = TRUE---------------------------------------------------------
@@ -11,7 +12,7 @@
 
 ## ---- include=TRUE, eval = TRUE------------------------------------------
     taxa <- morpho.names()
-    num_taxa <- morpho.size() 
+    num_taxa <- morpho.size()
     num_branches <- 2 * num_taxa - 2
 
 
@@ -32,7 +33,7 @@
 
 
 ## ---- include=TRUE, eval = TRUE------------------------------------------
-    
+
     phylogeny ~ dnUniformTopologyBranchLength(taxa, branchLengthDistribution=dnExponential(br_len_lambda))
     moves[mvi++] = mvNNI(phylogeny, weight=num_branches/2.0)
     moves[mvi++] = mvSPR(phylogeny, weight=num_branches/10.0)
@@ -50,21 +51,16 @@
 ## ---- include=TRUE, eval=FALSE-------------------------------------------
 ## library(ggplot2)
 ## alpha_morpho <- runif(1, 0, 1E6 )
-## 
+##
 ## draws <- rgamma(1000, shape = alpha_morpho, rate = alpha_morpho)
 ## hist(draws)
 
 
 ## ---- include=TRUE, eval = TRUE------------------------------------------
-n_max_states <- 7
+n_max_states <- 2
 idx = 1
-morpho_bystate[1] <- morpho
+morpho_f_bystate <- morpho.setNumStatesVector()
 for (i in 2:n_max_states) {
-    # make local tmp copy of data
-    # only keep character blocks with state space equal to size i
-    morpho_bystate[i] <- morpho
-    morpho_bystate[i].setNumStatesPartition(i)
-	# get number of characters per character size wth i-sized states
     nc = morpho_bystate[i].nchar()
     # for non-empty character blocks
     if (nc > 0) {
@@ -104,11 +100,16 @@ idx
 
 
 ## ---- include=TRUE, eval = TRUE------------------------------------------
-    mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")
+#    mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")
 
+ss_analysis = powerPosterior(mymodel, monitors, moves, "output/" + name + "/ss", cats=20, alpha=0.3)
+ss_analysis.burnin(generations=1000,tuningInterval=100)
+ss_analysis.run(generations=50000)
 
-## ---- include=TRUE, eval = TRUE------------------------------------------
-    mymcmc.run(generations=10000, tuningInterval=200)
+ss = steppingStoneSampler("output/" + name + "/ss", "power", "likelihood", TAB)
+ss.marginal()
+### ---- include=TRUE, eval = TRUE------------------------------------------
+#    mymcmc.run(generations=100000, tuningInterval=200)
 
 
 ## ---- include=TRUE, eval = TRUE------------------------------------------
@@ -116,8 +117,3 @@ idx
 
 
 ## ------------------------------------------------------------------------
-knitr::purl("module_05_TripartiteModel1_morph_change_models/RB_Discrete_Morphology/RB_MCMC_Discrete_Morph.Rmd")
-
-
-##     source("scripts/mk_gamma.Rev")
-

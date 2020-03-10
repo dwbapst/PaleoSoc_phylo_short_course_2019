@@ -346,7 +346,7 @@ The MCMC object that we named `mymcmc` has a member method called `.run()`. This
 
 
 ```{rb}
-    mymcmc.run(generations=10000, tuningInterval=200)
+    mymcmc.run(generations=1000, tuningInterval=200)
 ```
 
 Once our Markov chain has terminated, we will want RevBayes to close. Tell the program to quit using the `q()` function.

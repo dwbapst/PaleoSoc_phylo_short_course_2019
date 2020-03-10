@@ -2,7 +2,7 @@
 title: "RevBayes Total Evidence Tree Estimation"
 output: html_document
 authors: Tracy A. Heath, April M. Wright and Walker C. Pett
-bibliography: refs.bib
+bibliography: ../refs.bib
 ---
 Overview 
 ========
@@ -565,8 +565,7 @@ for(i in 1:intervals.size())
     t[i] := tmrca(fbd_tree, clade(taxon))
 
     fossil[i] <- a_i
-#    fossil[i] ~ dnSoftBoundUniformNormal(t[i] - b_i, t[i] - a_i, sd = 2, p = 0.025)
-#    fossil[i].clamp(0)
+    fossil[i] ~ dnSoftBoundUniformNormal(t[i] - b_i, t[i] - a_i, sd = 2, p = 0.025)
 }
 ```
 Finally, we add a move that samples the ages of the fossil nodes on the
@@ -740,8 +739,8 @@ of sampled ancestors ([[`num_samp_anc`]{}]{}), and the origin time
 Once we have set up our model, moves, and monitors, we can now create
 the workspace variable that defines our MCMC run. We do this using the
 [[`mcmc()`]{}]{} function that simply takes the three main analysis
-components as arguments.
-```{rb}
+components as arguments. This step may give you quite a bit of output. As a convenience, we have not shown this here.
+```{rb echo=T, results='hide'}
 
     mymcmc = mcmc(mymodel, monitors, moves)
 ```
@@ -751,11 +750,11 @@ the chain length to [[`10000`]{}]{} cycles using the
 [[`generations`]{}]{} option.
 ```{rb}
 
-    mymcmc.run(generations=10000)
+    mymcmc.run(generations=1000)
 ```
 Once our Markov chain has terminated, we will want [`RevBayes`]{}to
 close. Tell the program to quit using the [[`q()`]{}]{} function.
-```{rb eval = FALSE}
+```{rb}
 
     q()
 ```
