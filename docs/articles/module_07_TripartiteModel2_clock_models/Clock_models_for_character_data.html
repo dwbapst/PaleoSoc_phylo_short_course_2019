@@ -92,16 +92,19 @@
       <a href="../../articles/module_04_Intro_RevBayes_Graphical_Modeling/module_04.html">4 - RevBayes &amp; Graphical Models</a>
     </li>
     <li>
-      <a href="../../articles/module_05_TripartiteModel1_morph_change_models/05_RB_MCMC_Discrete_Morph.html">5 - Tripartite Model I - Discrete Morphology - Models and Tree Inference</a>
+      <a href="../../articles/module_05_tutorial_structure/index.html">5 - RevBayes - Setup</a>
     </li>
     <li>
-      <a href="../../articles/module_06_TripartiteModel2_clock_models/Clock_models_for_character_data.html">6 - Tripartite Model II - Clock Models of Character Change</a>
+      <a href="../../articles/module_06_TripartiteModel1_morph_change_models/RB_MCMC_Discrete_Morph.html">6 - Tripartite Model I - Discrete Morphology - Models and Tree Inference</a>
     </li>
     <li>
-      <a href="../../articles/module_07_TripartiteModel3_Fossilized_Birth_death/module_07.html">7 - Tripartite Model III - Fossilized Birth Death Model</a>
+      <a href="../../articles/module_07_TripartiteModel2_clock_models/Clock_models_for_character_data.html">7 - Tripartite Model II - Clock Models of Character Change</a>
     </li>
     <li>
-      <a href="../../articles/module_08_worked_PCM_example/module_08.html">8 - Phylogenetic Comparative Methods</a>
+      <a href="../../articles/module_08_TripartiteModel3_Fossilized_Birth_death/RB_Total_Evidence_Tutorial.html">8 - Tripartite Model III - Fossilized Birth Death Model</a>
+    </li>
+    <li>
+      <a href="../../articles/module_09_worked_PCM_example/module_08.html">9 - Phylogenetic Comparative Methods</a>
     </li>
     <li>
       <a href="../../articles/symbols.html">Notation Guide</a>
@@ -352,17 +355,17 @@ for (c in 1:n_max_states) {
 ## [3] The simulator uses 62 different moves in a random move schedule with 183.2 moves per iteration
 ## [4] Iter        |      Posterior   |     Likelihood   |          Prior   |    elapsed   |        ETA   |
 ## [5] ----------------------------------------------------------------------------------------------------
-## [6] 0           |       -928.434   |       -891.737   |       -36.6962   |   00:00:00   |   --:--:--   |
-## [7] 100         |       -349.756   |       -440.622   |        90.8656   |   00:00:07   |   --:--:--   |
-## [8] 200         |       -338.912   |       -426.764   |        87.8525   |   00:00:14   |   00:00:56   |
-## [9] 300         |       -347.164   |       -433.632   |        86.4682   |   00:00:20   |   00:00:46   |
-## [10] 400         |       -346.156   |       -441.178   |        95.0221   |   00:00:26   |   00:00:39   |
-## [11] 500         |       -353.232   |       -437.274   |        84.0417   |   00:00:33   |   00:00:33   |
-## [12] 600         |       -350.842   |       -434.466   |        83.6245   |   00:00:39   |   00:00:26   |
-## [13] 700         |       -347.892   |       -430.954   |        83.0622   |   00:00:46   |   00:00:19   |
-## [14] 800         |       -374.591   |       -432.094   |        57.5029   |   00:00:53   |   00:00:13   |
-## [15] 900         |        -359.57   |       -435.837   |        76.2672   |   00:01:00   |   00:00:06   |
-## [16] 1000        |       -330.017   |       -428.319   |        98.3018   |   00:01:06   |   00:00:00   |</code></pre>
+## [6] 0           |       -780.524   |       -841.507   |        60.9827   |   00:00:00   |   --:--:--   |
+## [7] 100         |       -357.647   |       -443.609   |        85.9617   |   00:00:06   |   --:--:--   |
+## [8] 200         |       -356.622   |       -438.541   |         81.919   |   00:00:11   |   00:00:44   |
+## [9] 300         |       -379.196   |       -455.634   |        76.4378   |   00:00:17   |   00:00:39   |
+## [10] 400         |        -345.99   |       -432.915   |        86.9253   |   00:00:23   |   00:00:34   |
+## [11] 500         |        -350.14   |        -434.88   |        84.7406   |   00:00:28   |   00:00:28   |
+## [12] 600         |       -342.871   |       -440.261   |        97.3898   |   00:00:34   |   00:00:22   |
+## [13] 700         |       -361.351   |       -433.185   |         71.833   |   00:00:39   |   00:00:16   |
+## [14] 800         |       -344.077   |       -431.023   |         86.946   |   00:00:45   |   00:00:11   |
+## [15] 900         |       -367.679   |        -449.07   |        81.3911   |   00:00:51   |   00:00:05   |
+## [16] 1000        |       -352.132   |       -430.989   |        78.8563   |   00:00:56   |   00:00:00   |</code></pre>
 <p>Once our Markov chain has terminated, we will want RevBayes to close. Tell the program to quit using the <code><a href="https://rdrr.io/r/base/quit.html">q()</a></code> function.</p>
 <pre class="revbayes"><code><a href="https://rdrr.io/r/base/quit.html">    q()</a></code></pre>
 </div>
