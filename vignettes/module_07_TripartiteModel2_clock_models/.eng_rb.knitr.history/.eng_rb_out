@@ -1,0 +1,32 @@
+
+RevBayes version (1.0.12)
+Build from development (fe4068) on Thu 26 Dec 2019 04:05:19 PM CST
+
+Visit the website www.RevBayes.com for more information about RevBayes.
+
+RevBayes is free software released under the GPL license, version 3. Type 'license()' for details.
+
+To quit RevBayes type 'quit()' or 'q()'.
+
+
+> source(".rba975ecb1c6c.Rev")
+   Processing file ".rba975ecb1c6c.Rev"
+   Successfully read one character matrix from file 'data/Cinctans.nex'
+
+   Running MCMC simulation
+   This simulation runs 2 independent replicates.
+   The simulator uses 62 different moves in a random move schedule with 183.2 moves per iteration
+
+Iter        |      Posterior   |     Likelihood   |          Prior   |    elapsed   |        ETA   |
+----------------------------------------------------------------------------------------------------
+0           |        -883.29   |       -885.932   |        2.64118   |   00:00:00   |   --:--:--   |
+100         |       -357.823   |       -447.147   |        89.3236   |   00:00:06   |   --:--:--   |
+200         |       -334.392   |       -428.971   |        94.5789   |   00:00:13   |   00:00:52   |
+300         |       -343.581   |       -438.615   |        95.0345   |   00:00:21   |   00:00:49   |
+400         |       -361.258   |        -425.98   |        64.7225   |   00:00:27   |   00:00:40   |
+500         |       -358.071   |       -435.349   |        77.2783   |   00:00:34   |   00:00:34   |
+600         |       -368.761   |       -438.759   |        69.9985   |   00:00:41   |   00:00:27   |
+700         |       -371.307   |       -454.854   |         83.547   |   00:00:47   |   00:00:20   |
+800         |       -379.614   |       -434.273   |        54.6595   |   00:00:54   |   00:00:13   |
+900         |       -352.307   |       -436.977   |        84.6704   |   00:01:01   |   00:00:06   |
+1000        |       -348.584   |       -440.149   |        91.5653   |   00:01:09   |   00:00:00   |

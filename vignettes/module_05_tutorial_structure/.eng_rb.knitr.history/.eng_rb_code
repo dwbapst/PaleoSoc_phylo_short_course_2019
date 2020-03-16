@@ -1,0 +1,3 @@
+variable <- "Hi there! Welcome to RevBayes! I am now going to read in some test data."
+
+variable

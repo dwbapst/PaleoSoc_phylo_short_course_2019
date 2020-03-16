@@ -1,0 +1,14 @@
+
+RevBayes version (1.0.12)
+Build from development (fe4068) on Thu 26 Dec 2019 04:05:19 PM CST
+
+Visit the website www.RevBayes.com for more information about RevBayes.
+
+RevBayes is free software released under the GPL license, version 3. Type 'license()' for details.
+
+To quit RevBayes type 'quit()' or 'q()'.
+
+
+> source(".rb68363f6d2cce.Rev")
+   Processing file ".rb68363f6d2cce.Rev"
+   Hi there! Welcome to RevBayes! I am now going to read in some test data.
