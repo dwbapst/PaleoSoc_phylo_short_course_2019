@@ -146,218 +146,152 @@
 
     
     
-<div id="overview" class="section level1">
-<h1 class="hasAnchor">
-<a href="#overview" class="anchor"></a>Overview</h1>
-<p>This tutorial builds upon the previous three tutorials to estimate a dated phylogeny from discrete morphological data using the Fossilized Birth-Death Model (FBD) <span class="citation">(<span class="citeproc-not-found" data-reference-id="stadler2010"><strong>???</strong></span>; <span class="citeproc-not-found" data-reference-id="heath2014"><strong>???</strong></span>)</span>. Broadly, the FBD model is a “total-evidence” model and can incorporate fossil ages, molecular data, and morphological data to estimate a tree with branch lengths in units of absolute time. In this tutorial, we will focus on fossil ages and morphological data to estimate our phylogeny.</p>
-</div>
+<p>This tutorial builds upon the previous three tutorials to estimate a dated phylogeny from discrete morphological data using the Fossilized Birth-Death Model (FBD) <span class="citation">(<span class="citeproc-not-found" data-reference-id="stadler2010"><strong>???</strong></span>; <span class="citeproc-not-found" data-reference-id="heath2014"><strong>???</strong></span>)</span>. Broadly, the FBD model is a “total-evidence” model and can incorporate fossil ages, molecular data, and morphological data to estimate a tree with branch lengths in units of absolute time. In this tutorial, we will focus on fossil ages and morphological data to estimate our phylogeny. Using an example from a 2013 by Zamora et al., we will estimate a total evidence phylogeny of the Cinctans.</p>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p><img src="figures/TotalEvidence.png"> The above figure (Warnock and Wright 2020) demonstrates the “total-evidence” framework of the FBD model. In this model, there are three submodels. One describes cahracter change (the substitution model), one describes how rates of evolution are distributed across the tree (the clock model), and the final component describes how speciation, extinction and fossil sampling events are distributed in time (the tree model). The substitution and clock models have been discussed in the previous two tutorials.</p>
+<p><img src="figures/TotalEvidence.png"><em>Figure One: A representation of the data required for and model subcomponents of the Fossilized Birth-Death model</em></p>
+<p>The above figure (Warnock and Wright 2020) demonstrates the “total-evidence” framework of the FBD model. In this model, there are three submodels. One describes cahracter change (the substitution model), one describes how rates of evolution are distributed across the tree (the clock model), and the final component describes how speciation, extinction and fossil sampling events are distributed in time (the tree model). The substitution and clock models have been discussed in the previous two tutorials.</p>
 <p>Below is an image from Warnock and Wright (2020) showing the true tree and the reconstructed tree. The reconstructed tree is the tree we are capable of inferring from our fossil phylogenetic characters and our fossil ages. The true tree, on the other hand, is unkowable, as we will never have complete sampling in the past and the present.</p>
-<p><img src="figures/figure5.png"></p>
+<p><img src="figures/figure5.png"><em>Figure Two: Different sets of FBD parameters can give rise to different reconstructed trees</em></p>
 <div id="tree-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tree-model" class="anchor"></a>Tree model</h2>
-<p>The joint prior distribution on tree topologies and divergence times of living and extinct species used in this tutorial is described by the <em>fossilized birth-death</em> (FBD) process <span class="citation">(Stadler 2010; Heath, Huelsenbeck, and Stadler 2014)</span>. This model simply treats the fossil observations as part of the process governing the tree topology and branch times (the node in Fig. 3). The fossilized birth-death process provides a model for the distribution of speciation times, tree topology, and lineage samples before the present (<span><span><em>e.g.,</em></span></span>non-contemporaneous samples like fossils or viruses). This type of tree is shown in figure 2. Importantly, this model can be used <em>with or without</em> character data for the historical samples. Thus, it provides a reasonable prior distribution for analyses combining morphological or DNA data for both extant and fossil taxa—<span><span><em>i.e.,</em></span></span>the so-called “total-evidence” approaches described by <span class="citation">Ronquist et al. (2012)</span> and extended by <span class="citation">Zhang et al. (2016)</span> and <span class="citation">Gavryushkina et al. (2016)</span>. When matrices of discrete morphological characters for both living and fossil species are unavailable, the fossilized birth-death model imposes a time structure on the tree by <a href="https://en.wikipedia.org/wiki/Marginal_distribution"><em>marginalizing</em></a> over all possible attachment points for the fossils on the extant tree <span class="citation">(Heath, Huelsenbeck, and Stadler 2014)</span>, therefore, some prior knowledge of phylogenetic relationships is important.</p>
-<p>The FBD model (Fig. 3) describes the probability of the tree and fossils conditional on the birth-death parameters: <span class="math inline">\(f[\mathcal{T} \mid \lambda, \mu, \rho, \psi, \phi]\)</span>, where <span class="math inline">\(\mathcal{T}\)</span> denotes the tree topology, divergence times, fossil occurrence times, and the times at which the fossils attach to the tree. The birth-death parameters <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\mu\)</span> denote the speciation and extinction rates, respectively. The “fossilization rate” or “fossil recovery rate” is denoted <span class="math inline">\(\psi\)</span> and describes the rate at which fossils are sampled along lineages of the complete tree. The sampling probability parameter <span class="math inline">\(\rho\)</span> represents the <em>probability</em> that an extant species is sampled, and <span class="math inline">\(\phi\)</span> represents the time at which the process originated.</p>
-<p><img src="figures/tikz/fbd_gm-eps-converted-to.png"></p>
-<p>In the example FBD tree shown in figure 2, the diversification process originates at time <span class="math inline">\(\phi\)</span>, giving rise to <span class="math inline">\(n=20\)</span> species in the present, with both sampled fossils (red circles) and extant species (black circles). All of the lineages represented in figure 2A (both solid and dotted lines) show the <em>complete tree</em>. This is the tree of all extant <em>and</em> extinct lineages generated by the process. The complete tree is distinct from the <em>reconstructed tree</em> (Fig. 2B) which is the tree representing only the lineages sampled as extant taxa or fossils. Fossil observations (red circles in figure 2) are recovered over the lifetime of the process along the lineages of the complete tree. If a lineage does not have any descendants sampled in the present, it is lost and cannot be observed, these are the dotted lines in figure 2A. The probability must be conditioned on the origin time of the process <span class="math inline">\(\phi\)</span>. The origin (<span class="math inline">\(\phi\)</span>) of a birth-death process is the starting time of the <em>stem</em> lineage, thus this conditions on a single lineage giving rise to the tree.</p>
-<p>An important characteristic of the FBD model is that it accounts for the probability of sampled ancestor-descendant pairs <span class="citation">(Foote 1996)</span>. Given that fossils are sampled from lineages in the diversification process, the probability of sampling fossils that are ancestors to taxa sampled at a later date is correlated with the turnover rate (<span class="math inline">\(r=\mu/\lambda\)</span>) and the fossil recovery rate (<span class="math inline">\(\psi\)</span>). This feature is important, particularly for datasets with many sampled fossils. In the example (Fig. 2), several of the fossils have sampled descendants. These fossils have solid black lines leading to the present.</p>
-</div>
-<div id="incorporating-fossil-occurrence-time-uncertainty" class="section level2">
-<h2 class="hasAnchor">
-<a href="#incorporating-fossil-occurrence-time-uncertainty" class="anchor"></a>Incorporating Fossil Occurrence Time Uncertainty</h2>
-<p>In order to account for uncertainty in the ages of our fossil species, we can incorporate intervals on the ages of our represented fossil species. These intervals can be stratigraphic ranges or measurement standard error. We do this by assuming each fossil can occur with uniform probability anywhere within its observed interval. This is somewhat different from the typical approach to node calibration. Here, instead of treating the calibration density as an additional prior distribution on the tree, we treat it as the <em>likelihood</em> of our fossil data given the tree parameter. Specifically, we assume the likelihood of a particular fossil observation <span class="math inline">\(\mathcal{F}_i\)</span> is equal to one if the fossil’s inferred age on the tree <span class="math inline">\(t_i\)</span> falls within its observed time interval <span class="math inline">\((a_i,b_i)\)</span>, and zero otherwise: <span class="math display">\[f[\mathcal{F}_i \mid a_i, b_i, t_i] = \begin{cases}
-1 &amp; \text{if } a_i &lt; t_i &lt; b_i\\
-0 &amp; \text{otherwise}
-\end{cases}\]</span> In other words, we assume the likelihood is equal to one if the inferred age is consistent with the data observed. We can represent this likelihood in <span><code>RevBayes</code></span>using a distribution that is proportional to the likelihood, <span><span><em>i.e.,</em></span></span>non-zero when the likelihood is equal to one (Fig. 4). This model component represents the observed in the modular graphical model shown in figure 1.</p>
-<p><img src="figures/tikz/tipsampling_gm-eps-converted-to.png"></p>
-<p>It is worth noting that this is not technically the appropriate way to model fossil data that are actually observed as stratigraphic ranges. In paleontology, a stratigraphic range represents the interval of time between the first and last appearences of a fossilized species. Thus, this range typically represents multiple fossil specimens observed at different times along a single lineage. An extension of the fossilized birth-death process that is a distribution on stratigraphic ranges has been described by <span class="citation">Stadler et al. (2017)</span>. This model is not yet fully implemented in <span><code>RevBayes</code></span>.</p>
+<p>In this tutorial, we will explain a prior on topologies, divergence times, and macroevolutionary parameters called the <em>fossilized birth-death</em> (FBD) process <span class="citation">(Stadler 2010; Heath, Huelsenbeck, and Stadler 2014)</span>. This manner of divergence time estimation is different than other approaches. For example, you may be familiar with <em>node calibration</em> approaches, in which the age of a fossil is used to constrain the age of a node. While these approaches have historically been well-used, the FBD makes more complete use of the fossil record. This is because the FBD, as shown on figure 1, is a hierarchical prior. This allows us to model the evolution of morphological characters to place specimens on the tree. Rather than using only the age information, and telling the method where the fossil goes, the placement of the fossil can be estimated in the analysis. Taxa without phylogenetic characters can still be used in this analysis. While they cannot be placed using a character model, the FBD model marginalizes over possible placements for a taxon, which allows for the age information to still be used.</p>
+<p>The FBD model is a macroevolutionary model describing the process of speciation ( the addition of lineages to the tree - $ $), extinction (the removal of lineages from a population - $ $), fossil sampling (recovery of lineages in the past - $ $) and extant sampling (recovery of contemporaneous lineages - $ <span class="math inline">\(). Origin time (\)</span> $) describes the time at which the process of diversification and sampling began in your lineage.</p>
+<p><img src="figures/tikz/fbd_gm-eps-converted-to.png"><em>Figure Three: A graphical model showing the FBD from a <a href="https://revbayes.github.io/tutorials/fbd/">tutorial</a> by Heath, Wright and Pett can be seen below.</em></p>
+<p>As shown in Fig. 2, different combinations of these parameters can lead to different shapes of the reconstructed tree. In all of these simulations, the lineage begins with one lineage at 40 million years ago. As can be seen on the figure, different sets of parameters can lead to more samples in the past, or fewer. Parameters such as extinction and speciation can lead to different number of nodes on the tree. And fossil sampling generates the possibility that some sampled fossils actually lie as 2-degree nodes. That is, they did not go extinct when sampled, and have descendents on the phylogeny.</p>
 </div>
 </div>
 <div id="example-estimating-the-phylogeny-and-divergence-times-of-fossil-cinctans" class="section level1">
 <h1 class="hasAnchor">
 <a href="#example-estimating-the-phylogeny-and-divergence-times-of-fossil-cinctans" class="anchor"></a>Example: Estimating the Phylogeny and Divergence Times of Fossil Cinctans</h1>
 <p>In this exercise, we will combine different types of data from 23 fossil species. For the fossil species, occurrence times are obtained from the literature or fossil databases like the <a href="http://fossilworks.org/">Fossilworks PaleoDB</a> or the <a href="http://fossilcalibrations.org/">Fossil Calibration Database</a>, or from your own paleontological expertise. |</p>
-<div id="tutorial-format" class="section level2">
-<h2 class="hasAnchor">
-<a href="#tutorial-format" class="anchor"></a>Tutorial Format</h2>
-<p>This tutorial follows a specific format for issuing instructions and information.</p>
-<p>The boxed instructions guide you to complete tasks that are not part of the <span><code>RevBayes</code></span>syntax, but rather direct you to create directories or files or similar.</p>
-<p>Information describing the commands and instructions will be written in paragraph-form before or after they are issued.</p>
-<p>All command-line text, including all <span><code>Rev</code></span>syntax, are given in <span><span><code>monotype font</code></span></span>. Furthermore, blocks of <span><code>Rev</code></span>code that are needed to build the model, specify the analysis, or execute the run are given in separate shaded boxes. For example, we will instruct you to create a constant node called <span><span><code>rho</code></span></span> that is equal to <span><span><code>1.0</code></span></span> using the <span><span><code>&lt;-</code></span></span> operator like this:</p>
-<pre class="revbayes"><code>
-    rho &lt;- .506</code></pre>
-<p>It is important to be aware that some PDF viewers may render some characters given as differently. Thus, if you copy and paste text from this PDF, you may introduce some incorrect characters. Because of this, we recommend that you type the instructions in this tutorial or copy them from the scripts provided.</p>
-</div>
-<div id="creating-revfiles" class="section level2">
-<h2 class="hasAnchor">
-<a href="#creating-revfiles" class="anchor"></a>Creating <span><code>Rev</code></span>Files</h2>
-<p>For complex models and analyses, it is best to create <span><code>Rev</code></span>script files that will contain all of the model parameters, moves, and functions. In this exercise, you will work primarily in your text editor[^1] and create a set of modular files that will be easily managed and interchanged. You will write the following files from scratch and save them in the <span><span><code>scripts</code></span></span> directory:</p>
-<ul>
-<li><p><span><span><code>mcmc_TEFBD.Rev</code></span></span>: the master <span><code>Rev</code></span>file that loads the data, the separate model files, and specifies the monitors and MCMC sampler.</p></li>
-<li><p><span><span><code>model_FBDP_TEFBD.Rev</code></span></span>: specifies the model parameters and moves required for the fossilized birth-death prior on the tree topology, divergence times, fossil occurrence times, and diversification dynamics.</p></li>
-</ul>
-<p>All of the files that you will create are also provided in the <span><code>RevBayes</code></span>tutorial repository[^2]. Please refer to these files to verify or troubleshoot your own scripts.</p>
-</div>
-<div id="start-the-master-revfile-and-import-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#start-the-master-revfile-and-import-data" class="anchor"></a>Start the Master <span><code>Rev</code></span>File and Import Data</h2>
-<p>Open your text editor and create the master <span><code>Rev</code></span>file called in the <span><span><code>scripts</code></span></span> directory.</p>
-<p>Enter the <span><code>Rev</code></span>code provided in this section in the new model file.</p>
-<p>The file you will begin in this section will be the one you load into <span><code>RevBayes</code></span>when you’ve completed all of the components of the analysis. In this section you will begin the file and write the <span><code>Rev</code></span>commands for loading in the taxon list and managing the data matrices. Then, starting in section Model FBD, you will move on to writing module files for each of the model components. Once the model files are complete, you will return to editing <span><span><code>mcmc_TEFBD.Rev</code></span></span> and complete the <span><code>Rev</code></span>script with the instructions given in section Complete MCMC].</p>
 <div id="load-taxon-list" class="section level3">
 <h3 class="hasAnchor">
 <a href="#load-taxon-list" class="anchor"></a>Load Taxon List</h3>
-<p>Begin the <span><code>Rev</code></span>script by loading in the list of taxon names from the <span><span><code>cinctans_taxa.tsv</code></span></span> file using the <span><span><code>readTaxonData()</code></span></span> function.</p>
+<p>First, we will load in a list of all the taxa that will be in our analysis. This includes taxa for which we have morphological data, and taxa for which we only have ages. We will load the <code>cinctans_taxa.tsv</code> file using the <code>readTaxonData()</code> function.</p>
 <pre class="revbayes"><code>    taxa &lt;- readTaxonData("data/cincta_fossil_intervals_FA.tsv")</code></pre>
-<p>This function reads a tab-delimited file and creates a variable called <span><span><code>taxa</code></span></span> that is a list of all of the taxon names relevant to this analysis. This list includes all of cinctans.</p>
+<p>This function reads a tab-delimited file and creates a variable called <code>taxa</code> that is a list of all of the taxon names relevant to this analysis. This list includes all of cinctans we are adding to the tree. Because fossils are data under the FBD model, even in the absence of phylogenetic characters, they are included in the file.</p>
 </div>
 <div id="load-data-matrices" class="section level3">
 <h3 class="hasAnchor">
 <a href="#load-data-matrices" class="anchor"></a>Load Data Matrices</h3>
-<p><span><code>RevBayes</code></span>uses the function <span><span><code>readDiscreteCharacterData()</code></span></span> to load a data matrix to the workspace from a formatted file. This function can be used for both discrete morphological characters.</p>
-<p>Next, import the morphological character matrix and assign it to the variable <span><span><code>morpho</code></span></span>.</p>
+<p><code>RevBayes</code> uses the function <code>readDiscreteCharacterData()</code> to load a data matrix to the workspace from a Nexus formatted file. This function can be used for both discrete morphological characters and molecular characters, if you have them.</p>
+<p>Import the morphological character matrix and assign it to the variable <code>morpho</code>.</p>
 <pre class="revbayes"><code>    morpho &lt;- readDiscreteCharacterData("data/Cinctans.nex")</code></pre>
 <pre><code>## Successfully read one character matrix from file 'data/Cinctans.nex'</code></pre>
 </div>
 <div id="create-helper-variables" class="section level3">
 <h3 class="hasAnchor">
 <a href="#create-helper-variables" class="anchor"></a>Create Helper Variables</h3>
-<p>Before we begin writing the <span><code>Rev</code></span>scripts for each of the model components, we need to instantiate a couple “helper variables” that will be used by downstream parts of our model specification files. These variables will be used in more than one of the module files so it’s best to initialize them in the master file.</p>
-<p>Create a new constant node called <span><span><code>n_taxa</code></span></span> that is equal to the number of species in our analysis (22).</p>
+<p>Before we begin writing the <code>Rev</code> scripts for each of the model components, we need to instantiate a couple “helper variables” that will be used by downstream parts of running and using our models. These variables will be used in multiple places in the analysis, and so we will instantiate them before going any further.</p>
+<p>Create a new constant node called <code>n_taxa</code> that is equal to the number of species in our analysis (22).</p>
 <pre class="revbayes"><code>    n_taxa &lt;- taxa.size() 
     num_branches &lt;- 2 * n_taxa - 2</code></pre>
-<p>Next, create a workspace variable called <span><span><code>moves</code></span></span>. This variable is an iterator that will build a vector containing all of the MCMC moves used to propose new states for every stochastic node in the model graph. Each time a new move is added to the vector, <span><span><code>moves</code></span></span> will be incremented by a value of <span><span><code>1</code></span></span>.</p>
+<p>Next, create a workspace variable called <code>moves</code>. This variable is an iterator that will build a vector containing all of the MCMC moves used to propose new states for every stochastic node in the model graph. Each time we add a parameter to the model, and put a prior on it, this will be incremented by <code>1</code>.</p>
 <pre class="revbayes"><code>    moves = VectorMoves()
     monitors = VectorMonitors()</code></pre>
-<p>One important distinction here is that <span><span><code>moves</code></span></span> is part of the <span><code>RevBayes</code></span>workspace and not the hierarchical model. Thus, we use the workspace assignment operator <span><span><code>=</code></span></span> instead of the constant node assignment <span><span><code>&lt;-</code></span></span>.</p>
-<p>Save your current working version of <span><span><code>mcmc_TEFBD.Rev</code></span></span> in the <span><span><code>scripts</code></span></span> directory.</p>
-<p>We will now move on to the next <span><code>Rev</code></span>file and will complete <span><span><code>mcmc_TEFBD.Rev</code></span></span> in section Complete MCMC.</p>
-</div>
+<p>Moves and monitors are part of the RevBayes workspace. They are not parameters of the model. They specify how values for parameters will be sampled. Because they are in the workspace, they are specified with the <code>=</code> operator, rather than the assignment operator <code>&lt;-</code>.</p>
 </div>
 <div id="the-fossilized-birth-death-process" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-fossilized-birth-death-process" class="anchor"></a>The Fossilized Birth-Death Process</h2>
-<p>Open your text editor and create the fossilized birth-death model file called in the <span><span><code>scripts</code></span></span> directory.</p>
-<p>Enter the <span><code>Rev</code></span>code provided in this section in the new model file.</p>
-<p>This file will define the models described in sections Intro to FBD and Intro to TipSampling above. If necessary, please review the graphical models depicted for the fossilized birth-death process (Fig. 3) and the likelihood of the tip sampling process (Fig. 3).</p>
-<div id="subsub:Exercise-FBD-SpeciationExtinction" class="section level3">
+<div id="speciation-and-extinction-rates" class="section level3">
 <h3 class="hasAnchor">
-<a href="#subsub:Exercise-FBD-SpeciationExtinction" class="anchor"></a>Speciation and Extinction Rates</h3>
-<p>Two key parameters of the FBD process are the speciation rate (the rate at which lineages are added to the tree, denoted by <span class="math inline">\(\lambda\)</span> in Fig. 3) and the extinction rate (the rate at which lineages are removed from the tree, <span class="math inline">\(\mu\)</span> in Fig. 3). We’ll place exponential priors on both of these values. Each parameter is assumed to be drawn independently from a different exponential distribution with rates <span class="math inline">\(\delta_{\lambda}\)</span> and <span class="math inline">\(\delta_{\mu}\)</span> respectively (see Fig. 3). Here, we will assume that <span class="math inline">\(\delta_{\lambda} = \delta_{\mu} = 10\)</span>. Note that an exponential distribution with <span class="math inline">\(\delta = 10\)</span> has an expected value (mean) of <span class="math inline">\(1/10\)</span>.</p>
-<p>Create the exponentially distributed stochastic nodes for the <span><span><code>speciation_rate</code></span></span> and <span><span><code>extinction_rate</code></span></span> using the <span><span><code>~</code></span></span> operator.</p>
-<pre class="revbayes"><code>    speciation_rate ~ dnExponential(10)
-    extinction_rate ~ dnExponential(10)</code></pre>
-<p>For every stochastic node we declare, we must also specify proposal algorithms (called <em>moves</em>) to sample the value of the parameter in proportion to its posterior probability. If a move is not specified for a stochastic node, then it will not be estimated, but fixed to its initial value.</p>
-<pre class="revbayes"><code>
-    rho &lt;- .506</code></pre>
-<p>The rate parameters for extinction and speciation are both positive, real numbers (<span><span><em>i.e.,</em></span></span>non-negative floating point variables). For both of these nodes, we will use a scaling move (<span><span><code>mvScale()</code></span></span>), which proposes multiplicative changes to a parameter. Many moves also require us to set a <em>tuning value</em>, called <span><span><code>lambda</code></span></span> for <span><span><code>mvScale()</code></span></span>, which determine the size of the proposed change. Here, we will use three scale moves for each parameter with different values of lambda. By using multiple moves for a single parameter, we will improve the mixing of the Markov chain.</p>
-<pre class="revbayes"><code>
-    moves.append(mvScale(speciation_rate, lambda=0.01, weight=1))
-    moves.append(mvScale(speciation_rate, lambda=0.1,  weight=1))
-    moves.append(mvScale(speciation_rate, lambda=1.0,  weight=1))
+<a href="#speciation-and-extinction-rates" class="anchor"></a>Speciation and Extinction Rates</h3>
+<p>We will begin by specifying the speciation and extinction rates. These parameters govern the rate at which lineages are added to and removed from the population. From a previous study we know that an expoential distribution with a parameter of 1.471 is a reasonable distribution in which this value could lie.</p>
+<pre class="revbayes"><code>  speciation_rate ~ dnExponential(1.471)
 
-    moves.append(mvScale(extinction_rate, lambda=0.01, weight=1))
-    moves.append(mvScale(extinction_rate, lambda=0.1,  weight=1))
-    moves.append(mvScale(extinction_rate, lambda=1,    weight=1))</code></pre>
-<p>You will also notice that each move has a specified <span><span><code>weight</code></span></span>. This option allows you to indicate how many times you would like a given move to be performed at each MCMC cycle. The way that we will run our MCMC for this tutorial will be to execute a <em>schedule</em> of moves at each step in our chain instead of just one move per step, as is done in <span>MrBayes</span> <span class="citation">(Ronquist and Huelsenbeck 2003)</span> or <span>BEAST</span> <span class="citation">(Drummond et al. 2012; Bouckaert et al. 2014)</span>. Here, if we were to run our MCMC with our current vector of 6 moves, then our move schedule would perform 6 moves at each cycle. Within a cycle, an individual move is chosen from the move list in proportion to its weight. Therefore, with all six moves assigned <span><span><code>weight=1</code></span></span>, each has an equal probability of being executed and will be performed on average one time per MCMC cycle. For more information on moves and how they are performed in <span><code>RevBayes</code></span>, please refer to the <a href="https://github.com/revbayes/revbayes_tutorial/blob/master/tutorial_TeX/RB_MCMC_Binomial_Tutorial/RB_MCMC_Binomial_Tutorial.pdf"><span><strong><em>Introduction to MCMC</em></strong></span></a> and <a href="https://github.com/ssb2017/revbayes_intro/blob/master/tutorials/RB_CTMC_Tutorial.pdf"><span><strong><em>Substitution Models</em></strong></span></a> tutorials.</p>
-<p>In addition to the speciation (<span class="math inline">\(\lambda\)</span>) and extinction (<span class="math inline">\(\mu\)</span>) rates, we may also be interested in inferring diversification (<span class="math inline">\(\lambda - \mu\)</span>) and turnover (<span class="math inline">\(\mu/\lambda\)</span>). Since these parameters can be expressed as a deterministic transformation of the speciation and extinction rates, we can monitor (that is, track the values of these parameters, and print them to a file) their values by creating two deterministic nodes using the <span><span><code>:=</code></span></span> operator.</p>
-<pre class="revbayes"><code>
-    diversification := speciation_rate - extinction_rate
-    turnover := extinction_rate/speciation_rate</code></pre>
-</div>
-<div id="the-fossil-sampling-rate" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-fossil-sampling-rate" class="anchor"></a>The Fossil Sampling Rate</h3>
-<p>Since our data set includes serially sampled lineages, we must also account for the rate of sampling back in time. This is the fossil sampling (or recovery) rate (<span class="math inline">\(\psi\)</span> in Fig. 3), which we will instantiate as a stochastic node (named <span><span><code>psi</code></span></span>). As with the speciation and extinction rates (Sect. FBD-Speciation &amp; Extinction]), we will use an exponential prior on this parameter and use scale moves to sample values from the posterior distribution.</p>
-<pre class="revbayes"><code>
-    psi ~ dnExponential(10) 
+  moves.append(mvScale(speciation_rate, lambda=0.01, weight=5));
+  moves.append(mvScale(speciation_rate, lambda=0.10, weight=3));
+  moves.append(mvScale(speciation_rate, lambda=1.00, weight=1));</code></pre>
+<p>It is possible to set extinction as its own parameter, for example, like so:</p>
+<pre class="revbayes"><code>  extinction_rate ~ dnExponential(10)</code></pre>
+<p>However, extinction and speciation rates are often correlated. And so we will instantiate a parameter called turnover, which is the ratio of extinction rate to speciation rate ($ $ / $ $). The parameters to this lognormal distribution were arrived at by simulation of parameter values from the data.</p>
+<pre class="revbayes"><code>    turnover ~ dnLognormal(0.945, 1.926745);
+    moves.append(mvSlide(turnover, delta=0.01, weight=5))
+    moves.append(mvSlide(turnover, delta=0.10, weight=3))
+    moves.append(mvSlide(turnover, delta=1.00, weight=1))</code></pre>
+<p>As discussed in previous lessons, moves specify how often (<em>weight</em>), we will sample new values for the parameters in our model. The <em>delta</em> of the slide move specifies how different from the initial value a propsed new parameter will be. More information on moves can be found in the <a href="https://revbayes.github.io/tutorials/mcmc/binomial.html">MCMC tutorial</a>.</p>
+<p>Once our turnover is defined, we can also monitor our extinction values like so:</p>
+<pre class="revbayes"><code>    extinction_rate := turnover*speciation_rate
+    diversification := speciation_rate - extinction_rate</code></pre>
+<p>Next, we will define the sampling in the present. Cinctans are extinct. We will rescale our times such that the last appearance of Cinctans in the fossil record is the ‘present’. Previous studies indicate that about half of Cinctans that existed them are in this analysis <span class="citation">(Zamora, Rahman, and Smith 2013)</span>. We will treat $ $ as a known quantity, a constant node. We will therefore, not specify any moves on this parameter.</p>
+<pre class="revbayes"><code>    rho &lt;- .506</code></pre>
+<p>Our data is made up of fossils. We also need to define the rate at which fossils are recovered on the tree. This is the fossil sampling rate (<span class="math inline">\(\psi\)</span> in Fig. 3). This is also referred to in the literature as the <code>recovery</code> rate. Prior research indicates that an exponential distribution with parameter 3.892 should be adequate.</p>
+<pre class="revbayes"><code>    psi ~ dnExponential(3.892) 
     moves.append(mvScale(psi, lambda=0.01, weight=1))
     moves.append(mvScale(psi, lambda=0.1,  weight=1))
     moves.append(mvScale(psi, lambda=1,    weight=1))</code></pre>
-<p>We also need to specify sampling at the last time interval where we had Cinctans. We have about 50% of the known Cinctans in this matrix.</p>
-<pre class="revbayes"><code>
-    rho &lt;- .506 </code></pre>
+<p>If you do not have a good intution for what this distribution looks like, you can visualize it below.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">draws &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Exponential.html">rexp</a></span>(<span class="dv">1000</span>, <span class="fl">3.891</span>)</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(draws)</a></code></pre></div>
+<p><img src="RB_Total_Evidence_Tutorial_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 </div>
-<div id="subsub:Exercise-FBD-Origin" class="section level3">
+<div id="the-origin-time" class="section level3">
 <h3 class="hasAnchor">
-<a href="#subsub:Exercise-FBD-Origin" class="anchor"></a>The Origin Time</h3>
-<p>We will condition the FBD process on the origin time (<span class="math inline">\(\phi\)</span> in Fig. 3) of cinctans, and we will specify a uniform distribution on the origin age. For this parameter, we will use a sliding window move (<span><span><code>mvSlide</code></span></span>). A sliding window samples a parameter uniformly within an interval (defined by the half-width <span><span><code>delta</code></span></span>). Sliding window moves can be tricky for small values, as the window may overlap zero. However, for parameters such as the origin age, there is little risk of this being an issue.</p>
+<a href="#the-origin-time" class="anchor"></a>The Origin Time</h3>
+<p>Finally, we need to define an origin time for the Cinctan group. Because we are rescaling the analysis to the treat the ‘present’ as last observation of Cinctans, our origin time will be drawn from a uniform distribution between 10.2 and 15.2 mya. In actuality, this corresponds to 508 to 513 million years ago.</p>
 <pre class="revbayes"><code>
     origin_time ~ dnUnif(10.2, 15.2);
     moves.append(mvSlide(origin_time, delta=0.01, weight=5.0))
     moves.append(mvSlide(origin_time, delta=0.1,  weight=5.0))
     moves.append(mvSlide(origin_time, delta=1,    weight=5.0))</code></pre>
-<p>Note that we specified a higher move <span><span><code>weight</code></span></span> for each of the proposals operating on <span><span><code>origin_time</code></span></span> than we did for the three previous stochastic nodes. This means that our move schedule will propose five times as many updates to <span><span><code>origin_time</code></span></span> than it will to <span><span><code>speciation_rate</code></span></span>, <span><span><code>extinction_rate</code></span></span>, or <span><span><code>psi</code></span></span>.</p>
 </div>
-<div id="subsub:Exercise-FBD-dnFBD" class="section level3">
+<div id="the-fbd-distribution-object" class="section level3">
 <h3 class="hasAnchor">
-<a href="#subsub:Exercise-FBD-dnFBD" class="anchor"></a>The FBD Distribution Object</h3>
-<p>All the parameters of the FBD process have now been specified. The next step is to use these parameters to define the FBD tree prior distribution, which we will call <span><span><code>fbd_dist</code></span></span>.</p>
+<a href="#the-fbd-distribution-object" class="anchor"></a>The FBD Distribution Object</h3>
+<p>All the parameters of the FBD process have now been specified. The next step is to use these parameters to define the FBD tree prior distribution, which we will call <code>fbd_dist</code>. We will use this distribution to simulate a starting tree.</p>
 <pre class="revbayes"><code>
     fbd_dist = dnFBDP(origin=origin_time, lambda=speciation_rate, mu=extinction_rate, psi=psi, rho=rho, taxa=taxa)</code></pre>
+<p>There has been a good amount of prior work on Cinctans, and we are able to define the ingroup for the Cinctans. For our taxa without phylogenetic characters, this allows us to tell the model that those taxa belong inside the ingroup. The model can then marginalize over their exact placement, and use the age information to date the total ingroup.</p>
 <pre class="revbayes"><code>
-ingroup = clade("Ctenocystis_utahensis","Gyrocystis_platessa","Gyrocystis_testudiformis","Gyrocystis_cruzae","Gyrocystis_badulesiensis",
-"Gyrocystis_erecta","Progyrocystis_disjuncta","Protocinctus_mansillaensis","Elliptocinctus_barrandei","Elliptocinctus_vizcainoi","Sucocystis_theronensis","Sucocystis_bretoni","Lignanicystis_barriosensis","Undatacinctus_undata","Sucocystis_acrofera","Undatacinctus_quadricornuta","Undatacinctus_melendezi","Sotocinctus_ubaghsi","Ludwigicinctus_truncatus","Graciacystis_ambigua","Nelegerocystis_ivantzovi","Rozanovicystis_triangularis","Davidocinctus_pembrokensis")
+ingroup = clade("Ctenocystis_utahensis","Gyrocystis_platessa","Gyrocystis_testudiformis","Gyrocystis_cruzae","Gyrocystis_badulesiensis", "Gyrocystis_erecta","Progyrocystis_disjuncta","Protocinctus_mansillaensis","Elliptocinctus_barrandei","Elliptocinctus_vizcainoi","Sucocystis_theronensis","Sucocystis_bretoni","Lignanicystis_barriosensis","Undatacinctus_undata","Sucocystis_acrofera","Undatacinctus_quadricornuta","Undatacinctus_melendezi","Sotocinctus_ubaghsi","Ludwigicinctus_truncatus","Graciacystis_ambigua","Nelegerocystis_ivantzovi","Rozanovicystis_triangularis","Davidocinctus_pembrokensis")
 constraints = v(ingroup)</code></pre>
-<p>Then we can specify the final tree prior distribution by creating a vector of constraints, and providing it along with the workspace FBD distribution to the constrained topology distribution. Here we use the stochastic assignment operator <code>~</code> to create a stochastic node for our constrained, FBD-tree variable (called <span><span><code>fbd_tree</code></span></span>).</p>
+<p>Next, we will draw a starting tree out of this distribution. This will be a tree that is feasible given our model parameters, and consistent with our clade constraints.</p>
 <pre class="revbayes"><code>    fbd_tree ~ dnConstrainedTopology(fbd_dist, constraints=constraints)</code></pre>
 </div>
-<div id="subsub:Exercise-FBD-TreeMoves" class="section level3">
+<div id="moves-on-the-tree-topology-and-node-ages" class="section level3">
 <h3 class="hasAnchor">
-<a href="#subsub:Exercise-FBD-TreeMoves" class="anchor"></a>Moves on the Tree Topology and Node Ages</h3>
-<p>Next, in order to sample from the posterior distribution of trees, we need to specify moves that propose changes to the topology (<span><span><code>mvFNPR</code></span></span>) and node times (<span><span><code>mvNodeTimeSlideUniform</code></span></span>). Included with these moves is a proposal that will collapse or expand a fossil branch (<span><span><code>mvCollapseExpandFossilBranch</code></span></span>). This will change a fossil that is a sampled ancestor (see Fig. 2 and Sect. Intro to FBD) so that it is on its own branch and vice versa. In addition, when conditioning on the origin time, we also need to explicitly sample the root age (<span><span><code>mvRootTimeSlideUniform</code></span></span>).</p>
+<a href="#moves-on-the-tree-topology-and-node-ages" class="anchor"></a>Moves on the Tree Topology and Node Ages</h3>
+<p>Fossils require some special moves we have not yet seen in any of the tutorials. Firstly, there is <code>mvFNPR</code>, which makes changes to the tree with the knowledge that some tips may not be contemporaneous. <code>mvCollapseExpandFossilBranch</code> allows fossils to transiton between being sampled ancestors and tips. The <code>TimeSlide</code> moves allow us to sample values for node and origin ages.</p>
 <pre class="revbayes"><code>    moves.append(mvFNPR(fbd_tree, weight=15.0))
     moves.append(mvCollapseExpandFossilBranch(fbd_tree, origin_time, weight=6.0))
     moves.append(mvNodeTimeSlideUniform(fbd_tree, weight=40.0))
     moves.append(mvRootTimeSlideUniform(fbd_tree, origin_time, weight=5.0))</code></pre>
 </div>
-<div id="subsub:Exercise-FBD-TipSampling" class="section level3">
+<div id="sampling-fossil-occurrence-ages" class="section level3">
 <h3 class="hasAnchor">
-<a href="#subsub:Exercise-FBD-TipSampling" class="anchor"></a>Sampling Fossil Occurrence Ages</h3>
-<p>Next, we need to account for uncertainty in the age estimates of our fossils using the observed minimum and maximum stratigraphic ages provided in the file <span><span><code>cinctans_fossil_intervals.tsv</code></span></span>. First, we read this file into a matrix called <span><span><code>intervals</code></span></span>.</p>
+<a href="#sampling-fossil-occurrence-ages" class="anchor"></a>Sampling Fossil Occurrence Ages</h3>
+<p>Next, we need to account for uncertainty in the age estimates of our fossils using the observed minimum and maximum stratigraphic ages provided in the file <code>cinctans_fossil_intervals.tsv</code>. These values are were obtained and cleaned from the Paleobiology Database. First, we read this file into a matrix called <code>intervals</code>.</p>
+<pre class="revbayes"><code>    intervals = readDataDelimitedFile(file="data/cincta_fossil_intervals_FA.tsv", header=true)</code></pre>
+<p>Next, we loop over this matrix. For each fossil observation, we create a uniform random variable representing the likelihood. In this equation <span class="math inline">\(t_i\)</span> is the fossil age. <span class="math inline">\(a_i\)</span> and <span class="math inline">\(b_i\)</span> are the minimum and maximum edges of the fossil age range. And so, we treat the fossil age as being drawn from a uniform distribution between <span class="math inline">\((t_i - b_i)\)</span> and <span class="math inline">\((t_i - a_i)\)</span></p>
 <pre class="revbayes"><code>
-    intervals = readDataDelimitedFile(file="data/cincta_fossil_intervals_FA.tsv", header=true)</code></pre>
-<p>Next, we loop over this matrix. For each fossil observation, we create a uniform random variable representing the likelihood. Remember, we can represent the fossil likelihood using any uniform distribution that is non-zero when the likelihood is equal to one (Sect. Tip Sampling).</p>
-<p>For example, if <span class="math inline">\(t_i\)</span> is the inferred fossil age and <span class="math inline">\((a_i,b_i)\)</span> is the observed stratigraphic interval, we know the likelihood is equal to one when <span class="math inline">\(a_i &lt; t_i &lt; b_i\)</span>, or equivalently <span class="math inline">\(t_i - b_i &lt; 0 &lt; t_i - a_i\)</span>. So let’s represent the likelihood using a uniform random variable uniformly distributed in <span class="math inline">\((t_i - b_i, t_i - a_i)\)</span> and clamped at zero.</p>
-<pre class="revbayes"><code>
-intervals = readDataDelimitedFile(file="data/cincta_fossil_intervals_FA.tsv", header=true)
-# Setup the fossil tip sampling #
-# Use a for loop to create a uniform distribution on the occurence time for each fossil #
-# The boundaries of the uniform distribution are specified in the tsv file #
-for(i in 1:intervals.size())
-{
-    taxon  = intervals[i][1]
-    a_i = intervals[i][2]
-    b_i = intervals[i][3]
-    t[i] := tmrca(fbd_tree, clade(taxon))
-
-    fossil[i] &lt;- a_i
-    fossil[i] ~ dnSoftBoundUniformNormal(t[i] - b_i, t[i] - a_i, sd = 2, p = 0.025)
-}</code></pre>
+  intervals = readDataDelimitedFile(file="data/cincta_fossil_intervals_FA.tsv", header=true)
+  for(i in 1:intervals.size())
+  {
+      taxon  = intervals[i][1]
+      a_i = intervals[i][2]
+      b_i = intervals[i][3]
+      t[i] := tmrca(fbd_tree, clade(taxon))
+  
+      fossil[i] &lt;- a_i
+      fossil[i] ~ dnSoftBoundUniformNormal(t[i] - b_i, t[i] - a_i, sd = 2, p = 0.025)
+  }</code></pre>
 <p>Finally, we add a move that samples the ages of the fossil nodes on the tree.</p>
-<pre class="revbayes"><code>
-    moves.append(mvFossilTimeSlideUniform(fbd_tree, origin_time, weight=5.0))</code></pre>
-</div>
-<div id="subsub:Exercise-FBD-DetNodes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#subsub:Exercise-FBD-DetNodes" class="anchor"></a>Monitoring Parameters of Interest using Deterministic Nodes</h3>
-<p>There are additional parameters that may be of particular interest to us that are not directly inferred as part of this graphical model. As with the diversification and turnover nodes specified in section FBD-Speciation &amp; Extinction, we can create deterministic nodes to sample the posterior distributions of these parameters. Create a deterministic node called <span><span><code>num_samp_anc</code></span></span> that will compute the number of sampled ancestors in our <span><span><code>fbd_tree</code></span></span>.</p>
+<pre class="revbayes"><code>  moves.append(mvFossilTimeSlideUniform(fbd_tree, origin_time, weight=5.0))</code></pre>
+<p>We are also going to write the number of sampled ancestors in our analysis to our log files. You may be interested in this value.</p>
 <pre class="revbayes"><code>    num_samp_anc := fbd_tree.numSampledAncestors()</code></pre>
 </div>
 </div>
-<div id="subsect:Exercise-CompleteMCMC" class="section level2">
-<h2 class="hasAnchor">
-<a href="#subsect:Exercise-CompleteMCMC" class="anchor"></a>Complete Master <span><code>Rev</code></span>File</h2>
-<p>Return to the master <span><code>Rev</code></span>file you created in section Start Master Rev called in the <span><span><code>scripts</code></span></span> directory.</p>
-<p>Enter the <span><code>Rev</code></span>code provided in this section in this file.</p>
-<div id="subsub:Exercise-SourceMods" class="section level3">
-<h3 class="hasAnchor">
-<a href="#subsub:Exercise-SourceMods" class="anchor"></a>Source Model Scripts</h3>
-<p><span><code>RevBayes</code></span>uses the <span><span><code><a href="https://rdrr.io/r/base/source.html">source()</a></code></span></span> function to load commands from <span><code>Rev</code></span>files into the workspace. Use this function to load in the model scripts we have written in the text editor and saved in the <span><span><code>scripts</code></span></span> directory.</p>
+</div>
+<div id="clock-model" class="section level1">
+<h1 class="hasAnchor">
+<a href="#clock-model" class="anchor"></a>Clock model</h1>
+<p>We will use the clock model we specified in the <a href="https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/module_07_TripartiteModel2_clock_models/Clock_models_for_character_data.html">previous section</a> again.</p>
 <pre class="revbayes"><code>
     ucln_mean ~ dnExponential(2.0)
     # sigma
@@ -367,304 +301,100 @@ for(i in 1:intervals.size())
     ucln_mu := ln(ucln_mean) - (ucln_var * 0.5)
     moves.append(mvScale(ucln_mean, lambda=1.0, tune=true, weight=4.0))
     moves.append(mvScale(ucln_sigma, lambda=0.5, tune=true, weight=4.0))
-</code></pre>
-<pre class="revbayes"><code>    for (i in 1:num_branches){
-        branch_rate_var[i] ~ dnLognormal(ucln_mu, ucln_sigma)
-        moves.append(mvScale(branch_rate_var[i], lambda=1, tune=true, weight=2.0))
+    
+    for (i in 1:num_branches){
+    branch_rate_var[i] ~ dnLognormal(ucln_mu, ucln_sigma)
+    moves.append(mvScale(branch_rate_var[i], lambda=1, tune=true, weight=2.0))
     }
     moves.append(mvVectorScale(branch_rate_var,lambda=1.0,tune=true,weight=2.0))
     moves.append(mvVectorSingleElementScale(branch_rate_var,lambda=30.0,tune=true,weight=1.0))
 </code></pre>
 </div>
-</div>
-<div id="morph-model" class="section level2">
-<h2 class="hasAnchor">
-<a href="#morph-model" class="anchor"></a>Morph model</h2>
+<div id="morphological-change-model" class="section level1">
+<h1 class="hasAnchor">
+<a href="#morphological-change-model" class="anchor"></a>Morphological Change Model</h1>
+<p>We will also use the morphology model defined in the <a href="https://dwbapst.github.io/PaleoSoc_phylo_short_course_2019/articles/module_06_TripartiteModel1_morph_change_models/RB_MCMC_Discrete_Morph.html">tree inference section</a></p>
 <pre class="revbayes"><code>
     alpha_morpho ~ dnUniform( 0, 1E6 )
     rates_morpho := fnDiscretizeGamma( alpha_morpho, alpha_morpho, 4 )
     #Moves on the parameters of the Gamma distribution.
     moves.append(mvScale(alpha_morpho, lambda=1, weight=2.0))
-    </code></pre>
-<pre class="revbayes"><code>
 
-n_max_states &lt;- 7
-idx = 1
-morpho_bystate[1] &lt;- morpho
-for (i in 2:n_max_states) {
-    # make local tmp copy of data
-    # only keep character blocks with state space equal to size i
-    morpho_bystate[i] &lt;- morpho
-    morpho_bystate[i].setNumStatesPartition(i)
-    # get number of characters per character size wth i-sized states
-    nc = morpho_bystate[i].nchar()
-    # for non-empty character blocks
-    if (nc &gt; 0) {
-        # make i-by-i rate matrix
-        q[idx] &lt;- fnJC(i)
-# create model of evolution for the character block
-        m_morph[idx] ~ dnPhyloCTMC( tree=fbd_tree,
-                                    Q=q[idx],
-                                    nSites=nc,
-                                    siteRates=rates_morpho,
-                                    branchRates = branch_rate_var,
-                                    type="Standard")
-
-        # attach the data
-        m_morph[idx].clamp(morpho_bystate[i])
-
-        # increment counter
-        idx = idx + 1
-        idx
-    }
-}</code></pre>
-<pre><code>## [1] 2
-## [2] 3
-## [3] 4</code></pre>
-<div id="subsub:Exercise-ModObj" class="section level3">
-<h3 class="hasAnchor">
-<a href="#subsub:Exercise-ModObj" class="anchor"></a>Create Model Object</h3>
-<p>We can now create our workspace model variable with our fully specified model DAG. We will do this with the <span><span><code>model()</code></span></span> function and provide a single node in the graph (<span><span><code>sf</code></span></span>).</p>
-<pre class="revbayes"><code>
-    mymodel = model(fbd_tree)</code></pre>
-<p>The object <span><span><code>mymodel</code></span></span> is a wrapper around the entire model graph and allows us to pass the model to various functions that are specific to our MCMC analysis.</p>
+    n_max_states &lt;- 7
+    idx = 1
+    morpho_bystate[1] &lt;- morpho
+    for (i in 2:n_max_states) {
+        # make local tmp copy of data
+        # only keep character blocks with state space equal to size i
+        morpho_bystate[i] &lt;- morpho
+        morpho_bystate[i].setNumStatesPartition(i)
+        # get number of characters per character size wth i-sized states
+        nc = morpho_bystate[i].nchar()
+        # for non-empty character blocks
+        if (nc &gt; 0) {
+            # make i-by-i rate matrix
+            q[idx] &lt;- fnJC(i)
+    # create model of evolution for the character block
+            m_morph[idx] ~ dnPhyloCTMC( tree=fbd_tree,
+                                        Q=q[idx],
+                                        nSites=nc,
+                                        siteRates=rates_morpho,
+                                        branchRates = branch_rate_var,
+                                        type="Standard")
+    
+            # attach the data
+            m_morph[idx].clamp(morpho_bystate[i])
+    
+            # increment counter
+            idx = idx + 1
+            idx
+        }
+    }</code></pre>
 </div>
-<div id="subsub:Exercise-Monitors" class="section level3">
-<h3 class="hasAnchor">
-<a href="#subsub:Exercise-Monitors" class="anchor"></a>Specify Monitors and Output Filenames</h3>
-<p>The next important step for our master <span><code>Rev</code></span>file is to specify the monitors and output file names. For this, we create a vector called <span><span><code>monitors</code></span></span> that will each sample and record or output our MCMC.</p>
-<p>The first monitor we will create will monitor every named random variable in our model graph. This will include every stochastic and deterministic node using the <span><span><code>mnModel</code></span></span> monitor. The only parameter that is not included in the <span><span><code>mnModel</code></span></span> is the tree topology. Therefore, the parameters in the file written by this monitor are all numerical parameters written to a tab-separated text file that can be opened by accessory programs for evaluating such parameters. We will also name the output file for this monitor and indicate that we wish to sample our MCMC every 10 cycles.</p>
+<div id="running-our-analysis" class="section level1">
+<h1 class="hasAnchor">
+<a href="#running-our-analysis" class="anchor"></a>Running our analysis</h1>
+<p>As we have in prior sections, we will now initialize and execute our model. First, we create the model object that contains all of our character change, clock, and tree model parameters and priors.</p>
+<pre class="revbayes"><code>    mymodel = model(fbd_tree)</code></pre>
+<p>Next, we inform RevBayes where we would like to write our sampled parameters.</p>
 <pre class="revbayes"><code>
     monitors.append(mnModel(filename="output/cinc_dated.log", printgen=10))</code></pre>
-<p>The <span><span><code>mnFile</code></span></span> monitor writes any parameter we specify to file. Thus, if we only cared about the speciation rate and nothing else (this is not a typical or recommended attitude for an analysis this complex) we wouldn’t use the <span><span><code>mnModel</code></span></span> monitor above and just use the <span><span><code>mnFile</code></span></span> monitor to write a smaller and simpler output file. Since the tree topology is not included in the <span><span><code>mnModel</code></span></span> monitor (because it is not numerical), we will use <span><span><code>mnFile</code></span></span> to write the tree to file by specifying our <span><span><code>pruned_tree</code></span></span> variable in the arguments. Remember, we are monitoring the tree with nuisance taxa pruned out (section FBD Deterministic Nodes).</p>
+<p>And where we would like to write our trees.</p>
 <pre class="revbayes"><code>
     monitors.append(mnFile(filename="output/cinc_dated.trees", printgen=10, fbd_tree))</code></pre>
-<p>The last monitor we will add to our analysis will print information to the screen. Like with <span><span><code>mnFile</code></span></span> we must tell <span><span><code>mnScreen</code></span></span> which parameters we’d like to see updated on the screen. We will choose the age of the MCRCA of living cinctans (<span><span><code>age_extant</code></span></span>), the number of sampled ancestors (<span><span><code>num_samp_anc</code></span></span>), and the origin time (<span><span><code>origin_time</code></span></span>).</p>
+<p>We can also echo some facets to the screen</p>
 <pre class="revbayes"><code>
     monitors.append(mnScreen(printgen=10, num_samp_anc, origin_time))</code></pre>
-</div>
-<div id="set-up-the-mcmc" class="section level3">
-<h3 class="hasAnchor">
-<a href="#set-up-the-mcmc" class="anchor"></a>Set-Up the MCMC</h3>
-<p>Once we have set up our model, moves, and monitors, we can now create the workspace variable that defines our MCMC run. We do this using the <span><span><code>mcmc()</code></span></span> function that simply takes the three main analysis components as arguments. This step may give you quite a bit of output. As a convenience, we have not shown this here.</p>
+<p>And then we initialize the model.</p>
 <pre class="revbayes"><code>
      mymcmc = mcmc(mymodel, monitors, moves)</code></pre>
-<p>The MCMC object that we named <span><span><code>mymcmc</code></span></span> has a member method called <span><span><code>.run()</code></span></span>. This will execute our analysis and we will set the chain length to <span><span><code>10000</code></span></span> cycles using the <span><span><code>generations</code></span></span> option.</p>
+<p>And run it. In a real analysis, you would want to run this for far more than 1000 generations.</p>
 <pre class="revbayes"><code>
-    mymcmc.run(generations=1000)</code></pre>
-<pre><code>## [1] Iter        |      Posterior   |     Likelihood   |          Prior   |   num_samp_anc   |    origin_time   |    elapsed   |        ETA   |
-## [2] ------------------------------------------------------------------------------------------------------------------------------------------
-## [3] 0           |       -1045.75   |       -825.827   |       -219.925   |              0   |       13.60085   |   00:00:00   |   --:--:--   |
-## [4] 10          |       -717.786   |        -611.32   |       -106.466   |              5   |       12.49552   |   00:00:00   |   --:--:--   |
-## [5] 20          |       -687.593   |       -591.877   |       -95.7156   |              8   |        14.7259   |   00:00:01   |   00:00:49   |
-## [6] 30          |       -628.648   |       -548.127   |       -80.5204   |              4   |       15.10566   |   00:00:01   |   00:00:32   |
-## [7] 40          |       -649.963   |        -542.29   |       -107.673   |              5   |       14.98807   |   00:00:02   |   00:00:48   |
-## [8] 50          |       -637.021   |       -536.555   |       -100.465   |              6   |       14.65284   |   00:00:02   |   00:00:38   |
-## [9] 60          |       -644.118   |       -540.061   |       -104.056   |              7   |       15.19419   |   00:00:02   |   00:00:31   |
-## [10] 70          |       -655.607   |       -538.695   |       -116.912   |              9   |       15.19704   |   00:00:03   |   00:00:39   |
-## [11] 80          |           -678   |        -532.17   |       -145.831   |              7   |       15.17937   |   00:00:03   |   00:00:34   |
-## [12] 90          |       -659.644   |       -524.132   |       -135.512   |              8   |       15.19935   |   00:00:03   |   00:00:30   |
-## [13] 100         |       -637.354   |       -517.806   |       -119.547   |              4   |       15.03733   |   00:00:04   |   00:00:36   |
-## [14] 110         |       -647.821   |       -510.997   |       -136.824   |              5   |       15.17523   |   00:00:04   |   00:00:32   |
-## [15] 120         |       -652.112   |       -506.565   |       -145.546   |              4   |       14.89544   |   00:00:05   |   00:00:36   |
-## [16] 130         |       -646.621   |       -505.544   |       -141.077   |              5   |       15.12386   |   00:00:05   |   00:00:33   |
-## [17] 140         |       -648.213   |       -498.437   |       -149.776   |              3   |       14.98842   |   00:00:05   |   00:00:30   |
-## [18] 150         |       -651.446   |       -504.763   |       -146.683   |              5   |       15.13047   |   00:00:06   |   00:00:34   |
-## [19] 160         |       -653.476   |       -501.359   |       -152.117   |              7   |       14.73257   |   00:00:06   |   00:00:31   |
-## [20] 170         |       -656.543   |       -501.757   |       -154.786   |              6   |       15.18009   |   00:00:07   |   00:00:34   |
-## [21] 180         |       -661.249   |       -503.974   |       -157.275   |              6   |        14.9263   |   00:00:07   |   00:00:31   |
-## [22] 190         |       -663.426   |       -501.607   |       -161.819   |              6   |       15.15304   |   00:00:08   |   00:00:34   |
-## [23] Iter        |      Posterior   |     Likelihood   |          Prior   |   num_samp_anc   |    origin_time   |    elapsed   |        ETA   |
-## [24] ------------------------------------------------------------------------------------------------------------------------------------------
-## [25] 200         |       -664.312   |       -498.331   |       -165.981   |              6   |       15.07483   |   00:00:08   |   00:00:32   |
-## [26] 210         |       -670.492   |       -507.237   |       -163.255   |              5   |       15.15642   |   00:00:08   |   00:00:30   |
-## [27] 220         |       -669.182   |        -499.88   |       -169.303   |              5   |       15.18816   |   00:00:09   |   00:00:31   |
-## [28] 230         |       -684.966   |       -508.874   |       -176.092   |              5   |       15.04235   |   00:00:09   |   00:00:30   |
-## [29] 240         |       -697.809   |       -495.786   |       -202.023   |              5   |        15.1541   |   00:00:10   |   00:00:31   |
-## [30] 250         |       -685.302   |       -499.212   |        -186.09   |              4   |       15.04879   |   00:00:10   |   00:00:30   |
-## [31] 260         |       -686.388   |       -503.232   |       -183.155   |              4   |       15.14935   |   00:00:11   |   00:00:31   |
-## [32] 270         |       -682.055   |       -499.691   |       -182.364   |              3   |       15.17767   |   00:00:11   |   00:00:29   |
-## [33] 280         |       -677.211   |       -498.414   |       -178.797   |              3   |       15.04198   |   00:00:11   |   00:00:28   |
-## [34] 290         |       -663.259   |       -504.769   |       -158.489   |              3   |       14.92057   |   00:00:12   |   00:00:29   |
-## [35] 300         |       -662.194   |        -503.69   |       -158.505   |              4   |        14.9858   |   00:00:12   |   00:00:28   |
-## [36] 310         |       -674.165   |       -509.052   |       -165.113   |              5   |       14.61148   |   00:00:13   |   00:00:28   |
-## [37] 320         |       -682.001   |       -516.005   |       -165.996   |              7   |       15.14247   |   00:00:13   |   00:00:27   |
-## [38] 330         |       -683.248   |       -515.346   |       -167.902   |              6   |       15.04701   |   00:00:13   |   00:00:26   |
-## [39] 340         |       -693.569   |       -530.787   |       -162.781   |              7   |       15.05624   |   00:00:14   |   00:00:27   |
-## [40] 350         |       -699.316   |       -521.178   |       -178.138   |              7   |       14.71986   |   00:00:14   |   00:00:26   |
-## [41] 360         |       -687.438   |        -511.54   |       -175.898   |              7   |       14.39169   |   00:00:15   |   00:00:26   |
-## [42] 370         |       -686.085   |       -521.262   |       -164.823   |              6   |       14.86922   |   00:00:15   |   00:00:25   |
-## [43] 380         |       -696.434   |       -508.613   |       -187.821   |              6   |       15.02676   |   00:00:16   |   00:00:26   |
-## [44] 390         |       -696.492   |       -496.935   |       -199.558   |              7   |       14.38589   |   00:00:16   |   00:00:25   |
-## [45] Iter        |      Posterior   |     Likelihood   |          Prior   |   num_samp_anc   |    origin_time   |    elapsed   |        ETA   |
-## [46] ------------------------------------------------------------------------------------------------------------------------------------------
-## [47] 400         |        -695.96   |       -500.167   |       -195.793   |              6   |       14.27626   |   00:00:17   |   00:00:25   |
-## [48] 410         |       -689.658   |       -487.648   |        -202.01   |              5   |       15.18199   |   00:00:17   |   00:00:24   |
-## [49] 420         |       -700.137   |       -507.687   |        -192.45   |              4   |       15.19653   |   00:00:17   |   00:00:23   |
-## [50] 430         |       -704.798   |       -503.296   |       -201.502   |              5   |       15.09217   |   00:00:18   |   00:00:23   |
-## [51] 440         |       -691.395   |       -503.439   |       -187.956   |              6   |        15.0636   |   00:00:18   |   00:00:22   |
-## [52] 450         |       -706.128   |       -507.561   |       -198.567   |              6   |       15.14137   |   00:00:19   |   00:00:23   |
-## [53] 460         |       -688.248   |       -491.302   |       -196.945   |              6   |       15.13773   |   00:00:19   |   00:00:22   |
-## [54] 470         |         -700.1   |        -494.47   |        -205.63   |              6   |         15.142   |   00:00:20   |   00:00:22   |
-## [55] 480         |       -726.709   |       -508.478   |        -218.23   |              6   |       15.17342   |   00:00:20   |   00:00:21   |
-## [56] 490         |       -708.797   |       -502.561   |       -206.236   |              5   |       15.18693   |   00:00:20   |   00:00:20   |
-## [57] 500         |       -720.228   |       -510.341   |       -209.887   |              8   |       15.19569   |   00:00:21   |   00:00:21   |
-## [58] 510         |       -703.106   |       -498.037   |       -205.068   |              8   |       15.19423   |   00:00:21   |   00:00:20   |
-## [59] 520         |       -704.023   |       -495.892   |       -208.131   |              8   |       15.17294   |   00:00:22   |   00:00:20   |
-## [60] 530         |       -715.182   |       -498.128   |       -217.054   |              6   |       15.15204   |   00:00:22   |   00:00:19   |
-## [61] 540         |       -726.965   |       -495.806   |        -231.16   |              7   |       15.17905   |   00:00:23   |   00:00:19   |
-## [62] 550         |       -728.501   |       -499.868   |       -228.633   |              7   |       15.06719   |   00:00:23   |   00:00:18   |
-## [63] 560         |       -731.874   |       -503.803   |       -228.071   |              5   |        15.1171   |   00:00:23   |   00:00:18   |
-## [64] 570         |       -739.297   |       -498.167   |        -241.13   |              6   |       15.19085   |   00:00:24   |   00:00:18   |
-## [65] 580         |       -726.201   |       -494.824   |       -231.377   |              6   |       15.19852   |   00:00:24   |   00:00:17   |
-## [66] 590         |       -749.503   |       -498.355   |       -251.148   |              7   |       15.16525   |   00:00:25   |   00:00:17   |
-## [67] Iter        |      Posterior   |     Likelihood   |          Prior   |   num_samp_anc   |    origin_time   |    elapsed   |        ETA   |
-## [68] ------------------------------------------------------------------------------------------------------------------------------------------
-## [69] 600         |       -744.645   |       -502.581   |       -242.064   |              6   |       15.19772   |   00:00:25   |   00:00:16   |
-## [70] 610         |       -748.815   |       -505.564   |       -243.252   |              5   |       15.17797   |   00:00:25   |   00:00:15   |
-## [71] 620         |        -757.67   |       -508.254   |       -249.416   |              6   |       15.14953   |   00:00:26   |   00:00:15   |
-## [72] 630         |       -769.246   |       -509.725   |        -259.52   |              6   |       15.18944   |   00:00:26   |   00:00:15   |
-## [73] 640         |       -734.474   |       -498.834   |        -235.64   |              6   |       15.19686   |   00:00:27   |   00:00:15   |
-## [74] 650         |       -738.298   |       -504.275   |       -234.023   |              5   |       15.19759   |   00:00:27   |   00:00:14   |
-## [75] 660         |       -732.625   |       -501.749   |       -230.876   |              5   |       15.17929   |   00:00:27   |   00:00:13   |
-## [76] 670         |       -733.334   |       -497.993   |       -235.341   |              4   |        15.1828   |   00:00:28   |   00:00:13   |
-## [77] 680         |       -744.812   |       -513.308   |       -231.504   |              5   |       15.17753   |   00:00:28   |   00:00:13   |
-## [78] 690         |       -745.526   |       -506.197   |       -239.329   |              5   |       15.15134   |   00:00:29   |   00:00:13   |
-## [79] 700         |         -740.3   |       -508.744   |       -231.556   |              5   |       15.18161   |   00:00:29   |   00:00:12   |
-## [80] 710         |       -740.448   |       -511.616   |       -228.832   |              6   |       15.17723   |   00:00:29   |   00:00:11   |
-## [81] 720         |       -737.623   |       -511.856   |       -225.767   |              4   |       15.17248   |   00:00:30   |   00:00:11   |
-## [82] 730         |       -732.354   |       -508.575   |       -223.779   |              4   |       15.19086   |   00:00:30   |   00:00:11   |
-## [83] 740         |       -743.318   |       -510.439   |       -232.879   |              6   |       15.19433   |   00:00:31   |   00:00:10   |
-## [84] 750         |       -751.244   |       -516.856   |       -234.388   |              5   |       15.19701   |   00:00:31   |   00:00:10   |
-## [85] 760         |       -735.975   |       -508.433   |       -227.542   |              6   |       15.19608   |   00:00:32   |   00:00:10   |
-## [86] 770         |       -731.459   |        -510.81   |       -220.648   |              4   |       15.19524   |   00:00:32   |   00:00:09   |
-## [87] 780         |       -733.435   |       -498.947   |       -234.489   |              5   |       15.19567   |   00:00:32   |   00:00:09   |
-## [88] 790         |       -738.703   |       -500.666   |       -238.037   |              5   |       15.19878   |   00:00:33   |   00:00:08   |
-## [89] Iter        |      Posterior   |     Likelihood   |          Prior   |   num_samp_anc   |    origin_time   |    elapsed   |        ETA   |
-## [90] ------------------------------------------------------------------------------------------------------------------------------------------
-## [91] 800         |       -730.507   |       -495.232   |       -235.275   |              5   |       15.19458   |   00:00:33   |   00:00:08   |
-## [92] 810         |       -738.702   |       -504.128   |       -234.574   |              5   |       15.19967   |   00:00:34   |   00:00:07   |
-## [93] 820         |       -754.888   |       -516.454   |       -238.434   |              5   |       15.19912   |   00:00:34   |   00:00:07   |
-## [94] 830         |       -758.432   |       -496.952   |        -261.48   |              6   |        15.1992   |   00:00:34   |   00:00:06   |
-## [95] 840         |       -773.003   |       -508.587   |       -264.416   |              6   |       15.19848   |   00:00:35   |   00:00:06   |
-## [96] 850         |       -790.973   |       -511.845   |       -279.128   |              6   |        15.1989   |   00:00:35   |   00:00:06   |
-## [97] 860         |        -802.65   |       -512.276   |       -290.374   |              6   |       15.19795   |   00:00:36   |   00:00:05   |
-## [98] 870         |       -794.949   |       -497.116   |       -297.833   |              6   |       15.19868   |   00:00:36   |   00:00:05   |
-## [99] 880         |       -783.135   |       -506.267   |       -276.868   |              6   |       15.19972   |   00:00:36   |   00:00:04   |
-## [100] 890         |       -787.802   |        -509.53   |       -278.272   |              7   |       15.19783   |   00:00:37   |   00:00:04   |
-## [101] 900         |       -775.936   |       -505.357   |       -270.579   |              7   |       15.19943   |   00:00:37   |   00:00:04   |
-## [102] 910         |       -775.705   |       -510.578   |       -265.127   |              7   |       15.19956   |   00:00:38   |   00:00:03   |
-## [103] 920         |       -768.802   |       -504.289   |       -264.513   |              7   |        15.1997   |   00:00:38   |   00:00:03   |
-## [104] 930         |       -758.591   |       -515.821   |       -242.771   |              7   |       15.19977   |   00:00:38   |   00:00:02   |
-## [105] 940         |       -753.767   |       -510.481   |       -243.286   |              6   |       15.19993   |   00:00:39   |   00:00:02   |
-## [106] 950         |       -775.375   |       -512.709   |       -262.667   |              6   |       15.19999   |   00:00:39   |   00:00:02   |
-## [107] 960         |       -776.688   |       -507.928   |        -268.76   |              6   |       15.19996   |   00:00:40   |   00:00:01   |
-## [108] 970         |       -786.646   |       -506.539   |       -280.107   |              6   |       15.19996   |   00:00:40   |   00:00:01   |
-## [109] 980         |       -785.558   |       -509.378   |        -276.18   |              7   |           15.2   |   00:00:41   |   00:00:00   |
-## [110] 990         |       -785.921   |       -508.505   |       -277.416   |              7   |           15.2   |   00:00:41   |   00:00:00   |
-## [111] Iter        |      Posterior   |     Likelihood   |          Prior   |   num_samp_anc   |    origin_time   |    elapsed   |        ETA   |
-## [112] ------------------------------------------------------------------------------------------------------------------------------------------
-## [113] 1000        |       -797.437   |       -508.379   |       -289.058   |              7   |           15.2   |   00:00:41   |   00:00:00   |</code></pre>
-<p>Once our Markov chain has terminated, we will want <span><code>RevBayes</code></span>to close. Tell the program to quit using the <span><span><code><a href="https://rdrr.io/r/base/quit.html">q()</a></code></span></span> function.</p>
-<pre class="revbayes"><code><a href="https://rdrr.io/r/base/quit.html">
-    q()</a></code></pre>
-<p>You made it! Save all of your files.</p>
-</div>
-</div>
-<div id="execute-the-mcmc-analysis" class="section level2">
-<h2 class="hasAnchor">
-<a href="#execute-the-mcmc-analysis" class="anchor"></a>Execute the MCMC Analysis</h2>
-<p>With all the parameters specified and all analysis components in place, you are now ready to run your analysis. The <span><code>Rev</code></span>scripts you just created will all be used by <span><code>RevBayes</code></span>and loaded in the appropriate order.</p>
-<p>Begin by running the <span><code>RevBayes</code></span>executable. In Unix systems, type the following in your terminal (if the <span><code>RevBayes</code></span>binary is in your path):</p>
-<p>Provided that you started <span><code>RevBayes</code></span>from the correct directory (<span><span><code>RB_TotalEvidenceDating_FBD_Tutorial</code></span></span>), you can then use the <span><span><code><a href="https://rdrr.io/r/base/source.html">source()</a></code></span></span> function to feed <span><code>RevBayes</code></span>your master script file (<span><span><code>mcmc_TEFBD.Rev</code></span></span>).</p>
-<pre><code><a href="https://rdrr.io/r/base/source.html">source("scripts/mcmc_TEFBD.Rev")</a></code></pre>
-<p>This will execute the analysis and you should see the following output (though not the exact same values):</p>
-<p>When the analysis is complete, <span><code>RevBayes</code></span>will quit and you will have a new directory called <span><span><code>output</code></span></span> that will contain all of the files you specified with the monitors (Sect. Exercise Monitors).</p>
-</div>
+    mymcmc.run(generations=10000)</code></pre>
+<p>And then we quit.</p>
+<pre class="revbayes"><code><a href="https://rdrr.io/r/base/quit.html">    q()</a></code></pre>
 <div id="evaluate-and-summarize-your-results" class="section level2">
 <h2 class="hasAnchor">
 <a href="#evaluate-and-summarize-your-results" class="anchor"></a>Evaluate and Summarize Your Results</h2>
-<div id="evaluate-mcmc" class="section level3">
-<h3 class="hasAnchor">
-<a href="#evaluate-mcmc" class="anchor"></a>Evaluate MCMC</h3>
-<p>In this section, we will evaluate the <em>mixing</em> and <em>convergence</em> of our MCMC simulation using the program <span>Tracer</span>. We can also summarize the marginal distributions for particular parameters we’re interested in. <a href="http://tree.bio.ed.ac.uk/software/tracer/">Tracer</a> <span class="citation">(Rambaut and Drummond 2011)</span> is a tool for visualizing parameters sampled by MCMC. This program is limited to numerical parameters, however, and cannot be used to summarize or analyze MCMC samples of the tree topology (this will be discussed further in section Summarize Trees).</p>
-<p><img src="figures/tracer_load_file.png"> Open <span>Tracer</span> and import the <span><span><code>cinctans.log</code></span></span> file in the <span><strong><em>FileImport New Trace File</em></strong></span>. Or click the button on the left-hand side of the screen to add your log file.</p>
-<p><img src="figures/tracer_fig_posterior_short.png"> Immediately upon loading your file, you will see the list of <span><strong><em>Trace Files</em></strong></span> on the left-hand side (you can load multiple files). The bottom left section, called <span><strong><em>Traces</em></strong></span>, provides a list of every parameter in the log file, along with the mean and the effective sample size (ESS) for the posterior sample of that parameter. The ESS statistic provides a measure of the number of independent draws in our sample for a given parameter. This quantity will typically be much smaller than the number of generations of the chain. In <span>Tracer</span>, poor to fair values for the ESS will be colored red and yellow. You will likely see a lot of red and yellow numbers because the MCMC runs in this exercise are too short to effectively sample the posterior distributions of most parameters. A much longer analysis is provided in the <span><span><code>output</code></span></span> directory.</p>
-<p>The inspection window for your selected parameter is the <span><strong><em>Estimates</em></strong></span> window, which shows a histogram and summary statistics of the values sampled by the Markov chain. Figure 6 shows the marginal distribution of the <span><strong><em>Posterior</em></strong></span> statistic for the <span><span><code>cinctans.log</code></span></span> file in the <span><span><code>output</code></span></span> directory.</p>
-<p>Look through the various parameters and statistics in the list of <span><strong><em>Traces</em></strong></span>.</p>
-<p><span><span><span></span></span></span>Are there any parameters that have really low ESS? Why do you think that might be?</p>
-<p>Next, we can click over to the <span><strong><em>Trace</em></strong></span> window. This window shows us the samples for a given parameter at each iteration of the MCMC. The left side of the chain has a shaded portion that has been excluded as “burn-in”. Samples taken near the beginning of chain are often discarded or “burned” because the MCMC may not immediately begin sampling from the target posterior distribution, particularly if the starting condition of the chain is far from the region of highest posterior density. Figure 7 shows the trace for the extinction rate.</p>
-<p><img src="figures/tracer_extinction_rate_trace_short.png"> The <span><strong><em>Trace</em></strong></span> window allows us to evaluate how well our chain is sampling the target distribution. For a fairly short analysis, the output in figure <span class="math display">\[fig:tracer-extinction-trace\]</span> shows reasonable <em>mixing</em>—there is no consistent pattern or trend in the samples, nor are there long intervals where the statistic does not change. The presence of a trend or large leaps in a parameter value might indicate that your MCMC is not mixing well. You can read more about MCMC tuning and improving mixing in the tutorials <a href="https://github.com/revbayes/revbayes_tutorial/raw/master/tutorial_TeX/RB_MCMC_Binomial_Tutorial/RB_MCMC_Binomial_Tutorial.pdf"><span><strong><em>Intro to MCMC</em></strong></span></a> and <a href="https://github.com/revbayes/revbayes_tutorial/raw/master/tutorial_TeX/RB_MCMC_Tutorial/RB_MCMC_Tutorial.pdf"><span><strong><em>MCMC Algorithms</em></strong></span></a>.</p>
-<p>Look through the traces for your parameters.</p>
-<p><span><span><span></span></span></span>Are there any parameters in your log files that show trends or large leaps? What steps might you take to solve these issues?</p>
-<p>In <span>Tracer</span> you can view the marginal probability distributions of your parameters in the <span><strong><em>Marginal Prob Distribution</em></strong></span> window. Using this tool, you can compare the distributions of several different parameters (by selecting them both).</p>
-<p>Go to the <span><span><code>diversification</code></span></span> parameter in the <span><strong><em>Marginal Prob Distribution</em></strong></span> window.</p>
-<p><span><span><span></span></span></span>What is the mean value estimated for the net diversification rate (<span class="math inline">\(d\)</span>)? What does the marginal distribution tell you about the net diversification? (Hint: <span class="math inline">\(d = \lambda - \mu\)</span>)</p>
-<p>While specifying the model, remember that we created several deterministic nodes that represent parameters that we would like to estimate, including the net diversification rate. <span>Tracer</span> allows us to view the summaries of these parameters since they appear in our log files.</p>
-<p>Go to the <span><span><code>age_extant</code></span></span> parameter in the <span><strong><em>Estimates</em></strong></span> window.</p>
-<p><span><span><span></span></span></span>What is the mean and 95% highest posterior density of the age of the MRCA for all living cinctans?</p>
-<p>Since you have evaluated several of the parameters by viewing the trace files and the ESS values, you may be aware that the MCMC analysis you conducted for this tutorial did not sufficiently sample the joint posterior distribution of phylogenetic parameters. More explicitly, <em>your run has not converged</em>. It is not advisable to base your conclusions on such a run and it will be critical to perform multiple, independent runs for many more MCMC cycles. For further discussion of recommended MCMC practices in <span><code>RevBayes</code></span>, please see the <a href="https://github.com/revbayes/revbayes_tutorial/raw/master/tutorial_TeX/RB_MCMC_Binomial_Tutorial/RB_MCMC_Binomial_Tutorial.pdf"><span><strong><em>Intro to MCMC</em></strong></span></a> and <a href="https://github.com/revbayes/revbayes_tutorial/raw/master/tutorial_TeX/RB_MCMC_Tutorial/RB_MCMC_Tutorial.pdf"><span><strong><em>MCMC Algorithms</em></strong></span></a> tutorials.</p>
+<p>Once our analysis is complete, we can analyze the results in various ways. One popular software for assessing convergence in a Bayesian analysis is <a href="https://github.com/beast-dev/tracer/releases/tag/v1.7.1">Tracer</a>. More information on evaluating MCMCs can be found in the <a href="https://revbayes.github.io/tutorials/mcmc/binomial.html">MCMC tutorial</a>.</p>
+<p>We can create a variety of summary trees in RevBayes. Common ones include the maximum clade credibility tree, and the consensus tree. The maximum clade credibility tree is the tree that maximuizes the cumulative clade probabilities on that tree. This metric has become popular, as it always yields a tree that is included in the posterior sample. This is in contrast to a strict or semis-strict consensus tree, which includes all clades that have over a specified posterior probability, and may not have been sampled in the analysis. Below, we calculate both.</p>
+<pre class="revbayes"><code>trace = readTreeTrace("output/cinc_dated.trees")
+mccTree(trace, file = "output/mccTree.tre")
+conTree(trace, file = "output/conTree.tre")</code></pre>
+<p>The resultant tree files can be viewed in popular tree viewers such as <a href="https://github.com/rambaut/figtree/releases">FigTree</a> or <a href="https://icytree.org/">IcyTree</a>.</p>
 </div>
-<div id="summarize-tree" class="section level3">
-<h3 class="hasAnchor">
-<a href="#summarize-tree" class="anchor"></a>Summarize Tree</h3>
-<p>In addition to evaluating the performance and sampling of an MCMC run using numerical parameters, it is also important to inspect the sampled topology and tree parameters. This is a difficult endeavor, however. One tool for evaluating convergence and mixing of the tree samples is <a href="https://github.com/danlwarren/RWTY">RWTY</a> <span class="citation">(Warren et al. 2016)</span>. In this tutorial, we will only summarize the sampled trees, but we encourage you to consider approaches for assessing the performance of the MCMC with respect to the tree topology.</p>
-<p>Ultimately, we are interested in summarizing the sampled trees and branch times, given that our MCMC has sampled all of the important parameters in proportion to their posterior probabilities. <span><code>RevBayes</code></span>includes some functions for summarizing the tree topology and other tree parameters.</p>
-<p>We will complete this part of the tutorial using <span><code>RevBayes</code></span>interactively. Begin by running the <span><code>RevBayes</code></span>executable. You should do this from within the <span><span><code>RB_TotalEvidenceDating_FBD_Tutorial</code></span></span> directory.</p>
-<p>In Unix systems, type the following in your terminal (if the <span><code>RevBayes</code></span>binary is in your path):</p>
-<p>Read in the MCMC sample of trees from file.</p>
-<pre><code>trace = readTreeTrace("output/cinctans.trees")</code></pre>
-<p>By default, a burn-in of 25% is used when creating the tree trace (250 trees in our case). You can specify a different burn-in fraction, say 50%, by typing the command .</p>
-<p>Now we will use the <span><span><code>mccTree()</code></span></span> function to return a maximum clade credibility (MCC) tree. The MCC tree is the tree with the maximum product of the posterior clade probabilities. When considering trees with sampled ancestors, we refer to the maximum sampled ancestor clade credibility (MSACC) tree <span class="citation">(Gavryushkina et al. 2016)</span>.</p>
-<pre><code>mccTree(trace, file="output/cinctans.mcc.tre" )</code></pre>
-<p>When there are sampled ancestors present in the tree, visualizing the tree can be fairly difficult in traditional tree viewers. We will make use of a browser-based tree viewer called <a href="http://tgvaughan.github.io/icytree/">IcyTree</a>, created by <a href="https://github.com/tgvaughan">Tim Vaughan</a>. <span>IcyTree</span> has many unique options for visualizing phylogenetic trees and can produce publication-quality vector image files (<span><span><em>i.e.,</em></span></span>SVG). Additionally, it correctly represents sampled ancestors on the tree as nodes, each with only one descendant (Fig. 8).</p>
-<p><img src="figures/summary_tree.png"></p>
-<p>Navigate to <a href="http://tgvaughan.github.io/icytree" class="uri">http://tgvaughan.github.io/icytree</a> and open the file <span><span><code>output/cinctans.mcc.tre</code></span></span> in <span>IcyTree</span>.</p>
-<p><span><span><span></span></span></span>Try to replicate the tree in Fig. 8. (Hint: <span><strong><em>StyleMark Singletons</em></strong></span>) Why might a node with a sampled ancestor be referred to as a singleton?</p>
-<p><span><span><span></span></span></span>How can you see the names of the fossils that are putative sampled ancestors?</p>
-<p><span><span><span></span></span></span>Try mousing over different branches (see Fig. 9). What are the fields telling you? [[[</p>
-<p>Another newly available web-based tree viewer is <a href="http://phylogeny.io/">Phylogeny.IO</a> <span class="citation">(Jovanovic and Mikheyev 2016)</span>. Try this site for a different way to view the tree.</p>
-<p><img src="figures/branch_highlight.png"> ## References</p>
+<div id="references" class="section level2 unnumbered">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
 <div id="refs" class="references">
-<div id="ref-Bouckaert2014">
-<p>Bouckaert, Remco, Joseph Heled, Denise Kühnert, Tim Vaughan, Chieh-Hsi Wu, Dong Xie, Marc A Suchard, Andrew Rambaut, and Alexei J Drummond. 2014. “BEAST 2: a software platform for Bayesian evolutionary analysis.” <em>PLoS Computational Biology</em> 10 (4). Public Library of Science: e1003537.</p>
-</div>
-<div id="ref-Drummond2012">
-<p>Drummond, A.J., M.A. Suchard, D. Xie, and A. Rambaut. 2012. “Bayesian Phylogenetics with Beauti and the Beast 1.7.” <em>Molecular Biology and Evolution</em> 29. SMBE: 1969–73.</p>
-</div>
-<div id="ref-foote1996">
-<p>Foote, Michael. 1996. “On the Probability of Ancestors in the Fossil Record.” <em>Paleobiology</em> 22: 141–51.</p>
-</div>
-<div id="ref-Gavryushkina2016">
-<p>Gavryushkina, Alexandra, Tracy A. Heath, Daniel T. Ksepka, Tanja Stadler, David Welch, and Alexei J. Drummond. 2016. “Bayesian Total-Evidence Dating Reveals the Recent Crown Radiation of Penguins.” <em>Systematic Biology</em>. <a href="https://doi.org/10.1093/sysbio/syw060">https://doi.org/10.1093/sysbio/syw060</a>.</p>
-</div>
 <div id="ref-Heath2014">
 <p>Heath, Tracy A, John P Huelsenbeck, and Tanja Stadler. 2014. “The fossilized birth-death process for coherent calibration of divergence-time estimates.” <em>Proceedings of the National Academy of Sciences</em> 111 (29). National Acad Sciences: E2957–E2966.</p>
-</div>
-<div id="ref-Jovanovic2016">
-<p>Jovanovic, Nikola, and Alexander S Mikheyev. 2016. “Interactive Web-Based Visualization of Phylogenetic Trees Using Phylogeny. IO.” <em>PeerJ Preprints</em> 4. PeerJ Inc. San Francisco, USA: e2579v1.</p>
-</div>
-<div id="ref-Rambaut2011">
-<p>Rambaut, Andrew, and Alexei J. Drummond. 2011. “Tracer V1.5.” http://tree.bio.ed.ac.uk/software/tracer/.</p>
-</div>
-<div id="ref-Ronquist2003">
-<p>Ronquist, F., and J.P. Huelsenbeck. 2003. “MrBayes 3: Bayesian phylogenetic inference under mixed models.” <em>Bioinformatics</em> 19 (12). Oxford Univ Press: 1572–4.</p>
-</div>
-<div id="ref-Ronquist2012a">
-<p>Ronquist, Fredrik, Seraina Klopfstein, Lars Vilhelmsen, Susanne Schulmeister, Debra L Murray, and Alexandr P Rasnitsyn. 2012. “A Total-Evidence Approach to Dating with Fossils, Applied to the Early Radiation of the Hymenoptera.” <em>Systematic Biology</em> 61 (6). Oxford University Press: 973–99.</p>
 </div>
 <div id="ref-Stadler2010">
 <p>Stadler, T. 2010. “Sampling-through-time in birth-death trees.” <em>Journal of Theoretical Biology</em> 267 (3). Elsevier: 396–404.</p>
 </div>
-<div id="ref-Stadler2017">
-<p>Stadler, Tanja, Alexandra Gavryushkina, Rachel Warnock, Alexei J Drummond, and Tracy A Heath. 2017. “The Fossilized Birth-Death Model for the Analysis of Stratigraphic Range Data Under Different Speciation Concepts.” <em>arXiv Preprint arXiv:1706.10106</em>.</p>
-</div>
-<div id="ref-Warren2016">
-<p>Warren, DL, A Geneva, DL Swofford, and R Lanfear. 2016. “Rwty: R We There yet.” <em>A Package for Visualizing MCMC Convergence in Phylogenetics</em>.</p>
-</div>
-<div id="ref-Zhang2016">
-<p>Zhang, Chi, Tanja Stadler, Seraina Klopfstein, Tracy A. Heath, and Fredrik Ronquist. 2016. “Total-Evidence Dating Under the Fossilized Birth-Death Process.” <em>Systematic Biology</em> 65 (2): 228–49. <a href="https://doi.org/10.1093/sysbio/syv080">https://doi.org/10.1093/sysbio/syv080</a>.</p>
-</div>
+<div id="ref-zamora2013">
+<p>Zamora, Samuel, Imran A Rahman, and Andrew B Smith. 2013. “The Ontogeny of Cinctans (Stem-Group Echinodermata) as Revealed by a New Genus, Graciacystis, from the Middle Cambrian of Spain.” <em>Palaeontology</em> 56 (2). Wiley Online Library: 399–410.</p>
 </div>
 </div>
 </div>
@@ -677,54 +407,33 @@ for (i in 2:n_max_states) {
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#overview">Overview</a></li>
-      <li>
+<li>
 <a href="#introduction">Introduction</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#tree-model">Tree model</a></li>
-      <li><a href="#incorporating-fossil-occurrence-time-uncertainty">Incorporating Fossil Occurrence Time Uncertainty</a></li>
       </ul>
 </li>
       <li>
 <a href="#example-estimating-the-phylogeny-and-divergence-times-of-fossil-cinctans">Example: Estimating the Phylogeny and Divergence Times of Fossil Cinctans</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#tutorial-format">Tutorial Format</a></li>
-      <li><a href="#creating-revfiles">Creating <span><code>Rev</code></span>Files</a></li>
-      <li>
-<a href="#start-the-master-revfile-and-import-data">Start the Master <span><code>Rev</code></span>File and Import Data</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#load-taxon-list">Load Taxon List</a></li>
       <li><a href="#load-data-matrices">Load Data Matrices</a></li>
       <li><a href="#create-helper-variables">Create Helper Variables</a></li>
-      </ul>
-</li>
       <li>
 <a href="#the-fossilized-birth-death-process">The Fossilized Birth-Death Process</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#subsub:Exercise-FBD-SpeciationExtinction">Speciation and Extinction Rates</a></li>
-      <li><a href="#the-fossil-sampling-rate">The Fossil Sampling Rate</a></li>
-      <li><a href="#subsub:Exercise-FBD-Origin">The Origin Time</a></li>
-      <li><a href="#subsub:Exercise-FBD-dnFBD">The FBD Distribution Object</a></li>
-      <li><a href="#subsub:Exercise-FBD-TreeMoves">Moves on the Tree Topology and Node Ages</a></li>
-      <li><a href="#subsub:Exercise-FBD-TipSampling">Sampling Fossil Occurrence Ages</a></li>
-      <li><a href="#subsub:Exercise-FBD-DetNodes">Monitoring Parameters of Interest using Deterministic Nodes</a></li>
+<li><a href="#speciation-and-extinction-rates">Speciation and Extinction Rates</a></li>
+      <li><a href="#the-origin-time">The Origin Time</a></li>
+      <li><a href="#the-fbd-distribution-object">The FBD Distribution Object</a></li>
+      <li><a href="#moves-on-the-tree-topology-and-node-ages">Moves on the Tree Topology and Node Ages</a></li>
+      <li><a href="#sampling-fossil-occurrence-ages">Sampling Fossil Occurrence Ages</a></li>
       </ul>
 </li>
+      </ul>
+</li>
+      <li><a href="#clock-model">Clock model</a></li>
+      <li><a href="#morphological-change-model">Morphological Change Model</a></li>
       <li>
-<a href="#subsect:Exercise-CompleteMCMC">Complete Master <span><code>Rev</code></span>File</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#subsub:Exercise-SourceMods">Source Model Scripts</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#morph-model">Morph model</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#subsub:Exercise-ModObj">Create Model Object</a></li>
-      <li><a href="#subsub:Exercise-Monitors">Specify Monitors and Output Filenames</a></li>
-      <li><a href="#set-up-the-mcmc">Set-Up the MCMC</a></li>
-      </ul>
-</li>
-      <li><a href="#execute-the-mcmc-analysis">Execute the MCMC Analysis</a></li>
-      <li>
-<a href="#evaluate-and-summarize-your-results">Evaluate and Summarize Your Results</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#evaluate-mcmc">Evaluate MCMC</a></li>
-      <li><a href="#summarize-tree">Summarize Tree</a></li>
-      </ul>
-</li>
+<a href="#running-our-analysis">Running our analysis</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#evaluate-and-summarize-your-results">Evaluate and Summarize Your Results</a></li>
+      <li><a href="#references">References</a></li>
       </ul>
 </li>
       </ul>
